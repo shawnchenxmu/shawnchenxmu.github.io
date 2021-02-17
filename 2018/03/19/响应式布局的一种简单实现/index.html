@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CSS,布局,响应式,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="在这里我们将实现一个基于窗口宽度的自适应布局，并且实现方法极为简单，不用在 HTML 文件中添加那些复杂的类名（col-sm-4、col-md-8 之类的），也不需要为各种屏幕尺寸添加媒体查询。 The setup我们使用下面的 HTML 模板： 12345678&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;">
+<meta name="keywords" content="CSS,布局,响应式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Responsive Layout In an Easy Way">
+<meta property="og:url" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="在这里我们将实现一个基于窗口宽度的自适应布局，并且实现方法极为简单，不用在 HTML 文件中添加那些复杂的类名（col-sm-4、col-md-8 之类的），也不需要为各种屏幕尺寸添加媒体查询。 The setup我们使用下面的 HTML 模板： 12345678&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/1.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/3.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/4.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/6.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/7.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/8.gif">
+<meta property="og:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/8.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Responsive Layout In an Easy Way">
+<meta name="twitter:description" content="在这里我们将实现一个基于窗口宽度的自适应布局，并且实现方法极为简单，不用在 HTML 文件中添加那些复杂的类名（col-sm-4、col-md-8 之类的），也不需要为各种屏幕尺寸添加媒体查询。 The setup我们使用下面的 HTML 模板： 12345678&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/19/响应式布局的一种简单实现/">
+
+
+  <title> Responsive Layout In an Easy Way | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Responsive Layout In an Easy Way
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-19T16:10:24+08:00" content="2018-03-19">
+              2018-03-19
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018/03/19/响应式布局的一种简单实现/1.gif" alt></p>
+<p>在这里我们将实现一个基于窗口宽度的自适应布局，并且实现方法极为简单，不用在 HTML 文件中添加那些复杂的类名（<code>col-sm-4</code>、<code>col-md-8</code> 之类的），也不需要为各种屏幕尺寸添加媒体查询。</p>
+<h3 id="The-setup"><a href="#The-setup" class="headerlink" title="The setup"></a>The setup</h3><p>我们使用下面的 HTML 模板：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;4&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;5&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;6&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>和 CSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: 100px 100px 100px;</span><br><span class="line">    grid-template-rows: 50px 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/2.png" alt></p>
+<p>关于 Grid 栅格系统，可以看看<a href="http://alloween.top/2018/03/18/CSS%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F/" target="_blank" rel="noopener">这篇文章</a>。</p>
+<h3 id="Basic-responsiveness"><a href="#Basic-responsiveness" class="headerlink" title="Basic responsiveness"></a>Basic responsiveness</h3><p>『 fraction unit 』在Grid 栅格系统中能够将一行分成均等的几个小单元，单位写作 <code>fr</code>。</p>
+<p>我们将每一列设置为一个单位的分数单元，再看看结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: 1fr 1fr 1fr;</span><br><span class="line">    grid-template-rows: 50px 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/3.gif" alt></p>
+<p>你会发现每个元素都占据着一行的 <code>1/3</code>，并且随着行宽的改变而改变。</p>
+<p>如果我们把 <code>grid-template-columns</code> 的值设为 <code>1fr 2fr 1fr</code>，第二列元素的宽度就会是其他元素的两倍，并且一行被分成了均等的四份。</p>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/4.gif" alt></p>
+<h3 id="Advanced-responsiveness"><a href="#Advanced-responsiveness" class="headerlink" title="Advanced responsiveness"></a>Advanced responsiveness</h3><p>上面的效果无论宽度怎么变化，栅格总是三列，并不是我们想要的响应式布局。我们想让栅格根据宽度的变化而改变列的数量。为了达到这个目的，还需要了解三个概念。</p>
+<h4 id="repeat"><a href="#repeat" class="headerlink" title="repeat( )"></a>repeat( )</h4><p><code>repeat()</code> 方法很强大，比直接声明具体行数和列数要方便的多，我们把之前的代码用 <code>repeat()</code> 改一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: repeat(3, 100px);</span><br><span class="line">    grid-template-rows: repeat(2, 50px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说 <code>repeat(3, 100px)</code> 和 <code>100px 100px 100px</code> 是一样的，第一个参数指明你需要多少行或列，第二个参数指明宽度，所以这样改完后和我们一开始的效果是一样的：</p>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/5.png" alt></p>
+<h4 id="auto-fit"><a href="#auto-fit" class="headerlink" title="auto-fit"></a>auto-fit</h4><p>接下来是 <code>auto-fit</code>，我们现在不把具体的列数写死，而是使用 <code>auto-fit</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-gap: 5px;</span><br><span class="line">    grid-template-columns: repeat(auto-fit, 100px);</span><br><span class="line">    grid-template-rows: repeat(2, 100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表现结果如下:</p>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/6.gif" alt></p>
+<p>现在这个容器能够根据宽度改变而改变列的数量了。</p>
+<p>它的表现行为是，尽可能多在一行里容纳下 <code>100px</code> 宽度的列。</p>
+<p>然而将每一个固定为 <code>100px</code> 并不是我们想要的响应式布局，而且每次在页面右边都有一小片空白让人看得也很难受。</p>
+<h4 id="minmax"><a href="#minmax" class="headerlink" title="minmax( )"></a>minmax( )</h4><p>我们最后还需要一个属性 <code>minmax()</code>，现在我们将 <code>100px</code> 替换成 <code>minmax(100px, 1fr)</code>，最后 CSS 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-gap: 5px;</span><br><span class="line">    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));</span><br><span class="line">    grid-template-rows: repeat(2, 100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会得到下面的结果：</p>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/7.gif" alt></p>
+<p>可以看出 <code>minmax()</code> 函数的功能是定义了一个大小的范围。</p>
+<p>所以上面的代码会将列的宽度限定在 <code>100px</code> 以上，并且随着宽度的增加列数会适应性地增加。</p>
+<h3 id="Adding-the-images"><a href="#Adding-the-images" class="headerlink" title="Adding the images"></a>Adding the images</h3><p>最后我们添加上图片来实现本文开头那张图片的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;img src=&quot;img/forest.jpg&quot;/&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>现在我们使用一个新的属性： <code>object-fit: cover</code>，它的功能是使图片覆盖包含它的整个容器，并且会将多余的部分自动剪裁。</p>
+<p><img src="/2018/03/19/响应式布局的一种简单实现/8.gif" alt></p>
+<h3 id="Browser-support"><a href="#Browser-support" class="headerlink" title="Browser support"></a>Browser support</h3><p><img src="/2018/03/19/响应式布局的一种简单实现/8.png" alt></p>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><a href="http://alloween.top/2018/03/18/CSS%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F/" target="_blank" rel="noopener">CSS 栅格系统</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/布局/" rel="tag">#布局</a>
+          
+            <a href="/tags/响应式/" rel="tag">#响应式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/18/CSS栅格系统/" rel="next" title="CSS 栅格系统">
+                <i class="fa fa-chevron-left"></i> CSS 栅格系统
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/31/语言的陷阱/" rel="prev" title="语言的陷阱">
+                语言的陷阱 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-setup"><span class="nav-text">The setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-responsiveness"><span class="nav-text">Basic responsiveness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-responsiveness"><span class="nav-text">Advanced responsiveness</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat"><span class="nav-text">repeat( )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#auto-fit"><span class="nav-text">auto-fit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#minmax"><span class="nav-text">minmax( )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-the-images"><span class="nav-text">Adding the images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser-support"><span class="nav-text">Browser support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关文章"><span class="nav-text">相关文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

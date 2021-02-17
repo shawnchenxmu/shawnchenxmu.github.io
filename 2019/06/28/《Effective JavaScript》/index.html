@@ -1,0 +1,856 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,JavaScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Chapter 1: Accustoming Yourself to JavaScriptItem 1: Know Which JavaScript You Are UsingItem 2: Understand JavaScript’s Floating-Point NumbersItem 3: Beware of Implicit CoercionsItem 4: Prefer Primiti">
+<meta name="keywords" content="前端,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Effective JavaScript》">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/《Effective JavaScript》/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="Chapter 1: Accustoming Yourself to JavaScriptItem 1: Know Which JavaScript You Are UsingItem 2: Understand JavaScript’s Floating-Point NumbersItem 3: Beware of Implicit CoercionsItem 4: Prefer Primiti">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/《Effective%20JavaScript》/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/《Effective%20JavaScript》/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/《Effective%20JavaScript》/3.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Effective JavaScript》">
+<meta name="twitter:description" content="Chapter 1: Accustoming Yourself to JavaScriptItem 1: Know Which JavaScript You Are UsingItem 2: Understand JavaScript’s Floating-Point NumbersItem 3: Beware of Implicit CoercionsItem 4: Prefer Primiti">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/28/《Effective%20JavaScript》/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/《Effective JavaScript》/">
+
+
+  <title> 《Effective JavaScript》 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《Effective JavaScript》
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-06-28T23:10:10+08:00" content="2019-06-28">
+              2019-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Chapter-1-Accustoming-Yourself-to-JavaScript"><a href="#Chapter-1-Accustoming-Yourself-to-JavaScript" class="headerlink" title="Chapter 1: Accustoming Yourself to JavaScript"></a>Chapter 1: Accustoming Yourself to JavaScript</h2><h3 id="Item-1-Know-Which-JavaScript-You-Are-Using"><a href="#Item-1-Know-Which-JavaScript-You-Are-Using" class="headerlink" title="Item 1: Know Which JavaScript You Are Using"></a>Item 1: Know Which JavaScript You Are Using</h3><h3 id="Item-2-Understand-JavaScript’s-Floating-Point-Numbers"><a href="#Item-2-Understand-JavaScript’s-Floating-Point-Numbers" class="headerlink" title="Item 2: Understand JavaScript’s Floating-Point Numbers"></a>Item 2: Understand JavaScript’s Floating-Point Numbers</h3><h3 id="Item-3-Beware-of-Implicit-Coercions"><a href="#Item-3-Beware-of-Implicit-Coercions" class="headerlink" title="Item 3: Beware of Implicit Coercions"></a>Item 3: Beware of Implicit Coercions</h3><h3 id="Item-4-Prefer-Primitives-to-Object-Wrappers"><a href="#Item-4-Prefer-Primitives-to-Object-Wrappers" class="headerlink" title="Item 4: Prefer Primitives to Object Wrappers"></a>Item 4: Prefer Primitives to Object Wrappers</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">s1 === s2; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>Since each String object is a separate object, it is only ever equal to itself.</p>
+<h4 id="Things-to-Remember"><a href="#Things-to-Remember" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Object wrappers for primitive types do not have the same behavior as their primitive values when compared for equality.</li>
+<li>Getting and setting properties on primitives implicitly creates object wrappers.</li>
+</ul>
+<h3 id="Item-5-Avoid-using-with-Mixed-Types"><a href="#Item-5-Avoid-using-with-Mixed-Types" class="headerlink" title="Item 5: Avoid using == with Mixed Types"></a>Item 5: Avoid using <code>==</code> with Mixed Types</h3><h4 id="Things-to-Remember-1"><a href="#Things-to-Remember-1" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>The <code>==</code> operator applies a confusing set of implicit coercions when its arguments are of different types.</li>
+<li>Use <code>===</code> to make it clear to your readers that your comparison does not involve any implicit coercions.</li>
+<li>Use your own explicit coercions when comparing values of different types to make your program’s behavior clearer.</li>
+</ul>
+<h3 id="Item-6-Learn-the-Limits-of-Semicolon-Insertion"><a href="#Item-6-Learn-the-Limits-of-Semicolon-Insertion" class="headerlink" title="Item 6: Learn the Limits of Semicolon Insertion"></a>Item 6: Learn the Limits of Semicolon Insertion</h3><h4 id="Things-to-Remember-2"><a href="#Things-to-Remember-2" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Semicolons are only ever inferred before a }, at the end of a line, or at the end of a program.</li>
+<li>Semicolons are only ever inferred when the next token cannot be parsed.</li>
+<li>Never omit a semicolon before a statement beginning with (, [, +, -, or /.</li>
+<li>When concatenating scripts, insert semicolons explicitly between scripts.</li>
+<li>Never put a newline before the argument to return, throw, break, continue, ++, or –.</li>
+<li>Semicolons are never inferred as separators in the head of a for loop or as empty statements.</li>
+</ul>
+<h3 id="Item-7-Think-of-Strings-As-Sequences-of-16-Bit-Code-Units"><a href="#Item-7-Think-of-Strings-As-Sequences-of-16-Bit-Code-Units" class="headerlink" title="Item 7: Think of Strings As Sequences of 16-Bit Code Units"></a>Item 7: Think of Strings As Sequences of 16-Bit Code Units</h3><p>Today there are multiple standard encodings of Unicode, the most popular of which are UTF-8, UTF-16, and UTF-32.</p>
+<h4 id="Things-to-Remember-3"><a href="#Things-to-Remember-3" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>JavaScript strings <strong><span style="color: red">consist of 16-bit code units</span></strong>, not Unicode code points.</li>
+<li>Unicode code points 2<sup>16</sup> and <strong><span style="color: red">above are represented in JavaScript by two code units, known as a surrogate pair</span></strong>.</li>
+<li>Surrogate pairs throw off string element counts, affecting length, charAt, charCodeAt, and regular expression patterns such as “.”.</li>
+<li>Use third-party libraries for writing code point-aware string manipulation.</li>
+<li>Whenever you are using a library that works with strings, con-sult the documentation to see how it handles the full range of code points.</li>
+</ul>
+<h2 id="Chapter-2-Variable-Scope"><a href="#Chapter-2-Variable-Scope" class="headerlink" title="Chapter 2: Variable Scope"></a>Chapter 2: Variable Scope</h2><h3 id="Item-8-Minimize-Use-of-the-Global-Object"><a href="#Item-8-Minimize-Use-of-the-Global-Object" class="headerlink" title="Item 8: Minimize Use of the Global Object"></a>Item 8: Minimize Use of the Global Object</h3><p>Since the global object provides a dynamic reflection of the global environment, you can use it to query a running environment to detect which features are available on the platform.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="keyword">this</span>.JSON) &#123;</span><br><span class="line">    <span class="keyword">this</span>.JSON = &#123;</span><br><span class="line">         parse: ...,</span><br><span class="line">         stringify: ...</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Things-to-Remember-4"><a href="#Things-to-Remember-4" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Avoid declaring global variables.</li>
+<li>Declare variables as locally as possible.</li>
+<li>Avoid adding properties to the global object.</li>
+<li>Use the global object for platform feature detection.</li>
+</ul>
+<h3 id="Item-9-Always-Declare-Local-Variables"><a href="#Item-9-Always-Declare-Local-Variables" class="headerlink" title="Item 9: Always Declare Local Variables"></a>Item 9: Always Declare Local Variables</h3><h4 id="Things-to-Remember-5"><a href="#Things-to-Remember-5" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Always declare new local variables with var.</li>
+<li>Consider using lint tools to help check for unbound variables.</li>
+</ul>
+<h3 id="Item-10-Avoid-with"><a href="#Item-10-Avoid-with" class="headerlink" title="Item 10: Avoid with"></a>Item 10: Avoid with</h3><h3 id="Item-11-Get-Comfortable-with-Closures"><a href="#Item-11-Get-Comfortable-with-Closures" class="headerlink" title="Item 11: Get Comfortable with Closures"></a>Item 11: Get Comfortable with Closures</h3><h4 id="Things-to-Remember-6"><a href="#Things-to-Remember-6" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Functions can refer to variables defined in outer scopes.</li>
+<li>Closures can outlive the function that creates them.</li>
+<li>Closures internally store references to their outer variables, and can both read and update their stored variables.</li>
+</ul>
+<h3 id="Item-12-Understand-Variable-Hoisting"><a href="#Item-12-Understand-Variable-Hoisting" class="headerlink" title="Item 12: Understand Variable Hoisting"></a>Item 12: Understand Variable Hoisting</h3><p>A good way to think about the behavior of JavaScript variable decla-rations is to understand them as consisting of two parts: <strong>a declara-tion</strong> and <strong>an assignment</strong>.</p>
+<h4 id="Things-to-Remember-7"><a href="#Things-to-Remember-7" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Variable declarations within a block are implicitly <strong>hoisted to the top of their enclosing function</strong>.</li>
+<li><strong><span style="color: red">Redeclarations of a variable are treated as a single variable.</span></strong></li>
+<li>Consider manually hoisting local variable declarations to avoid confusion.</li>
+</ul>
+<h3 id="Item-13-Use-Immediately-Invoked-Function-Expressions-to-Create-Local-Scopes"><a href="#Item-13-Use-Immediately-Invoked-Function-Expressions-to-Create-Local-Scopes" class="headerlink" title="Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes"></a>Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes</h3><h4 id="Things-to-Remember-8"><a href="#Things-to-Remember-8" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Understand the difference between binding and assignment.</li>
+<li>Closures capture their outer variables by reference, not by value.</li>
+<li>Use immediately invoked function expressions (IIFEs) to create local scopes.</li>
+<li>Be aware of the cases where wrapping a block in an IIFE can change its behavior.</li>
+</ul>
+<h3 id="Item-14-Beware-of-Unportable-Scoping-of-Named-Function-Expressions"><a href="#Item-14-Beware-of-Unportable-Scoping-of-Named-Function-Expressions" class="headerlink" title="Item 14: Beware of Unportable Scoping of Named Function Expressions"></a>Item 14: Beware of Unportable Scoping of Named Function Expressions</h3><p>The real usefulness of named function expressions, though, is for debugging. Most modern JavaScript environments produce stack traces for Error objects, and the name of a function expression is typically used for its entry in a stack trace. Debuggers with facilities for inspecting the stack typically make similar use of named function expressions.</p>
+<h3 id="Item-15-Beware-of-Unportable-Scoping-of-Block-Local-Function-Declarations"><a href="#Item-15-Beware-of-Unportable-Scoping-of-Block-Local-Function-Declarations" class="headerlink" title="Item 15: Beware of Unportable Scoping of Block-Local Function Declarations"></a>Item 15: Beware of Unportable Scoping of Block-Local Function Declarations</h3><h3 id="Item-16-Avoid-Creating-Local-Variables-with-eval"><a href="#Item-16-Avoid-Creating-Local-Variables-with-eval" class="headerlink" title="Item 16: Avoid Creating Local Variables with eval"></a>Item 16: Avoid Creating Local Variables with eval</h3><h4 id="Things-to-Remember-9"><a href="#Things-to-Remember-9" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Avoid creating variables with eval that pollute the caller’s scope.</li>
+<li>If eval code might create global variables, wrap the call in a nested function to prevent scope pollution.</li>
+</ul>
+<h3 id="Item-17-Prefer-Indirect-eval-to-Direct-eval"><a href="#Item-17-Prefer-Indirect-eval-to-Direct-eval" class="headerlink" title="Item 17: Prefer Indirect eval to Direct eval"></a>Item 17: Prefer Indirect eval to Direct eval</h3><h2 id="Chapter-3-Working-with-Functions"><a href="#Chapter-3-Working-with-Functions" class="headerlink" title="Chapter 3: Working with Functions"></a>Chapter 3: Working with Functions</h2><h3 id="Item-18-Understand-the-Difference-between-Function-Method-and-Constructor-Calls"><a href="#Item-18-Understand-the-Difference-between-Function-Method-and-Constructor-Calls" class="headerlink" title="Item 18: Understand the Difference between Function, Method, and Constructor Calls"></a>Item 18: Understand the Difference between Function, Method, and Constructor Calls</h3><p>Calling a method as a function rarely does anything useful if the method depends on this, since there is no reason to expect the global object to match the expectations that the method has of the object it is called on.</p>
+<h4 id="Things-to-Remember-10"><a href="#Things-to-Remember-10" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Method calls provide the object in which the method property is looked up as their receiver.</li>
+<li>Function calls provide the global object (or undefined for strict functions) as their receiver. Calling methods with function call syntax is rarely useful.</li>
+<li>Constructors are called with new and receive a fresh object as their receiver.</li>
+</ul>
+<h3 id="Item-19-Get-Comfortable-Using-Higher-Order-Functions"><a href="#Item-19-Get-Comfortable-Using-Higher-Order-Functions" class="headerlink" title="Item 19: Get Comfortable Using Higher-Order Functions"></a>Item 19: Get Comfortable Using Higher-Order Functions</h3><h4 id="高阶函数的定义"><a href="#高阶函数的定义" class="headerlink" title="高阶函数的定义"></a>高阶函数的定义</h4><p>Higher-order functions are nothing more than functions that take other functions as arguments or return functions as their result. </p>
+<h4 id="抽象高阶函数的优点"><a href="#抽象高阶函数的优点" class="headerlink" title="抽象高阶函数的优点"></a>抽象高阶函数的优点</h4><blockquote>
+<p>This allows you to fix any bugs in the logic just once, instead of having to hunt for every instance of the coding pattern spread throughout your program. If you find you need to optimize the efficiency of the operation, you again only have one place where you need to change anything. Finally, giving a clear name such as buildString to the abstraction makes it clearer to someone reading the code what the code does, without having to decode the details of the implementation.</p>
+</blockquote>
+<h4 id="Things-to-Remember-11"><a href="#Things-to-Remember-11" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Higher-order functions are functions that take other functions as arguments or return functions as their result.</li>
+<li>Familiarize yourself with higher-order functions in existing libraries.</li>
+<li>Learn to detect common coding patterns that can be replaced by higher-order functions.</li>
+</ul>
+<h3 id="Item-20-Use-call-to-Call-Methods-with-a-Custom-Receiver"><a href="#Item-20-Use-call-to-Call-Methods-with-a-Custom-Receiver" class="headerlink" title="Item 20: Use call to Call Methods with a Custom Receiver"></a>Item 20: Use call to Call Methods with a Custom Receiver</h3><h4 id="使用-call-方法调用-function"><a href="#使用-call-方法调用-function" class="headerlink" title="使用 call 方法调用 function"></a>使用 call 方法调用 function</h4><p>Luckily, functions come with a built-in call method for providing a custom receiver. Invoking a function via its call method:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.call(obj, arg1, arg2, arg3);</span><br></pre></td></tr></table></figure>
+<p>behaves similarly to calling it directly:、</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(arg1, arg2, arg3);</span><br></pre></td></tr></table></figure>
+<p>except that the first argument provides an explicit receiver object.</p>
+<h4 id="Things-to-Remember-12"><a href="#Things-to-Remember-12" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use the call method to call a function with a custom receiver.</li>
+<li>Use the call method for calling methods that may not exist on a given object.</li>
+<li><strong><span style="color: red">Use the call method for defining higher-order functions that allow clients to provide a receiver for the callback.</span></strong></li>
+</ul>
+<h3 id="Item-21-Use-apply-to-Call-Functions-with-Different-Numbers-of-Arguments"><a href="#Item-21-Use-apply-to-Call-Functions-with-Different-Numbers-of-Arguments" class="headerlink" title="Item 21: Use apply to Call Functions with Different Numbers of Arguments"></a>Item 21: Use apply to Call Functions with Different Numbers of Arguments</h3><h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>Imagine that someone provides us with a function that calculates the average of any number of values:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">average(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 2</span></span><br><span class="line">average(<span class="number">1</span>); <span class="comment">// 1</span></span><br><span class="line">average(<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>); <span class="comment">// 4</span></span><br><span class="line">average(<span class="number">2</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">8</span>); <span class="comment">// 4.625</span></span><br></pre></td></tr></table></figure>
+<h4 id="Things-to-Remember-13"><a href="#Things-to-Remember-13" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use the <code>apply</code> method to call variadic functions with a computed array of arguments.</li>
+<li>Use the first argument of <code>apply</code> to provide a receiver for variadic methods.</li>
+</ul>
+<h3 id="Item-22-Use-arguments-to-Create-Variadic-Functions"><a href="#Item-22-Use-arguments-to-Create-Variadic-Functions" class="headerlink" title="Item 22: Use arguments to Create Variadic Functions"></a>Item 22: Use arguments to Create Variadic Functions</h3><p>A good rule of thumb is that whenever you provide a variable-arity function for convenience, you should also provide a fixed-arity version that takes an explicit array.</p>
+<h4 id="Things-to-Remember-14"><a href="#Things-to-Remember-14" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use the implicit arguments object to implement variable-arity functions.</li>
+<li>Consider providing additional fixed-arity versions of the variadic functions you provide so that your consumers don’t need to use the apply method.</li>
+</ul>
+<h3 id="Item-23-Never-Modify-the-arguments-Object"><a href="#Item-23-Never-Modify-the-arguments-Object" class="headerlink" title="Item 23: Never Modify the arguments Object"></a>Item 23: Never Modify the arguments Object</h3><p>As a consequence, it is much safer never to modify the arguments object. This is easy enough to avoid by first copying its elements to a real array. A simple idiom for implementing the copy is:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>The arguments object is not a copy of the function’s arguments</p>
+<h4 id="Things-to-Remember-15"><a href="#Things-to-Remember-15" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Never modify the arguments object.</li>
+<li>Copy the arguments object to a real array using [].slice.call(arguments) before modifying it.</li>
+</ul>
+<h3 id="Item-24-Use-a-Variable-to-Save-a-Reference-to-arguments"><a href="#Item-24-Use-a-Variable-to-Save-a-Reference-to-arguments" class="headerlink" title="Item 24: Use a Variable to Save a Reference to arguments"></a>Item 24: Use a Variable to Save a Reference to arguments</h3><h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h4><p>Imagine we wish to write a convenience function that takes an arbitrary number of arguments and builds an iterator for those values:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> it = values(<span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">it.next(); <span class="comment">// 1</span></span><br><span class="line">it.next(); <span class="comment">// 4</span></span><br><span class="line">it.next(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="Things-to-Remember-16"><a href="#Things-to-Remember-16" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li><strong><span style="color: red">Be aware of the function nesting level when referring to arguments.</span></strong></li>
+<li>Bind an explicitly scoped reference to arguments in order to refer to it from nested functions.</li>
+</ul>
+<h3 id="Item-25-Use-bind-to-Extract-Methods-with-a-Fixed-Receiver"><a href="#Item-25-Use-bind-to-Extract-Methods-with-a-Fixed-Receiver" class="headerlink" title="Item 25: Use bind to Extract Methods with a Fixed Receiver"></a>Item 25: Use bind to Extract Methods with a Fixed Receiver</h3><p>A function’s receiver is determined by how it is called </p>
+<h4 id="Things-to-Remember-17"><a href="#Things-to-Remember-17" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Beware that extracting a method does not bind the method’s receiver to its object.</li>
+<li>When passing an object’s method to a higher-order function, use an anonymous function to call the method on the appropriate receiver.</li>
+<li>Use bind as a shorthand for creating a function bound to the appropriate receiver.</li>
+</ul>
+<h3 id="Item-26-Use-bind-to-Curry-Functions"><a href="#Item-26-Use-bind-to-Curry-Functions" class="headerlink" title="Item 26: Use bind to Curry Functions"></a>Item 26: Use bind to Curry Functions</h3><h4 id="Things-to-Remember-18"><a href="#Things-to-Remember-18" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use <code>bind</code> to curry a function, that is, to create a delegating function with a fixed subset of the required arguments.</li>
+<li>Pass <code>null</code> or <code>undefined</code> as the receiver argument to curry a function that ignores its receiver.</li>
+</ul>
+<h3 id="Item-27-Prefer-Closures-to-Strings-for-Encapsulating-Code"><a href="#Item-27-Prefer-Closures-to-Strings-for-Encapsulating-Code" class="headerlink" title="Item 27: Prefer Closures to Strings for Encapsulating Code"></a>Item 27: Prefer Closures to Strings for Encapsulating Code</h3><h4 id="Things-to-Remember-19"><a href="#Things-to-Remember-19" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Never include local references in strings when sending them to APIs that execute them with eval.</li>
+<li>Prefer APIs that accept functions to call rather than strings to eval.</li>
+</ul>
+<h3 id="Item-28-Avoid-Relying-on-the-toString-Method-of-Functions"><a href="#Item-28-Avoid-Relying-on-the-toString-Method-of-Functions" class="headerlink" title="Item 28: Avoid Relying on the toString Method of Functions"></a>Item 28: Avoid Relying on the toString Method of Functions</h3><h4 id="Things-to-Remember-20"><a href="#Things-to-Remember-20" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>JavaScript engines are not required to produce accurate reflections of function source code via toString.</li>
+<li>Never rely on precise details of function source, since different engines may produce different results from toString.</li>
+<li>The results of toString do not expose the values of local variables stored in a closure.</li>
+<li><strong><span style="color: red">In general, avoid using toString on functions.</span></strong></li>
+</ul>
+<h3 id="Item-29-Avoid-Nonstandard-Stack-Inspection-Properties"><a href="#Item-29-Avoid-Nonstandard-Stack-Inspection-Properties" class="headerlink" title="Item 29: Avoid Nonstandard Stack Inspection Properties"></a>Item 29: Avoid Nonstandard Stack Inspection Properties</h3><h4 id="Things-to-Remember-21"><a href="#Things-to-Remember-21" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Avoid the nonstandard arguments.caller and arguments.callee, because they are not reliably portable.</li>
+<li>Avoid the nonstandard caller property of functions, because it does not reliably contain complete information about the stack.</li>
+</ul>
+<h2 id="Chapter-4-Objects-and-Prototypes"><a href="#Chapter-4-Objects-and-Prototypes" class="headerlink" title="Chapter 4: Objects and Prototypes"></a>Chapter 4: Objects and Prototypes</h2><h3 id="Item-30-Understand-the-Difference-between-prototype-getPrototypeOf-and-proto"><a href="#Item-30-Understand-the-Difference-between-prototype-getPrototypeOf-and-proto" class="headerlink" title="Item 30: Understand the Difference between prototype, getPrototypeOf, and __proto__"></a>Item 30: Understand the Difference between <code>prototype</code>, <code>getPrototypeOf</code>, and <code>__proto__</code></h3><h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
+<li><code>C.prototype</code> is used to establish the prototype of objects created by <code>new C()</code>.</li>
+<li><code>Object.getPrototypeOf(obj)</code> is the standard ES5 mechanism for retrieving obj’s prototype object.</li>
+<li><code>obj.__proto__</code> is a nonstandard mechanism for retrieving obj’s prototype object.</li>
+</ul>
+<p><img src="/2019/06/28/《Effective JavaScript》/1.png" alt></p>
+<h4 id="Things-to-Remember-22"><a href="#Things-to-Remember-22" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>C.prototype determines the prototype of objects created by new C().</li>
+<li>Object.getPrototypeOf(obj) is the standard ES5 function for retrieving the prototype of an object.</li>
+<li><code>obj.__proto__</code> is a nonstandard mechanism for retrieving the prototype of an object.</li>
+<li>A class is a design pattern consisting of a constructor function and an associated prototype.</li>
+</ul>
+<h3 id="Item-31-Prefer-Object-getPrototypeOf-to-proto"><a href="#Item-31-Prefer-Object-getPrototypeOf-to-proto" class="headerlink" title="Item 31: Prefer Object.getPrototypeOf to __proto__"></a>Item 31: Prefer Object.getPrototypeOf to <code>__proto__</code></h3><h4 id="Things-to-Remember-23"><a href="#Things-to-Remember-23" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Prefer the standards-compliant Object.getPrototypeOf to the non-standard <code>__proto__</code> property.</li>
+<li>Implement Object.getPrototypeOf in non-ES5 environments that support <code>__proto__</code>.</li>
+</ul>
+<h3 id="Item-32-Never-Modify-proto"><a href="#Item-32-Never-Modify-proto" class="headerlink" title="Item 32: Never Modify __proto__"></a>Item 32: Never Modify <code>__proto__</code></h3><p>The special <code>__proto__</code> property provides an additional power that <code>Object.getPrototypeOf</code> does not: the ability to modify an object’s prototype link.</p>
+<p>Another reason to avoid modifying <code>__proto__</code> is performance.</p>
+<h3 id="Item-33-Make-Your-Constructors-new-Agnostic"><a href="#Item-33-Make-Your-Constructors-new-Agnostic" class="headerlink" title="Item 33: Make Your Constructors new-Agnostic"></a>Item 33: Make Your Constructors new-Agnostic</h3><h3 id="Item-34-Store-Methods-on-Prototypes"><a href="#Item-34-Store-Methods-on-Prototypes" class="headerlink" title="Item 34: Store Methods on Prototypes"></a>Item 34: Store Methods on Prototypes</h3><p><img src="/2019/06/28/《Effective JavaScript》/2.png" alt></p>
+<h4 id="Things-to-Remember-24"><a href="#Things-to-Remember-24" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Storing methods on instance objects creates multiple copies of the functions, one per instance object.</li>
+<li>Prefer storing methods on prototypes over storing them on instance objects.</li>
+</ul>
+<h3 id="Item-35-Use-Closures-to-Store-Private-Data"><a href="#Item-35-Use-Closures-to-Store-Private-Data" class="headerlink" title="Item 35: Use Closures to Store Private Data"></a>Item 35: Use Closures to Store Private Data</h3><h3 id="Item-36-Store-Instance-State-Only-on-Instance-Objects"><a href="#Item-36-Store-Instance-State-Only-on-Instance-Objects" class="headerlink" title="Item 36: Store Instance State Only on Instance Objects"></a>Item 36: Store Instance State Only on Instance Objects</h3><h3 id="Item-37-Recognize-the-Implicit-Binding-of-this"><a href="#Item-37-Recognize-the-Implicit-Binding-of-this" class="headerlink" title="Item 37: Recognize the Implicit Binding of this"></a>Item 37: Recognize the Implicit Binding of this</h3><p>Every function has an implicit binding of <code>this</code>, whose value is determined when the function is called. </p>
+<h3 id="Item-38-Call-Superclass-Constructors-from-Subclass-Constructors"><a href="#Item-38-Call-Superclass-Constructors-from-Subclass-Constructors" class="headerlink" title="Item 38: Call Superclass Constructors from Subclass Constructors"></a>Item 38: Call Superclass Constructors from Subclass Constructors</h3><p><img src="/2019/06/28/《Effective JavaScript》/3.png" alt></p>
+<h3 id="Item-39-Never-Reuse-Superclass-Property-Names"><a href="#Item-39-Never-Reuse-Superclass-Property-Names" class="headerlink" title="Item 39: Never Reuse Superclass Property Names"></a>Item 39: Never Reuse Superclass Property Names</h3><h3 id="Item-40-Avoid-Inheriting-from-Standard-Classes"><a href="#Item-40-Avoid-Inheriting-from-Standard-Classes" class="headerlink" title="Item 40: Avoid Inheriting from Standard Classes"></a>Item 40: Avoid Inheriting from Standard Classes</h3><h3 id="Item-41-Treat-Prototypes-As-an-Implementation-Detail"><a href="#Item-41-Treat-Prototypes-As-an-Implementation-Detail" class="headerlink" title="Item 41: Treat Prototypes As an Implementation Detail"></a>Item 41: Treat Prototypes As an Implementation Detail</h3><h3 id="Item-42-Avoid-Reckless-Monkey-Patching"><a href="#Item-42-Avoid-Reckless-Monkey-Patching" class="headerlink" title="Item 42: Avoid Reckless Monkey-Patching"></a>Item 42: Avoid Reckless Monkey-Patching</h3><h4 id="Things-to-Remember-25"><a href="#Things-to-Remember-25" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Avoid reckless monkey-patching.</li>
+<li>Document any monkey-patching performed by a library.</li>
+<li>Consider making monkey-patching optional by performing the modifications in an exported function.</li>
+<li>Use monkey-patching to provide polyfills for missing standard APIs.</li>
+</ul>
+<h2 id="Chapter-5-Arrays-and-Dictionaries"><a href="#Chapter-5-Arrays-and-Dictionaries" class="headerlink" title="Chapter 5: Arrays and Dictionaries"></a>Chapter 5: Arrays and Dictionaries</h2><h3 id="Item-43-Build-Lightweight-Dictionaries-from-Direct-Instances-of-Object"><a href="#Item-43-Build-Lightweight-Dictionaries-from-Direct-Instances-of-Object" class="headerlink" title="Item 43: Build Lightweight Dictionaries from Direct Instances of Object"></a>Item 43: Build Lightweight Dictionaries from Direct Instances of Object</h3><h3 id="Item-44-Use-null-Prototypes-to-Prevent-Prototype-Pollution"><a href="#Item-44-Use-null-Prototypes-to-Prevent-Prototype-Pollution" class="headerlink" title="Item 44: Use null Prototypes to Prevent Prototype Pollution"></a>Item 44: Use null Prototypes to Prevent Prototype Pollution</h3><h4 id="Things-to-Remember-26"><a href="#Things-to-Remember-26" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>In ES5, use <code>Object.create(null)</code> to create prototype-free empty objects that are less susceptible to pollution.</li>
+<li>In older environments, consider using <code>{ __proto__: null }</code>.</li>
+<li>But beware that <code>__proto__</code> is neither standard nor entirely portable and may be removed in future JavaScript environments.</li>
+<li>Never use the name “<strong>proto</strong>“ as a dictionary key since some environments treat this property specially. </li>
+</ul>
+<h3 id="Item-45-Use-hasOwnProperty-to-Protect-Against-Prototype-Pollution"><a href="#Item-45-Use-hasOwnProperty-to-Protect-Against-Prototype-Pollution" class="headerlink" title="Item 45: Use hasOwnProperty to Protect Against Prototype Pollution"></a>Item 45: Use hasOwnProperty to Protect Against Prototype Pollution</h3><h3 id="Item-46-Prefer-Arrays-to-Dictionaries-for-Ordered-Collections"><a href="#Item-46-Prefer-Arrays-to-Dictionaries-for-Ordered-Collections" class="headerlink" title="Item 46: Prefer Arrays to Dictionaries for Ordered Collections"></a>Item 46: Prefer Arrays to Dictionaries for Ordered Collections</h3><h3 id="Item-47-Never-Add-Enumerable-Properties-to-Object-prototype"><a href="#Item-47-Never-Add-Enumerable-Properties-to-Object-prototype" class="headerlink" title="Item 47: Never Add Enumerable Properties to Object.prototype"></a>Item 47: Never Add Enumerable Properties to Object.prototype</h3><h3 id="Item-48-Avoid-Modifying-an-Object-during-Enumeration"><a href="#Item-48-Avoid-Modifying-an-Object-during-Enumeration" class="headerlink" title="Item 48: Avoid Modifying an Object during Enumeration"></a>Item 48: Avoid Modifying an Object during Enumeration</h3><h4 id="Things-to-Remember-27"><a href="#Things-to-Remember-27" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li><strong><span style="color: red">Make sure not to modify an object while enumerating its properties with a <code>for...in</code> loop.</span></strong></li>
+<li>Use a while loop or classic for loop instead of a for…in loop when iterating over an object whose contents might change during the loop.</li>
+<li>For predictable enumeration over a changing data structure, con-sider using a sequential data structure such as an array instead of a dictionary object.</li>
+</ul>
+<h3 id="Item-49-Prefer-for-Loops-to-for…in-Loops-for-Array-Iteration"><a href="#Item-49-Prefer-for-Loops-to-for…in-Loops-for-Array-Iteration" class="headerlink" title="Item 49: Prefer for Loops to for…in Loops for Array Iteration"></a>Item 49: Prefer for Loops to for…in Loops for Array Iteration</h3><h4 id="循环操作优于函数的地方"><a href="#循环操作优于函数的地方" class="headerlink" title="循环操作优于函数的地方"></a>循环操作优于函数的地方</h4><p><span style="color: red">There is one thing that loops tend to do better than iteration functions: <strong>abnormal control flow operations</strong> such as break and continue.</span></p>
+<p>For example, it would be awkward to attempt to implement takeWhile using forEach:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">takeWhile</span>(<span class="params">a, pred</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    a.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x, i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!pred(x)) &#123;</span><br><span class="line">            <span class="comment">// ?</span></span><br><span class="line">        &#125;</span><br><span class="line">        result[i] = x;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We could use an internal exception to implement the early termina-tion of the loop, but this would be awkward and likely inefficient:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">takeWhile</span>(<span class="params">a, pred</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="keyword">var</span> earlyExit = &#123;&#125;; <span class="comment">// unique value signaling loop break</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        a.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x, i</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!pred(x)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> earlyExit;</span><br><span class="line">            &#125;</span><br><span class="line">            result[i] = x;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (e !== earlyExit) &#123; <span class="comment">// only catch earlyExit</span></span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Item-50-Prefer-Iteration-Methods-to-Loops"><a href="#Item-50-Prefer-Iteration-Methods-to-Loops" class="headerlink" title="Item 50: Prefer Iteration Methods to Loops"></a>Item 50: Prefer Iteration Methods to Loops</h3><h3 id="Item-51-Reuse-Generic-Array-Methods-on-Array-Like-Objects"><a href="#Item-51-Reuse-Generic-Array-Methods-on-Array-Like-Objects" class="headerlink" title="Item 51: Reuse Generic Array Methods on Array-Like Objects"></a>Item 51: Reuse Generic Array Methods on Array-Like Objects</h3><h3 id="Item-52-Prefer-Array-Literals-to-the-Array-Constructor"><a href="#Item-52-Prefer-Array-Literals-to-the-Array-Constructor" class="headerlink" title="Item 52: Prefer Array Literals to the Array Constructor"></a>Item 52: Prefer Array Literals to the Array Constructor</h3><h2 id="Chapter-6-Library-and-API-Design"><a href="#Chapter-6-Library-and-API-Design" class="headerlink" title="Chapter 6: Library and API Design"></a>Chapter 6: Library and API Design</h2><h3 id="Item-53-Maintain-Consistent-Conventions"><a href="#Item-53-Maintain-Consistent-Conventions" class="headerlink" title="Item 53: Maintain Consistent Conventions"></a>Item 53: Maintain Consistent Conventions</h3><h3 id="Item-54-Treat-undefined-As-“No-Value”"><a href="#Item-54-Treat-undefined-As-“No-Value”" class="headerlink" title="Item 54: Treat undefined As “No Value”"></a>Item 54: Treat undefined As “No Value”</h3><p>But beware: Truthiness is not always a safe test. If a function should accept the empty string as a legal value, a truthy test will override the empty string and replace it with the default value. Similarly, a function that accepts a number should not use a truthy test if it allows 0 (or NaN, although it’s less common) as an acceptable value.</p>
+<h3 id="Item-55-Accept-Options-Objects-for-Keyword-Arguments"><a href="#Item-55-Accept-Options-Objects-for-Keyword-Arguments" class="headerlink" title="Item 55: Accept Options Objects for Keyword Arguments"></a>Item 55: Accept Options Objects for Keyword Arguments</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>Another benefit of options objects is that any of the arguments can be optional, and a caller can provide any subset of the optional arguments.</p>
+<h4 id="以更优雅的方式设计函数"><a href="#以更优雅的方式设计函数" class="headerlink" title="以更优雅的方式设计函数"></a>以更优雅的方式设计函数</h4><p>If there are one or two required arguments, it’s better to keep them separate from the options object:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> alert = <span class="keyword">new</span> Alert(app, message, &#123;</span><br><span class="line">     width: <span class="number">150</span>, <span class="attr">height</span>: <span class="number">100</span>,</span><br><span class="line">     title: <span class="string">"Error"</span>,</span><br><span class="line">     titleColor: <span class="string">"blue"</span>,</span><br><span class="line">     bgColor: <span class="string">"white"</span>,</span><br><span class="line">     textColor: <span class="string">"black"</span>,</span><br><span class="line">     icon: <span class="string">"error"</span>,</span><br><span class="line">     modal: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Things-to-Remember-28"><a href="#Things-to-Remember-28" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use options objects to make APIs more readable and memorable.</li>
+<li>The arguments provided by an options object should all be treated as optional.</li>
+<li>Use an extend utility function to abstract out the logic of extracting values from options objects.</li>
+</ul>
+<h3 id="Item-56-Avoid-Unnecessary-State"><a href="#Item-56-Avoid-Unnecessary-State" class="headerlink" title="Item 56: Avoid Unnecessary State"></a>Item 56: Avoid Unnecessary State</h3><h4 id="Things-to-Remember-29"><a href="#Things-to-Remember-29" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Prefer stateless APIs where possible.</li>
+<li>When providing stateful APIs, document the relevant state that each operation depends on.</li>
+</ul>
+<h3 id="Item-57-Use-Structural-Typing-for-Flexible-Interfaces"><a href="#Item-57-Use-Structural-Typing-for-Flexible-Interfaces" class="headerlink" title="Item 57: Use Structural Typing for Flexible Interfaces"></a>Item 57: Use Structural Typing for Flexible Interfaces</h3><h3 id="Item-58-Distinguish-between-Array-and-Array-Like"><a href="#Item-58-Distinguish-between-Array-and-Array-Like" class="headerlink" title="Item 58: Distinguish between Array and Array-Like"></a>Item 58: Distinguish between Array and Array-Like</h3><h4 id="判断数组"><a href="#判断数组" class="headerlink" title="判断数组"></a>判断数组</h4><p>Use ES5’s <code>Array.isArray</code> to test for true arrays.</p>
+<p>In environments that don’t support ES5, you can use the standard <code>Object.prototype.toString</code> method to test whether an object is an array:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toString = <span class="built_in">Object</span>.prototype.toString;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> toString.call(x) === <span class="string">"[object Array]"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Item-59-Avoid-Excessive-Coercion"><a href="#Item-59-Avoid-Excessive-Coercion" class="headerlink" title="Item 59: Avoid Excessive Coercion"></a>Item 59: Avoid Excessive Coercion</h3><h3 id="Item-60-Support-Method-Chaining"><a href="#Item-60-Support-Method-Chaining" class="headerlink" title="Item 60: Support Method Chaining"></a>Item 60: Support Method Chaining</h3><h4 id="Things-to-Remember-30"><a href="#Things-to-Remember-30" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Use method chaining to combine stateless operations.</li>
+<li>Support method chaining by designing stateless methods that produce new objects.</li>
+<li>Support method chaining in stateful methods by returning this.</li>
+</ul>
+<h2 id="Chapter-7-Concurrency"><a href="#Chapter-7-Concurrency" class="headerlink" title="Chapter 7: Concurrency"></a>Chapter 7: Concurrency</h2><h3 id="Item-61-Don’t-Block-the-Event-Queue-on-I-O"><a href="#Item-61-Don’t-Block-the-Event-Queue-on-I-O" class="headerlink" title="Item 61: Don’t Block the Event Queue on I/O"></a>Item 61: Don’t Block the Event Queue on I/O</h3><p>The single most important rule of concurrent JavaScript is never to use any blocking I/O APIs in the middle of an application’s event queue.</p>
+<h4 id="Things-to-Remember-31"><a href="#Things-to-Remember-31" class="headerlink" title="Things to Remember"></a>Things to Remember</h4><ul>
+<li>Asynchronous APIs take callbacks to defer processing of expensive operations and avoid blocking the main application.</li>
+<li>JavaScript accepts events concurrently but processes event handlers sequentially using an event queue.</li>
+<li>Never use blocking I/O in an application’s event queue.</li>
+</ul>
+<h3 id="Item-62-Use-Nested-or-Named-Callbacks-for-Asynchronous-Sequencing"><a href="#Item-62-Use-Nested-or-Named-Callbacks-for-Asynchronous-Sequencing" class="headerlink" title="Item 62: Use Nested or Named Callbacks for Asynchronous Sequencing"></a>Item 62: Use Nested or Named Callbacks for Asynchronous Sequencing</h3><h3 id="Item-63-Be-Aware-of-Dropped-Errors"><a href="#Item-63-Be-Aware-of-Dropped-Errors" class="headerlink" title="Item 63: Be Aware of Dropped Errors"></a>Item 63: Be Aware of Dropped Errors</h3><h3 id="Item-64-Use-Recursion-for-Asynchronous-Loops"><a href="#Item-64-Use-Recursion-for-Asynchronous-Loops" class="headerlink" title="Item 64: Use Recursion for Asynchronous Loops"></a>Item 64: Use Recursion for Asynchronous Loops</h3><h3 id="Item-65-Don’t-Block-the-Event-Queue-on-Computation"><a href="#Item-65-Don’t-Block-the-Event-Queue-on-Computation" class="headerlink" title="Item 65: Don’t Block the Event Queue on Computation"></a>Item 65: Don’t Block the Event Queue on Computation</h3><h3 id="Item-66-Use-a-Counter-to-Perform-Concurrent-Operations"><a href="#Item-66-Use-a-Counter-to-Perform-Concurrent-Operations" class="headerlink" title="Item 66: Use a Counter to Perform Concurrent Operations"></a>Item 66: Use a Counter to Perform Concurrent Operations</h3><h3 id="Item-67-Never-Call-Asynchronous-Callbacks-Synchronously"><a href="#Item-67-Never-Call-Asynchronous-Callbacks-Synchronously" class="headerlink" title="Item 67: Never Call Asynchronous Callbacks Synchronously"></a>Item 67: Never Call Asynchronous Callbacks Synchronously</h3><h3 id="Item-68-Use-Promises-for-Cleaner-Asynchronous-Logic"><a href="#Item-68-Use-Promises-for-Cleaner-Asynchronous-Logic" class="headerlink" title="Item 68: Use Promises for Cleaner Asynchronous Logic"></a>Item 68: Use Promises for Cleaner Asynchronous Logic</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/27/functional programming/" rel="next" title="Functional Programming">
+                <i class="fa fa-chevron-left"></i> Functional Programming
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/29/关于移动端开发/" rel="prev" title="关于移动端开发">
+                关于移动端开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Accustoming-Yourself-to-JavaScript"><span class="nav-text">Chapter 1: Accustoming Yourself to JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-1-Know-Which-JavaScript-You-Are-Using"><span class="nav-text">Item 1: Know Which JavaScript You Are Using</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-2-Understand-JavaScript’s-Floating-Point-Numbers"><span class="nav-text">Item 2: Understand JavaScript’s Floating-Point Numbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-3-Beware-of-Implicit-Coercions"><span class="nav-text">Item 3: Beware of Implicit Coercions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-4-Prefer-Primitives-to-Object-Wrappers"><span class="nav-text">Item 4: Prefer Primitives to Object Wrappers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-5-Avoid-using-with-Mixed-Types"><span class="nav-text">Item 5: Avoid using == with Mixed Types</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-1"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-6-Learn-the-Limits-of-Semicolon-Insertion"><span class="nav-text">Item 6: Learn the Limits of Semicolon Insertion</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-2"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-7-Think-of-Strings-As-Sequences-of-16-Bit-Code-Units"><span class="nav-text">Item 7: Think of Strings As Sequences of 16-Bit Code Units</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-3"><span class="nav-text">Things to Remember</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Variable-Scope"><span class="nav-text">Chapter 2: Variable Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-8-Minimize-Use-of-the-Global-Object"><span class="nav-text">Item 8: Minimize Use of the Global Object</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-4"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-9-Always-Declare-Local-Variables"><span class="nav-text">Item 9: Always Declare Local Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-5"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-10-Avoid-with"><span class="nav-text">Item 10: Avoid with</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-11-Get-Comfortable-with-Closures"><span class="nav-text">Item 11: Get Comfortable with Closures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-6"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-12-Understand-Variable-Hoisting"><span class="nav-text">Item 12: Understand Variable Hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-7"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-13-Use-Immediately-Invoked-Function-Expressions-to-Create-Local-Scopes"><span class="nav-text">Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-8"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-14-Beware-of-Unportable-Scoping-of-Named-Function-Expressions"><span class="nav-text">Item 14: Beware of Unportable Scoping of Named Function Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-15-Beware-of-Unportable-Scoping-of-Block-Local-Function-Declarations"><span class="nav-text">Item 15: Beware of Unportable Scoping of Block-Local Function Declarations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-16-Avoid-Creating-Local-Variables-with-eval"><span class="nav-text">Item 16: Avoid Creating Local Variables with eval</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-9"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-17-Prefer-Indirect-eval-to-Direct-eval"><span class="nav-text">Item 17: Prefer Indirect eval to Direct eval</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Working-with-Functions"><span class="nav-text">Chapter 3: Working with Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-18-Understand-the-Difference-between-Function-Method-and-Constructor-Calls"><span class="nav-text">Item 18: Understand the Difference between Function, Method, and Constructor Calls</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-10"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-19-Get-Comfortable-Using-Higher-Order-Functions"><span class="nav-text">Item 19: Get Comfortable Using Higher-Order Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数的定义"><span class="nav-text">高阶函数的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象高阶函数的优点"><span class="nav-text">抽象高阶函数的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-11"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-20-Use-call-to-Call-Methods-with-a-Custom-Receiver"><span class="nav-text">Item 20: Use call to Call Methods with a Custom Receiver</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-call-方法调用-function"><span class="nav-text">使用 call 方法调用 function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-12"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-21-Use-apply-to-Call-Functions-with-Different-Numbers-of-Arguments"><span class="nav-text">Item 21: Use apply to Call Functions with Different Numbers of Arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-text">案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-13"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-22-Use-arguments-to-Create-Variadic-Functions"><span class="nav-text">Item 22: Use arguments to Create Variadic Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-14"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-23-Never-Modify-the-arguments-Object"><span class="nav-text">Item 23: Never Modify the arguments Object</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-15"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-24-Use-a-Variable-to-Save-a-Reference-to-arguments"><span class="nav-text">Item 24: Use a Variable to Save a Reference to arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例-1"><span class="nav-text">案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-16"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-25-Use-bind-to-Extract-Methods-with-a-Fixed-Receiver"><span class="nav-text">Item 25: Use bind to Extract Methods with a Fixed Receiver</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-17"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-26-Use-bind-to-Curry-Functions"><span class="nav-text">Item 26: Use bind to Curry Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-18"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-27-Prefer-Closures-to-Strings-for-Encapsulating-Code"><span class="nav-text">Item 27: Prefer Closures to Strings for Encapsulating Code</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-19"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-28-Avoid-Relying-on-the-toString-Method-of-Functions"><span class="nav-text">Item 28: Avoid Relying on the toString Method of Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-20"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-29-Avoid-Nonstandard-Stack-Inspection-Properties"><span class="nav-text">Item 29: Avoid Nonstandard Stack Inspection Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-21"><span class="nav-text">Things to Remember</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-Objects-and-Prototypes"><span class="nav-text">Chapter 4: Objects and Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-30-Understand-the-Difference-between-prototype-getPrototypeOf-and-proto"><span class="nav-text">Item 30: Understand the Difference between prototype, getPrototypeOf, and __proto__</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-22"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-31-Prefer-Object-getPrototypeOf-to-proto"><span class="nav-text">Item 31: Prefer Object.getPrototypeOf to __proto__</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-23"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-32-Never-Modify-proto"><span class="nav-text">Item 32: Never Modify __proto__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-33-Make-Your-Constructors-new-Agnostic"><span class="nav-text">Item 33: Make Your Constructors new-Agnostic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-34-Store-Methods-on-Prototypes"><span class="nav-text">Item 34: Store Methods on Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-24"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-35-Use-Closures-to-Store-Private-Data"><span class="nav-text">Item 35: Use Closures to Store Private Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-36-Store-Instance-State-Only-on-Instance-Objects"><span class="nav-text">Item 36: Store Instance State Only on Instance Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-37-Recognize-the-Implicit-Binding-of-this"><span class="nav-text">Item 37: Recognize the Implicit Binding of this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-38-Call-Superclass-Constructors-from-Subclass-Constructors"><span class="nav-text">Item 38: Call Superclass Constructors from Subclass Constructors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-39-Never-Reuse-Superclass-Property-Names"><span class="nav-text">Item 39: Never Reuse Superclass Property Names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-40-Avoid-Inheriting-from-Standard-Classes"><span class="nav-text">Item 40: Avoid Inheriting from Standard Classes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-41-Treat-Prototypes-As-an-Implementation-Detail"><span class="nav-text">Item 41: Treat Prototypes As an Implementation Detail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-42-Avoid-Reckless-Monkey-Patching"><span class="nav-text">Item 42: Avoid Reckless Monkey-Patching</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-25"><span class="nav-text">Things to Remember</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5-Arrays-and-Dictionaries"><span class="nav-text">Chapter 5: Arrays and Dictionaries</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-43-Build-Lightweight-Dictionaries-from-Direct-Instances-of-Object"><span class="nav-text">Item 43: Build Lightweight Dictionaries from Direct Instances of Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-44-Use-null-Prototypes-to-Prevent-Prototype-Pollution"><span class="nav-text">Item 44: Use null Prototypes to Prevent Prototype Pollution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-26"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-45-Use-hasOwnProperty-to-Protect-Against-Prototype-Pollution"><span class="nav-text">Item 45: Use hasOwnProperty to Protect Against Prototype Pollution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-46-Prefer-Arrays-to-Dictionaries-for-Ordered-Collections"><span class="nav-text">Item 46: Prefer Arrays to Dictionaries for Ordered Collections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-47-Never-Add-Enumerable-Properties-to-Object-prototype"><span class="nav-text">Item 47: Never Add Enumerable Properties to Object.prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-48-Avoid-Modifying-an-Object-during-Enumeration"><span class="nav-text">Item 48: Avoid Modifying an Object during Enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-27"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-49-Prefer-for-Loops-to-for…in-Loops-for-Array-Iteration"><span class="nav-text">Item 49: Prefer for Loops to for…in Loops for Array Iteration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#循环操作优于函数的地方"><span class="nav-text">循环操作优于函数的地方</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-50-Prefer-Iteration-Methods-to-Loops"><span class="nav-text">Item 50: Prefer Iteration Methods to Loops</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-51-Reuse-Generic-Array-Methods-on-Array-Like-Objects"><span class="nav-text">Item 51: Reuse Generic Array Methods on Array-Like Objects</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-52-Prefer-Array-Literals-to-the-Array-Constructor"><span class="nav-text">Item 52: Prefer Array Literals to the Array Constructor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6-Library-and-API-Design"><span class="nav-text">Chapter 6: Library and API Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-53-Maintain-Consistent-Conventions"><span class="nav-text">Item 53: Maintain Consistent Conventions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-54-Treat-undefined-As-“No-Value”"><span class="nav-text">Item 54: Treat undefined As “No Value”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-55-Accept-Options-Objects-for-Keyword-Arguments"><span class="nav-text">Item 55: Accept Options Objects for Keyword Arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以更优雅的方式设计函数"><span class="nav-text">以更优雅的方式设计函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-28"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-56-Avoid-Unnecessary-State"><span class="nav-text">Item 56: Avoid Unnecessary State</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-29"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-57-Use-Structural-Typing-for-Flexible-Interfaces"><span class="nav-text">Item 57: Use Structural Typing for Flexible Interfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-58-Distinguish-between-Array-and-Array-Like"><span class="nav-text">Item 58: Distinguish between Array and Array-Like</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断数组"><span class="nav-text">判断数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-59-Avoid-Excessive-Coercion"><span class="nav-text">Item 59: Avoid Excessive Coercion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-60-Support-Method-Chaining"><span class="nav-text">Item 60: Support Method Chaining</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-30"><span class="nav-text">Things to Remember</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-7-Concurrency"><span class="nav-text">Chapter 7: Concurrency</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-61-Don’t-Block-the-Event-Queue-on-I-O"><span class="nav-text">Item 61: Don’t Block the Event Queue on I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Things-to-Remember-31"><span class="nav-text">Things to Remember</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-62-Use-Nested-or-Named-Callbacks-for-Asynchronous-Sequencing"><span class="nav-text">Item 62: Use Nested or Named Callbacks for Asynchronous Sequencing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-63-Be-Aware-of-Dropped-Errors"><span class="nav-text">Item 63: Be Aware of Dropped Errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-64-Use-Recursion-for-Asynchronous-Loops"><span class="nav-text">Item 64: Use Recursion for Asynchronous Loops</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-65-Don’t-Block-the-Event-Queue-on-Computation"><span class="nav-text">Item 65: Don’t Block the Event Queue on Computation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-66-Use-a-Counter-to-Perform-Concurrent-Operations"><span class="nav-text">Item 66: Use a Counter to Perform Concurrent Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-67-Never-Call-Asynchronous-Callbacks-Synchronously"><span class="nav-text">Item 67: Never Call Asynchronous Callbacks Synchronously</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-68-Use-Promises-for-Cleaner-Asynchronous-Logic"><span class="nav-text">Item 68: Use Promises for Cleaner Asynchronous Logic</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

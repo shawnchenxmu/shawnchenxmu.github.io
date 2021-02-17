@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="队列和栈非常类似，但是使用了不同的原则，而非后进先出。 队列是遵循FIFO（First In First Out，先进先出， 也称先来先服务）原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。 在现实中，最常见的例子就是排队： 排在第一位的人会先接受服务。 创建队列先从最基本的声明开始： 1234function Queue()&amp;#123;    var">
+<meta name="keywords" content="JavaScript,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 JavaScript 实现队列">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/用 JavaScript 实现队列/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="队列和栈非常类似，但是使用了不同的原则，而非后进先出。 队列是遵循FIFO（First In First Out，先进先出， 也称先来先服务）原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。 在现实中，最常见的例子就是排队： 排在第一位的人会先接受服务。 创建队列先从最基本的声明开始： 1234function Queue()&amp;#123;    var">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i2.buimg.com/579418/e87f3bebfb9b1246.png">
+<meta property="og:image" content="http://i1.piimg.com/579418/3e09d397abd5687a.png">
+<meta property="og:image" content="http://i1.piimg.com/579418/3ab9fbee813d781e.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 JavaScript 实现队列">
+<meta name="twitter:description" content="队列和栈非常类似，但是使用了不同的原则，而非后进先出。 队列是遵循FIFO（First In First Out，先进先出， 也称先来先服务）原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。 在现实中，最常见的例子就是排队： 排在第一位的人会先接受服务。 创建队列先从最基本的声明开始： 1234function Queue()&amp;#123;    var">
+<meta name="twitter:image" content="http://i2.buimg.com/579418/e87f3bebfb9b1246.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/26/用 JavaScript 实现队列/">
+
+
+  <title> 用 JavaScript 实现队列 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用 JavaScript 实现队列
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-26T21:28:04+08:00" content="2017-03-26">
+              2017-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>队列和栈非常类似，但是使用了不同的原则，而非后进先出。</p>
+<p><strong>队列</strong>是遵循FIFO（First In First Out，先进先出， 也称先来先服务）原则的一组有序的项。队列在尾部添加新元素，并从顶部移除元素。最新添加的元素必须排在队列的末尾。</p>
+<p>在现实中，最常见的例子就是排队：<br><img src="http://i2.buimg.com/579418/e87f3bebfb9b1246.png" alt="Markdown"></p>
+<p>排在第一位的人会先接受服务。</p>
+<h3 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h3><p>先从最基本的声明开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Queue()&#123;</span><br><span class="line">    var items = [];</span><br><span class="line">    // 添加属性和方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来声明一些队列可用的方法：</p>
+<ul>
+<li><code>enqueue(element(s))</code>:向队列尾部添加一个（或多个）新的项；</li>
+<li><code>dequeue()</code>:移除队列的第一（即排在队列最前面的）项，并返回被移除的元素；</li>
+<li><code>front()</code>:返回队列中第一个元素——最先被添加，也将是最先被移除的元素。队列不做任何变动；</li>
+<li><code>isEmpty()</code>:如果队列中不包含任何元素，返回<code>true</code>，否则返回<code>false</code>；</li>
+<li><code>size()</code>:返回队列包含的元素个数。</li>
+</ul>
+<p>下面是实现的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Queue() &#123;</span><br><span class="line"></span><br><span class="line">    var items = [];</span><br><span class="line"></span><br><span class="line">    this.enqueue = function(element)&#123;</span><br><span class="line">        items.push(element);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.dequeue = function()&#123;</span><br><span class="line">        return items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.front = function()&#123;</span><br><span class="line">        return items[0];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.isEmpty = function()&#123;</span><br><span class="line">        return items.length == 0;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.clear = function()&#123;</span><br><span class="line">        items = [];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.size = function()&#123;</span><br><span class="line">        return items.length;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.print = function()&#123;</span><br><span class="line">        console.log(items.toString());</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><p>队列的一个修改版就是<strong>优先队列</strong>，即元素的添加和移除是基于优先级的。一个现实的例子就是机场登机的顺序。头等舱和商务舱乘客优先级要高于经济舱乘客。</p>
+<p>要实现一个优先队列，有两种选项：设置优先级，然后在正确的位置添加元素；或者用入列操作添加元素，然后按照优先级移除他们。</p>
+<p>在这个例子中，我们将会在正确的位置添加元素，因此可以对它们使用默认的出列操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">function PriorityQueue() &#123;</span><br><span class="line"></span><br><span class="line">    var items = [];</span><br><span class="line"></span><br><span class="line">    function QueueElement (element, priority)&#123;</span><br><span class="line">        this.element = element;</span><br><span class="line">        this.priority = priority;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.enqueue = function(element, priority)&#123;</span><br><span class="line">        var queueElement = new QueueElement(element, priority);</span><br><span class="line"></span><br><span class="line">        if (this.isEmpty())&#123;</span><br><span class="line">            items.push(queueElement);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            var added = false;</span><br><span class="line">            for (var i=0; i&lt;items.length; i++)&#123;</span><br><span class="line">                if (queueElement.priority &lt; items[i].priority)&#123;</span><br><span class="line">                    items.splice(i,0,queueElement);</span><br><span class="line">                    added = true;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!added)&#123;</span><br><span class="line">                items.push(queueElement);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.dequeue = function()&#123;</span><br><span class="line">        return items.shift();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.front = function()&#123;</span><br><span class="line">        return items[0];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.isEmpty = function()&#123;</span><br><span class="line">        return items.length == 0;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.size = function()&#123;</span><br><span class="line">        return items.length;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this. print = function()&#123;</span><br><span class="line">        for (var i=0; i&lt;items.length; i++)&#123;</span><br><span class="line">            console.log(items[i].element + &apos; - &apos; + items[i].priority);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它的实现过程是这样的：如果队列为空，可以直接将元素入列。否则，就需要比较该元素与其他元素的优先级。当找到一个比要添加的元素的<code>priority</code>值更大（优先级更低）的项时，就把新元素插入到它之前。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var priorityQueue = new PriorityQueue();</span><br><span class="line">priorityQueue.enqueue(&quot;John&quot;, 2);</span><br><span class="line">priorityQueue.enqueue(&quot;Jack&quot;, 1);</span><br><span class="line">priorityQueue.enqueue(&quot;Camila&quot;, 1);</span><br><span class="line">priorityQueue.print();</span><br></pre></td></tr></table></figure>
+<p>过程如下：<br><img src="http://i1.piimg.com/579418/3e09d397abd5687a.png" alt="Markdown"></p>
+<h3 id="循环队列——击鼓传花"><a href="#循环队列——击鼓传花" class="headerlink" title="循环队列——击鼓传花"></a>循环队列——击鼓传花</h3><p>另一个修改版的队列实现，就是<strong>循环队列</strong>。循环队列的一个例子就是击鼓传花游戏。</p>
+<p>在下面这个示例中，我们要实现一个模拟的击鼓传花游戏：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function hotPotato (nameList, num)&#123;</span><br><span class="line"></span><br><span class="line">    var queue = new Queue();</span><br><span class="line"></span><br><span class="line">    for (var i=0; i&lt;nameList.length; i++)&#123;</span><br><span class="line">        queue.enqueue(nameList[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var eliminated = &apos;&apos;;</span><br><span class="line">    while (queue.size() &gt; 1)&#123;</span><br><span class="line">        for (var i=0; i&lt;num; i++)&#123;</span><br><span class="line">            queue.enqueue(queue.dequeue());</span><br><span class="line">        &#125;</span><br><span class="line">        eliminated = queue.dequeue();</span><br><span class="line">        console.log(eliminated + &apos; was eliminated from the Hot Potato game.&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return queue.dequeue();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var names = [&apos;John&apos;,&apos;Jack&apos;,&apos;Camila&apos;,&apos;Ingrid&apos;,&apos;Carl&apos;];</span><br><span class="line">var winner = hotPotato(names, 7);</span><br><span class="line">console.log(&apos;The winner is: &apos; + winner);</span><br></pre></td></tr></table></figure>
+<p>在这个函数中，我们输入一份名单，把里面的名字全部加入队列，再给定一个数字，然后迭代队列。</p>
+<p>以上算法输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Camila was eliminated from the Hot Potato game.</span><br><span class="line">Jack was eliminated from the Hot Potato game.</span><br><span class="line">Carl was eliminated from the Hot Potato game.</span><br><span class="line">Ingrid was eliminated from the Hot Potato game.</span><br><span class="line">The winner is: John</span><br></pre></td></tr></table></figure>
+<p>下图模拟了这个输出过程：<br><img src="http://i1.piimg.com/579418/3ab9fbee813d781e.png" alt="Markdown"></p>
+<p>可以改变<code>hotPotato</code>函数的数字，模拟不同的场景。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/用 JavaScript 实现集合/" rel="next" title="用 JavaScript 实现集合">
+                <i class="fa fa-chevron-left"></i> 用 JavaScript 实现集合
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/用 JavaScript 实现树/" rel="prev" title="用 JavaScript 实现树">
+                用 JavaScript 实现树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建队列"><span class="nav-text">创建队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优先队列"><span class="nav-text">优先队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环队列——击鼓传花"><span class="nav-text">循环队列——击鼓传花</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

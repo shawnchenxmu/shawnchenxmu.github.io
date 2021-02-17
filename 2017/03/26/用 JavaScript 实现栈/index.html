@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="栈是一种遵从后进先出（LIFO）原则的有序集合。新添加的或待删除的元素都保存在栈的末尾，称作栈顶，另一端就叫做栈底。在栈里，新元素都靠近栈顶，旧元素都靠近栈底。 简单点来说，类似于餐厅里面堆放的盘子，先放进来的盘子放在最底下，最后面放进来的盘子堆在最上面，洗的时候从最顶上的盘子开始洗，也就是后面来的先洗。 栈的创建我们将创建一个类来表示栈： 123functin Stack()&amp;#123;">
+<meta name="keywords" content="JavaScript,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 JavaScript 实现栈">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/用 JavaScript 实现栈/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="栈是一种遵从后进先出（LIFO）原则的有序集合。新添加的或待删除的元素都保存在栈的末尾，称作栈顶，另一端就叫做栈底。在栈里，新元素都靠近栈顶，旧元素都靠近栈底。 简单点来说，类似于餐厅里面堆放的盘子，先放进来的盘子放在最底下，最后面放进来的盘子堆在最上面，洗的时候从最顶上的盘子开始洗，也就是后面来的先洗。 栈的创建我们将创建一个类来表示栈： 123functin Stack()&amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i1.piimg.com/579418/5ebc99b25931156b.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 JavaScript 实现栈">
+<meta name="twitter:description" content="栈是一种遵从后进先出（LIFO）原则的有序集合。新添加的或待删除的元素都保存在栈的末尾，称作栈顶，另一端就叫做栈底。在栈里，新元素都靠近栈顶，旧元素都靠近栈底。 简单点来说，类似于餐厅里面堆放的盘子，先放进来的盘子放在最底下，最后面放进来的盘子堆在最上面，洗的时候从最顶上的盘子开始洗，也就是后面来的先洗。 栈的创建我们将创建一个类来表示栈： 123functin Stack()&amp;#123;">
+<meta name="twitter:image" content="http://i1.piimg.com/579418/5ebc99b25931156b.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/26/用 JavaScript 实现栈/">
+
+
+  <title> 用 JavaScript 实现栈 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用 JavaScript 实现栈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-26T10:16:46+08:00" content="2017-03-26">
+              2017-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>栈</strong>是一种遵从后进先出（LIFO）原则的有序集合。新添加的或待删除的元素都保存在栈的末尾，称作<strong>栈顶</strong>，另一端就叫做<strong>栈底</strong>。在栈里，新元素都靠近栈顶，旧元素都靠近栈底。</p>
+<p>简单点来说，类似于餐厅里面堆放的盘子，先放进来的盘子放在最底下，最后面放进来的盘子堆在最上面，洗的时候从最顶上的盘子开始洗，也就是后面来的先洗。</p>
+<h3 id="栈的创建"><a href="#栈的创建" class="headerlink" title="栈的创建"></a>栈的创建</h3><p>我们将创建一个类来表示栈：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">functin Stack()&#123;</span><br><span class="line">    <span class="comment">// 各种属性和方法的声明</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，我们需要一种数据结构来保存栈里的元素。可以选择数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = [];</span><br></pre></td></tr></table></figure>
+<p>接下来，要为我们的栈声明一些方法：</p>
+<ul>
+<li><code>push(element(s))</code>:添加一个（或几个）新元素到栈顶；</li>
+<li><code>pop()</code>:移除栈顶的元素，同时返回被移除的元素；</li>
+<li><code>peek()</code>:返回栈顶的元素，不对栈做任何修改；</li>
+<li><code>isEmpty()</code>:如果栈里没有任何元素就返回<code>true</code>，否则返回<code>false</code>；</li>
+<li><code>clear()</code>:移除栈里所有的元素；</li>
+<li><code>size()</code>:返回栈里的元素个数，类似数组里的<code>length</code>属性。</li>
+</ul>
+<p>最后实现的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> items = [];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.push = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">		items.push(element);</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> items.pop();</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.peek = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> items[items.length - <span class="number">1</span>];</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> items.length == <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> items.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.clear = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		items = [];</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(items.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了检查栈里的内容，我添加了一个辅助的<code>print</code>方法，用来输出栈里的内容。</p>
+<h3 id="使用栈"><a href="#使用栈" class="headerlink" title="使用栈"></a>使用栈</h3><p>创建完这个Stack，接下来就要用它来解决一些实际的问题。</p>
+<h4 id="十进制转化为二进制"><a href="#十进制转化为二进制" class="headerlink" title="十进制转化为二进制"></a>十进制转化为二进制</h4><p>要把十进制转化为二进制，可以将该十进制数字和2整除，直到结果为0。举个例子，把十进制的数字10转化为二进制的数字，过程大概是这样的：</p>
+<p><img src="http://i1.piimg.com/579418/5ebc99b25931156b.png" alt="Markdown"></p>
+<p>实现的算法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">divideBy2</span>(<span class="params">decNumber</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> remStack = <span class="keyword">new</span> Stack(),s, rem, binaryString = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(decNumber&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		rem = <span class="built_in">Math</span>.floor(decNumber%<span class="number">2</span>);</span><br><span class="line">		remStack.push(rem);</span><br><span class="line">		decNumber = <span class="built_in">Math</span>.floor(decNumber/<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(!remStack.isEmpty())&#123;</span><br><span class="line">		binaryString += remStack.pop().toString();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> binaryString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>JavaScript有数字类型，但是它不会区分究竟是整数还是浮点数。因此要使用<code>Math.floor</code>函数让除法的操作仅返回整数部分。</p>
+<p>只要修改一下算法，就能把十进制转化成任何进制：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">baseConverter</span>(<span class="params">decNumber, base</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> remStack = <span class="keyword">new</span> Stack(),</span><br><span class="line">        rem,</span><br><span class="line">        baseString = <span class="string">''</span>,</span><br><span class="line">        digits = <span class="string">'0123456789ABCDEF'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (decNumber &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        rem = <span class="built_in">Math</span>.floor(decNumber % base);</span><br><span class="line">        remStack.push(rem);</span><br><span class="line">        decNumber = <span class="built_in">Math</span>.floor(decNumber / base);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!remStack.isEmpty())&#123;</span><br><span class="line">        baseString += digits[remStack.pop()];</span><br><span class="line">        <span class="comment">//String[index]返回字符串在制定位置上的字符</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> baseString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="检测括号是否匹配"><a href="#检测括号是否匹配" class="headerlink" title="检测括号是否匹配"></a>检测括号是否匹配</h4><p>实现函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">matches</span>(<span class="params">open, close</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> opens = <span class="string">"([&#123;"</span>,</span><br><span class="line">        closers = <span class="string">")]&#125;"</span>;</span><br><span class="line">    <span class="keyword">return</span> opens.indexOf(open) == closers.indexOf(close);</span><br><span class="line">    <span class="comment">//确保匹配到正确的括号</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parenthesesChecker</span>(<span class="params">symbols</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> stack = <span class="keyword">new</span> Stack(),</span><br><span class="line">        balanced = <span class="literal">true</span>,</span><br><span class="line">        index = <span class="number">0</span>,</span><br><span class="line">        symbol, top;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (index &lt; symbols.length &amp;&amp; balanced)&#123;</span><br><span class="line">        symbol = symbols.charAt(index);</span><br><span class="line">        <span class="comment">//str.charAt(index)返回字符串在指定位置上的字符</span></span><br><span class="line">        <span class="keyword">if</span> (symbol == <span class="string">'('</span>|| symbol == <span class="string">'['</span> || symbol == <span class="string">'&#123;'</span>)&#123;</span><br><span class="line">            stack.push(symbol);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (stack.isEmpty())&#123;</span><br><span class="line">                balanced = <span class="literal">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                top = stack.pop();</span><br><span class="line">                <span class="comment">//最后添加到数组中的括号要最先进行匹配</span></span><br><span class="line">                <span class="keyword">if</span> (!matches(top, symbol))&#123;</span><br><span class="line">                    balanced = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (balanced &amp;&amp; stack.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>检测一下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(parenthesesChecker(<span class="string">'&#123;&#123;([][])&#125;()&#125;'</span>));    <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(parenthesesChecker(<span class="string">'[&#123;()]'</span>));   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>不过这个代码还需要改进一下才有实际的用处，因为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(parenthesesChecker(<span class="string">'[&#123;("hello")]'</span>));   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>实际运用当中可以用来检测用户输入的数据当中是否含有未匹配的括号。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/24/关于时间管理/" rel="next" title="关于时间管理">
+                <i class="fa fa-chevron-left"></i> 关于时间管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/26/用 JavaScript 实现集合/" rel="prev" title="用 JavaScript 实现集合">
+                用 JavaScript 实现集合 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈的创建"><span class="nav-text">栈的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用栈"><span class="nav-text">使用栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#十进制转化为二进制"><span class="nav-text">十进制转化为二进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检测括号是否匹配"><span class="nav-text">检测括号是否匹配</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

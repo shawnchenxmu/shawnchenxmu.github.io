@@ -1,0 +1,692 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CSS,布局,栅格系统,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="GridCSS 栅格布局中最重要的两个元素是 wrapper（parent） 和 items（children）。wrapper 实际上就是栅格，而 items 就是栅格里面的元素。 以下面的代码为例： 12345678&amp;lt;div class=&amp;quot;wrapper&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;  &amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;">
+<meta name="keywords" content="CSS,布局,栅格系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 栅格系统">
+<meta property="og:url" content="http://yoursite.com/2018/03/18/CSS栅格系统/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="GridCSS 栅格布局中最重要的两个元素是 wrapper（parent） 和 items（children）。wrapper 实际上就是栅格，而 items 就是栅格里面的元素。 以下面的代码为例： 12345678&amp;lt;div class=&amp;quot;wrapper&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;  &amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/8.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 栅格系统">
+<meta name="twitter:description" content="GridCSS 栅格布局中最重要的两个元素是 wrapper（parent） 和 items（children）。wrapper 实际上就是栅格，而 items 就是栅格里面的元素。 以下面的代码为例： 12345678&amp;lt;div class=&amp;quot;wrapper&amp;quot;&amp;gt;  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;  &amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/18/CSS栅格系统/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/18/CSS栅格系统/">
+
+
+  <title> CSS 栅格系统 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS 栅格系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-18T19:44:45+08:00" content="2018-03-18">
+              2018-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018/03/18/CSS栅格系统/1.png" alt></p>
+<h2 id="Grid"><a href="#Grid" class="headerlink" title="Grid"></a>Grid</h2><p>CSS 栅格布局中最重要的两个元素是 <strong>wrapper</strong>（parent） 和 <strong>items</strong>（children）。wrapper 实际上就是栅格，而 items 就是栅格里面的元素。</p>
+<p>以下面的代码为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;4&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;5&lt;/div&gt;</span><br><span class="line">  &lt;div&gt;6&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>让这个 <code>div</code> 标签成为栅格，我们只需将他的 <code>display</code> 属性设置为 <code>grid</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在我们还未做任何后续操作的时候它看起来是这样的：</p>
+<p><img src="/2018/03/18/CSS栅格系统/2.png" alt></p>
+<h2 id="Columns-and-rows"><a href="#Columns-and-rows" class="headerlink" title="Columns and rows"></a>Columns and rows</h2><p>我们需要为这个容器定义行和列，现在将这个容器分割成两行三列，需要用到 <code>grid-template-row</code> 和 <code>grid-template-column</code> 属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: 100px 100px 100px;</span><br><span class="line">    grid-template-rows: 50px 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们这样去定义 <code>grid-template-columns</code> 时，我们将得到三列，列长就是我们设置的大小，同理 <code>grid-template-rows</code> 也是一样。</p>
+<p>于是我们得到下面的结果：</p>
+<p><img src="/2018/03/18/CSS栅格系统/3.png" alt></p>
+<p>为了看清楚他们之间的关系，我们修改下代码再看看结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: 200px 50px 100px;</span><br><span class="line">    grid-template-rows: 100px 30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会得到以下样式：</p>
+<p><img src="/2018/03/18/CSS栅格系统/4.png" alt></p>
+<h2 id="Items"><a href="#Items" class="headerlink" title="Items"></a>Items</h2><p>接下来需要了解的是，在栅格系统中的元素是如何放置的。</p>
+<p>我们创建一个 3*3 的栅格，HTML 仍然使用前面的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">    display: grid;</span><br><span class="line">    grid-template-columns: 100px 100px 100px;</span><br><span class="line">    grid-template-rows: 100px 100px 100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会出现：</p>
+<p><img src="/2018/03/18/CSS栅格系统/5.png" alt></p>
+<p>你会发现我们的结果中展示的是 3*2 的栅格，而我们在 CSS 代码中定义的是 3*3的栅格，那是因为我们的容器中只有六个元素，如果我们在 HTML 中定义了 9 个元素，那么结果就会是一个 3*3 的栅格</p>
+<p>为了重新定位并调整这些元素的大小，我们要对该元素使用 <code>grid-column</code> 和 <code>grid-row</code> 属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.item1 &#123;</span><br><span class="line">    grid-column-start: 1;</span><br><span class="line">    grid-column-end: 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码意图是，我们想让 <code>item1</code> 的起点在第一列并且终止在第四列，也就是说，我们想让它独占一行，下面是运行的结果：</p>
+<p><img src="/2018/03/18/CSS栅格系统/6.png" alt></p>
+<p>前面代码中的 <code>grid-column-end: 4;</code> 可能会让人产生困惑，因为我们实际结果中只得到了三列，但是看看下面的图片就能明白了：</p>
+<p><img src="/2018/03/18/CSS栅格系统/7.png" alt></p>
+<p>当第一个元素占满第一行时，其他的元素将向下顺延。</p>
+<p>上面那段代码其实还有一种更简单的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.item1 &#123;</span><br><span class="line">    grid-column: 1 / 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们来做一些更复杂一点的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.item1 &#123;</span><br><span class="line">    grid-column-start: 1;</span><br><span class="line">    grid-column-end: 3;</span><br><span class="line">&#125;</span><br><span class="line">.item3 &#123;</span><br><span class="line">    grid-row-start: 2;</span><br><span class="line">    grid-row-end: 4;</span><br><span class="line">&#125;</span><br><span class="line">.item4 &#123;</span><br><span class="line">    grid-column-start: 2;</span><br><span class="line">    grid-column-end: 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是以上代码的结果，想想看为什么布局会变成这样</p>
+<p><img src="/2018/03/18/CSS栅格系统/8.png" alt></p>
+<p>That’s it!</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/布局/" rel="tag">#布局</a>
+          
+            <a href="/tags/栅格系统/" rel="tag">#栅格系统</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/10/遗忘之美/" rel="next" title="遗忘之美">
+                <i class="fa fa-chevron-left"></i> 遗忘之美
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/19/响应式布局的一种简单实现/" rel="prev" title="Responsive Layout In an Easy Way">
+                Responsive Layout In an Easy Way <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Grid"><span class="nav-text">Grid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Columns-and-rows"><span class="nav-text">Columns and rows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Items"><span class="nav-text">Items</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

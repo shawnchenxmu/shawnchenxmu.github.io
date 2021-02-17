@@ -1,0 +1,792 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="git,tower,tool,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="What is Git? Why Git?What is Git? Why Git for your organization Why Git for your organizationFeature Branch Workflow: One of the biggest advantages of Git is its branching capabilities. Unlike central">
+<meta name="keywords" content="git,tower,tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Usage Guide">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/Git Usage Guide/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="What is Git? Why Git?What is Git? Why Git for your organization Why Git for your organizationFeature Branch Workflow: One of the biggest advantages of Git is its branching capabilities. Unlike central">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/1.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/2.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/3.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/4.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/5.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/6.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/9.svg">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/10.svg">
+<meta property="og:updated_time" content="2021-02-17T13:12:36.286Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git Usage Guide">
+<meta name="twitter:description" content="What is Git? Why Git?What is Git? Why Git for your organization Why Git for your organizationFeature Branch Workflow: One of the biggest advantages of Git is its branching capabilities. Unlike central">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/26/Git%20Usage%20Guide/1.svg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/26/Git Usage Guide/">
+
+
+  <title> Git Usage Guide | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git Usage Guide
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-06-26T13:56:50+08:00" content="2019-06-26">
+              2019-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="What-is-Git-Why-Git"><a href="#What-is-Git-Why-Git" class="headerlink" title="What is Git? Why Git?"></a>What is Git? Why Git?</h2><p><a href="https://www.atlassian.com/git/tutorials/what-is-git" target="_blank" rel="noopener">What is Git?</a></p>
+<p><a href="https://www.atlassian.com/git/tutorials/why-git" target="_blank" rel="noopener">Why Git for your organization</a></p>
+<details><summary>Why Git for your organization</summary><br><strong>Feature Branch Workflow</strong>: One of the biggest advantages of Git is its branching capabilities. Unlike centralized version control systems, Git branches are cheap and easy to merge. This facilitates the feature branch workflow popular with many Git users.<br><br><strong>Distributed Development</strong>: In SVN, each developer gets a working copy that points back to a single central repository. Git, however, is a distributed version control system. Instead of a working copy, each developer gets their own local repository, complete with a full history of commits.<br><br><strong>Pull Requests</strong>: A pull request is a way to ask another developer to merge one of your branches into their repository. This not only makes it easier for project leads to keep track of changes, but also lets developers initiate discussions around their work before integrating it with the rest of the codebase.<br><br><strong>Faster Release Cycle</strong>: The ultimate result of feature branches, distributed development, pull requests, and a stable community is a faster release cycle. These capabilities facilitate an agile workflow where developers are encouraged to share smaller changes more frequently. In turn, changes can get pushed down the deployment pipeline faster than the monolithic releases common with centralized version control systems.<br></details>
+
+<p><a href="https://site.alipay.net/alipay-site/gitlab-is-better/blog/my-way-to-git.html" target="_blank" rel="noopener">我是这样开始用 Git 的</a></p>
+<p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/basics/what-is-version-control#start" target="_blank" rel="noopener">什么是版本控制？</a><br><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/basics/why-use-version-control#start" target="_blank" rel="noopener">为什么要使用版本控制系统？</a><br><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/basics/getting-ready#start" target="_blank" rel="noopener">命令行界面还是图形界面？</a><br><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/appendix/why-git" target="_blank" rel="noopener">为什么选择 Git</a></p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h3 id="Install-Git-Directly"><a href="#Install-Git-Directly" class="headerlink" title="Install Git Directly"></a>Install Git Directly</h3><p><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank" rel="noopener">Getting Started - Installing Git</a><br>Install Git - Atlassian(<a href="https://www.atlassian.com/git/tutorials/install-git" target="_blank" rel="noopener">https://www.atlassian.com/git/tutorials/install-git</a>)</p>
+<h3 id="Install-Git-through-Git-Client"><a href="#Install-Git-through-Git-Client" class="headerlink" title="Install Git through Git Client"></a>Install Git through Git Client</h3><p>Git GUI Clients Guide：<a href="https://git-scm.com/download/gui/linux" target="_blank" rel="noopener">GUI Clients</a></p>
+<p><a href="https://www.git-tower.com/mac/" target="_blank" rel="noopener">Tower</a><br><a href="https://www.sourcetreeapp.com/?utm_source=bitbucket&amp;utm_medium=link&amp;utm_campaign=bitbucket_footer" target="_blank" rel="noopener">SourceTree</a><br><a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a></p>
+<h2 id="Tutorial"><a href="#Tutorial" class="headerlink" title="Tutorial"></a>Tutorial</h2><p><a href="https://www.atlassian.com/git" target="_blank" rel="noopener">Getting Git Right</a> - Atlassian<br><a href="https://www.git-tower.com/learn/" target="_blank" rel="noopener">Learn Version Control with Git</a> - Tower<br><a href="http://rogerdudler.github.io/git-guide/" target="_blank" rel="noopener">git - the simple guide</a></p>
+<h3 id="Git-Cheat-Sheet"><a href="#Git-Cheat-Sheet" class="headerlink" title="Git Cheat Sheet"></a>Git Cheat Sheet</h3><p><a href="https://www.git-tower.com/learn/cheat-sheets/git" target="_blank" rel="noopener">https://www.git-tower.com/learn/cheat-sheets/git</a></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="Inspecting-a-repository"><a href="#Inspecting-a-repository" class="headerlink" title="Inspecting a repository"></a>Inspecting a repository</h3><h4 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a><code>git tag</code></h4><p>Tags are ref’s that point to specific points in Git history. <code>git tag</code> is generally used to capture a point in history that <span style="color: red"><strong>is used for a marked version release</strong></span> (i.e. v1.0.1).</p>
+<details><summary>具体使用</summary><br><br><strong>Lightweight tags and Annotated tags:</strong><br>Annotated tags store extra meta data such as: the tagger name, email, and date. This is important data for a public release. Lightweight tags are essentially ‘bookmarks’ to a commit, they are just a name and a pointer to a commit, useful for creating quick links to relevant commits.<br><br>创建 tag<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag &lt;tagname&gt;</span><br></pre></td></tr></table></figure><br><br>创建 Annotated Tags<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.4</span><br><span class="line">git tag -a v1.4 -m <span class="string">"my version 1.4"</span></span><br></pre></td></tr></table></figure><br><br>查看所有 tag<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure><br><br>查看筛选后的 tag<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -l *-rc*</span><br></pre></td></tr></table></figure><br><br>默认情况下打的 tag 是在当前 HEAD 所在的 commit 上，若要在其他的 commit 上打 tag，需要加上 commit SHA hash<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.2 15027957951b64cf874c3557a0f3547bd83b3ff6</span><br></pre></td></tr></table></figure><br><br>替换已有的 tag：默认情况下打重复的 tag 是会报错的，这时候需要加上 <code>-f FORCE</code><br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a -f v1.4 15027957951b64cf874c3557a0f3547bd83b3ff6</span><br></pre></td></tr></table></figure><br><br>将 tag 推送到远程仓库<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin v1.4</span><br></pre></td></tr></table></figure><br><br>删除 tag<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br><span class="line"> v1</span><br><span class="line"> v2</span><br><span class="line"> v3</span><br><span class="line">$ git tag -d v1</span><br><span class="line">$ git tag</span><br><span class="line"> v2</span><br><span class="line"> v3</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a><code>git blame</code></h4><p>The high-level function of <code>git blame</code> is the display of author metadata attached to specific committed lines in a file. <span style="color: red"><strong>This is used to explore the history of specific code and answer questions about what, how, and why the code was added to a repository.</strong></span></p>
+<h4 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a><code>git log</code></h4><p>The <code>git log</code> command displays committed snapshots. It <span style="color: red"><strong>lets you list the project history, filter it, and search for specific changes.</strong></span></p>
+<details><summary><code>git log</code> 与 <code>git status</code> 的区别</summary><br><img src="/2019/06/26/Git Usage Guide/1.svg" alt><br><br></details>
+
+<details><summary>具体使用</summary><br><br>通过 <code>&lt;limit&gt;</code> 限制展示的个数。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> -n &lt;<span class="built_in">limit</span>&gt;</span><br></pre></td></tr></table></figure><br><br>将每个 commit 的信息压缩为一行展示。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure><br><br>展示每一次 commit 中哪些文件变更及具体的行数。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure><br><br>展示每一次 commit 完整的变更内容。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> -p</span><br></pre></td></tr></table></figure><br><br>展示某个开发者的 commit，<code>&lt;pattern&gt;</code> 可以是字符串或者正则。<br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --author=<span class="string">"&lt;pattern&gt;"</span></span><br></pre></td></tr></table></figure><br><br>👍 搜索 commit message 匹配 <code>&lt;pattern&gt;</code> 的 commits 并展示，<code>&lt;pattern&gt;</code> 可以是字符串或者正则。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --grep=<span class="string">"&lt;pattern&gt;"</span></span><br></pre></td></tr></table></figure><br><br>只展示在 <code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 之间的提交，<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code>可以是：commit ID, a branch name, HEAD, or any other kind of revision reference.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> &lt;since&gt;..&lt;until&gt;</span><br></pre></td></tr></table></figure><br><br>👍 只查看某个文件的提交历史。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> -- &lt;file&gt;</span><br></pre></td></tr></table></figure><br><br>👍 通过内容搜索。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> -G<span class="string">"&lt;regex&gt;"</span></span><br><span class="line">git <span class="built_in">log</span> -S<span class="string">"Hello, World!"</span></span><br></pre></td></tr></table></figure><br><br>A few useful options to consider. The –graph flag that will draw a text based graph of the commits on the left hand side of the commit messages. –decorate adds the names of branches or tags of the commits that are shown. –oneline shows the commit information on a single line making it easier to browse through commits at-a-glance.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --decorate --oneline</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h3 id="Merging-vs-Rebasing"><a href="#Merging-vs-Rebasing" class="headerlink" title="Merging vs. Rebasing"></a>Merging vs. Rebasing</h3><p><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing" target="_blank" rel="noopener">Merging vs. Rebasing</a></p>
+<p><img src="/2019/06/26/Git Usage Guide/2.svg" alt></p>
+<p>Both of these commands are designed to integrate changes from one branch into another branch—they just do it in very different ways.</p>
+<h4 id="git-rebase-的优缺点"><a href="#git-rebase-的优缺点" class="headerlink" title="git rebase 的优缺点"></a><code>git rebase</code> 的优缺点</h4><p>The major benefit of rebasing is that you get a <span style="color: red"><strong>much cleaner project history</strong></span>.<br>There are two trade-offs for this pristine commit history: <span style="color: red"><strong>safety and traceability</strong></span>.</p>
+<h4 id="The-Merge-Option"><a href="#The-Merge-Option" class="headerlink" title="The Merge Option"></a>The Merge Option</h4><details><summary>The Merge Option</summary><br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git merge master</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or, you can condense this to a one-liner:</span></span><br><span class="line">git merge feature master</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/3.svg" alt><br><br></details>
+
+<p><code>git merge</code> 的好处在于它是一个非破坏性(non-destructive)的操作，保留了变更历史，但同时也增加了多余的 commit。</p>
+<h4 id="The-Rebase-Option"><a href="#The-Rebase-Option" class="headerlink" title="The Rebase Option"></a>The Rebase Option</h4><details><summary>The Rebase Option</summary><br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/4.svg" alt><br><br></details>
+
+<h4 id="Interactive-Rebasing"><a href="#Interactive-Rebasing" class="headerlink" title="Interactive Rebasing"></a>Interactive Rebasing</h4><details><summary>Interactive Rebasing</summary><br><br>Interactive Rebasing 使你能够在 rebase 之前将你的 commit 历史做修改。<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># To begin an interactive rebasing session, pass the i option to the git rebase command:</span></span><br><span class="line">git checkout feature</span><br><span class="line">git rebase -i master</span><br><span class="line"></span><br><span class="line"><span class="comment"># This will open a text editor listing all of the commits that are about to be moved:</span></span><br><span class="line">pick 33d5b7a Message <span class="keyword">for</span> commit <span class="comment">#1</span></span><br><span class="line">pick 9480b3d Message <span class="keyword">for</span> commit <span class="comment">#2</span></span><br><span class="line">pick 5c67e61 Message <span class="keyword">for</span> commit <span class="comment">#3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If the 2nd commit fixes a small problem in the 1st commit, you can condense them into a single commit with the fixup command:</span></span><br><span class="line">pick 33d5b7a Message <span class="keyword">for</span> commit <span class="comment">#1</span></span><br><span class="line">fixup 9480b3d Message <span class="keyword">for</span> commit <span class="comment">#2</span></span><br><span class="line">pick 5c67e61 Message <span class="keyword">for</span> commit <span class="comment">#3</span></span><br></pre></td></tr></table></figure><br><br>Project history that looks like the following:<br><br><img src="/2019/06/26/Git Usage Guide/5.svg" alt><br><br></details>
+
+<h4 id="The-Golden-Rule-of-Rebasing"><a href="#The-Golden-Rule-of-Rebasing" class="headerlink" title="The Golden Rule of Rebasing"></a>The Golden Rule of Rebasing</h4><p><strong>⚠️ Never use it on public branches.</strong></p>
+<h4 id="How-to-Squash-Commits-in-Git"><a href="#How-to-Squash-Commits-in-Git" class="headerlink" title="How to Squash Commits in Git"></a>How to Squash Commits in Git</h4><p>How to Squash Commits in Git | Learn Version Control with Git - <a href="https://www.git-tower.com/learn/git/faq/git-squash/" target="_blank" rel="noopener">https://www.git-tower.com/learn/git/faq/git-squash/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i HEAD~3</span><br></pre></td></tr></table></figure>
+<h3 id="Resetting-Checking-Out-amp-Reverting"><a href="#Resetting-Checking-Out-amp-Reverting" class="headerlink" title="Resetting, Checking Out &amp; Reverting"></a>Resetting, Checking Out &amp; Reverting</h3><p><code>git reset</code>、<code>git checkout</code>、<code>git revert</code> all let you <strong>undo some kind of change in your repository</strong>, and the first two commands can be used to manipulate either commits or individual files.</p>
+<ul>
+<li>A <strong>checkout</strong> is an operation that moves the HEAD ref pointer to a specified commit.</li>
+<li>A <strong>revert</strong> is an operation that takes a specified commit and creates a new commit which inverses the specified commit. </li>
+<li>A <strong>reset</strong> is an operation that takes a specified commit and resets the “three trees” to match the state of the repository at that specified commit.</li>
+</ul>
+<p><span style="color: red"><strong>Checkout and reset are generally used for making local or private 「undos」.</strong></span> They modify the history of a repository that can cause conflicts when pushing to remote shared repositories. <span style="color: red"><strong>Revert is considered a safe operation for 「public undos」</strong></span> as it creates new history which can be shared remotely and doesn’t overwrite history remote team members may be dependent on.</p>
+<h4 id="“The-three-trees”-of-Git"><a href="#“The-three-trees”-of-Git" class="headerlink" title="“The three trees” of Git."></a>“The three trees” of Git.</h4><p><img src="/2019/06/26/Git Usage Guide/6.svg" alt></p>
+<h4 id="Git-Reset-vs-Revert-vs-Checkout-reference"><a href="#Git-Reset-vs-Revert-vs-Checkout-reference" class="headerlink" title="Git Reset vs Revert vs Checkout reference"></a>Git Reset vs Revert vs Checkout reference</h4><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Scope</th>
+<th>Common use cases</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git reset</code></td>
+<td>Commit-level</td>
+<td>Discard commits in a private branch or throw away uncommited changes</td>
+</tr>
+<tr>
+<td><code>git reset</code></td>
+<td>File-level</td>
+<td>Unstage a file</td>
+</tr>
+<tr>
+<td><code>git checkout</code></td>
+<td>Commit-level</td>
+<td>Switch between branches or inspect old snapshots</td>
+</tr>
+<tr>
+<td><code>git checkout</code></td>
+<td>File-level</td>
+<td>Discard changes in the working directory</td>
+</tr>
+<tr>
+<td><code>git revert</code></td>
+<td>Commit-level</td>
+<td>Undo commits in a public branch</td>
+</tr>
+<tr>
+<td><code>git revert</code></td>
+<td>File-level</td>
+<td>(N/A)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><details><summary>Reset A Specific Commit</summary><br><br>The following command moves the <code>hotfix</code> branch backwards by two commits.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout hotfix</span><br><span class="line">git reset HEAD~2</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/7.png" alt><br><br></details>
+
+<details><summary>Checkout old commits</summary><br><br>When passed with a branch name, it lets you switch between branches.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout hotfix8</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/8.png" alt><br><br>You can also check out arbitrary commits by passing the commit reference instead of a branch.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD~2</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/9.svg" alt><br><br></details>
+
+<details><summary>Undo Public Commits with Revert</summary><br><br>The following command will figure out the changes contained in the 2nd to last commit, create a new commit undoing those changes, and tack the new commit onto the existing project.<br><br><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout hotfix</span><br><span class="line">git revert HEAD~2</span><br></pre></td></tr></table></figure><br><br><img src="/2019/06/26/Git Usage Guide/10.svg" alt><br><br></details>
+
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p><strong>You can also think of git revert as a tool for undoing committed changes, while git reset HEAD is for undoing uncommitted changes.</strong></p>
+<h3 id="Git-Hooks"><a href="#Git-Hooks" class="headerlink" title="Git Hooks"></a>Git Hooks</h3><p><a href="https://www.atlassian.com/git/tutorials/git-hooks" target="_blank" rel="noopener">Git Hooks</a></p>
+<p>Git hooks are scripts that run automatically every time a particular event occurs in a Git repository. They let you customize Git’s internal behavior and trigger customizable actions at key points in the development life cycle.</p>
+<p>Hooks can reside in either <strong>local or server-side</strong> repositories, and they are only executed in response to actions in that repository. </p>
+<h4 id="Local-Hooks"><a href="#Local-Hooks" class="headerlink" title="Local Hooks"></a>Local Hooks</h4><p><strong>6 of the most useful local hooks:</strong></p>
+<ul>
+<li>pre-commit</li>
+<li>prepare-commit-msg</li>
+<li>commit-msg</li>
+<li>post-commit</li>
+<li>post-checkout</li>
+<li>pre-rebase</li>
+</ul>
+<p>The first 4 hooks let you plug into the entire commit life cycle, and the final 2 let you perform some extra actions or safety checks for the git checkout and git rebase commands, respectively.</p>
+<p>All of the pre- hooks let you alter the action that’s about to take place, while the post- hooks are used only for notifications.</p>
+<h4 id="Server-side-Hooks"><a href="#Server-side-Hooks" class="headerlink" title="Server-side Hooks"></a>Server-side Hooks</h4><ul>
+<li>pre-receive</li>
+<li>update</li>
+<li>post-receive</li>
+</ul>
+<p>All of these hooks let you react to different stages of the <code>git push</code> process.</p>
+<h5 id="Pre-Receive"><a href="#Pre-Receive" class="headerlink" title="Pre-Receive"></a>Pre-Receive</h5><p>The pre-receive hook is executed every time somebody uses git push to push commits to the repository. It should always reside in the remote repository that is the destination of the push, not in the originating repository.</p>
+<h5 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h5><p>The <code>update</code> hook is called after <code>pre-receive</code>, and it works much the same way. It’s still called before anything is actually updated, but it’s called separately for each ref that was pushed. That means if the user tries to push 4 branches, <code>update</code> is executed 4 times. Unlike <code>pre-receive</code>, this hook doesn’t need to read from standard input. Instead, it accepts the following 3 arguments:</p>
+<ul>
+<li>The name of the ref being updated</li>
+<li>The old object name stored in the ref</li>
+<li>The new object name stored in the ref</li>
+</ul>
+<h5 id="Post-Receive"><a href="#Post-Receive" class="headerlink" title="Post-Receive"></a>Post-Receive</h5><p>The <code>post-receive</code> hook gets called after a successful push operation, making it a good place to perform notifications. For many workflows, this is a better place to trigger notifications than <code>post-commit</code> because the changes are available on a public server instead of residing only on the user’s local machine. Emailing other developers and triggering a continuous integration system are common use cases for post-receive.</p>
+<h3 id="Git-Cherry-Pick"><a href="#Git-Cherry-Pick" class="headerlink" title="Git Cherry Pick"></a>Git Cherry Pick</h3><p><a href="https://www.atlassian.com/git/tutorials/cherry-pick" target="_blank" rel="noopener">Git Cherry Pick</a></p>
+<p><code>git cherry-pick</code> is a powerful command that enables arbitrary Git commits to be picked by reference and appended to the current working HEAD. <span style="color: red"><strong>Cherry picking is the act of picking a commit from a branch and applying it to another.</strong></span> <code>git cherry-pick</code> can be useful for undoing changes. For example, say a commit is accidently made to the wrong branch. You can switch to the correct branch and cherry-pick the commit to where it should belong.</p>
+<h3 id="迁移-Git-仓库"><a href="#迁移-Git-仓库" class="headerlink" title="迁移 Git 仓库"></a>迁移 Git 仓库</h3><p><a href="https://www.atlassian.com/git/tutorials/git-move-repository" target="_blank" rel="noopener">How to move a git repository with history | Atlassian Git Tutorial</a></p>
+<h2 id="Tips-amp-Tricks"><a href="#Tips-amp-Tricks" class="headerlink" title="Tips &amp; Tricks"></a>Tips &amp; Tricks</h2><p>git hook</p>
+<ul>
+<li><a href="https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90" target="_blank" rel="noopener">自定义 Git - Git 钩子</a></li>
+<li><a href="https://aotu.io/notes/2017/04/10/githooks/index.html" target="_blank" rel="noopener">用 Git 钩子进行简单自动部署</a></li>
+</ul>
+<p><a href="http://robinchen.me/tech/2017/02/07/git-usage-tips.html" target="_blank" rel="noopener">Git 使用注意点</a></p>
+<h2 id="使用-Tower-提高-Git-效率"><a href="#使用-Tower-提高-Git-效率" class="headerlink" title="使用 Tower 提高 Git 效率"></a>使用 Tower 提高 Git 效率</h2><p><a href="http://robinchen.me/work/2017/01/17/using-tower.html" target="_blank" rel="noopener">使用 Tower 提高 Git 效率</a><br><a href="https://www.git-tower.com/help/mac" target="_blank" rel="noopener">Tower Help for Mac</a>  『 Tower 文章导航 』<br><a href="https://www.git-tower.com/help/mac/faq-and-tips/keyboard-shortcuts" target="_blank" rel="noopener">Keyboard Shortcuts</a> 『 Tower 常用快捷键 』<br><a href="https://www.git-tower.com/help/mac/faq-and-tips/tips-and-tricks#faq-drag-drop" target="_blank" rel="noopener">Tips &amp; Tricks</a> 『 Tower 使用技巧 』<br><a href="https://www.git-tower.com/help/mac/first-steps/basic-workflow" target="_blank" rel="noopener">A Basic Workflow</a> 『 Tower 使用流程 』</p>
+<h2 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h2><p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow#start" target="_blank" rel="noopener">git-flow 的工作流程</a></p>
+<p><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></p>
+<p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/branching-merging/branching-workflows#start" target="_blank" rel="noopener">分支的工作流程</a></p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p><a href="https://www.ssh.com/ssh/" target="_blank" rel="noopener">SSH (SECURE SHELL)</a> 『 SSH 官网的介绍 』</p>
+<p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/ssh-public-keys#start" target="_blank" rel="noopener">使用 SSH 公钥验证</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH原理与运用（一）：远程登录</a></p>
+<h2 id="Relevant-Infomations"><a href="#Relevant-Infomations" class="headerlink" title="Relevant Infomations"></a>Relevant Infomations</h2><p><a href="https://www.atlassian.com/git/glossary/terminology" target="_blank" rel="noopener">Relevant Terminology</a>，<a href="https://www.atlassian.com/git/glossary" target="_blank" rel="noopener">Git Commands Glossary</a><br><a href="https://www.git-tower.com/blog/git-cheat-sheet-cn" target="_blank" rel="noopener">git-cheat-sheet</a><br><a href="https://www.git-tower.com/blog/command-line-cheat-sheet/" target="_blank" rel="noopener">Command Line Cheat Sheet</a><br><a href="https://www.git-tower.com/blog/version-control-best-practices/" target="_blank" rel="noopener">Version Control Best Practices</a>，<a href="https://www.git-tower.com/blog/git-cheat-sheet-cn" target="_blank" rel="noopener">中文版</a><br><a href="https://www.git-tower.com/learn/git/ebook/en/desktop-gui/advanced-topics/ssh-public-keys#start" target="_blank" rel="noopener">Authentication with SSH Public Keys</a><br><a href="https://www.git-tower.com/learn/git/ebook/en/desktop-gui/advanced-topics/git-lfs#start" target="_blank" rel="noopener">Handling Large Files with LFS</a><br><a href="https://www.git-tower.com/learn/git/ebook/en/desktop-gui/advanced-topics/git-flow#start" target="_blank" rel="noopener">Workflows with git-flow</a><br><a href="http://iissnan.com/progit/" target="_blank" rel="noopener">Pro Git</a> 『 Pro Git 在线书籍 』<br><a href="https://github.com/jakubpawlowicz/git-cheat-sheet/blob/master/README.md" target="_blank" rel="noopener">git-cheat-sheet</a><br><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/appendix/from-subversion-to-git#start" target="_blank" rel="noopener">从 Subversion 过渡到 Git</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+            <a href="/tags/tower/" rel="tag">#tower</a>
+          
+            <a href="/tags/tool/" rel="tag">#tool</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/25/flex 布局/" rel="next" title="flex 布局">
+                <i class="fa fa-chevron-left"></i> flex 布局
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/27/functional programming/" rel="prev" title="Functional Programming">
+                Functional Programming <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Git-Why-Git"><span class="nav-text">What is Git? Why Git?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-text">Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-Git-Directly"><span class="nav-text">Install Git Directly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-Git-through-Git-Client"><span class="nav-text">Install Git through Git Client</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tutorial"><span class="nav-text">Tutorial</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Cheat-Sheet"><span class="nav-text">Git Cheat Sheet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶"><span class="nav-text">进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inspecting-a-repository"><span class="nav-text">Inspecting a repository</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-tag"><span class="nav-text">git tag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-blame"><span class="nav-text">git blame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-log"><span class="nav-text">git log</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merging-vs-Rebasing"><span class="nav-text">Merging vs. Rebasing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-rebase-的优缺点"><span class="nav-text">git rebase 的优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Merge-Option"><span class="nav-text">The Merge Option</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Rebase-Option"><span class="nav-text">The Rebase Option</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Interactive-Rebasing"><span class="nav-text">Interactive Rebasing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Golden-Rule-of-Rebasing"><span class="nav-text">The Golden Rule of Rebasing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-Squash-Commits-in-Git"><span class="nav-text">How to Squash Commits in Git</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resetting-Checking-Out-amp-Reverting"><span class="nav-text">Resetting, Checking Out &amp; Reverting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“The-three-trees”-of-Git"><span class="nav-text">“The three trees” of Git.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-Reset-vs-Revert-vs-Checkout-reference"><span class="nav-text">Git Reset vs Revert vs Checkout reference</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Summary"><span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Hooks"><span class="nav-text">Git Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Local-Hooks"><span class="nav-text">Local Hooks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Server-side-Hooks"><span class="nav-text">Server-side Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Pre-Receive"><span class="nav-text">Pre-Receive</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Update"><span class="nav-text">Update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Post-Receive"><span class="nav-text">Post-Receive</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Cherry-Pick"><span class="nav-text">Git Cherry Pick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移-Git-仓库"><span class="nav-text">迁移 Git 仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips-amp-Tricks"><span class="nav-text">Tips &amp; Tricks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Tower-提高-Git-效率"><span class="nav-text">使用 Tower 提高 Git 效率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Flow"><span class="nav-text">Git Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relevant-Infomations"><span class="nav-text">Relevant Infomations</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

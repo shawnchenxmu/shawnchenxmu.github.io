@@ -1,0 +1,743 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,设计模式,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="设计模式的意义 模式为常见问题提供了行之有效的解决方案：模式提供了解决特定问题的优化模板； 模式旨在重用：它们具备通用性，适合于各种问题。  《设计模式：可复用的面向对象软件基础》的作者『四人帮』将设计模式宽泛地划分为以下几类：  创建型设计模式：该模式处理的是用于创建对象的各种机制，这种模式着眼于优化的或更可控的对象创建机制； 结构型设计模式：该模式考虑的是对象的组成以及对象彼此之间的关系，其意">
+<meta name="keywords" content="JavaScript,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript设计模式">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/JavaScript设计模式/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="设计模式的意义 模式为常见问题提供了行之有效的解决方案：模式提供了解决特定问题的优化模板； 模式旨在重用：它们具备通用性，适合于各种问题。  《设计模式：可复用的面向对象软件基础》的作者『四人帮』将设计模式宽泛地划分为以下几类：  创建型设计模式：该模式处理的是用于创建对象的各种机制，这种模式着眼于优化的或更可控的对象创建机制； 结构型设计模式：该模式考虑的是对象的组成以及对象彼此之间的关系，其意">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript设计模式">
+<meta name="twitter:description" content="设计模式的意义 模式为常见问题提供了行之有效的解决方案：模式提供了解决特定问题的优化模板； 模式旨在重用：它们具备通用性，适合于各种问题。  《设计模式：可复用的面向对象软件基础》的作者『四人帮』将设计模式宽泛地划分为以下几类：  创建型设计模式：该模式处理的是用于创建对象的各种机制，这种模式着眼于优化的或更可控的对象创建机制； 结构型设计模式：该模式考虑的是对象的组成以及对象彼此之间的关系，其意">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/JavaScript设计模式/">
+
+
+  <title> JavaScript设计模式 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-19T10:43:50+08:00" content="2018-06-19">
+              2018-06-19
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="设计模式的意义"><a href="#设计模式的意义" class="headerlink" title="设计模式的意义"></a>设计模式的意义</h2><ul>
+<li>模式为常见问题提供了行之有效的解决方案：模式提供了解决特定问题的优化模板；</li>
+<li>模式旨在重用：它们具备通用性，适合于各种问题。</li>
+</ul>
+<p>《设计模式：可复用的面向对象软件基础》的作者『四人帮』将设计模式宽泛地划分为以下几类：</p>
+<ul>
+<li>创建型设计模式：该模式处理的是用于创建对象的各种机制，这种模式着眼于优化的或更可控的对象创建机制；</li>
+<li>结构型设计模式：该模式考虑的是对象的组成以及对象彼此之间的关系，其意图在于将系统变化对整个对象关系所造成的影响降低到最小；</li>
+<li>行为型设计模式：该模式关注的是对象之间的依赖关系以及通信。</li>
+</ul>
+<p>这几类设计模式又有更详细的分类：</p>
+<p><strong>创建型模式：</strong></p>
+<ul>
+<li>工厂方法</li>
+<li>抽象工厂</li>
+<li>建造者</li>
+<li>原型</li>
+<li>单例</li>
+</ul>
+<p><strong>结构型模式：</strong></p>
+<ul>
+<li>适配器</li>
+<li>桥接</li>
+<li>组合</li>
+<li>装饰器</li>
+<li>外观</li>
+<li>享元</li>
+<li>代理</li>
+</ul>
+<p><strong>行为型模式：</strong></p>
+<ul>
+<li>解释器</li>
+<li>模板方法</li>
+<li>责任链</li>
+<li>命令</li>
+<li>迭代器</li>
+<li>中介者</li>
+<li>备忘录</li>
+<li>观察者</li>
+<li>状态</li>
+<li>策略</li>
+<li>访问者</li>
+</ul>
+<p>而针对于 JavaScript，则有更为特殊的设计模式。</p>
+<h2 id="命名空间模式"><a href="#命名空间模式" class="headerlink" title="命名空间模式"></a>命名空间模式</h2><p>命名空间能够减少程序创建的全局变量的数量，有助于避免命名冲突或过多的名称前缀。</p>
+<p>命名空间的思路是为应用程序或库创建一个全局对象，将所有的其他对象和函数全部添加到该对象中去，而不是去污染全局作用域。</p>
+<p>我们可以创建单个全局对象，然后将所有的函数和对象作为该全局对象的一部分：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> FACTORY = FACTORY || &#123;&#125;;</span><br><span class="line">FACTORY.Car = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">FACTORY.Bike = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">FACTORY.engines = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>全局命名空间对象名习惯上全部都是大写。</p>
+<p>命名空间模式既可以限制全局变量，又能够为代码添加命名空间，看起来似乎是一个不错的方法，但多少有点繁琐，你得在每个变量和函数前面加上命名空间前缀，需要输入更多的内容，代码也变得啰嗦。另外，单个全局实例意味着任何代码都能够修改该全局实例，进而影响到其他功能。</p>
+<h2 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h2><p>模块模式有助于维持代码清晰的独立性以及条理性。</p>
+<p>模块可以将较大的程序分割成较小的部分，赋予其各自的命名空间。这一点非常重要，因为一旦将代码划分成模块，这些模块就能够在其他地方重新使用。精心设计的模块接口能够使代码易于重用和扩展。</p>
+<p>JavaScript 提供了灵活的函数和对象，可以轻松地创建出健壮的模块系统。函数作用域有助于创建模块内部使用的命名空间，对象可以用来保存导出的值。</p>
+<p>模块可以模拟类的概念，它使得我们能够在对象中加入公共/私有方法和变量，但最重要的是，模块能够将它们同全局作用域隔离开。变量和函数都被限制在了模块作用域中，因而也就自动避免了与使用相同名称的其他脚本产生命名冲突。</p>
+<p>模块模式的另一个有点在于它只暴露了公共 API，其他所有与内部实现相关的细节都以私有状态保留在模块的闭包中。</p>
+<p>以下是一种模块模式的实现方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> revealingExample = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> privateOne = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">privateFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'privateFn called'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> publicTwo = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">publicFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        publicFnTwo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">publicFnTwo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        privateFn();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getCurrentState</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 通过分配共有指针来暴露私有变量</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        setup: publicFn,</span><br><span class="line">        count: publicTwo,</span><br><span class="line">        increaseCount: publicFnTwo,</span><br><span class="line">        current: getCurrentState()</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;();</span><br><span class="line"><span class="built_in">console</span>.log(revealingExample.current); <span class="comment">//2</span></span><br><span class="line">revealingExample.setup(); <span class="comment">//调用 privateFn</span></span><br></pre></td></tr></table></figure>
+<h3 id="ES6-模块"><a href="#ES6-模块" class="headerlink" title="ES6 模块"></a>ES6 模块</h3><p>ES6 模块的语法类似于 CommonJS，另外还支持异步装载以及可配置的模块装载：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// json_processor.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processJSON</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getSiteContent</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> processJSON(url);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; getSiteContent &#125; <span class="keyword">from</span> <span class="string">"json_processor.js"</span>;</span><br><span class="line">content = getSiteContent(<span class="string">"http://google.com/"</span>)</span><br></pre></td></tr></table></figure>
+<p>ES6 的导出功能可以让你使用类似于 CommonJS 的方式导出函数或变量。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式是另一种流行的对象创建模式。该模式提供了一个用于创建对象的接口。根据传入工厂的类型，可以创建出特定类型的对象。这种模式常见的实现通常是利用类或类的静态方法。这样的类或方法的目的如下：</p>
+<ul>
+<li>在创建相似对象时，抽象出重复出现的操作；</li>
+<li>允许工厂的用户在无需了解对象创建的内部细节的情况下创建对象；</li>
+</ul>
+<p>让我们用一个常见的例子来理解工厂模式的用法。假设我们有：</p>
+<ul>
+<li>一个构造函数 <code>CarFactory()</code></li>
+<li>CarFactory 中一个叫做 <code>make()</code> 的静态方法，该方法知道如何创建 car 类型的对象</li>
+<li>特定的 car 类型，例如 <code>CarFactory.SUV</code>、<code>CarFactory.Sedan</code> 等</li>
+</ul>
+<p>我们希望像下面这样使用 CarFactory：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> golf = CarFactory.make(<span class="string">'Compact'</span>);</span><br><span class="line"><span class="keyword">var</span> vento = CarFactory.make(<span class="string">'Sedan'</span>);</span><br><span class="line"><span class="keyword">var</span> touareg = CarFactory.make(<span class="string">'SUV'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里给出了这种工厂的实现方法。下面的实现非常标准。我们用编程的方式调用了构造函数，创建指定类型的对象——<code>CarFactory[const].prototype = new CarFactory();</code></p>
+<p>我们将对象类型映射为构造函数。该模式的实现方法不止一种：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 工厂构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CarFactory</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">CarFactory.prototype.info = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"This car has "</span> + <span class="keyword">this</span>.doors + <span class="string">" doors and a "</span> + <span class="keyword">this</span>.engine_capacity + <span class="string">" liter engine"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 静态工厂方法</span></span><br><span class="line">CarFactory.make = <span class="function"><span class="keyword">function</span> (<span class="params">type</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> constr = type;</span><br><span class="line">    <span class="keyword">var</span> car;</span><br><span class="line">    CarFactory[constr].prototype = <span class="keyword">new</span> CarFactory();</span><br><span class="line">    <span class="comment">// 创建新的实例</span></span><br><span class="line">    car = <span class="keyword">new</span> CarFactory[constr]();</span><br><span class="line">    <span class="keyword">return</span> car;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CarFactory.Compact = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.doors = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">this</span>.engine_capacity = <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CarFactory.Sedan = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.door = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">this</span>.engine_capacity = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CarFactory.SUV = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.door = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">this</span>.engine_capacity = <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> golf = CarFactory.make(<span class="string">'Compact'</span>);</span><br><span class="line"><span class="keyword">var</span> vento = CarFactory.make(<span class="string">'Sedan'</span>);</span><br><span class="line"><span class="keyword">var</span> touareg = CarFactory.make(<span class="string">'SUV'</span>);</span><br><span class="line">golf.info(); <span class="comment">// "This car has 4 door and a 2 liter engine"</span></span><br></pre></td></tr></table></figure>
+<h2 id="mixin-模式"><a href="#mixin-模式" class="headerlink" title="mixin 模式"></a>mixin 模式</h2><p>mixin 模式能够显著减少代码中重复出现的功能，有助于功能重用。我们可以将能够共享的功能放到 mixin 中，以此降低共享行为的重复数量。</p>
+<p>考虑下面的例子，我们想创建一个定制的日志记录器（logger），任何对象实例都可以使用，这个日志记录器会在希望使用/扩展 mixin 对象之间共享：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'underscore'</span>);</span><br><span class="line"><span class="comment">// 将共享的功能封装进 CustomLogger</span></span><br><span class="line"><span class="keyword">var</span> logger = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> CustomLogger = &#123;</span><br><span class="line">        log: <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> CustomLogger</span><br><span class="line">&#125;())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要定制的日志记录器来记录系统特定日志的对象</span></span><br><span class="line"><span class="keyword">var</span> Server = (<span class="function"><span class="keyword">function</span> (<span class="params">Logger</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> CustomServer = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.log(<span class="string">"Initializing Server..."</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将 CustomLogger 的成员复制/扩展为 CustomServer</span></span><br><span class="line">    _.extend(CustomServer.prototype, Logger);</span><br><span class="line">    <span class="keyword">return</span> CustomServer;</span><br><span class="line">&#125;(logger));</span><br><span class="line"></span><br><span class="line">(<span class="keyword">new</span> Server()).init(); <span class="comment">//初始化服务器</span></span><br></pre></td></tr></table></figure>
+<p>我们动态地将 mixin 的功能加入到了对象中，重要的是理解 mixin 和继承之间的区别。如果有可以在多个对象和类层次之间共享的功能，可以使用 mixin；如果要共享的功能是在单个层次中，可以使用继承。在原型继承中，如果继承来自原型，那么对原型做出的修改会影响到从原型继承的一切内容。如果不希望出现这种情况，可以使用 mixin。</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>在《设计模式》一书中，是这样定义观察者模式的：</p>
+<blockquote>
+<p>对目标状态感兴趣的一个或多个观察者，通过将自身与该目标关联在一起的形式进行注册。当目标出现观察者可能感兴趣的变化时，发出提醒消息，进而调用每个观察者的更新方法。如果观察者对目标状态不再感兴趣，只需要解除关联即可。</p>
+</blockquote>
+<p>在观察者模式中，目标保存了一个对其依赖的对象列表（称为观察者），并在自身状态发生变化时通知这些观察者。目标所采用的通知方式是广播。观察者如果不想再被提醒，可以把自己从列表中移除。我们可以对该模式中的参与者做出如下定义：</p>
+<ul>
+<li>目标：保存观察者列表，拥有可以添加、删除和更新观察者的方法；</li>
+<li>观察者：为那些需要在目标状态发生变化时得到提醒的对象提供接口。</li>
+</ul>
+<p>让我们来创建一个能够添加、删除和提醒观察者的目标：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Subject = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Subject</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.observer_list = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 该方法用于向内部列表中添加观察者</span></span><br><span class="line">    Subject.prototype.add_observer = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Added observer'</span>);</span><br><span class="line">        <span class="keyword">this</span>.observer_list.push(obj);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    Subject.prototype.remove_observer = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.observer_list.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.observer_list[i] === obj) &#123;</span><br><span class="line">                <span class="keyword">this</span>.observer_list.splice(i, <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'Removed Observer'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    Subject.prototype.notify = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.observer_list.length; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.observer_list[i].update(args)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Subject</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>Subject 的实现方法非常直观，<code>notify()</code> 方法的重要之处在于调用所有观察者对象的 <code>update()</code> 方法来广播更新。</p>
+<p>现在来定义一个能够创建随机推文的简单对象，该对象提供了一个接口，可以使用 <code>addObserver()</code> 和 <code>removeObserver()</code> 方法来添加和删除观察者，它也可以使用新获取的推文来调用 Subject 的 <code>notify()</code> 方法。如果出现这种情况，所有的观察者都会将新发布的推文作为参数，发出有推文更新的广播：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tweeter</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> subject = <span class="keyword">new</span> Subject();</span><br><span class="line">    <span class="keyword">this</span>.addObserver = <span class="function"><span class="keyword">function</span> (<span class="params">observer</span>) </span>&#123;</span><br><span class="line">        subject.add_observer(observer);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.removeObserver = <span class="function"><span class="keyword">function</span> (<span class="params">observer</span>) </span>&#123;</span><br><span class="line">        subject.remove_observer(observer);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.fetchTweets = <span class="function"><span class="keyword">function</span> <span class="title">fetchTweets</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// tweet</span></span><br><span class="line">        <span class="keyword">var</span> tweet = &#123;</span><br><span class="line">            tweet: <span class="string">"This is one nice Observer"</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 提示观察者发生的变化</span></span><br><span class="line">        subject.notify(tweet);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加两名观察者：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> TweetUpdater = &#123;</span><br><span class="line">    update: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Update Tweet - '</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> TweetFollower = &#123;</span><br><span class="line">    update: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Following this tweet - '</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>两名观察者都有 <code>update()</code> 方法，该方法将由 <code>Subject.notify()</code> 调用。现在我们就可以通过 Tweeter 的接口将观察者添加到 Subject 中了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tweetApp = <span class="keyword">new</span> Tweeter();</span><br><span class="line">tweetApp.addObserver(TweeterUpdater);</span><br><span class="line">tweetApp.addObserver(TweeterFollower);</span><br><span class="line">tweetApp.fetchTweets();</span><br><span class="line">tweetApp.removeObserver(TweetUpdater);</span><br><span class="line">tweetApp.removeObserver(TweetFollower);</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>在大型应用的构建中，我们发现某些问题模式会反复地出现，这类问题都有明确的应对方法，可以拿来重用以构建一套健壮的解决方案，这便是应用设计模式的意义所在。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/07/JavaScript中的作用域/" rel="next" title="JavaScript中的作用域">
+                <i class="fa fa-chevron-left"></i> JavaScript中的作用域
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/23/通用服务设计/" rel="prev" title="通用服务设计">
+                通用服务设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式的意义"><span class="nav-text">设计模式的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名空间模式"><span class="nav-text">命名空间模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块模式"><span class="nav-text">模块模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-模块"><span class="nav-text">ES6 模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mixin-模式"><span class="nav-text">mixin 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

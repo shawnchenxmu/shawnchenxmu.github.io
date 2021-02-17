@@ -1,0 +1,720 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="IntroductionDigraph. Set of vertices connected pairwise by directed edges.  有向图常见问题Path. Is there a directed path from s to t ?Shortest path. What is the shortest directed path from s to t ?Topologica">
+<meta name="keywords" content="算法,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有向图">
+<meta property="og:url" content="http://yoursite.com/2020/03/14/有向图/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="IntroductionDigraph. Set of vertices connected pairwise by directed edges.  有向图常见问题Path. Is there a directed path from s to t ?Shortest path. What is the shortest directed path from s to t ?Topologica">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/有向图/17.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.922Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有向图">
+<meta name="twitter:description" content="IntroductionDigraph. Set of vertices connected pairwise by directed edges.  有向图常见问题Path. Is there a directed path from s to t ?Shortest path. What is the shortest directed path from s to t ?Topologica">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/14/有向图/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/14/有向图/">
+
+
+  <title> 有向图 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                有向图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-14T16:04:17+08:00" content="2020-03-14">
+              2020-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><span style="color: #00bcd4"><strong>Digraph.</strong></span> Set of vertices connected pairwise by <span style="color: red">directed</span> edges.</p>
+<p><img src="/2020/03/14/有向图/1.png" alt></p>
+<h3 id="有向图常见问题"><a href="#有向图常见问题" class="headerlink" title="有向图常见问题"></a>有向图常见问题</h3><p><span style="color: #00bcd4"><strong>Path.</strong></span> Is there a directed path from <strong>s</strong> to <strong>t</strong> ?<br><span style="color: #00bcd4"><strong>Shortest path.</strong></span> What is the shortest directed path from <strong>s</strong> to <strong>t</strong> ?<br><span style="color: #00bcd4"><strong>Topological sort.</strong></span> Can you draw a digraph so that all edges point upwards?<br><span style="color: #00bcd4"><strong>Strong connectivity.</strong></span> Is there a directed path between all pairs of vertices?<br><span style="color: #00bcd4"><strong>Transitive closure.</strong></span> For which vertices <strong>v</strong> and <strong>w</strong> is there a path from <strong>v</strong> to <strong>w</strong> ?<br><span style="color: #00bcd4"><strong>PageRank.</strong></span> What is the importance of a web page?</p>
+<h2 id="digraph-API"><a href="#digraph-API" class="headerlink" title="digraph API"></a>digraph API</h2><p><img src="/2020/03/14/有向图/2.png" alt><br><img src="/2020/03/14/有向图/3.png" alt><br><img src="/2020/03/14/有向图/4.png" alt></p>
+<h3 id="Adjacency-lists-digraph-representation"><a href="#Adjacency-lists-digraph-representation" class="headerlink" title="Adjacency-lists digraph representation"></a>Adjacency-lists digraph representation</h3><p>Maintain vertex-indexed array of lists.<br><img src="/2020/03/14/有向图/5.png" alt></p>
+<h3 id="Adjacency-lists-graph-representation-review-Java-implementation"><a href="#Adjacency-lists-graph-representation-review-Java-implementation" class="headerlink" title="Adjacency-lists graph representation (review): Java implementation"></a>Adjacency-lists graph representation (review): Java implementation</h3><p><img src="/2020/03/14/有向图/6.png" alt></p>
+<h3 id="Adjacency-lists-digraph-representation-Java-implementation"><a href="#Adjacency-lists-digraph-representation-Java-implementation" class="headerlink" title="Adjacency-lists digraph representation: Java implementation"></a>Adjacency-lists digraph representation: Java implementation</h3><p><img src="/2020/03/14/有向图/7.png" alt></p>
+<h2 id="digraph-search"><a href="#digraph-search" class="headerlink" title="digraph search"></a>digraph search</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p><span style="color: #00bcd4">Problem.</span> Find all vertices reachable from s along a directed path.<br><img src="/2020/03/14/有向图/8.png" alt></p>
+<h3 id="Depth-first-search-in-digraphs"><a href="#Depth-first-search-in-digraphs" class="headerlink" title="Depth-first search in digraphs"></a>Depth-first search in digraphs</h3><p><span style="color: #00bcd4">Same method as for undirected graphs.</span></p>
+<ul>
+<li>Every undirected graph is a digraph (with edges in both directions).</li>
+<li>DFS is a <span style="color: red">digraph</span> algorithm.</li>
+</ul>
+<p><img src="/2020/03/14/有向图/9.png" alt></p>
+<h3 id="Depth-first-search-demo"><a href="#Depth-first-search-demo" class="headerlink" title="Depth-first search demo"></a>Depth-first search demo</h3><p>To visit a vertex <strong>v</strong> :</p>
+<ul>
+<li>Mark vertex <strong>v</strong> as visited.</li>
+<li>Recursively visit all unmarked vertices pointing from <strong>v</strong>.</li>
+</ul>
+<p><img src="/2020/03/14/有向图/10.png" alt></p>
+<h3 id="Depth-first-search-in-undirected-graphs"><a href="#Depth-first-search-in-undirected-graphs" class="headerlink" title="Depth-first search (in undirected graphs)"></a>Depth-first search (in undirected graphs)</h3><p>Recall code for <span style="color: red">undirected</span> graphs.<br><img src="/2020/03/14/有向图/11.png" alt></p>
+<h3 id="Depth-first-search-in-directed-graphs"><a href="#Depth-first-search-in-directed-graphs" class="headerlink" title="Depth-first search (in directed graphs)"></a>Depth-first search (in directed graphs)</h3><p>Code for <span style="color: red">directed</span> graphs identical to undirected one.</p>
+<p><img src="/2020/03/14/有向图/12.png" alt></p>
+<h3 id="Depth-first-search-in-digraphs-summary"><a href="#Depth-first-search-in-digraphs-summary" class="headerlink" title="Depth-first search in digraphs summary"></a>Depth-first search in digraphs summary</h3><p><span style="color: #00bcd4"><strong>DFS enables direct solution of simple digraph problems.</strong></span></p>
+<ul>
+<li>Reachability.</li>
+<li>Path finding.</li>
+<li>Topological sort.</li>
+<li>Directed cycle detection.</li>
+</ul>
+<p><span style="color: #00bcd4"><strong>Basis for solving difficult digraph problems.</strong></span></p>
+<ul>
+<li>2-satisfiability.</li>
+<li>Directed Euler path.</li>
+<li>Strongly-connected components.</li>
+</ul>
+<h3 id="Breadth-first-search-in-digraphs"><a href="#Breadth-first-search-in-digraphs" class="headerlink" title="Breadth-first search in digraphs"></a>Breadth-first search in digraphs</h3><p><span style="color: #00bcd4"><strong>Same method as for undirected graphs.</strong></span></p>
+<ul>
+<li>Every undirected graph is a digraph (with edges in both directions).</li>
+<li>BFS is a <span style="color: red">digraph</span> algorithm.</li>
+</ul>
+<p><img src="/2020/03/14/有向图/13.png" alt></p>
+<h3 id="Directed-breadth-first-search-demo"><a href="#Directed-breadth-first-search-demo" class="headerlink" title="Directed breadth-first search demo"></a>Directed breadth-first search demo</h3><p>Repeat until queue is empty:</p>
+<ul>
+<li>Remove vertex <strong>v</strong> from queue.</li>
+<li>Add to queue all unmarked vertices pointing from <strong>v</strong> and mark them.</li>
+</ul>
+<p><img src="/2020/03/14/有向图/14.png" alt></p>
+<h2 id="topological-sort"><a href="#topological-sort" class="headerlink" title="topological sort"></a>topological sort</h2><h3 id="Precedence-scheduling"><a href="#Precedence-scheduling" class="headerlink" title="Precedence scheduling"></a>Precedence scheduling</h3><p><span style="color: #00bcd4"><strong>Goal.</strong></span> Given a set of tasks to be completed with precedence constraints, in which order should we schedule the tasks?</p>
+<p><span style="color: #00bcd4"><strong>Digraph model.</strong></span> vertex = task; edge = precedence constraint.</p>
+<p><span style="color: #00bcd4"><strong>DAG.</strong></span> Directed acyclic graph.<br><span style="color: #00bcd4"><strong>Topological sort.</strong></span> Redraw DAG so all edges point upwards.</p>
+<p><img src="/2020/03/14/有向图/15.png" alt></p>
+<h3 id="Topological-sort"><a href="#Topological-sort" class="headerlink" title="Topological sort"></a>Topological sort</h3><ul>
+<li>Run depth-first search.</li>
+<li>Return vertices in reverse postorder.</li>
+</ul>
+<p><img src="/2020/03/14/有向图/16.png" alt></p>
+<h3 id="Depth-first-search-order"><a href="#Depth-first-search-order" class="headerlink" title="Depth-first search order"></a>Depth-first search order</h3><p><img src="/2020/03/14/有向图/17.png" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/14/无向图/" rel="next" title="无向图">
+                <i class="fa fa-chevron-left"></i> 无向图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/最小生成树/" rel="prev" title="最小生成树">
+                最小生成树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有向图常见问题"><span class="nav-text">有向图常见问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#digraph-API"><span class="nav-text">digraph API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adjacency-lists-digraph-representation"><span class="nav-text">Adjacency-lists digraph representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adjacency-lists-graph-representation-review-Java-implementation"><span class="nav-text">Adjacency-lists graph representation (review): Java implementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adjacency-lists-digraph-representation-Java-implementation"><span class="nav-text">Adjacency-lists digraph representation: Java implementation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#digraph-search"><span class="nav-text">digraph search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reachability"><span class="nav-text">Reachability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-in-digraphs"><span class="nav-text">Depth-first search in digraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-demo"><span class="nav-text">Depth-first search demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-in-undirected-graphs"><span class="nav-text">Depth-first search (in undirected graphs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-in-directed-graphs"><span class="nav-text">Depth-first search (in directed graphs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-in-digraphs-summary"><span class="nav-text">Depth-first search in digraphs summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Breadth-first-search-in-digraphs"><span class="nav-text">Breadth-first search in digraphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Directed-breadth-first-search-demo"><span class="nav-text">Directed breadth-first search demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#topological-sort"><span class="nav-text">topological sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Precedence-scheduling"><span class="nav-text">Precedence scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Topological-sort"><span class="nav-text">Topological sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-order"><span class="nav-text">Depth-first search order</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

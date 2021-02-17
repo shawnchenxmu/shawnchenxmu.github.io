@@ -1,0 +1,720 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Introduction如果所有的键都是小整数，我们可以用一个数组来实现无序的符号表，将键作为数组的索引而数组中的键 i 处储存的就是它对应的值。这样我们就可以快速访问任意键的值。 使用散列的查找算法分为两步：第一步：使用散列函数将被查找的键转化为数组的一个索引第二步：处理碰撞冲突（拉链法和线性探测法） Issues.  Computing the hash function. Equality">
+<meta name="keywords" content="算法,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="散列表">
+<meta property="og:url" content="http://yoursite.com/2020/03/14/散列表/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="Introduction如果所有的键都是小整数，我们可以用一个数组来实现无序的符号表，将键作为数组的索引而数组中的键 i 处储存的就是它对应的值。这样我们就可以快速访问任意键的值。 使用散列的查找算法分为两步：第一步：使用散列函数将被查找的键转化为数组的一个索引第二步：处理碰撞冲突（拉链法和线性探测法） Issues.  Computing the hash function. Equality">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/散列表/16.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="散列表">
+<meta name="twitter:description" content="Introduction如果所有的键都是小整数，我们可以用一个数组来实现无序的符号表，将键作为数组的索引而数组中的键 i 处储存的就是它对应的值。这样我们就可以快速访问任意键的值。 使用散列的查找算法分为两步：第一步：使用散列函数将被查找的键转化为数组的一个索引第二步：处理碰撞冲突（拉链法和线性探测法） Issues.  Computing the hash function. Equality">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/14/散列表/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/14/散列表/">
+
+
+  <title> 散列表 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                散列表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-14T11:36:24+08:00" content="2020-03-14">
+              2020-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>如果所有的键都是小整数，我们可以用一个数组来实现无序的符号表，将键作为数组的索引而数组中的键 <code>i</code> 处储存的就是它对应的值。这样我们就可以快速访问任意键的值。</p>
+<p>使用散列的查找算法分为两步：<br>第一步：使用<strong>散列函数</strong>将被查找的键转化为数组的一个索引<br>第二步：处理碰撞冲突（拉链法和线性探测法）</p>
+<p><span style="color: #00bcd4">Issues.</span></p>
+<ul>
+<li>Computing the hash function.</li>
+<li>Equality test: Method for checking whether two keys are equal.</li>
+<li>Collision resolution: Algorithm and data structure to handle two keys that hash to the same array index.</li>
+</ul>
+<p>散列表是算法在<strong>时间</strong>和<strong>空间</strong>上作出权衡的经典例子。</p>
+<ul>
+<li><strong>如果没有内存限制</strong>，我们可以直接将键作为（可能是一个超大的）数组的索引，那么所有的查找操作只需要访问内存一次即可完成。但这种理想情况不会经常出现，因为当键很多时需要的内存太大。</li>
+<li><strong>如果没有时间限制</strong>，我们可以使用无序数组并进行顺序查找，这样就只需要很少的内存。</li>
+</ul>
+<p><span style="color: #00bcd4">Classic space-time tradeoff.</span></p>
+<ul>
+<li>No space limitation: trivial hash function with key as index.</li>
+<li>No time limitation: trivial collision resolution with sequential search.</li>
+<li>Space and time limitations: hashing (the real world).</li>
+</ul>
+<h2 id="hash-function"><a href="#hash-function" class="headerlink" title="hash function"></a>hash function</h2><div style="display: flex;"><br>    <div><br>        <span style="color: #00bcd4">Idealistic goal.</span> Scramble the keys uniformly to produce a table index.<br>        <ul><li>Efficiently computable.</li><li>Each table index equally likely for each key.</li></ul><br>    </div><br>    <div style="flex-grow: 1;"><br>        <img src="/2020/03/14/散列表/1.png" style="height: 200px;"><br>    </div><br></div>
+
+<h3 id="Java’s-hash-code-conventions"><a href="#Java’s-hash-code-conventions" class="headerlink" title="Java’s hash code conventions"></a>Java’s hash code conventions</h3><p>All Java classes inherit a method <code>hashCode()</code>, which returns a 32-bit int.</p>
+<p><span style="color: #00bcd4">Requirement.</span> If <code>x.equals(y)</code>, then <code>(x.hashCode() == y.hashCode())</code>.<br><span style="color: #00bcd4">Highly desirable.</span> If <code>!x.equals(y)</code>, then <code>(x.hashCode() != y.hashCode())</code>.</p>
+<p><img src="/2020/03/14/散列表/2.png" alt></p>
+<p><span style="color: #00bcd4">Default implementation.</span> Memory address of <code>x</code>.<br><span style="color: #00bcd4">Legal (but poor) implementation.</span> Always return <code>17</code>.<br><span style="color: #00bcd4">Customized implementations.</span> Integer, Double, String, File, URL, Date, … User-defined types. Users are on their own.</p>
+<h3 id="Implementing-hash-code-integers-booleans-and-doubles"><a href="#Implementing-hash-code-integers-booleans-and-doubles" class="headerlink" title="Implementing hash code: integers, booleans, and doubles"></a>Implementing hash code: integers, booleans, and doubles</h3><p><strong>Java library implementations</strong><br><img src="/2020/03/14/散列表/3.png" alt></p>
+<h3 id="Implementing-hash-code-strings"><a href="#Implementing-hash-code-strings" class="headerlink" title="Implementing hash code: strings"></a>Implementing hash code: strings</h3><p><strong>Java library implementation</strong><br><img src="/2020/03/14/散列表/4.png" alt></p>
+<p><span style="color: #00bcd4">Performance optimization.</span></p>
+<ul>
+<li>Cache the hash value in an instance variable.</li>
+<li>Return cached value.</li>
+</ul>
+<p><img src="/2020/03/14/散列表/5.png" alt></p>
+<h3 id="Hash-code-design"><a href="#Hash-code-design" class="headerlink" title="Hash code design"></a>Hash code design</h3><p><img src="/2020/03/14/散列表/6.png" alt></p>
+<h2 id="separate-chaining"><a href="#separate-chaining" class="headerlink" title="separate chaining"></a>separate chaining</h2><h3 id="Collisions"><a href="#Collisions" class="headerlink" title="Collisions"></a>Collisions</h3><p><span style="color: #00bcd4">Collisions.</span> Two distinct keys hashing to same index.</p>
+<ul>
+<li>Birthday problem =&gt; can’t avoid collisions unless you have a ridiculous (quadratic) amount of memory.</li>
+<li>Coupon collector + load balancing =&gt; collisions are evenly distributed.</li>
+</ul>
+<p><img src="/2020/03/14/散列表/7.png" alt></p>
+<h3 id="Separate-chaining-symbol-table"><a href="#Separate-chaining-symbol-table" class="headerlink" title="Separate chaining symbol table"></a>Separate chaining symbol table</h3><p><span style="color: #00bcd4">Use an array of M &lt; N linked lists.</span></p>
+<ul>
+<li>Hash: map key to integer <code>i</code> between <code>0</code> and <code>M - 1</code>.</li>
+<li>Insert: put at front of <code>ith</code> chain (if not already there).</li>
+<li>Search: need to search only <code>ith</code> chain.</li>
+</ul>
+<p><img src="/2020/03/14/散列表/9.png" alt></p>
+<h3 id="Separate-chaining-ST-Java-implementation"><a href="#Separate-chaining-ST-Java-implementation" class="headerlink" title="Separate chaining ST: Java implementation"></a>Separate chaining ST: Java implementation</h3><p><img src="/2020/03/14/散列表/8.png" alt></p>
+<p><img src="/2020/03/14/散列表/10.png" alt></p>
+<h3 id="Analysis-of-separate-chaining"><a href="#Analysis-of-separate-chaining" class="headerlink" title="Analysis of separate chaining"></a>Analysis of separate chaining</h3><p><span style="color: #00bcd4">Proposition.</span> Under uniform hashing assumption, prob. that the number of keys in a list is within a constant factor of N / M is extremely close to 1.</p>
+<p><img src="/2020/03/14/散列表/11.png" alt></p>
+<h3 id="ST-implementations-summary"><a href="#ST-implementations-summary" class="headerlink" title="ST implementations: summary"></a>ST implementations: summary</h3><p><img src="/2020/03/14/散列表/12.png" alt></p>
+<h2 id="linear-probing"><a href="#linear-probing" class="headerlink" title="linear probing"></a>linear probing</h2><h3 id="Collision-resolution-open-addressing"><a href="#Collision-resolution-open-addressing" class="headerlink" title="Collision resolution: open addressing"></a>Collision resolution: open addressing</h3><p><span style="color: #00bcd4">Open addressing.</span><br>When a new key collides, find next empty slot, and put it there.</p>
+<p><img src="/2020/03/14/散列表/13.png" alt></p>
+<h3 id="Linear-probing-hash-table-demo"><a href="#Linear-probing-hash-table-demo" class="headerlink" title="Linear probing hash table demo"></a>Linear probing hash table demo</h3><p><span style="color: #00bcd4">Hash.</span> Map key to integer <code>i</code> between <code>0</code> and <code>M-1</code>.<br><span style="color: #00bcd4">Search.</span> Search table index <code>i</code>; if occupied but no match, try <code>i+1</code>, <code>i+2</code>, etc.</p>
+<p><img src="/2020/03/14/散列表/14.png" alt></p>
+<h3 id="Linear-probing-hash-table-summary"><a href="#Linear-probing-hash-table-summary" class="headerlink" title="Linear probing hash table summary"></a>Linear probing hash table summary</h3><p><span style="color: #00bcd4">Hash.</span> Map key to integer <code>i</code> between <code>0</code> and <code>M-1</code>.<br><span style="color: #00bcd4">Insert.</span> Put at table index <code>i</code> if free; if not try <code>i+1</code>, <code>i+2</code>, etc.<br><span style="color: #00bcd4">Search.</span> Search table index <code>i</code>; if occupied but no match, try <code>i+1</code>, <code>i+2</code>, etc.<br><span style="color: #00bcd4">Note.</span> Array size <code>M</code> must be greater than number of key-value pairs <code>N</code>.</p>
+<h3 id="Linear-probing-ST-implementation"><a href="#Linear-probing-ST-implementation" class="headerlink" title="Linear probing ST implementation"></a>Linear probing ST implementation</h3><p><img src="/2020/03/14/散列表/15.png" alt></p>
+<h2 id="ST-implementations-summary-1"><a href="#ST-implementations-summary-1" class="headerlink" title="ST implementations: summary"></a>ST implementations: summary</h2><p><img src="/2020/03/14/散列表/16.png" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/13/平衡查找树/" rel="next" title="平衡查找树">
+                <i class="fa fa-chevron-left"></i> 平衡查找树
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/无向图/" rel="prev" title="无向图">
+                无向图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash-function"><span class="nav-text">hash function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java’s-hash-code-conventions"><span class="nav-text">Java’s hash code conventions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementing-hash-code-integers-booleans-and-doubles"><span class="nav-text">Implementing hash code: integers, booleans, and doubles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementing-hash-code-strings"><span class="nav-text">Implementing hash code: strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash-code-design"><span class="nav-text">Hash code design</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#separate-chaining"><span class="nav-text">separate chaining</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collisions"><span class="nav-text">Collisions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separate-chaining-symbol-table"><span class="nav-text">Separate chaining symbol table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Separate-chaining-ST-Java-implementation"><span class="nav-text">Separate chaining ST: Java implementation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-of-separate-chaining"><span class="nav-text">Analysis of separate chaining</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ST-implementations-summary"><span class="nav-text">ST implementations: summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-probing"><span class="nav-text">linear probing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collision-resolution-open-addressing"><span class="nav-text">Collision resolution: open addressing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-probing-hash-table-demo"><span class="nav-text">Linear probing hash table demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-probing-hash-table-summary"><span class="nav-text">Linear probing hash table summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-probing-ST-implementation"><span class="nav-text">Linear probing ST implementation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ST-implementations-summary-1"><span class="nav-text">ST implementations: summary</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

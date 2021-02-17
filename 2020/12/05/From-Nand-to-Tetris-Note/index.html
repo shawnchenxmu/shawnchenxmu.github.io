@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="简介课程官网：From Nand to TetrisCourse 视频课程：part1, part2 课程在 Coursera 上可免费观看，课后的作业可通过官网的工具进行正确性的验证（也可申请 Coursera 奖学金，通过网站的评分系统进行作业的提交）。 本课程的全称是“依据基本原理构建现代计算机：从与非门到俄罗斯方块”，是一门完整介绍计算机软硬件，并且带你一步步实现一个简单、却包含所有关键元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Nand to Tetris Note - 从与非门到俄罗斯方块课程总结">
+<meta property="og:url" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="简介课程官网：From Nand to TetrisCourse 视频课程：part1, part2 课程在 Coursera 上可免费观看，课后的作业可通过官网的工具进行正确性的验证（也可申请 Coursera 奖学金，通过网站的评分系统进行作业的提交）。 本课程的全称是“依据基本原理构建现代计算机：从与非门到俄罗斯方块”，是一门完整介绍计算机软硬件，并且带你一步步实现一个简单、却包含所有关键元">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/18.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/19.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/17.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/16.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="From Nand to Tetris Note - 从与非门到俄罗斯方块课程总结">
+<meta name="twitter:description" content="简介课程官网：From Nand to TetrisCourse 视频课程：part1, part2 课程在 Coursera 上可免费观看，课后的作业可通过官网的工具进行正确性的验证（也可申请 Coursera 奖学金，通过网站的评分系统进行作业的提交）。 本课程的全称是“依据基本原理构建现代计算机：从与非门到俄罗斯方块”，是一门完整介绍计算机软硬件，并且带你一步步实现一个简单、却包含所有关键元">
+<meta name="twitter:image" content="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/05/From-Nand-to-Tetris-Note/">
+
+
+  <title> From Nand to Tetris Note - 从与非门到俄罗斯方块课程总结 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                From Nand to Tetris Note - 从与非门到俄罗斯方块课程总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-12-05T23:30:35+08:00" content="2020-12-05">
+              2020-12-05
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Note/" itemprop="url" rel="index">
+                    <span itemprop="name">Note</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>课程官网：<a href="https://www.nand2tetris.org/" target="_blank" rel="noopener">From Nand to Tetris</a><br>Course 视频课程：<a href="https://www.coursera.org/learn/build-a-computer" target="_blank" rel="noopener">part1</a>, <a href="https://www.coursera.org/learn/nand2tetris2" target="_blank" rel="noopener">part2</a></p>
+<p>课程在 Coursera 上可免费观看，课后的作业可通过官网的工具进行正确性的验证（也可申请 Coursera 奖学金，通过网站的评分系统进行作业的提交）。</p>
+<p>本课程的全称是“<strong>依据基本原理构建现代计算机：从与非门到俄罗斯方块</strong>”，是一门完整介绍计算机软硬件，并且带你一步步实现一个简单、却包含所有关键元素的计算机的课程。感受如何从与非门开始，到完整构建出一个计算机的过程，坚持完成下来一定会让你受益匪浅。</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/1.png" alt></p>
+<p>课程分为上下两部分，第一部分是计算机的<strong>硬件部分</strong>：使用一门叫 hdl 的硬件描述语言来模拟计算机硬件的实现。这部分将实现计算机硬件中最核心的部分：<strong>逻辑元件</strong>、<strong>ALU</strong>、<strong>CPU</strong>、<strong>RAM</strong>、<strong>汇编程序</strong>等等；第二部分是计算机的<strong>软件部分</strong>：这里会介绍一门高级语言 Jack，一门与 Java 有些许类似并简化了许多功能的语言，我们将学习它的基本用法，并使用它来完成自己构思的一个应用程序。接着是编写 Jack 的编译器，将其编译成虚拟机代码（VM code，类似Java的JVM）。再之后便是完成虚拟机代码到汇编代码的转换 VM translator，整个课程的探索路径就如下图所示：</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/2.png" alt></p>
+<p><strong>为什么叫从与非门到俄罗斯方块？</strong></p>
+<p>看了这个标题后，未免让人有些疑惑，俄罗斯方块和与非门有什么关系？为什么这个课程叫做“从与非门到俄罗斯方块”？其实看完上面那张图你就知道个大概了，接下来我大致介绍下这门课程的内容，以每周所需要完成的任务为维度，来看看这门课程是如何引导我们循序渐进地实现一个计算机的。</p>
+<h2 id="第一周-Boolean-Logic"><a href="#第一周-Boolean-Logic" class="headerlink" title="第一周 Boolean Logic"></a>第一周 Boolean Logic</h2><p>与非门（Nand）是本课程里的一个最基本的逻辑门元件，是我们构建一切的基础，它能完成以下逻辑运算：</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/3.png" alt></p>
+<p><strong>任务：使用Nand完成以下 15 个逻辑门元件</strong>（上面是逻辑门元件的名称，下面是它所能实现的功能描述，大致扫一眼）</p>
+<ol>
+<li>Not</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in</span><br><span class="line">Outputs: out</span><br><span class="line">Function: If in=0 then out=1 else out=0.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>And</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a, b</span><br><span class="line">Outputs: out</span><br><span class="line">Function: If a=b=1 then out=1 else out=0.</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Or</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a, b</span><br><span class="line">Outputs: out</span><br><span class="line">Function: If a=b=0 then out=0 else out=1.</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Xor</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a, b</span><br><span class="line">Outputs: out</span><br><span class="line">Function: If a=/b then out=1 else out=0.</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>Mux</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a, b, sel</span><br><span class="line">Outputs: out</span><br><span class="line">Function: If sel=0 then out=a else out=b.</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>DMux</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in, sel</span><br><span class="line">Outputs: a, b</span><br><span class="line">Function: If sel=0 then &#123;a=in, b=0&#125; else &#123;a=0, b=in&#125;.</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/6.png" alt></p>
+<ol start="7">
+<li>Not16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in[16] // a 16-bit pin</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: For i=0..15 out[i]=Not(in[i]).</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>And16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a[16], b[16]</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: For i=0..15 out[i]=And(a[i],b[i]).</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>Or16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a[16], b[16]</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: For i=0..15 out[i]=Or(a[i],b[i]).</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>Mux16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a[16], b[16], sel</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: If sel=0 then for i=0..15 out[i]=a[i]</span><br><span class="line">           else for i=0..15 out[i]=b[i].</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li>Or8Way</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in[8]</span><br><span class="line">Outputs: out</span><br><span class="line">Function: out=Or(in[0],in[1],...,in[7]).</span><br></pre></td></tr></table></figure>
+<ol start="12">
+<li>Mux4Way16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a[16], b[16], c[16], d[16], sel[2]</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: If sel=00 then out=a else if sel=01 then out=b</span><br><span class="line">else if sel=10 then out=c else if sel=11 then out=d Comment: The assignment operations mentioned above are all</span><br><span class="line">           16-bit. For example, &quot;out=a&quot; means &quot;for i=0..15 out[i]=a[i]&quot;.</span><br></pre></td></tr></table></figure>
+<ol start="13">
+<li>Mux8Way16</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Inputs: a[16],b[16],c[16],d[16],e[16],f[16],g[16],h[16], sel[3] Outputs: out[16]</span><br><span class="line">Function: If sel=000 then out=a else if sel=001 then out=b else if sel=010 out=c ... else if sel=111 then out=h</span><br><span class="line">Comment: The assignment operations mentioned above are all 16-bit. For example, &quot;out=a&quot; means &quot;for i=0..15 out[i]=a[i]&quot;.</span><br></pre></td></tr></table></figure>
+<ol start="14">
+<li>DMux4Way</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in, sel[2]</span><br><span class="line">Outputs: a, b, c, d</span><br><span class="line">Function: If sel=00 then &#123;a=in, b=c=d=0&#125;</span><br><span class="line">           else if sel=01 then &#123;b=in, a=c=d=0&#125;</span><br><span class="line">           else if sel=10 then &#123;c=in, a=b=d=0&#125;</span><br><span class="line">           else if sel=11 then &#123;d=in, a=b=c=0&#125;.</span><br></pre></td></tr></table></figure>
+<ol start="15">
+<li>DMux8Way</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in, sel[3]</span><br><span class="line">Outputs: a, b, c, d, e, f, g, h</span><br><span class="line">Function: If sel=000 then &#123;a=in, b=c=d=e=f=g=h=0&#125;</span><br><span class="line">           else if sel=001 then &#123;b=in, a=c=d=e=f=g=h=0&#125;</span><br><span class="line">           else if sel=010 ...</span><br><span class="line">           ...</span><br><span class="line">           else if sel=111 then &#123;h=in, a=b=c=d=e=f=g=0&#125;.</span><br></pre></td></tr></table></figure>
+<p>以最基本的与、或、非逻辑门举例，看如何用已有的与非门来实现</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/4.png" alt></p>
+<p>首先我们实现Not，由上面的 Nand 真值表可以看出来，当 x 和 y 都为 0 时，输出为 1，当 x 和 y 都为 1 时，输出为 0，于是我们可以根据这个特性，将同一个输入值分别赋值给 x、y，就得到了 Not：</p>
+<p>即：<code>Not(x) = (x Nand x)</code></p>
+<p>同样的，And 元件的实现也很简单：<code>(x And y) = Not(x Nand y)</code></p>
+<p>（以上两个逻辑门的证明可将 x、y 分别带入 0 和 1 填写真值表，再将两张<a href="https://zh.wikipedia.org/wiki/%E7%9C%9F%E5%80%BC%E8%A1%A8" target="_blank" rel="noopener">真值表</a>的结果做对比）</p>
+<p>Xor 可根据如下结构完成：</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/5.png" alt></p>
+<p>其他的逻辑元件也是类似，使用上述已经完成的元件进行拼装，便能实现各自的逻辑运算。</p>
+<p>至此，就完成了从 Nand 与非门到实现 15 个基本的逻辑门。</p>
+<h2 id="第二周-Boolean-Arithmetic"><a href="#第二周-Boolean-Arithmetic" class="headerlink" title="第二周 Boolean Arithmetic"></a>第二周 Boolean Arithmetic</h2><p><strong>任务：基于第一周完成的逻辑元件，完成以下 5 个复杂逻辑门元件</strong>（大致扫一眼）</p>
+<ol>
+<li><p>HalfAdder (实现 2 bit 的加法运算)<br><img src="/2020/12/05/From-Nand-to-Tetris-Note/7.png" alt></p>
+</li>
+<li><p>FullAdder (实现 3 bit 的加法运算)<br><img src="/2020/12/05/From-Nand-to-Tetris-Note/8.png" alt></p>
+</li>
+<li><p>Add16 (16-bit adder)<br><img src="/2020/12/05/From-Nand-to-Tetris-Note/9.png" alt></p>
+</li>
+<li><p>Inc16</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Inputs: in[16]</span><br><span class="line">Outputs: out[16]</span><br><span class="line">Function: out=in+1</span><br><span class="line">Comment: Integer 2’s complement addition.</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>ALU (算数逻辑单元)<br><img src="/2020/12/05/From-Nand-to-Tetris-Note/10.png" alt></li>
+</ol>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/11.png" alt></p>
+<p>一旦完成了 ALU，我们便有能力在硬件层面上对输入进行诸如 <code>+</code>、<code>-</code> 等算数运算以及一系列诸如 <code>x&amp;y</code>、<code>x|y</code> 等逻辑运算。</p>
+<h2 id="第三周-Sequential-Logic"><a href="#第三周-Sequential-Logic" class="headerlink" title="第三周 Sequential Logic"></a>第三周 Sequential Logic</h2><p>到了第三周就需要手动实现大名鼎鼎的 RAM(random access memory)</p>
+<p>依然是通过实现一个个基本的元件来完成：</p>
+<ol>
+<li>DFF: Data Flip-Flop (primitive)</li>
+<li>Bit: 1-bit register</li>
+<li>Register: 16-bit register</li>
+<li>RAM8: 16-bit / 8-register memory</li>
+<li>RAM64: 16-bit / 64-register memory</li>
+<li>RAM512: 16-bit / 512-register memory</li>
+<li>RAM4K: 16-bit / 4096-register memory</li>
+<li>RAM16K: 16-bit / 16384-register memory</li>
+<li>PC: 16-bit program counter</li>
+</ol>
+<h2 id="第四周-Machine-Language"><a href="#第四周-Machine-Language" class="headerlink" title="第四周 Machine Language"></a>第四周 Machine Language</h2><p>第四周是教你使用机器语言，尽管我们大多数时候并不会真的去写机器语言，但是学习机器语言将有助于我们理解计算机底层的运算，以及课程后续编译器的编写。</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/18.png" alt></p>
+<p>其实机器语言虽然并不直观，但是它却比高级语言容易掌握得多，原因在于它只有简单的几个固定的指令，所以很快就能掌握。</p>
+<h2 id="第五周-Computer-Architecture"><a href="#第五周-Computer-Architecture" class="headerlink" title="第五周 Computer Architecture"></a>第五周 Computer Architecture</h2><p>这一周介绍了计算机组成原理，冯诺依曼模型，获取-执行周期等，完整揭示了计算机是如何执行指令，并且获取下一条指令等一系列的周期。本周的任务是完成计算机硬件的集大成部分：</p>
+<ol>
+<li>Memory.hdl</li>
+<li>CPU.hdl</li>
+<li>Computer.hdl</li>
+</ol>
+<h2 id="第六周-Assembler"><a href="#第六周-Assembler" class="headerlink" title="第六周 Assembler"></a>第六周 Assembler</h2><p>第六周是实现一个汇编器，将第四周所学习的机器语言转换成二进制指令，从而运行在第五周建立的计算机之上。</p>
+<p>实现这个汇编程序可以基于四个模块：Parser 模块用于解析输入，Code 模块用于生成二进制代码，SymbolTable 模块来记录一些变量，还有一个主模块用于驱动整个编译过程。</p>
+<p><strong>Parser Module</strong><br><img src="/2020/12/05/From-Nand-to-Tetris-Note/./12.png" alt><br><img src="/2020/12/05/From-Nand-to-Tetris-Note/./13.png" alt></p>
+<p><strong>Code Module</strong></p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/./14.png" alt></p>
+<p>完成了汇编程序后，我们也就完成了计算机的硬件部分，也是课程第一部分的终点。</p>
+<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><p>从第七周开始就是课程的第二部分，在这一部分会关注计算机的软件部分。我们将在这部分中学习一门高级语言：Jack，并且在第九周中使用这么高级语言来根据自己的想法实现一个复杂应用，最关键的是，我们将实现从 Jack 语言到机器语言的编译，这样我们才算是完成了整个计算机软件到硬件的完整链路。</p>
+<p>在第 10、11 周，我们将编写 Jack 语言到虚拟机语言的编译器，第 7、8 周实现的是虚拟机语言到机器语言的编译。</p>
+<p>那么为什么不直接编写一个从 Jack 语言到机器语言的编译器呢？这里我们就要介绍一个 『two-tier translation model』 的概念了。</p>
+<p>由于硬件的实现存在一定的差异，不同的计算机底层提供了不同的指令集、手机与电脑之间也存在差异。所以需要一个中间层来抹平这一差异，这一中间层也就是虚拟机。当程序员在编写代码时无需关心底层细节，而只要专注于功能即可。</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/19.png" alt></p>
+<h2 id="第七周-VM-I-Stack-Arithmetic-amp-第八周-VM-II-Program-Control"><a href="#第七周-VM-I-Stack-Arithmetic-amp-第八周-VM-II-Program-Control" class="headerlink" title="第七周 VM I: Stack Arithmetic &amp; 第八周 VM II: Program Control"></a>第七周 VM I: Stack Arithmetic &amp; 第八周 VM II: Program Control</h2><p>这两周将学习如何将虚拟机语言编译成机器语言。</p>
+<p>首先是学习如何使用虚拟机语言，涉及到运用栈去进行函数调用及数据存取，程序的流程控制等等。</p>
+<h2 id="第九周-High-Level-Language"><a href="#第九周-High-Level-Language" class="headerlink" title="第九周 High-Level Language"></a>第九周 High-Level Language</h2><p>这周将深入了解 Jack 语言的一些基本特性。与大多数高级语言相比，Jack 的功能简单许多，所以上手起来也比较快，并且由于学习Jack的目的是为了更好给编写Jack语言的编译器做准备，所以并不需要你多么精通它的各个属性。</p>
+<p>在学习完这么语言之后，本周的任务是使用这门语言实现一个自己构思的应用，并且运行在课程提供的工具平台上。为了与本课程题目相吻合，我在这实现了俄罗斯方块这个应用。</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/15.png" alt></p>
+<h2 id="第十周-Compiler-I-Syntax-Analysis"><a href="#第十周-Compiler-I-Syntax-Analysis" class="headerlink" title="第十周 Compiler I: Syntax Analysis"></a>第十周 Compiler I: Syntax Analysis</h2><p>这周是实现 Jack 编译器的第一部分：语法分析。</p>
+<p>想要完成语言的转换，第一步必然是理解需要被翻译的语言，那么如何让计算机理解它所要翻译的语言呢？</p>
+<p>好在我们在编写高级语言时，是按照严格的语法规范来的，某种特定的符号、关键字都代表了特定的含义，所以第一步是将所编写的高级语言转化成一个个独立的词：</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/17.png" alt></p>
+<p>接着，我们再根据各个关键字所代表的特性含义，去进行相应语法的编译。下图是 Jack 语法的总结：</p>
+<p><img src="/2020/12/05/From-Nand-to-Tetris-Note/16.png" alt></p>
+<h2 id="第十一周-Compiler-II-Code-Generation"><a href="#第十一周-Compiler-II-Code-Generation" class="headerlink" title="第十一周 Compiler II: Code Generation"></a>第十一周 Compiler II: Code Generation</h2><p>基于上周的语法分析器，我们将在这周实现相应的代码生成逻辑。</p>
+<h2 id="第十二周-Operating-System"><a href="#第十二周-Operating-System" class="headerlink" title="第十二周 Operating System"></a>第十二周 Operating System</h2><p>在这一周所实现的内容是在前面几周内容的基础上，实现几个计算机系统内置的类和方法，比如常用的数学运算、String类、输入输出等。</p>
+<h2 id="第十三周-Postscript-More-Fun-to-Go"><a href="#第十三周-Postscript-More-Fun-to-Go" class="headerlink" title="第十三周 Postscript: More Fun to Go"></a>第十三周 Postscript: More Fun to Go</h2><p>在经历了这么一趟完整的计算机软硬件之旅后，相信你已经对计算的的内部实现有了自己的理解，但是我们目前所构建的计算机与我们日常所使用的计算机相比，仍然缺少了许多功能，如：网络连接、图形化界面等等，后续更多的有趣探索等待你去发现！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/14/CS50-note/" rel="next" title="CS50 note">
+                <i class="fa fa-chevron-left"></i> CS50 note
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/14/URL到页面的过程/" rel="prev" title="一个 web 页面的生命周期">
+                一个 web 页面的生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一周-Boolean-Logic"><span class="nav-text">第一周 Boolean Logic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二周-Boolean-Arithmetic"><span class="nav-text">第二周 Boolean Arithmetic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三周-Sequential-Logic"><span class="nav-text">第三周 Sequential Logic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四周-Machine-Language"><span class="nav-text">第四周 Machine Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五周-Computer-Architecture"><span class="nav-text">第五周 Computer Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六周-Assembler"><span class="nav-text">第六周 Assembler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二部分"><span class="nav-text">第二部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七周-VM-I-Stack-Arithmetic-amp-第八周-VM-II-Program-Control"><span class="nav-text">第七周 VM I: Stack Arithmetic &amp; 第八周 VM II: Program Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第九周-High-Level-Language"><span class="nav-text">第九周 High-Level Language</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十周-Compiler-I-Syntax-Analysis"><span class="nav-text">第十周 Compiler I: Syntax Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十一周-Compiler-II-Code-Generation"><span class="nav-text">第十一周 Compiler II: Code Generation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十二周-Operating-System"><span class="nav-text">第十二周 Operating System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十三周-Postscript-More-Fun-to-Go"><span class="nav-text">第十三周 Postscript: More Fun to Go</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

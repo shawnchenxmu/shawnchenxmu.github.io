@@ -1,0 +1,704 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="react,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="生命周期React 16 Lifecycle Methods: How and When to Use Them  constructorThe first thing that gets called is your component constructor. Most Common Use Case For Constructor: Setting up state, creating re">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advanced React">
+<meta property="og:url" content="http://yoursite.com/2019/08/24/Advanced-React/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="生命周期React 16 Lifecycle Methods: How and When to Use Them  constructorThe first thing that gets called is your component constructor. Most Common Use Case For Constructor: Setting up state, creating re">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/08/24/Advanced-React/1.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced React">
+<meta name="twitter:description" content="生命周期React 16 Lifecycle Methods: How and When to Use Them  constructorThe first thing that gets called is your component constructor. Most Common Use Case For Constructor: Setting up state, creating re">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/24/Advanced-React/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/24/Advanced-React/">
+
+
+  <title> Advanced React | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Advanced React
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-08-24T10:05:33+08:00" content="2019-08-24">
+              2019-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><a href="https://blog.bitsrc.io/react-16-lifecycle-methods-how-and-when-to-use-them-f4ad31fb2282" target="_blank" rel="noopener">React 16 Lifecycle Methods: How and When to Use Them</a></p>
+<p><img src="/2019/08/24/Advanced-React/1.png" alt></p>
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a><code>constructor</code></h3><p>The first thing that gets called is your component constructor.</p>
+<p>Most Common Use Case For Constructor: Setting up state, creating refs and method binding.</p>
+<h3 id="getDerivedStateFromProps"><a href="#getDerivedStateFromProps" class="headerlink" title="getDerivedStateFromProps"></a><code>getDerivedStateFromProps</code></h3><p>When mounting, <code>getDerivedStateFromProps</code> is the last method called before rendering. You can use it to set state according to the initial props.</p>
+<p><strong>Most Common Use Case For getDerivedStateFromProps (during mount):</strong> Updating state based on props, when the props themselves aren’t enough.</p>
+<h3 id="render"><a href="#render" class="headerlink" title="render"></a><code>render</code></h3><p><strong>Most Common Use Case For Render:</strong> Returning component JSX.</p>
+<h3 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount"></a><code>componentDidMount</code></h3><p>After we’ve rendered our component for the first time, this method is called.</p>
+<p><strong>Most Common Use Case for <code>componentDidMount</code></strong>: Starting AJAX calls to load in data for your component.</p>
+<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a><code>shouldComponentUpdate</code></h3><p><code>shouldComponentUpdate</code> allows us to say: only update if the props you care about change.</p>
+<p><strong>Most Common Use Case:</strong> Controlling exactly when your component will re-render.</p>
+<h3 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a><code>getSnapshotBeforeUpdate</code></h3><p>It’s called between <code>render</code> and the updated component actually being propagated to the DOM.</p>
+<p><strong>Most Common Use Case:</strong> Taking a look at some attribute of the current DOM, and passing that value on to <code>componentDidUpdate</code>.</p>
+<h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a><code>componentDidUpdate</code></h3><p><strong>Most Common Use Case for componentDidUpdate:</strong> Reacting to committed changes to the DOM.</p>
+<h3 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a><code>componentWillUnmount</code></h3><p><strong>Most Common Use Case for componentWillUnmount:</strong> Cleaning up any leftover debris from your component.</p>
+<h2 id="HOC"><a href="#HOC" class="headerlink" title="HOC"></a>HOC</h2><h2 id="Render-Props"><a href="#Render-Props" class="headerlink" title="Render Props"></a>Render Props</h2><p><a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="noopener">Render Props – React</a></p>
+<p>The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.</p>
+<h2 id="Immutable"><a href="#Immutable" class="headerlink" title="Immutable"></a>Immutable</h2><p><a href="https://daveceddia.com/react-redux-immutability-guide/" target="_blank" rel="noopener">Immutability in React and Redux: The Complete Guide</a></p>
+<h2 id="Hooks"><a href="#Hooks" class="headerlink" title="Hooks"></a>Hooks</h2><p><strong>Hooks 的作用：</strong><br>Hooks allow you to reuse stateful logic without changing your component hierarchy.<br>Hooks are a way to reuse stateful logic, not state itself.<br>Hooks let you use more of React’s features without classes.<br>Hooks let us split the code based on what it is doing rather than a lifecycle method name. </p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>React doesn’t offer a way to “attach” reusable behavior to a component.<br><a href="https://reactjs.org/docs/hooks-intro.html" target="_blank" rel="noopener">Introducing Hooks – React</a></p>
+<h3 id="什么时候使用-Hook"><a href="#什么时候使用-Hook" class="headerlink" title="什么时候使用 Hook ?"></a>什么时候使用 Hook ?</h3><p>If you write a function component and realize you need to add some state to it, previously you had to convert it to a class. Now you can use a Hook inside the existing function component.</p>
+<h3 id="类似方案"><a href="#类似方案" class="headerlink" title="类似方案"></a>类似方案</h3><p><a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="noopener">Render Props – React</a><br><a href="https://reactjs.org/docs/higher-order-components.html" target="_blank" rel="noopener">Higher-Order Components – React</a></p>
+<h3 id="useState-vs-this-state"><a href="#useState-vs-this-state" class="headerlink" title="useState vs this.state"></a><code>useState</code> vs <code>this.state</code></h3><p><a href="https://reactjs.org/docs/hooks-state.html" target="_blank" rel="noopener">Using the State Hook – React</a></p>
+<h3 id="useEffect-vs-lifecycles"><a href="#useEffect-vs-lifecycles" class="headerlink" title="useEffect vs lifecycles"></a><code>useEffect</code> vs lifecycles</h3><h3 id="Rules-of-Hooks"><a href="#Rules-of-Hooks" class="headerlink" title="Rules of Hooks"></a>Rules of Hooks</h3><ul>
+<li>Only call Hooks <strong>at the top level</strong>. Don’t call Hooks inside loops, conditions, or nested functions.</li>
+<li>Only call Hooks <strong>from React function components</strong>. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks — your own custom Hooks.)</li>
+</ul>
+<h3 id="State-Hook"><a href="#State-Hook" class="headerlink" title="State Hook"></a>State Hook</h3><h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><h5 id="Declaring-a-State-Variable"><a href="#Declaring-a-State-Variable" class="headerlink" title="Declaring a State Variable"></a>Declaring a State Variable</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Declare a new state variable, which we'll call "count"</span></span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>The only argument to the <code>useState()</code> Hook is the initial state.</p>
+<p>It returns a pair of values: the current state and a function that updates it.</p>
+<h5 id="Reading-State"><a href="#Reading-State" class="headerlink" title="Reading State"></a>Reading State</h5><p>class:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>You clicked &#123;this.state.count&#125; times<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>function:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>You clicked &#123;count&#125; times<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="Updating-State"><a href="#Updating-State" class="headerlink" title="Updating State"></a>Updating State</h5><p>class:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> this.setState(&#123; count: this.state.count + 1 &#125;)&#125;&gt;</span><br><span class="line">  Click me</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>function:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(count + 1)&#125;&gt;</span><br><span class="line">  Click me</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h3><p><code>useEffect</code>, adds the ability to perform side effects from a function component. It serves the same purpose as <code>componentDidMount</code>, <code>componentDidUpdate</code>, and <code>componentWillUnmount</code> in React classes, but unified into a single API.</p>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><p>You can think of <code>useEffect</code> Hook as <code>componentDidMount</code>, <code>componentDidUpdate</code>, and <code>componentWillUnmount</code> combined.</p>
+<h4 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a>Side Effect</h4><p>Data fetching, subscriptions, or manually changing the DOM from React components. We call these operations “side effects”. because they can affect other components and can’t be done during rendering.</p>
+<p>There are <strong>two common kinds of side effects</strong> in React components: those that don’t require cleanup, and those that do.</p>
+<h4 id="Compare-Classes"><a href="#Compare-Classes" class="headerlink" title="Compare Classes"></a>Compare Classes</h4><p>In React class components, <strong>the <code>render</code> method itself shouldn’t cause side effects</strong>. It would be too early — we typically want to perform our effects after React has updated the DOM.</p>
+<p>We put side effects into <code>componentDidMount</code> and <code>componentDidUpdate</code>.</p>
+<h4 id="Example-Using-Hooks"><a href="#Example-Using-Hooks" class="headerlink" title="Example Using Hooks"></a>Example Using Hooks</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">`You clicked <span class="subst">$&#123;count&#125;</span> times`</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;p&gt;You clicked &#123;count&#125; times&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setCount(count + 1)&#125;&gt;</span></span><br><span class="line"><span class="regexp">        Click me</span></span><br><span class="line"><span class="regexp">      &lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>What does useEffect do?</strong><br>Tell React that your component needs to do something after render.</p>
+<p><strong>Why is useEffect called inside a component?</strong><br>Placing <code>useEffect</code> inside the component lets us access the count state variable (or any props) right from the effect.</p>
+<p><strong>Does useEffect run after every render?</strong><br>Yes! By default. But you can <a href="https://reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects" target="_blank" rel="noopener">customize this</a>.</p>
+<h4 id="Effects-with-Cleanup"><a href="#Effects-with-Cleanup" class="headerlink" title="Effects with Cleanup"></a>Effects with Cleanup</h4><p>有些情况下我们需要清除 sideEffect。在 Classes 的写法中，我们在 <code>componentWillUnmount</code> 中处理该逻辑。</p>
+<h5 id="Hook-的写法："><a href="#Hook-的写法：" class="headerlink" title="Hook 的写法："></a>Hook 的写法：</h5><p>If your effect returns a function, React will run it when it is time to clean up:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FriendStatus</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [isOnline, setIsOnline] = useState(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleStatusChange</span>(<span class="params">status</span>) </span>&#123;</span><br><span class="line">      setIsOnline(status.isOnline);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    <span class="comment">// Specify how to clean up after this effect:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">cleanup</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isOnline === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Loading...'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> isOnline ? <span class="string">'Online'</span> : <span class="string">'Offline'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Why did we return a function from our effect?</strong><br>This is the optional cleanup mechanism for effects.</p>
+<p><strong>When exactly does React clean up an effect?</strong><br>React performs the cleanup when the component unmounts.<br>However, effects run for every render and not just once. This is why React also cleans up effects from the previous render before running the effects next time.</p>
+<h4 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h4><h5 id="使用多个-useEffect"><a href="#使用多个-useEffect" class="headerlink" title="使用多个 useEffect"></a>使用多个 <code>useEffect</code></h5><p>可以将不同的逻辑分别在不同的 <code>useEffect</code> 中处理，而不必像生命周期的写法将它们揉在一起。</p>
+<h5 id="Why-Effects-Run-on-Each-Update"><a href="#Why-Effects-Run-on-Each-Update" class="headerlink" title="Why Effects Run on Each Update"></a>Why Effects Run on Each Update</h5><p>You might be wondering why the effect cleanup phase happens after every re-render.</p>
+<p><a href="https://reactjs.org/docs/hooks-effect.html#explanation-why-effects-run-on-each-update" target="_blank" rel="noopener">Explanation: Why Effects Run on Each Update</a></p>
+<h5 id="Optimizing-Performance-by-Skipping-Effects"><a href="#Optimizing-Performance-by-Skipping-Effects" class="headerlink" title="Optimizing Performance by Skipping Effects"></a>Optimizing Performance by Skipping Effects</h5><p><a href="https://reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects" target="_blank" rel="noopener">Optimizing Performance by Skipping Effects</a></p>
+<h3 id="Building-Your-Own-Hooks"><a href="#Building-Your-Own-Hooks" class="headerlink" title="Building Your Own Hooks"></a>Building Your Own Hooks</h3><p><a href="https://reactjs.org/docs/hooks-custom.html" target="_blank" rel="noopener">Building Your Own Hooks</a></p>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><h3 id="redux-thunk"><a href="#redux-thunk" class="headerlink" title="redux-thunk"></a>redux-thunk</h3><h3 id="redux-saga"><a href="#redux-saga" class="headerlink" title="redux-saga"></a>redux-saga</h3><h2 id="Fiber"><a href="#Fiber" class="headerlink" title="Fiber"></a>Fiber</h2><h2 id="CSS-in-React"><a href="#CSS-in-React" class="headerlink" title="CSS in React"></a>CSS in React</h2><p><a href="https://medium.com/@pioul/modular-css-with-react-61638ae9ea3e#.re1pdcz87" target="_blank" rel="noopener">Modular CSS with React - Philippe Masset - Medium</a><br><a href="https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822" target="_blank" rel="noopener">4. Four ways to style react components - codeburst</a><br><a href="https://blog.bitsrc.io/5-ways-to-style-react-components-in-2019-30f1ccc2b5b" target="_blank" rel="noopener">5 Ways to Style React Components in 2019 - Bits and Pieces</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank" rel="noopener">Presentational and Container Components</a><br><a href="https://medium.com/@learnreact/container-components-c0e67432e005" target="_blank" rel="noopener">Container Components</a><br><a href="https://github.com/reactjs/rfcs/pull/68" target="_blank" rel="noopener">RFC: React Hooks by sebmarkbage · Pull Request #68 · reactjs/rfcs</a><br><a href="https://reactjs.org/docs/hooks-faq.html" target="_blank" rel="noopener">Hooks FAQ – React</a><br><a href="https://medium.com/hackernoon/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d" target="_blank" rel="noopener">Lazy loading (and preloading) components in React 16.6</a><br><a href="https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html" target="_blank" rel="noopener">React v16.2.0: Improved Support for Fragments</a><br><a href="https://tylermcginnis.com/react-interview-questions/" target="_blank" rel="noopener">React Interview Questions</a><br><a href="https://www.freecodecamp.org/news/everything-you-need-to-know-about-react-eaedf53238c4/" target="_blank" rel="noopener">Everything You Should Know About React: The Basics You Need to Start Building</a><br><a href="https://juejin.im/post/5aca20c96fb9a028d700e1ce" target="_blank" rel="noopener">关于React v16.3 新生命周期 - 掘金</a><br><a href="https://engineering.musefind.com/how-to-benchmark-react-components-the-quick-and-dirty-guide-f595baf1014c" target="_blank" rel="noopener">How to Benchmark React Components: The Quick and Dirty Guide</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate" target="_blank" rel="noopener">what-is-the-purpose-of-callback-function-as-an-argument-of-setstate</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-difference-between-html-and-react-event-handling" target="_blank" rel="noopener">what-is-the-difference-between-html-and-react-event-handling</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-use-of-refs" target="_blank" rel="noopener">what-is-the-use-of-refs</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-forward-refs" target="_blank" rel="noopener">What are forward refs?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-the-different-phases-of-component-lifecycle" target="_blank" rel="noopener">What are the different phases of component lifecycle?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-create-props-proxy-for-hoc-component" target="_blank" rel="noopener">How to create props proxy for HOC component?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-children-prop" target="_blank" rel="noopener">What is children prop?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-purpose-of-using-super-constructor-with-props-argument" target="_blank" rel="noopener">What is the purpose of using super constructor with props argument?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-fragments" target="_blank" rel="noopener">What are fragments?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#why-fragments-are-better-than-container-divs" target="_blank" rel="noopener">Why fragments are better than container divs?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-error-boundaries-in-react-v16" target="_blank" rel="noopener">What are error boundaries in React v16?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-use-innerhtml-in-react" target="_blank" rel="noopener">How to use innerHTML in React?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-will-happen-if-you-use-props-in-initial-state" target="_blank" rel="noopener">What will happen if you use props in initial state?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-you-use-decorators-in-react" target="_blank" rel="noopener">How you use decorators in React?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-the-lifecycle-methods-going-to-be-deprecated-in-react-v16" target="_blank" rel="noopener">What are the lifecycle methods going to be deprecated in React v16?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#why-we-need-to-pass-a-function-to-setstate" target="_blank" rel="noopener">Why we need to pass a function to setState()?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#can-you-force-a-component-to-re-render-without-calling-setstate" target="_blank" rel="noopener">Can you force a component to re-render without calling setState?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-difference-between-super-and-superprops-in-react-using-es6-classes" target="_blank" rel="noopener">What is the difference between super() and super(props) in React using ES6 classes?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-difference-between-setstate-and-replacestate-methods" target="_blank" rel="noopener">What is the difference between setState() and replaceState() methods?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-is-the-recommended-approach-of-removing-an-array-element-in-react-state" target="_blank" rel="noopener">What is the recommended approach of removing an array element in React state?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-focus-an-input-element-on-page-load" target="_blank" rel="noopener">How to focus an input element on page load?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#what-are-the-possible-ways-of-updating-objects-in-state" target="_blank" rel="noopener">What are the possible ways of updating objects in state?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-programmatically-trigger-click-event-in-react" target="_blank" rel="noopener">How to programmatically trigger click event in React?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-make-ajax-call-and-in-which-component-lifecycle-methods-should-i-make-an-ajax-call" target="_blank" rel="noopener">How to make AJAX call and in which component lifecycle methods should I make an AJAX call?</a><br><a href="https://github.com/sudheerj/reactjs-interview-questions#how-to-perform-automatic-redirect-after-login" target="_blank" rel="noopener">How to perform automatic redirect after login?</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag">#react</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/DevOps/" rel="next" title="DevOps">
+                <i class="fa fa-chevron-left"></i> DevOps
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/06/鱼翅与花椒/" rel="prev" title="鱼翅与花椒">
+                鱼翅与花椒 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-NaN"><span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getDerivedStateFromProps"><span class="nav-text">getDerivedStateFromProps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#render"><span class="nav-text">render</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidMount"><span class="nav-text">componentDidMount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getSnapshotBeforeUpdate"><span class="nav-text">getSnapshotBeforeUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidUpdate"><span class="nav-text">componentDidUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUnmount"><span class="nav-text">componentWillUnmount</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOC"><span class="nav-text">HOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Render-Props"><span class="nav-text">Render Props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Immutable"><span class="nav-text">Immutable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hooks"><span class="nav-text">Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候使用-Hook"><span class="nav-text">什么时候使用 Hook ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类似方案"><span class="nav-text">类似方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useState-vs-this-state"><span class="nav-text">useState vs this.state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-vs-lifecycles"><span class="nav-text">useEffect vs lifecycles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rules-of-Hooks"><span class="nav-text">Rules of Hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#State-Hook"><span class="nav-text">State Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用法"><span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Declaring-a-State-Variable"><span class="nav-text">Declaring a State Variable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reading-State"><span class="nav-text">Reading State</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Updating-State"><span class="nav-text">Updating State</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-Hook"><span class="nav-text">Effect Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Side-Effect"><span class="nav-text">Side Effect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compare-Classes"><span class="nav-text">Compare Classes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-Using-Hooks"><span class="nav-text">Example Using Hooks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Effects-with-Cleanup"><span class="nav-text">Effects with Cleanup</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hook-的写法："><span class="nav-text">Hook 的写法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tips-1"><span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用多个-useEffect"><span class="nav-text">使用多个 useEffect</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Why-Effects-Run-on-Each-Update"><span class="nav-text">Why Effects Run on Each Update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Optimizing-Performance-by-Skipping-Effects"><span class="nav-text">Optimizing Performance by Skipping Effects</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-Your-Own-Hooks"><span class="nav-text">Building Your Own Hooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Middleware"><span class="nav-text">Middleware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redux-thunk"><span class="nav-text">redux-thunk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redux-saga"><span class="nav-text">redux-saga</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiber"><span class="nav-text">Fiber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-in-React"><span class="nav-text">CSS in React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

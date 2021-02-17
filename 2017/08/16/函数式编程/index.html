@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="函数式编程,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="函数式编程入门教程 为什么要『函数式编程』？范畴论函数式编程的起源，是一门叫做范畴论（Category Theory）的数学分支，它认为世界上所有的概念体系，都可以抽象成一个个的”范畴”（category）。 范畴的概念彼此之间存在某种关系的概念、事物、对象等等，都构成”范畴”。随便什么东西，只要能找出它们之间的关系，就能定义一个”范畴”。 范畴论认为，同一个范畴的所有成员，就是不同状态的”变形”">
+<meta name="keywords" content="函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数式编程">
+<meta property="og:url" content="http://yoursite.com/2017/08/16/函数式编程/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="函数式编程入门教程 为什么要『函数式编程』？范畴论函数式编程的起源，是一门叫做范畴论（Category Theory）的数学分支，它认为世界上所有的概念体系，都可以抽象成一个个的”范畴”（category）。 范畴的概念彼此之间存在某种关系的概念、事物、对象等等，都构成”范畴”。随便什么东西，只要能找出它们之间的关系，就能定义一个”范畴”。 范畴论认为，同一个范畴的所有成员，就是不同状态的”变形”">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数式编程">
+<meta name="twitter:description" content="函数式编程入门教程 为什么要『函数式编程』？范畴论函数式编程的起源，是一门叫做范畴论（Category Theory）的数学分支，它认为世界上所有的概念体系，都可以抽象成一个个的”范畴”（category）。 范畴的概念彼此之间存在某种关系的概念、事物、对象等等，都构成”范畴”。随便什么东西，只要能找出它们之间的关系，就能定义一个”范畴”。 范畴论认为，同一个范畴的所有成员，就是不同状态的”变形”">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/16/函数式编程/">
+
+
+  <title> 函数式编程 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                函数式编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-16T15:14:05+08:00" content="2017-08-16">
+              2017-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html" target="_blank" rel="noopener">函数式编程入门教程</a></p>
+<h2 id="为什么要『函数式编程』？"><a href="#为什么要『函数式编程』？" class="headerlink" title="为什么要『函数式编程』？"></a>为什么要『函数式编程』？</h2><h3 id="范畴论"><a href="#范畴论" class="headerlink" title="范畴论"></a>范畴论</h3><p>函数式编程的起源，是一门叫做范畴论（Category Theory）的数学分支，它认为世界上所有的概念体系，都可以抽象成一个个的”范畴”（category）。</p>
+<h4 id="范畴的概念"><a href="#范畴的概念" class="headerlink" title="范畴的概念"></a>范畴的概念</h4><p>彼此之间存在某种关系的概念、事物、对象等等，都构成”范畴”。随便什么东西，只要能找出它们之间的关系，就能定义一个”范畴”。</p>
+<p>范畴论认为，同一个范畴的所有成员，就是不同状态的”变形”（transformation）。通过”态射”，一个成员可以变形成另一个成员。</p>
+<h4 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h4><ul>
+<li>所有成员是一个集合</li>
+<li>变形关系是函数</li>
+</ul>
+<p>也就是说，范畴论是集合论更上层的抽象，简单的理解就是”集合 + 函数”。</p>
+<p>理论上通过函数，就可以从范畴的一个成员，算出其他所有成员。</p>
+<h4 id="范畴与容器"><a href="#范畴与容器" class="headerlink" title="范畴与容器"></a>范畴与容器</h4><p>我们可以把”范畴”想象成是一个容器，里面包含两样东西。</p>
+<ul>
+<li>值（value）</li>
+<li>值的变形关系，也就是函数。</li>
+</ul>
+<p>下面我们使用代码，定义一个简单的范畴。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Category &#123;</span><br><span class="line">  constructor(val) &#123; </span><br><span class="line">    this.val = val; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addOne(x) &#123;</span><br><span class="line">    return x + 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>Category</code>是一个类，也是一个容器，里面包含一个值（<code>this.val</code>）和一种变形关系（<code>addOne</code>）。你可能已经看出来了，这里的范畴，就是所有彼此之间相差1的数字。</p>
+<h4 id="范畴论与函数式编程的关系"><a href="#范畴论与函数式编程的关系" class="headerlink" title="范畴论与函数式编程的关系"></a>范畴论与函数式编程的关系</h4><p>伴随着范畴论的发展，就发展出一整套函数的运算方法。这套方法起初只用于数学运算，后来有人将它在计算机上实现了，就变成了今天的”函数式编程”。</p>
+<p>在函数式编程中，函数就是一个管道（pipe）。这头进去一个值，那头就会出来一个新的值，没有其他作用。</p>
+<h3 id="函数的合成与柯里化"><a href="#函数的合成与柯里化" class="headerlink" title="函数的合成与柯里化"></a>函数的合成与柯里化</h3><p>函数式编程有两个最基本的运算：合成和柯里化。</p>
+<h4 id="函数的合成"><a href="#函数的合成" class="headerlink" title="函数的合成"></a>函数的合成</h4><p>如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。</p>
+<p>函数的合成必须满足结合律。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">compose(f, compose(g, h))</span><br><span class="line">// 等同于</span><br><span class="line">compose(compose(f, g), h)</span><br><span class="line">// 等同于</span><br><span class="line">compose(f, g, h)</span><br></pre></td></tr></table></figure>
+<h4 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h4><p><code>f(x)</code>和<code>g(x)</code>合成为<code>f(g(x))</code>，有一个隐藏的前提，就是<code>f</code>和<code>g</code>都只能接受一个参数。如果可以接受多个参数，比如<code>f(x, y)</code>和<code>g(a, b, c)</code>，函数合成就非常麻烦。</p>
+<p>这时就需要函数柯里化了。所谓”柯里化”，就是把一个多参数的函数，转化为单参数函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 柯里化之前</span><br><span class="line">function add(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(1, 2) // 3</span><br><span class="line"></span><br><span class="line">// 柯里化之后</span><br><span class="line">function addX(y) &#123;</span><br><span class="line">  return function (x) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addX(2)(1) // 3</span><br></pre></td></tr></table></figure>
+<p>有了柯里化以后，我们就能做到，所有函数只接受一个参数。</p>
+<h3 id="函子"><a href="#函子" class="headerlink" title="函子"></a>函子</h3><p>函数不仅可以用于同一个范畴之中值的转换，还可以用于将一个范畴转成另一个范畴。这就涉及到了函子（Functor）。</p>
+<h4 id="函子的概念"><a href="#函子的概念" class="headerlink" title="函子的概念"></a>函子的概念</h4><p>函子是函数式编程里面最重要的数据类型，也是基本的运算单位和功能单位。</p>
+<p>它首先是一种范畴，也就是说，是一个容器，包含了值和变形关系。比较特殊的是，它的变形关系可以依次作用于每一个值，将当前容器变形成另一个容器。</p>
+<h4 id="函子的代码实现"><a href="#函子的代码实现" class="headerlink" title="函子的代码实现"></a>函子的代码实现</h4><p>任何具有<code>map</code>方法的数据结构，都可以当作函子的实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Functor &#123;</span><br><span class="line">  constructor(val) &#123; </span><br><span class="line">    this.val = val; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  map(f) &#123;</span><br><span class="line">    return new Functor(f(this.val));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>Functor</code>是一个函子，它的<code>map</code>方法接受函数f作为参数，然后返回一个新的函子，里面包含的值是被<code>f</code>处理过的（<code>f(this.val)</code>）。</p>
+<p>一般约定，函子的标志就是容器具有<code>map</code>方法。该方法将容器里面的每一个值，映射到另一个容器。</p>
+<p>学习函数式编程，实际上就是学习函子的各种运算。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/函数式编程/" rel="tag">#函数式编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/05/如何用好JavaScript console/" rel="next" title="如何用好 console">
+                <i class="fa fa-chevron-left"></i> 如何用好 console
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/12/搭建账户系统/" rel="prev" title="搭建账户系统">
+                搭建账户系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要『函数式编程』？"><span class="nav-text">为什么要『函数式编程』？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#范畴论"><span class="nav-text">范畴论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#范畴的概念"><span class="nav-text">范畴的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数学模型"><span class="nav-text">数学模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范畴与容器"><span class="nav-text">范畴与容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范畴论与函数式编程的关系"><span class="nav-text">范畴论与函数式编程的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的合成与柯里化"><span class="nav-text">函数的合成与柯里化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的合成"><span class="nav-text">函数的合成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#柯里化"><span class="nav-text">柯里化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函子"><span class="nav-text">函子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函子的概念"><span class="nav-text">函子的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函子的代码实现"><span class="nav-text">函子的代码实现</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

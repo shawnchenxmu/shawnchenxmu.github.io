@@ -1,0 +1,734 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="测试,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="单元测试 由开发人员写，给开发人员使用 小段代码，目的是开发人员确定源代码做了希望它做的事 一个UT case 只能针对一个类 一个类的 UT 必须是完全独立的 UT 可以是自动的，也可以是手动的 UT 覆盖率问题  测试时，当调用了其他类的代码时，应该使用 mock 将被测试类和其他类隔开  测试时，如果调用了同一个类的其他方法时，是不需要使用 mock 的  单元测试的意义：  减少 bug">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于测试">
+<meta property="og:url" content="http://yoursite.com/2017/12/02/关于测试/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="单元测试 由开发人员写，给开发人员使用 小段代码，目的是开发人员确定源代码做了希望它做的事 一个UT case 只能针对一个类 一个类的 UT 必须是完全独立的 UT 可以是自动的，也可以是手动的 UT 覆盖率问题  测试时，当调用了其他类的代码时，应该使用 mock 将被测试类和其他类隔开  测试时，如果调用了同一个类的其他方法时，是不需要使用 mock 的  单元测试的意义：  减少 bug">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于测试">
+<meta name="twitter:description" content="单元测试 由开发人员写，给开发人员使用 小段代码，目的是开发人员确定源代码做了希望它做的事 一个UT case 只能针对一个类 一个类的 UT 必须是完全独立的 UT 可以是自动的，也可以是手动的 UT 覆盖率问题  测试时，当调用了其他类的代码时，应该使用 mock 将被测试类和其他类隔开  测试时，如果调用了同一个类的其他方法时，是不需要使用 mock 的  单元测试的意义：  减少 bug">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/02/关于测试/">
+
+
+  <title> 关于测试 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-02T14:36:58+08:00" content="2017-12-02">
+              2017-12-02
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><ul>
+<li>由开发人员写，给开发人员使用</li>
+<li>小段代码，目的是开发人员确定源代码做了希望它做的事</li>
+<li>一个UT case 只能针对一个类</li>
+<li>一个类的 UT 必须是完全独立的</li>
+<li>UT 可以是自动的，也可以是手动的</li>
+<li><p>UT 覆盖率问题</p>
+</li>
+<li><p>测试时，当调用了其他类的代码时，应该使用 mock 将被测试类和其他类隔开</p>
+</li>
+<li>测试时，如果调用了同一个类的其他方法时，是不需要使用 mock 的</li>
+</ul>
+<p><strong>单元测试的意义：</strong></p>
+<ol>
+<li><strong>减少 bug ：</strong>一个可单元测试的工程，会把业务、功能分割成规模更小、有独立的逻辑部件，称为单元。单元测试的目标就是保证各个单元的逻辑正确，最大限度减少 bug</li>
+<li><strong>提高代码质量：</strong>由于每个单元都有独立的逻辑，做单元测试时需要隔离外部依赖，确保这些依赖不影响检验逻辑。因为要把各种依赖分离，单元测试会促进工程进行组件拆分，整理工程依赖关系，更大程度减少代码耦合。这样的代码，更好维护，更好扩展，从而提高代码质量</li>
+<li><strong>快速定位 bug、减少调试时间</strong></li>
+<li><strong>放心重构</strong></li>
+</ol>
+<p><strong>TDD 测试驱动开发</strong><br>TDD 原理是开发功能代码之前，先编写测试用例代码，然后针对测试用例编写功能代码，使其能够通过。</p>
+<p><strong>failure report:</strong></p>
+<ul>
+<li>Which component is under test?</li>
+<li>What is the expected behavior?</li>
+<li>What was the actual result?</li>
+<li>What is the expected result?</li>
+<li>How is the behavior reproduced?</li>
+</ul>
+<p><strong>tool:</strong></p>
+<ul>
+<li><a href="https://mochajs.org/" target="_blank" rel="noopener">mocha</a> </li>
+<li><a href="http://facebook.github.io/jest/" target="_blank" rel="noopener">Jest</a></li>
+<li><a href="https://github.com/substack/tape" target="_blank" rel="noopener">tape</a></li>
+<li><a href="https://jasmine.github.io/" target="_blank" rel="noopener">Jasmine</a></li>
+<li><a href="https://reactjs.org/docs/test-utils.html" target="_blank" rel="noopener">ReactTestUtils</a></li>
+<li><a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">enzyme</a></li>
+</ul>
+<p><strong>article:</strong></p>
+<ul>
+<li><a href="https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4" target="_blank" rel="noopener">Why I use Tape<br>Instead of Mocha &amp;<br>So Should You</a></li>
+</ul>
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><ul>
+<li>在指定的环境运行</li>
+<li>目的在于测试各个组件间是否能互相配合，正常工作</li>
+<li>Integration tests can be performed at the unit level or the system level</li>
+<li>集成测试往往会涉及外部组件，如数据库、硬件、网络等等</li>
+<li>通常由专门的测试人员完成</li>
+</ul>
+<p><strong>tool:</strong></p>
+<ul>
+<li><a href="https://karma-runner.github.io/1.0/index.html" target="_blank" rel="noopener">KARMA</a></li>
+<li><a href="https://macacajs.com/zh/introduction" target="_blank" rel="noopener">MACACA</a></li>
+</ul>
+<p><strong>article:</strong></p>
+<ul>
+<li><a href="https://github.com/ccforward/cc/issues/58" target="_blank" rel="noopener">Vue.js 项目使用 Karma 做自动化UI测试小结</a></li>
+</ul>
+<h3 id="冒烟测试"><a href="#冒烟测试" class="headerlink" title="冒烟测试"></a>冒烟测试</h3><ul>
+<li>Smoke Test 是从电子硬件测试来的，表示第一次对硬件原型 prototype 加电时，如果硬件冒烟了，就表示产品有问题。</li>
+<li>是比较初级的测试，仅仅是为了检查各个组件是否能一起工作，而并不去深究功能上是否正确。</li>
+<li>一般是大范围的集成测试，通常可以是整个系统/端到端的测试。</li>
+</ul>
+<h3 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h3><ul>
+<li>A test that was written when a bug was fixed. It ensure that this specific bug will not occur again. The full name is “non-regression test.</li>
+<li>A regression test re-runs previous tests against the changed software to ensure that the changes made in the current software do not affect the functionality of the existing software.</li>
+<li>回归测试是为了覆盖系统新发生的变化而进行的测试。</li>
+<li>回归测试可以由测试人员编写，也可以由开发人员编写。</li>
+<li>形式上可以就是一个覆盖新功能或者bug的UT，或者测试人员写的专用测试工具。</li>
+</ul>
+<h3 id="端到端测试"><a href="#端到端测试" class="headerlink" title="端到端测试"></a>端到端测试</h3><ul>
+<li>端到端测试强调的是全面的，包含硬件环境等等的测试</li>
+<li>覆盖面广，一般都是人工测试</li>
+</ul>
+<h3 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h3><p>Functional tests are related to integration tests, but refer more specifically to tests that test an entire system or application with all of the code running together, almost a super integration test.</p>
+<p><a href="http://nightwatchjs.org/" target="_blank" rel="noopener">Nightwatch.js</a></p>
+<h3 id="非功能测试"><a href="#非功能测试" class="headerlink" title="非功能测试"></a>非功能测试</h3><ul>
+<li>主要指除程序主要功能以外的附属功能</li>
+<li>如GMI，log，report，failover等，为了监控程序运行，实现程序稳定性而附加的功能</li>
+</ul>
+<p>acceptance tests</p>
+<p>acceptance testing倾向测试的是尽量真实的用户体验。测试是否完成用户的实际需求，在完全和production相同或尽量类似的环境中。</p>
+<h3 id="白盒和黑盒测试"><a href="#白盒和黑盒测试" class="headerlink" title="白盒和黑盒测试"></a>白盒和黑盒测试</h3><p>White box testing means that you know the input, you know the inner workings of the mechanism and can inspect it and you know the output.</p>
+<p>With black box testing you only know what the input is and what the output should be.</p>
+<p>使用cobertura注入后，就可以方便的得到任何一个集成测试对源代码的覆盖率。</p>
+<p>目前流行的开源mock框架：</p>
+<ul>
+<li>较早的时候EasyMock是最流行的工具之一。</li>
+<li>Mocktio，EasyMock之后流行的mock工具。特点是句法结构清晰，易理解。文档比较全，由于比较流行所以遇到问题容易找到解答。Mockito足以解决大部分UT的mock需求。总得来说是非常不错的mock工具。</li>
+<li>PowerMock</li>
+<li>Jmokit</li>
+</ul>
+<p>Unit tests for fast developer feedback, integration tests to cover all the corner cases of component integrations, and functional tests to make sure everything works right for the end users.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/测试/" rel="tag">#测试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/17/stray-bird/" rel="next" title="Stray Birds">
+                <i class="fa fa-chevron-left"></i> Stray Birds
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/12/变形记/" rel="prev" title="变形记">
+                变形记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单元测试"><span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成测试"><span class="nav-text">集成测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒烟测试"><span class="nav-text">冒烟测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回归测试"><span class="nav-text">回归测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端到端测试"><span class="nav-text">端到端测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能测试"><span class="nav-text">功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非功能测试"><span class="nav-text">非功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白盒和黑盒测试"><span class="nav-text">白盒和黑盒测试</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

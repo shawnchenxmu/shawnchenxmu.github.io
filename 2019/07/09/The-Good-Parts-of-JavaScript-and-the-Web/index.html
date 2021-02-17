@@ -1,0 +1,748 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="javascript,note,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Function the Ultimatethis The this parameter contains a reference to the object of invocation. this allows a method to know what object it is concerned with. this allows a single function object to se">
+<meta name="keywords" content="javascript,note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Good Parts of JavaScript and the Web">
+<meta property="og:url" content="http://yoursite.com/2019/07/09/The-Good-Parts-of-JavaScript-and-the-Web/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="Function the Ultimatethis The this parameter contains a reference to the object of invocation. this allows a method to know what object it is concerned with. this allows a single function object to se">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Good Parts of JavaScript and the Web">
+<meta name="twitter:description" content="Function the Ultimatethis The this parameter contains a reference to the object of invocation. this allows a method to know what object it is concerned with. this allows a single function object to se">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/09/The-Good-Parts-of-JavaScript-and-the-Web/">
+
+
+  <title> The Good Parts of JavaScript and the Web | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                The Good Parts of JavaScript and the Web
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-09T16:42:03+08:00" content="2019-07-09">
+              2019-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Function-the-Ultimate"><a href="#Function-the-Ultimate" class="headerlink" title="Function the Ultimate"></a>Function the Ultimate</h2><h3 id="this"><a href="#this" class="headerlink" title="this"></a><code>this</code></h3><ul>
+<li>The <code>this</code> parameter contains a reference to the object of invocation.</li>
+<li><code>this</code> allows a method to know what object it is concerned with.</li>
+<li><code>this</code> allows a single function object to service many objects.</li>
+<li><code>this</code> is key to prototypal inheritance.</li>
+</ul>
+<h3 id="4-ways-to-call-a-function"><a href="#4-ways-to-call-a-function" class="headerlink" title="4 ways to call a function"></a>4 ways to call a function</h3><ul>
+<li>Function form<ul>
+<li><code>functionObject(arguments)</code></li>
+</ul>
+</li>
+<li>Method from<ul>
+<li><code>thisObject.methodName(arguments)</code></li>
+<li><code>thisObject[methodName](arguments)</code></li>
+</ul>
+</li>
+<li>Constructor form<ul>
+<li><code>new FunctionObject(arguments)</code></li>
+</ul>
+</li>
+<li>Apply form<ul>
+<li><code>functionObject.apply(thisObject, [arguments])</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="Function-form"><a href="#Function-form" class="headerlink" title="Function form"></a>Function form</h4><p>When a function is called in the function form, <code>this</code> is set to the global object.</p>
+<h4 id="Method-from"><a href="#Method-from" class="headerlink" title="Method from"></a>Method from</h4><p>When a function is called in the method form, <code>this</code> is set to <code>thisObject</code>, the object containing the function.</p>
+<p>This allows methods to have a reference to the object of interest.</p>
+<h4 id="Constructor-form"><a href="#Constructor-form" class="headerlink" title="Constructor form"></a>Constructor form</h4><p>When a function is called with the <code>new</code> operator, a new object is created and assigned to <code>this</code>.</p>
+<p>If there is not an explicit return value, then <code>this</code> will be returned.</p>
+<p>Used in the Pseudoclassical style.</p>
+<h4 id="Apply-form"><a href="#Apply-form" class="headerlink" title="Apply form"></a>Apply form</h4><p>A function’s <code>apply</code> or <code>call</code> method allows for calling the function, explicitly specifying <code>thisObject</code>.</p>
+<p>It can also take an array of parameters or a sequence of parameters.</p>
+<h3 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> digit_name = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = [<span class="string">'zero'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> names[n]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">alert(digit_name(<span class="number">3</span>)) <span class="comment">// 'three</span></span><br></pre></td></tr></table></figure>
+<h3 id="Side-Effects"><a href="#Side-Effects" class="headerlink" title="Side Effects"></a>Side Effects</h3><p><strong>Programming without side-effects:</strong><br>Remove assignment, loops(use recursion instead), freeze all array literals and object literals.</p>
+<p>Remove <code>Date</code> and <code>Math.random</code></p>
+<h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><h3 id="funky"><a href="#funky" class="headerlink" title="funky"></a><code>funky</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funky</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line">    o = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = []</span><br><span class="line">funky(x)</span><br><span class="line">alert(x)</span><br></pre></td></tr></table></figure>
+<details><summary>What is x?</summary><br><code>[]</code><br></details>
+
+<h3 id="swap"><a href="#swap" class="headerlink" title="swap"></a><code>swap</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temp = a</span><br><span class="line">    a = b</span><br><span class="line">    b = temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>, y = <span class="number">2</span>;</span><br><span class="line">swap(x, y)</span><br><span class="line">alert(x)</span><br></pre></td></tr></table></figure>
+<details><summary>What is x?</summary><br><code>1</code><br></details>
+
+<h3 id="identity"><a href="#identity" class="headerlink" title="identity"></a><code>identity</code></h3><h4 id="Write-a-function-that-takes-an-argument-returns-that-argument"><a href="#Write-a-function-that-takes-an-argument-returns-that-argument" class="headerlink" title="Write a function that takes an argument returns that argument."></a>Write a function that takes an argument returns that argument.</h4><details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-two-binary-functions-add-and-mul-that-take-two-numbers-and-return-their-sum-and-product"><a href="#Write-two-binary-functions-add-and-mul-that-take-two-numbers-and-return-their-sum-and-product" class="headerlink" title="Write two binary functions add and mul, that take two numbers and return their sum and product."></a>Write two binary functions <code>add</code> and <code>mul</code>, that take two numbers and return their sum and product.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// 7</span></span><br><span class="line">mul(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-a-function-that-takes-an-argument-and-return-a-function-that-return-that-argument"><a href="#Write-a-function-that-takes-an-argument-and-return-a-function-that-return-that-argument" class="headerlink" title="Write a function that takes an argument and return a function that return that argument"></a>Write a function that takes an argument and return a function that return that argument</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">idf = identityf(<span class="number">3</span>)</span><br><span class="line">idf() <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identityf</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-a-function-that-adds-from-two-invocations"><a href="#Write-a-function-that-adds-from-two-invocations" class="headerlink" title="Write a function that adds from two invocations"></a>Write a function that adds from two invocations</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addf(<span class="number">3</span>)(<span class="number">4</span>) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addf</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">y</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-a-function-that-takes-a-binary-function-and-makes-it-callable-with-two-invocations"><a href="#Write-a-function-that-takes-a-binary-function-and-makes-it-callable-with-two-invocations" class="headerlink" title="Write a function that takes a binary function, and makes it callable with two invocations."></a>Write a function that takes a binary function, and makes it callable with two invocations.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">addf = applyf(add)</span><br><span class="line">addf(<span class="number">3</span>)(<span class="number">4</span>) <span class="comment">// 7</span></span><br><span class="line">applyf(mul)(<span class="number">5</span>)(<span class="number">6</span>) <span class="comment">// 30</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyf</span> (<span class="params">binary</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">y</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> binary(x, y)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-a-function-that-takes-a-function-and-an-argument-and-returns-a-function-that-can-supply-a-second-argument"><a href="#Write-a-function-that-takes-a-function-and-an-argument-and-returns-a-function-that-can-supply-a-second-argument" class="headerlink" title="Write a function that takes a function and an argument, and returns a function that can supply a second argument."></a>Write a function that takes a function and an argument, and returns a function that can supply a second argument.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add3 = curry(add, <span class="number">3</span>)</span><br><span class="line">add3(<span class="number">4</span>) <span class="comment">// 7</span></span><br><span class="line"></span><br><span class="line">curry(mul, <span class="number">5</span>)(<span class="number">6</span>) <span class="comment">// 30</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span> (<span class="params">func, first</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">second</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> func(first, second)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Without-writing-any-new-functions-show-three-ways-to-create-the-inc-function"><a href="#Without-writing-any-new-functions-show-three-ways-to-create-the-inc-function" class="headerlink" title="Without writing any new functions, show three ways to create the inc function"></a>Without writing any new functions, show three ways to create the <code>inc</code> function</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">inc(<span class="number">5</span>) <span class="comment">// 6</span></span><br><span class="line">inc(inc(<span class="number">5</span>)) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> inc = addf(<span class="number">1</span>)</span><br><span class="line"><span class="number">2.</span> inc = applyf(add)(<span class="number">1</span>)</span><br><span class="line"><span class="number">3.</span> inc = curry(add, <span class="number">1</span>)</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="Write-methodize-a-function-that-converts-a-binary-function-to-a-method"><a href="#Write-methodize-a-function-that-converts-a-binary-function-to-a-method" class="headerlink" title="Write methodize, a function that converts a binary function to a method."></a>Write <code>methodize</code>, a function that converts a binary function to a method.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.prototype.add = methodize(add)</span><br><span class="line">(<span class="number">3</span>).add(<span class="number">4</span>) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">methodize</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">y</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> func(<span class="keyword">this</span>, y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">methodize</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">...y</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> func(<span class="keyword">this</span>, ...y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-demethodize-a-function-that-convert-a-method-to-a-binary-function"><a href="#✔️-Write-demethodize-a-function-that-convert-a-method-to-a-binary-function" class="headerlink" title="✔️ Write demethodize, a function that convert a method to a binary function."></a>✔️ Write <code>demethodize</code>, a function that convert a method to a binary function.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demethodize(<span class="built_in">Number</span>.prototype.add)(<span class="number">5</span>, <span class="number">6</span>) <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demethodize</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">that, y</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> func.call(that, y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demethodize</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">that, ...y</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> func.apply(that, y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-a-function-twice-that-takes-a-binary-function-and-returns-a-unary-function-that-passes-its-argument-to-the-binary-function-twice"><a href="#✔️-Write-a-function-twice-that-takes-a-binary-function-and-returns-a-unary-function-that-passes-its-argument-to-the-binary-function-twice" class="headerlink" title="✔️ Write a function twice that takes a binary function and returns a unary function that passes its argument to the binary function twice."></a>✔️ Write a function <code>twice</code> that takes a binary function and returns a unary function that passes its argument to the binary function twice.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> double = twice(add)</span><br><span class="line">double(<span class="number">11</span>) <span class="comment">// 22</span></span><br><span class="line"><span class="keyword">var</span> square = twice(mul)</span><br><span class="line">square(<span class="number">11</span>) <span class="comment">// 121</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">twice</span> (<span class="params">binary</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> binary(a, a)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-a-function-composeu-that-takes-two-unary-functions-and-returns-a-unary-function-that-calls-them-both"><a href="#✔️-Write-a-function-composeu-that-takes-two-unary-functions-and-returns-a-unary-function-that-calls-them-both" class="headerlink" title="✔️ Write a function composeu that takes two unary functions and returns a unary function that calls them both."></a>✔️ Write a function <code>composeu</code> that takes two unary functions and returns a unary function that calls them both.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composeu(double, square)(<span class="number">3</span>) <span class="comment">// 36</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">composeu</span> (<span class="params">f, g</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> g(f(a))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-a-function-composeb-that-takes-two-binary-functions-and-returns-a-function-that-calls-them-both"><a href="#✔️-Write-a-function-composeb-that-takes-two-binary-functions-and-returns-a-function-that-calls-them-both" class="headerlink" title="✔️ Write a function composeb that takes two binary functions and returns a function that calls them both."></a>✔️ Write a function <code>composeb</code> that takes two binary functions and returns a function that calls them both.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composeb(add, mul)(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>) <span class="comment">// 25</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">composeb</span> (<span class="params">f, g</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> g(f(a, b), c)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-a-function-that-allows-another-function-to-only-be-called-once"><a href="#✔️-Write-a-function-that-allows-another-function-to-only-be-called-once" class="headerlink" title="✔️ Write a function that allows another function to only be called once."></a>✔️ Write a function that allows another function to only be called once.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add_once = once(add)</span><br><span class="line">add_once(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// 7</span></span><br><span class="line">add_once(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// throw!</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> f = func</span><br><span class="line">        func = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">return</span> f.apply(</span><br><span class="line">            <span class="keyword">this</span>,</span><br><span class="line">            <span class="built_in">arguments</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Write-a-factory-function-that-returns-two-functions-that-implement-an-up-down-counter"><a href="#✔️-Write-a-factory-function-that-returns-two-functions-that-implement-an-up-down-counter" class="headerlink" title="✔️ Write a factory function that returns two functions that implement an up/down counter."></a>✔️ Write a factory function that returns two functions that implement an up/down counter.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">counter = counterf(<span class="number">10</span>)</span><br><span class="line">counter.inc() <span class="comment">// 11</span></span><br><span class="line">counter.dec() <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counterf</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        inc () &#123;</span><br><span class="line">            value += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> value</span><br><span class="line">        &#125;,</span><br><span class="line">        dec () &#123;</span><br><span class="line">            value -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> value</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h4 id="✔️-Make-a-revocable-function-that-takes-a-nice-function-and-returns-a-revoke-function-that-denies-access-to-the-nice-function-and-an-invoke-function-that-can-invoke-the-nice-function-until-it-is-revoked"><a href="#✔️-Make-a-revocable-function-that-takes-a-nice-function-and-returns-a-revoke-function-that-denies-access-to-the-nice-function-and-an-invoke-function-that-can-invoke-the-nice-function-until-it-is-revoked" class="headerlink" title="✔️ Make a revocable function that takes a nice function, and returns a revoke function that denies access to the nice function, and an invoke function that can invoke the nice function until it is revoked."></a>✔️ Make a <code>revocable</code> function that takes a <code>nice</code> function, and returns a <code>revoke</code> function that denies access to the nice function, and an <code>invoke</code> function that can invoke the nice function until it is revoked.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">temp = revocable(alert)</span><br><span class="line">temp.invoke(<span class="number">7</span>) <span class="comment">// alert: 7</span></span><br><span class="line">temp.revoke()</span><br><span class="line">temp.invoke(<span class="number">8</span>) <span class="comment">// throw!</span></span><br></pre></td></tr></table></figure>
+<details><summary>Solution</summary><br><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">revocable</span> (<span class="params">nice</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        invoke () &#123;</span><br><span class="line">            <span class="keyword">return</span> nice.apply(</span><br><span class="line">                <span class="keyword">this</span>,</span><br><span class="line">                <span class="built_in">arguments</span></span><br><span class="line">            )</span><br><span class="line">        &#125;,</span><br><span class="line">        revoke () &#123;</span><br><span class="line">            nice = <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<h2 id="Monads-amp-Gonads"><a href="#Monads-amp-Gonads" class="headerlink" title="Monads &amp; Gonads"></a>Monads &amp; Gonads</h2><h3 id="Axioms"><a href="#Axioms" class="headerlink" title="Axioms"></a>Axioms</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">unit(value).bind(f) ==== f(value)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">monad.bind(unit) ==== monad</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">monad.bind(f).bind(g) ==== monad.bind(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> f(value).bind(g)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="The-Identity-Monad"><a href="#The-Identity-Monad" class="headerlink" title="The Identity Monad"></a>The Identity Monad</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MONAD</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unit</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> monad = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</span><br><span class="line">        monad.bind = <span class="function"><span class="keyword">function</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> func(value)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> monad</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>How you call it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> unit = MONAD()</span><br><span class="line"><span class="keyword">var</span> monad = unit(<span class="string">"Hello world."</span>)</span><br><span class="line">monad.bind(alert)</span><br></pre></td></tr></table></figure>
+<h3 id="The-Ajax-Monad"><a href="#The-Ajax-Monad" class="headerlink" title="The Ajax Monad"></a>The Ajax Monad</h3><h4 id="This-tow-are-equivalent"><a href="#This-tow-are-equivalent" class="headerlink" title="This tow are equivalent."></a>This tow are equivalent.</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// monad.bind(func)</span></span><br><span class="line">monad.bind(func, [a, b, c])</span><br><span class="line"></span><br><span class="line"><span class="comment">// monad.method()</span></span><br><span class="line">monad.method(a, b, c)</span><br></pre></td></tr></table></figure>
+<h4 id="❓Ajax-Monad"><a href="#❓Ajax-Monad" class="headerlink" title="❓Ajax Monad"></a>❓Ajax Monad</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MONAD</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prototype = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">unit</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> monad = <span class="built_in">Object</span>.create(prototype)</span><br><span class="line">        monad.bind = <span class="function"><span class="keyword">function</span> (<span class="params">func, args</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> func(value, ...args)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> monad</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    unit.lift = <span class="function"><span class="keyword">function</span> (<span class="params">name, func</span>) </span>&#123;</span><br><span class="line">        prototype[name] = <span class="function"><span class="keyword">function</span> (<span class="params">...args</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> unit(<span class="keyword">this</span>.bind(func, args))</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> unit</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> unit</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>related:</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="noopener">Object.create()</a></p>
+<h4 id="Use-Ajax-Monad"><a href="#Use-Ajax-Monad" class="headerlink" title="Use Ajax Monad"></a>Use Ajax Monad</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajax = MONAD().lift(<span class="string">'alert'</span>, alert)</span><br><span class="line"><span class="keyword">var</span> monad = ajax(<span class="string">"Hello world."</span>)</span><br><span class="line">monad.bind(alert)</span><br><span class="line">monad.alert()</span><br></pre></td></tr></table></figure>
+<h3 id="❓The-Maybe-Monad"><a href="#❓The-Maybe-Monad" class="headerlink" title="❓The Maybe Monad"></a>❓The Maybe Monad</h3><p><code>NaN</code>: If you divide 0 by 0, you got <code>NaN</code>, instead of throw. </p>
+<h4 id="Maybe-Monad"><a href="#Maybe-Monad" class="headerlink" title="Maybe Monad"></a>Maybe Monad</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MONAD</span> (<span class="params">modifier</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prototype = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">unit</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> monad = <span class="built_in">Object</span>.create(prototype)</span><br><span class="line">        monad.bind = <span class="function"><span class="keyword">function</span> (<span class="params">func, args</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> func(value, ...args)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> modifier === <span class="string">'function'</span>) &#123;</span><br><span class="line">            modifier(monad, value)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> monad</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> unit</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Use-Maybe-Monad"><a href="#Use-Maybe-Monad" class="headerlink" title="Use Maybe Monad"></a>Use Maybe Monad</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maybe = MONAD(<span class="function"><span class="keyword">function</span> (<span class="params">monad, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value === <span class="literal">null</span> || value === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        monad.is_null = <span class="literal">true</span></span><br><span class="line">        monad.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> monad</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> monad = maybe(<span class="literal">null</span>)</span><br><span class="line">monad.bind(alert)</span><br></pre></td></tr></table></figure>
+<h3 id="The-Promise-Monad"><a href="#The-Promise-Monad" class="headerlink" title="The Promise Monad"></a>The Promise Monad</h3><h4 id="Make-a-vow"><a href="#Make-a-vow" class="headerlink" title="Make a vow"></a>Make a vow</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> my_vow = VOW.make()</span><br><span class="line"></span><br><span class="line">    .keep(value)</span><br><span class="line">    .break(reason)</span><br><span class="line">    .promise</span><br><span class="line">        .when(kept, broken)</span><br></pre></td></tr></table></figure>
+<h4 id="Promise-Monad"><a href="#Promise-Monad" class="headerlink" title="Promise Monad"></a>Promise Monad</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> VOW = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// function enqueue here...</span></span><br><span class="line">    <span class="comment">// function enlighten...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        make: <span class="function"><span class="keyword">function</span> <span class="title">make</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">make: <span class="function"><span class="keyword">function</span> <span class="title">make</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> breaker = [], fate,</span><br><span class="line">    keeper = [], status = <span class="string">'pending'</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// function herald here...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>: <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">            herald(<span class="string">'broken'</span>, reason, breakers)</span><br><span class="line">        &#125;,</span><br><span class="line">        keep: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            herald(<span class="string">'kept'</span>, value, keepers)</span><br><span class="line">        &#125;,</span><br><span class="line">        promise: &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">herald</span> (<span class="params">state, value, queue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (status !== <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="string">"overpromise"</span></span><br><span class="line">    &#125;</span><br><span class="line">    fate = value</span><br><span class="line">    status = state</span><br><span class="line">    enlighten(queue, fate)</span><br><span class="line">    keepers.length = <span class="number">0</span></span><br><span class="line">    breakers.length = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">promise: &#123;</span><br><span class="line">    is_promise: <span class="literal">true</span>,</span><br><span class="line">    when: <span class="function"><span class="keyword">function</span> (<span class="params">kept, broken</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> vow = make()</span><br><span class="line">        <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'pending'</span>:</span><br><span class="line">                enqueue(keepers, kept, vow.keep, vow.break)</span><br><span class="line">                enqueue(breakers, broken, vow.break, vow.break)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">'kept'</span>:</span><br><span class="line">                enqueue(keepers, kept, vow.keep, vow.break)</span><br><span class="line">                enlighten(keepers, fate)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">'broken'</span>:</span><br><span class="line">                enqueue(breakers, broken, vow.break, vow.break)</span><br><span class="line">                enlighten(breakers, fate)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vow.promise</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueue</span>(<span class="params">queue, func, resolver, breaker</span>) </span>&#123;</span><br><span class="line">    queue[queue.length] = <span class="keyword">typeof</span> func !== <span class="string">'function'</span></span><br><span class="line">        ? resolver</span><br><span class="line">        : <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">var</span> result = func(value)</span><br><span class="line">                <span class="keyword">if</span> (result &amp;&amp; result.is_promise === <span class="literal">true</span>) &#123;</span><br><span class="line">                    result.when(resolver, breaker)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    resolver(result)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">                breaker(e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enlighten</span> (<span class="params">queue, fate</span>) </span>&#123;</span><br><span class="line">    queue.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">        setImmediate(func, fate)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/note/" rel="tag">#note</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/08/网站通用解决方案/" rel="next" title="网站通用解决方案">
+                <i class="fa fa-chevron-left"></i> 网站通用解决方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/23/Internet/" rel="prev" title="About The Internet">
+                About The Internet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-the-Ultimate"><span class="nav-text">Function the Ultimate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this"><span class="nav-text">this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-ways-to-call-a-function"><span class="nav-text">4 ways to call a function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-form"><span class="nav-text">Function form</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-from"><span class="nav-text">Method from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Constructor-form"><span class="nav-text">Constructor form</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apply-form"><span class="nav-text">Apply form</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure"><span class="nav-text">Closure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Side-Effects"><span class="nav-text">Side Effects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problems"><span class="nav-text">Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#funky"><span class="nav-text">funky</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swap"><span class="nav-text">swap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#identity"><span class="nav-text">identity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-a-function-that-takes-an-argument-returns-that-argument"><span class="nav-text">Write a function that takes an argument returns that argument.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-two-binary-functions-add-and-mul-that-take-two-numbers-and-return-their-sum-and-product"><span class="nav-text">Write two binary functions add and mul, that take two numbers and return their sum and product.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-a-function-that-takes-an-argument-and-return-a-function-that-return-that-argument"><span class="nav-text">Write a function that takes an argument and return a function that return that argument</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-a-function-that-adds-from-two-invocations"><span class="nav-text">Write a function that adds from two invocations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-a-function-that-takes-a-binary-function-and-makes-it-callable-with-two-invocations"><span class="nav-text">Write a function that takes a binary function, and makes it callable with two invocations.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-a-function-that-takes-a-function-and-an-argument-and-returns-a-function-that-can-supply-a-second-argument"><span class="nav-text">Write a function that takes a function and an argument, and returns a function that can supply a second argument.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Without-writing-any-new-functions-show-three-ways-to-create-the-inc-function"><span class="nav-text">Without writing any new functions, show three ways to create the inc function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-methodize-a-function-that-converts-a-binary-function-to-a-method"><span class="nav-text">Write methodize, a function that converts a binary function to a method.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-demethodize-a-function-that-convert-a-method-to-a-binary-function"><span class="nav-text">✔️ Write demethodize, a function that convert a method to a binary function.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-a-function-twice-that-takes-a-binary-function-and-returns-a-unary-function-that-passes-its-argument-to-the-binary-function-twice"><span class="nav-text">✔️ Write a function twice that takes a binary function and returns a unary function that passes its argument to the binary function twice.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-a-function-composeu-that-takes-two-unary-functions-and-returns-a-unary-function-that-calls-them-both"><span class="nav-text">✔️ Write a function composeu that takes two unary functions and returns a unary function that calls them both.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-a-function-composeb-that-takes-two-binary-functions-and-returns-a-function-that-calls-them-both"><span class="nav-text">✔️ Write a function composeb that takes two binary functions and returns a function that calls them both.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-a-function-that-allows-another-function-to-only-be-called-once"><span class="nav-text">✔️ Write a function that allows another function to only be called once.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Write-a-factory-function-that-returns-two-functions-that-implement-an-up-down-counter"><span class="nav-text">✔️ Write a factory function that returns two functions that implement an up/down counter.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#✔️-Make-a-revocable-function-that-takes-a-nice-function-and-returns-a-revoke-function-that-denies-access-to-the-nice-function-and-an-invoke-function-that-can-invoke-the-nice-function-until-it-is-revoked"><span class="nav-text">✔️ Make a revocable function that takes a nice function, and returns a revoke function that denies access to the nice function, and an invoke function that can invoke the nice function until it is revoked.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monads-amp-Gonads"><span class="nav-text">Monads &amp; Gonads</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Axioms"><span class="nav-text">Axioms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Identity-Monad"><span class="nav-text">The Identity Monad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Ajax-Monad"><span class="nav-text">The Ajax Monad</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#This-tow-are-equivalent"><span class="nav-text">This tow are equivalent.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#❓Ajax-Monad"><span class="nav-text">❓Ajax Monad</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Use-Ajax-Monad"><span class="nav-text">Use Ajax Monad</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#❓The-Maybe-Monad"><span class="nav-text">❓The Maybe Monad</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maybe-Monad"><span class="nav-text">Maybe Monad</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Use-Maybe-Monad"><span class="nav-text">Use Maybe Monad</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Promise-Monad"><span class="nav-text">The Promise Monad</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Make-a-vow"><span class="nav-text">Make a vow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-Monad"><span class="nav-text">Promise Monad</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

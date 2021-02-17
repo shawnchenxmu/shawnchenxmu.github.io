@@ -1,0 +1,765 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="译文,前端,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="原文链接：How to get the most out of the JavaScript console 在JavaScript中，最基本的调试工具就是console.log()。console中有还很多其他的实用方法可以成为开发者调试的好帮手。 使用console，你可以做到：  输出一个计时器来简单地测试 benchmarking  以更可读的表格方式展示数组数据或对象  在输出对象中应用">
+<meta name="keywords" content="译文,前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用好 console">
+<meta property="og:url" content="http://yoursite.com/2017/08/05/如何用好JavaScript console/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="原文链接：How to get the most out of the JavaScript console 在JavaScript中，最基本的调试工具就是console.log()。console中有还很多其他的实用方法可以成为开发者调试的好帮手。 使用console，你可以做到：  输出一个计时器来简单地测试 benchmarking  以更可读的表格方式展示数组数据或对象  在输出对象中应用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i4.bvimg.com/579418/9713952fbe9745a8.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/d8416cc048687cf3.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/b4455a6ce9e26379.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/27ac1cc3904c7e76.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/7bc2e37d39822d27.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/8139d00f0247dc30.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/087fd7589701662f.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/ca170208184752db.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/97da1b0be691e7c2.png">
+<meta property="og:image" content="http://i4.bvimg.com/579418/bd928f337c6e9bbe.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何用好 console">
+<meta name="twitter:description" content="原文链接：How to get the most out of the JavaScript console 在JavaScript中，最基本的调试工具就是console.log()。console中有还很多其他的实用方法可以成为开发者调试的好帮手。 使用console，你可以做到：  输出一个计时器来简单地测试 benchmarking  以更可读的表格方式展示数组数据或对象  在输出对象中应用">
+<meta name="twitter:image" content="http://i4.bvimg.com/579418/9713952fbe9745a8.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/05/如何用好JavaScript console/">
+
+
+  <title> 如何用好 console | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何用好 console
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-05T17:34:46+08:00" content="2017-08-05">
+              2017-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接：<a href="https://medium.freecodecamp.org/how-to-get-the-most-out-of-the-javascript-console-b57ca9db3e6d" target="_blank" rel="noopener">How to get the most out of the JavaScript console</a></p>
+<p>在JavaScript中，最基本的调试工具就是<code>console.log()</code>。<code>console</code>中有还很多其他的实用方法可以成为开发者调试的好帮手。</p>
+<p>使用<code>console</code>，你可以做到：</p>
+<ul>
+<li><p>输出一个计时器来简单地测试 benchmarking</p>
+</li>
+<li><p>以更可读的表格方式展示数组数据或对象</p>
+</li>
+<li><p>在输出对象中应用CSS添加色彩或其他样式</p>
+</li>
+</ul>
+<h2 id="Console对象"><a href="#Console对象" class="headerlink" title="Console对象"></a><code>Console</code>对象</h2><p>使用<code>console</code>对象，你能够操作浏览器的控制台，你可以输出字符串、数组和对象这类数据，并且帮助你调试代码。<code>console</code>是浏览器对象的一部分，是一种BOM方法。</p>
+<p>我们可以以两种方式使用<code>console</code>：</p>
+<ol>
+<li><code>window.console.log(This works)</code></li>
+<li><code>console.log(&#39;So does this&#39;)</code></li>
+</ol>
+<p>我们通常使用第二种方法。</p>
+<p>BOM小提示：它并没有提供一套标准，所以每个浏览器工具中使用都会有些许不同。我分别在Chrome和Firefox上测试我的代码，但你基于你的浏览器，你的输出可能不太一样。</p>
+<h2 id="输出文本"><a href="#输出文本" class="headerlink" title="输出文本"></a>输出文本</h2><p><img src="http://i4.bvimg.com/579418/9713952fbe9745a8.png" alt></p>
+<p><code>console</code>对象最基本的元素就是<code>console.log</code>，大多数时候你都会使用它。</p>
+<p><code>console</code>中有四中不同的输出方式：</p>
+<ol>
+<li><code>log</code></li>
+<li><code>info</code></li>
+<li><code>warn</code></li>
+<li><code>error</code></li>
+</ol>
+<p>四种方式方式的工作原理是一样的。你所需要做的是在你选择的方法中传入参数。接着它便会按照提示等级来显示不同的图标，在下面的示例中，你会看到info的输出和warn或者error的不一样。</p>
+<p><img src="http://i4.bvimg.com/579418/d8416cc048687cf3.png" alt="Markdown"></p>
+<p><img src="http://i4.bvimg.com/579418/b4455a6ce9e26379.png" alt="Markdown"></p>
+<p>你可能注意到了error的提示信息，它相比其他的更为显眼。它展示了一个红色的背景和一个堆栈路径，而info和warn则没有。然而warn在Chrome中也有一个黄色的背景框。</p>
+<p>这些视觉上的不同可以让你一下子就找出那里出了错误、而哪里仅仅只是一个警告，在你准备发布代码之前要确保他们都被移除。</p>
+<h2 id="字符替换"><a href="#字符替换" class="headerlink" title="字符替换"></a>字符替换</h2><p>这一功能是在字符串当中使用占位符，然后再用其他你输入的变量作为替换，例如：</p>
+<p><strong>Input:</strong> <code>console.log(&#39;string%s&#39;, &#39;substitutions&#39;)</code></p>
+<p><strong>Output:</strong> <code>string substitution</code></p>
+<p><code>%s</code>作为一个占位符，在输出的时候被第二个变量<code>&#39;substitution&#39;</code>替换。任何字符串、整数、或者数组都会转换成字符串并且把<code>%s</code>替换，如果你传入的是对象，则会输出<code>[object Object]</code>。</p>
+<p>如果你想正确输出对象，那你就要使用<code>%o</code>或者<code>%O</code>而不是<code>%s</code>。</p>
+<p><code>console.log(&#39;this is an object %o&#39;, {obj: {objective : &#39;hello&#39;}})</code></p>
+<p><img src="http://i4.bvimg.com/579418/27ac1cc3904c7e76.png" alt="Markdown"></p>
+<h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><p>在字符替换的功能中还可以使用整数和浮点数：</p>
+<ul>
+<li><code>%i</code>或者<code>%d</code>代表整数</li>
+<li><code>%f</code>代表浮点数</li>
+</ul>
+<p><strong>Input:</strong> <code>console.log(&#39;int: %d, floating-point: %f&#39;, 1, 1.5)</code></p>
+<p><strong>Output:</strong><br><code>int: 1, floating-point: 1.500000</code></p>
+<p>你还可以改变浮点数输出的格式，<code>%.1f</code>结果只保留小数后面一位，同理<code>%.nf</code>可以保留小数后面的 n 位数。</p>
+<p>还是上面的例子：</p>
+<p><strong>Input:</strong> <code>console.log(&#39;int: %d, floating-point: %.1f&#39;, 1, 1.5)</code></p>
+<p><strong>Output:</strong> <code>int: 1, floating-point: 1.5</code></p>
+<h2 id="格式化说明符"><a href="#格式化说明符" class="headerlink" title="格式化说明符"></a>格式化说明符</h2><ol>
+<li><code>%s</code> 替换字符串元素</li>
+<li><code>%(d|i)</code> 替换整型</li>
+<li><code>%f</code> 替换浮点型数据</li>
+<li><code>%(o|O)</code> 替换对象</li>
+<li><code>%c</code> 应用所传入的CSS元素</li>
+</ol>
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h2><p>随着ES6的出现，模板字符串是拼接字符串的一个替代方法，他使用反引号( ` ` )而不是引号(“”)，而变量则用 <code>${}</code>括起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = &apos;substitutions&apos;;</span><br><span class="line">console.log(`bear: $&#123;a&#125;`);</span><br><span class="line">// bear: substitutions</span><br></pre></td></tr></table></figure>
+<p>对象元素将会被隐藏为<code>[object Object]</code>在模板字符串当中，所以你需要使用<code>%o</code>或者<code>%O</code>。</p>
+<p>相比拼接字符串，使用模板字符串可读性更高：<code>console.log(&#39;hello&#39; + str + &#39;!&#39;);</code></p>
+<h2 id="漂亮的色彩"><a href="#漂亮的色彩" class="headerlink" title="漂亮的色彩"></a>漂亮的色彩</h2><p>现在是时候展示一些更有趣的东西了。</p>
+<p>现在我们让<code>console</code>弹出的时候带有不同的色彩。</p>
+<p>我将使用 mocked Ajax 示例，显示成功（绿色）和失败（红色），下面是输出代码：</p>
+<p><img src="http://i4.bvimg.com/579418/7bc2e37d39822d27.png" alt="Markdown"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const success = [</span><br><span class="line"> &apos;background: green&apos;,</span><br><span class="line"> &apos;color: white&apos;,</span><br><span class="line"> &apos;display: block&apos;,</span><br><span class="line"> &apos;text-align: center&apos;</span><br><span class="line">].join(&apos;;&apos;);</span><br><span class="line">const failure = [</span><br><span class="line"> &apos;background: red&apos;,</span><br><span class="line"> &apos;color: white&apos;,</span><br><span class="line"> &apos;display: block&apos;,</span><br><span class="line"> &apos;text-align: center&apos;</span><br><span class="line">].join(&apos;;&apos;);</span><br><span class="line">console.info(&apos;%c /dancing/bears was Successful!&apos;, success);</span><br><span class="line">console.log(&#123;data: &#123;</span><br><span class="line"> name: &apos;Bob&apos;,</span><br><span class="line"> age: &apos;unknown&apos;</span><br><span class="line">&#125;&#125;); // &quot;mocked&quot; data response</span><br><span class="line">console.error(&apos;%c /dancing/bats failed!&apos;, failure);</span><br><span class="line">console.log(&apos;/dancing/bats Does not exist&apos;);</span><br></pre></td></tr></table></figure>
+<p>使用字符串替换<code>%c</code>将CSS应用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.error(&apos;%c /dancing/bats failed!&apos;, failure);</span><br></pre></td></tr></table></figure>
+<p>然后将CSS元素作为参数传入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&apos;%cred %cblue %cwhite&apos;,&apos;color:red;&apos;,&apos;color:blue;&apos;, &apos;color: white;&apos;)</span><br></pre></td></tr></table></figure>
+<p>这将会输出三个单词并且以它们各自的颜色所展示。</p>
+<p><code>console</code>支持诸多CSS属性，我建议你去试试看哪些是有效的，那些行不通，而且你的结果也将因浏览器的不同而不同。</p>
+<h2 id="其他可用的方法"><a href="#其他可用的方法" class="headerlink" title="其他可用的方法"></a>其他可用的方法</h2><p>下面介绍一些其他的<code>console</code>可用的方法。请注意，以下某些项目没有将API标准化，因此浏览器之间可能存在不兼容性。 下面的示例使用的是Firefox 51.0.1创建。</p>
+<h3 id="Assert"><a href="#Assert" class="headerlink" title="Assert()"></a>Assert()</h3><p><code>Assert</code>可以传入两个参数—— 如果第一个参数的计算结果是否定的，则展示第二个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let isTrue = false;</span><br><span class="line">console.assert(isTrue, &apos;This will display&apos;);</span><br><span class="line">isTrue = true;</span><br><span class="line">console.assert(isTrue, &apos;This will not&apos;);</span><br></pre></td></tr></table></figure>
+<p>如果判断为false，则将其输出到控制台。 它如上所述显示为错误级日志，同时提供一个红色错误消息和堆栈跟踪。</p>
+<h3 id="Dir"><a href="#Dir" class="headerlink" title="Dir()"></a>Dir()</h3><p><code>Dir()</code>方法可以将传入的对象参数展示为一个交互列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.dir(document.body);</span><br></pre></td></tr></table></figure>
+<p><img src="http://i4.bvimg.com/579418/8139d00f0247dc30.png" alt="Markdown"></p>
+<p>以这样的方式展示会给你节省一些时间。</p>
+<h3 id="Table"><a href="#Table" class="headerlink" title="Table()"></a>Table()</h3><p><code>table</code>方法可以将一个数组数据或是对象展示为一张表格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.table([&apos;Javascript&apos;, &apos;PHP&apos;, &apos;Perl&apos;, &apos;C++&apos;]);</span><br></pre></td></tr></table></figure>
+<p><img src="http://i4.bvimg.com/579418/087fd7589701662f.png" alt="Markdown"></p>
+<p>数组的索引或对象属性名称位于左侧索引列下。 而值将显示在右侧列中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const superhero = &#123; </span><br><span class="line">    firstname: &apos;Peter&apos;,</span><br><span class="line">    lastname: &apos;Parker&apos;,</span><br><span class="line">&#125;</span><br><span class="line">console.table(superhero);</span><br></pre></td></tr></table></figure>
+<p><img src="http://i4.bvimg.com/579418/ca170208184752db.png" alt="Markdown"></p>
+<p><strong>Chrome 用户请看这里：</strong><br>同事的提醒，上述表格方法的示例在Chrome中似乎不起作用。 你可以通过将项目放入数组或数组对象来解决此问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.table([[&apos;Javascript&apos;, &apos;PHP&apos;, &apos;Perl&apos;, &apos;C++&apos;]]);</span><br><span class="line">const superhero = &#123; </span><br><span class="line">    firstname: &apos;Peter&apos;,</span><br><span class="line">    lastname: &apos;Parker&apos;,</span><br><span class="line">&#125;</span><br><span class="line">console.table([superhero]);</span><br></pre></td></tr></table></figure>
+<h3 id="Group"><a href="#Group" class="headerlink" title="Group()"></a>Group()</h3><p><code>console.group()</code>由至少三个控制台调用组成，可能是在需要大量键入时使用的方法。 但它也是非常有用的（特别是对于使用Redux Logger的开发人员）。</p>
+<p>基本的使用就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.group();</span><br><span class="line">console.log(&apos;I will output&apos;);</span><br><span class="line">console.group();</span><br><span class="line">console.log(&apos;more indents&apos;)</span><br><span class="line">console.groupEnd();</span><br><span class="line">console.log(&apos;ohh look a bear&apos;);</span><br><span class="line">console.groupEnd();</span><br></pre></td></tr></table></figure>
+<p>这样会输出一个多层级的展示并且在不同的浏览器之间可能会有差异。</p>
+<p>在Firefox上是这样的：</p>
+<p><img src="http://i4.bvimg.com/579418/97da1b0be691e7c2.png" alt="Markdown"></p>
+<p>而Chrome中则是这样的：</p>
+<p><img src="http://i4.bvimg.com/579418/bd928f337c6e9bbe.png" alt="Markdown"></p>
+<p>每次调用<code>console.group()</code>将启动一个新组，如果在一个组内调用新组，则创建一个新的级别。 每次调用<code>console.groupEnd()</code>时，它将结束当前组级别并向上移动一级。</p>
+<p>我觉得Chrome输出样式更容易阅读，因为它看起来更像是可折叠对象。</p>
+<p>在<code>group</code>中你可以传入头文件参数，该参数将显示在<code>console.group</code>上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.group(&apos;Header&apos;);</span><br></pre></td></tr></table></figure>
+<p>如果您调用<code>console.groupCollapsed()</code>，你可以从一开始就将该组显示为折叠。但这似乎只适用于Chrome。</p>
+<h3 id="Time"><a href="#Time" class="headerlink" title="Time()"></a>Time()</h3><p>与上面的<code>group</code>类似，<code>time</code>方法也是由两部分组成。</p>
+<p>一个方法是开始计时，还有一个则用来结束。</p>
+<p>定时器完成后，它将以毫秒为单位输出总运行时间。</p>
+<p>要启动计时器，您可以使用<code>console.time(&#39;id for timer&#39;)</code>，结束则使用<code>console.timeEnd(&#39;id for timer&#39;)</code>的计时器。 你最多可以同时运行10,000个定时器。</p>
+<p>输出将看起来有点像这样：<code>0.57ms</code></p>
+<p>当你需要做一个快速的基准测试时，这是非常有用的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>现在我们对控制台对象和其中附带的一些其他方法有了更深入的了解了。当你需要调试代码时，这些方法都是很好的工具。</p>
+<p>不过还有几种方法，我没有涉及到，因为他们的API仍在变化。你可以在MDN上阅读有关控制台的更多信息。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/译文/" rel="tag">#译文</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/01/当我们在谈大前端时，我们谈的是什么/" rel="next" title="当我们在谈大前端时，我们谈的是什么">
+                <i class="fa fa-chevron-left"></i> 当我们在谈大前端时，我们谈的是什么
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/16/函数式编程/" rel="prev" title="函数式编程">
+                函数式编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Console对象"><span class="nav-text">Console对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出文本"><span class="nav-text">输出文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符替换"><span class="nav-text">字符替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字"><span class="nav-text">数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化说明符"><span class="nav-text">格式化说明符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板字符串"><span class="nav-text">模板字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漂亮的色彩"><span class="nav-text">漂亮的色彩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他可用的方法"><span class="nav-text">其他可用的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Assert"><span class="nav-text">Assert()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dir"><span class="nav-text">Dir()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table"><span class="nav-text">Table()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Group"><span class="nav-text">Group()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time"><span class="nav-text">Time()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

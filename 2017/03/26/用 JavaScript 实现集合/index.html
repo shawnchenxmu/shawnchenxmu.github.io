@@ -1,0 +1,684 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="集合是由一组无序且唯一（即不能重复）的项组成的，在数学中，集合是一组不同的对象（的集），包含并集、交集、差集等基本操作。 创建集合在新的ECMAScript6中已经包括了Set类的实现，不过我们可以自己来实现它。 以下是我们Set类的骨架： 123function Set()&amp;#123;    var items = &amp;#123;&amp;#125;;&amp;#125; 我们使用对象而不是数组来表示集合，在Ja">
+<meta name="keywords" content="JavaScript,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 JavaScript 实现集合">
+<meta property="og:url" content="http://yoursite.com/2017/03/26/用 JavaScript 实现集合/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="集合是由一组无序且唯一（即不能重复）的项组成的，在数学中，集合是一组不同的对象（的集），包含并集、交集、差集等基本操作。 创建集合在新的ECMAScript6中已经包括了Set类的实现，不过我们可以自己来实现它。 以下是我们Set类的骨架： 123function Set()&amp;#123;    var items = &amp;#123;&amp;#125;;&amp;#125; 我们使用对象而不是数组来表示集合，在Ja">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i1.piimg.com/579418/a81eb50ca4208492.png">
+<meta property="og:image" content="http://i1.piimg.com/579418/b4b4bfd59e712a18.png">
+<meta property="og:image" content="http://i1.piimg.com/579418/422c50e5623b2591.png">
+<meta property="og:image" content="http://i1.piimg.com/579418/7ac99ca18fd02aeb.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 JavaScript 实现集合">
+<meta name="twitter:description" content="集合是由一组无序且唯一（即不能重复）的项组成的，在数学中，集合是一组不同的对象（的集），包含并集、交集、差集等基本操作。 创建集合在新的ECMAScript6中已经包括了Set类的实现，不过我们可以自己来实现它。 以下是我们Set类的骨架： 123function Set()&amp;#123;    var items = &amp;#123;&amp;#125;;&amp;#125; 我们使用对象而不是数组来表示集合，在Ja">
+<meta name="twitter:image" content="http://i1.piimg.com/579418/a81eb50ca4208492.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/26/用 JavaScript 实现集合/">
+
+
+  <title> 用 JavaScript 实现集合 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用 JavaScript 实现集合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-26T20:01:48+08:00" content="2017-03-26">
+              2017-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>集合</strong>是由一组无序且唯一（即不能重复）的项组成的，在数学中，集合是一组不同的对象（的集），包含并集、交集、差集等基本操作。</p>
+<h3 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h3><p>在新的ECMAScript6中已经包括了Set类的实现，不过我们可以自己来实现它。</p>
+<p>以下是我们Set类的骨架：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Set()&#123;</span><br><span class="line">    var items = &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们使用对象而不是数组来表示集合，在JavaScript中的对象不允许一个键指向两个不同的属性，也保证了集合里的元素都是唯一的。</p>
+<p>接下来，需要声明一些集合可用的方法：</p>
+<ul>
+<li><code>add(value)</code>:向集合添加一个新的项；</li>
+<li><code>remove(value)</code>:从集合移除一个值；</li>
+<li><code>has(value)</code>:如果值在集合中，返回<code>true</code>，否则返回<code>false</code>;</li>
+<li><code>clear()</code>:移除集合中的所有项；</li>
+<li><code>size()</code>:返回集合所包含元素的数量；</li>
+<li><code>values()</code>:返回一个包含集合中所有值的数组。</li>
+</ul>
+<p>实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">function Set() &#123;</span><br><span class="line"></span><br><span class="line">    var items = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    this.add = function(value)&#123;</span><br><span class="line">        if (!this.has(value))&#123;</span><br><span class="line">            items[value] = value;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.remove = function(value)&#123;</span><br><span class="line">        if (this.has(value))&#123;</span><br><span class="line">            delete items[value];</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.has = function(value)&#123;</span><br><span class="line">        return items.hasOwnProperty(value);</span><br><span class="line">        //return value in items;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.clear = function()&#123;</span><br><span class="line">        items = &#123;&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">   this.size = function()&#123;</span><br><span class="line">        return Object.keys(items).length;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">   this.values = function()&#123;</span><br><span class="line">        return Object.keys(items);</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h3><p>对集合可以进行如下操作：</p>
+<ul>
+<li>并集：对于给定的两个集合，返回一个包含两个集合中所有元素的新集合。</li>
+<li>交集：对于给定的两个集合，返回一个包含两个集合中共有元素的新集合。</li>
+<li>差集：对于给定的两个集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的元素的新集合。</li>
+<li>子集：验证一个给定集合是否是另一个集合的子集。</li>
+</ul>
+<h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p><img src="http://i1.piimg.com/579418/a81eb50ca4208492.png" alt="Markdown"></p>
+<p>实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">this.union = function(otherSet)&#123;</span><br><span class="line">        var unionSet = new Set(); //&#123;1&#125;</span><br><span class="line"></span><br><span class="line">        var values = this.values(); //&#123;2&#125;</span><br><span class="line">        for (var i=0; i&lt;values.length; i++)&#123;</span><br><span class="line">            unionSet.add(values[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        values = otherSet.values(); //&#123;3&#125;</span><br><span class="line">        for (var i=0; i&lt;values.length; i++)&#123;</span><br><span class="line">            unionSet.add(values[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return unionSet;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h4><p><img src="http://i1.piimg.com/579418/b4b4bfd59e712a18.png" alt="Markdown"></p>
+<p>实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">this.intersection = function(otherSet)&#123;</span><br><span class="line">       var intersectionSet = new Set(); //&#123;1&#125;</span><br><span class="line"></span><br><span class="line">       var values = this.values();</span><br><span class="line">       for (var i=0; i&lt;values.length; i++)&#123; //&#123;2&#125;</span><br><span class="line">           if (otherSet.has(values[i]))&#123;    //&#123;3&#125;</span><br><span class="line">               intersectionSet.add(values[i]); //&#123;4&#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return intersectionSet;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h4><p><img src="http://i1.piimg.com/579418/422c50e5623b2591.png" alt="Markdown"></p>
+<p>实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">this.difference = function(otherSet)&#123;</span><br><span class="line">        var differenceSet = new Set(); //&#123;1&#125;</span><br><span class="line"></span><br><span class="line">        var values = this.values();</span><br><span class="line">        for (var i=0; i&lt;values.length; i++)&#123; //&#123;2&#125;</span><br><span class="line">            if (!otherSet.has(values[i]))&#123;    //&#123;3&#125;</span><br><span class="line">                differenceSet.add(values[i]); //&#123;4&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return differenceSet;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="子集"><a href="#子集" class="headerlink" title="子集"></a>子集</h4><p><img src="http://i1.piimg.com/579418/7ac99ca18fd02aeb.png" alt="Markdown"></p>
+<p>实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">this.subset = function(otherSet)&#123;</span><br><span class="line"></span><br><span class="line">        if (this.size() &gt; otherSet.size())&#123; //&#123;1&#125;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            var values = this.values();</span><br><span class="line">            for (var i=0; i&lt;values.length; i++)&#123; //&#123;2&#125;</span><br><span class="line">                if (!otherSet.has(values[i]))&#123;    //&#123;3&#125;</span><br><span class="line">                    return false; //&#123;4&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/用 JavaScript 实现栈/" rel="next" title="用 JavaScript 实现栈">
+                <i class="fa fa-chevron-left"></i> 用 JavaScript 实现栈
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/26/用 JavaScript 实现队列/" rel="prev" title="用 JavaScript 实现队列">
+                用 JavaScript 实现队列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建集合"><span class="nav-text">创建集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合操作"><span class="nav-text">集合操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并集"><span class="nav-text">并集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交集"><span class="nav-text">交集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#差集"><span class="nav-text">差集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子集"><span class="nav-text">子集</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,性能,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="性能衡量指标 相关指标及计算方式：  维度：  运营商 网络 URL  性能监控如何监控  7 天打造前端性能监控系统 使用性能API快速分析web前端性能 你是如何搭建 Web 前端性能监控系统的  性能优化优化点：  高频事件消抖、节流。使用_.debounce()和_. throttle()，控制高频事件的操作，如：scroll、onChange _.debounce()的多次连续的调用，最">
+<meta name="keywords" content="前端,性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端性能">
+<meta property="og:url" content="http://yoursite.com/2018/02/22/前端性能/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="性能衡量指标 相关指标及计算方式：  维度：  运营商 网络 URL  性能监控如何监控  7 天打造前端性能监控系统 使用性能API快速分析web前端性能 你是如何搭建 Web 前端性能监控系统的  性能优化优化点：  高频事件消抖、节流。使用_.debounce()和_. throttle()，控制高频事件的操作，如：scroll、onChange _.debounce()的多次连续的调用，最">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/02/22/前端性能/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/22/前端性能/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/22/前端性能/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/22/前端性能/path.jpg">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端性能">
+<meta name="twitter:description" content="性能衡量指标 相关指标及计算方式：  维度：  运营商 网络 URL  性能监控如何监控  7 天打造前端性能监控系统 使用性能API快速分析web前端性能 你是如何搭建 Web 前端性能监控系统的  性能优化优化点：  高频事件消抖、节流。使用_.debounce()和_. throttle()，控制高频事件的操作，如：scroll、onChange _.debounce()的多次连续的调用，最">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/22/前端性能/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/22/前端性能/">
+
+
+  <title> 前端性能 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端性能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-02-22T14:45:02+08:00" content="2018-02-22">
+              2018-02-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="性能衡量指标"><a href="#性能衡量指标" class="headerlink" title="性能衡量指标"></a>性能衡量指标</h2><p><img src="/2018/02/22/前端性能/1.png" alt></p>
+<p><strong>相关指标及计算方式：</strong></p>
+<p><img src="/2018/02/22/前端性能/2.png" alt><br><img src="/2018/02/22/前端性能/3.png" alt></p>
+<p><strong>维度：</strong></p>
+<ul>
+<li>运营商</li>
+<li>网络</li>
+<li>URL</li>
+</ul>
+<h2 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h2><p><strong>如何监控</strong></p>
+<ul>
+<li><a href="http://fex.baidu.com/blog/2014/05/build-performance-monitor-in-7-days/" target="_blank" rel="noopener">7 天打造前端性能监控系统</a></li>
+<li><a href="http://web.jobbole.com/84264/" target="_blank" rel="noopener">使用性能API快速分析web前端性能</a></li>
+<li><a href="https://www.zhihu.com/question/37585246" target="_blank" rel="noopener">你是如何搭建 Web 前端性能监控系统的</a></li>
+</ul>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p><strong>优化点：</strong></p>
+<ul>
+<li>高频事件消抖、节流。使用<code>_.debounce()</code>和<code>_. throttle()</code>，控制高频事件的操作，如：<code>scroll</code>、<code>onChange</code><ul>
+<li><code>_.debounce()</code>的多次连续的调用，最终实际上只会调用一次；</li>
+<li><code>_. throttle()</code>将频繁调用的函数限定在一个给定的调用频率内。</li>
+</ul>
+</li>
+<li>JavaScritp很快，但是DOM很慢，减少修改DOM。<ul>
+<li>DOM的渲染需要计算DOM+CSSOM，每次DOM和CSSOM的每次修改都会触发重绘；<ul>
+<li>渲染过程：JavaScript -&gt; Style -&gt; Layoout -&gt; Paint -&gt; Composite</li>
+</ul>
+</li>
+<li>避免 <strong>position: fixed</strong>;布局，Z轴图层堆叠关系会改变，引起重绘；</li>
+<li>图层隔离：将那些会变动的元素提升至单独的图层，比如：动画、渐变；</li>
+<li>降低图层复杂度；</li>
+<li>避免线程阻塞；</li>
+<li>优化CSS；</li>
+<li>文件：引入方式、位置、文件合并、延迟加载；</li>
+<li>硬件加速：GPU加速渲染</li>
+</ul>
+</li>
+</ul>
+<p><strong>基于各环节优化：</strong><br><img src="/2018/02/22/前端性能/path.jpg" alt="path"></p>
+<ul>
+<li>减少http请求，合理设置 HTTP缓存</li>
+<li>使用HTTP/2</li>
+<li>持久连接，使用 <code>keep-alive</code> 或者 WebSocket</li>
+<li>使用浏览器缓存</li>
+<li>启用压缩</li>
+<li>CSS Sprites</li>
+<li>LazyLoad Images</li>
+<li>样式文件放在顶部，脚本文件放在底部</li>
+<li>减少 cookie 传输</li>
+<li>CDN 加速<ul>
+<li>CDN（contentdistribute network，内容分发网络）的本质仍然是一个缓存，而且将数据缓存在离用户最近的地方，使用户以最快速度获取数据，即所谓网络访问第一跳。 </li>
+</ul>
+</li>
+<li>反向代理<ul>
+<li>传统代理服务器位于浏览器一侧，代理浏览器将http请求发送到互联网上，而反向代理服务器位于网站机房一侧，代理网站web服务器接收http请求。</li>
+<li>论坛网站，把热门词条、帖子、博客缓存在反向代理服务器上加速用户访问速度，当这些动态内容有变化时，通过内部通知机制通知反向代理缓存失效，反向代理会重新加载最新的动态内容再次缓存起来。</li>
+<li>此外，反向代理也可以实现负载均衡的功能，而通过负载均衡构建的应用集群可以提高系统总体处理能力，进而改善网站高并发情况下的性能。</li>
+</ul>
+</li>
+<li>面向未来，考虑 service worker</li>
+</ul>
+<h2 id="加载优化"><a href="#加载优化" class="headerlink" title="加载优化"></a>加载优化</h2><p>加载过程是最为耗时的过程，可能会占到总耗时的80%时间，是优化重点</p>
+<h3 id="1、减少HTTP请求"><a href="#1、减少HTTP请求" class="headerlink" title="1、减少HTTP请求"></a>1、减少HTTP请求</h3><ul>
+<li>合并 CSS、JavaScript</li>
+<li>合并小图片，使用雪碧图</li>
+</ul>
+<h3 id="2、缓存"><a href="#2、缓存" class="headerlink" title="2、缓存"></a>2、缓存</h3><ul>
+<li>缓存一切可缓存的资源</li>
+<li>使用长 Cache（使用时间戳更新Cache）</li>
+<li>使用外联式引用CSS、JavaScript</li>
+</ul>
+<h3 id="3、压缩HTML、CSS、JavaScript"><a href="#3、压缩HTML、CSS、JavaScript" class="headerlink" title="3、压缩HTML、CSS、JavaScript"></a>3、压缩HTML、CSS、JavaScript</h3><p>减少资源大小可以加快网页显示速度，所以要对HTML、CSS、JavaScript等进行代码压缩，并在服务端设置GZip</p>
+<ul>
+<li>压缩（例如，多余的空格、换行符和缩进）</li>
+<li>启用Gzip</li>
+</ul>
+<h3 id="4、无阻塞"><a href="#4、无阻塞" class="headerlink" title="4、无阻塞"></a>4、无阻塞</h3><p>写在HTML头部的JavaScript（无异步），和写在HTML标签中的Style会阻塞页面的渲染，因此CSS放在页面头部并使用Link方式引入，避免在HTML标签中学Style，JavaScript放在页面尾部，或使用异步方式加载</p>
+<h3 id="5、使用首屏加载"><a href="#5、使用首屏加载" class="headerlink" title="5、使用首屏加载"></a>5、使用首屏加载</h3><p>首屏的快速显示，可以大大提升用户对⻚面速度的感知，因此应尽量针对首屏的快速显示做优化</p>
+<h3 id="6、按需加载"><a href="#6、按需加载" class="headerlink" title="6、按需加载"></a>6、按需加载</h3><p>将不影响首屏的资源和当前屏幕资源不用的资源放到用户需要时才加载，可以大大提升重要资源的 显示速度和降低总体流量。</p>
+<p>PS:按需加载会导致大量重绘，影响渲染性能</p>
+<ul>
+<li>LazyLoad</li>
+<li>滚屏加载</li>
+<li>通过 Media Query 加载</li>
+</ul>
+<h3 id="7、预加载"><a href="#7、预加载" class="headerlink" title="7、预加载"></a>7、预加载</h3><p>大型重资源⻚面(如游戏)可使用增加Loading的方法，资源加载完成后再显示⻚面。但Loading时间过⻓，会造成用户流失<br>对用户行为分析，可以在当前⻚加载下一⻚资源，提升速度</p>
+<ul>
+<li>可感知Loading(如进入空间游戏的Loading)</li>
+<li>不可感知的Loading(如提前加载下一⻚)</li>
+</ul>
+<h3 id="8、压缩图片"><a href="#8、压缩图片" class="headerlink" title="8、压缩图片"></a>8、压缩图片</h3><p>图片是最占流量的资源，因此尽量避免使用他，使用时选择最合适的格式(实现需求的前提下，以 大小判断)，合适的大小，然后使用智图压缩，同时在代码中用 srcset 来按需显示</p>
+<p>PS:过度压缩图片大小影响图片显示效果</p>
+<ul>
+<li>使用其它方式代替图片(1. 使用CSS3 2. 使用SVG 3. 使用IconFont) </li>
+<li>使用 srcset</li>
+<li>选择合适的图片 (1. webP优于JPG 2. PNG8优于GIF) </li>
+<li>选择合适的大小 (1. 首次加载不大于1024KB 2. 不宽于640(基于手机屏幕一般宽度))</li>
+</ul>
+<h3 id="9、减少-cookie"><a href="#9、减少-cookie" class="headerlink" title="9、减少 cookie"></a>9、减少 cookie</h3><p>Cookie会影响加载速度，所以静态资源域名不使用Cookie。</p>
+<h3 id="10、避免重定向"><a href="#10、避免重定向" class="headerlink" title="10、避免重定向"></a>10、避免重定向</h3><p>重定向会影响加载速度，所以在服务器正确设置避免重定向。</p>
+<h3 id="11、异步加载第三方资源"><a href="#11、异步加载第三方资源" class="headerlink" title="11、异步加载第三方资源"></a>11、异步加载第三方资源</h3><p>第三方资源不可控会影响⻚面的加载和显示，因此要异步加载第三方资源。</p>
+<h3 id="12、CDN-预热"><a href="#12、CDN-预热" class="headerlink" title="12、CDN 预热"></a>12、CDN 预热</h3><p>可以将静态资源提前预热处理，加速用户的访问速度。</p>
+<h2 id="脚本执行优化"><a href="#脚本执行优化" class="headerlink" title="脚本执行优化"></a>脚本执行优化</h2><p>脚本处理不当会阻塞⻚面加载、渲染，因此在使用时需当注意</p>
+<h3 id="1、CSS写在头部，JavaScript写在尾部或异步"><a href="#1、CSS写在头部，JavaScript写在尾部或异步" class="headerlink" title="1、CSS写在头部，JavaScript写在尾部或异步"></a>1、CSS写在头部，JavaScript写在尾部或异步</h3><h3 id="2、避免图片和-iframe-等的空-src"><a href="#2、避免图片和-iframe-等的空-src" class="headerlink" title="2、避免图片和 iframe 等的空 src"></a>2、避免图片和 iframe 等的空 src</h3><p>空Src会重新加载当前⻚面，影响速度和效率。</p>
+<h3 id="3、尽量避免重设图片大小"><a href="#3、尽量避免重设图片大小" class="headerlink" title="3、尽量避免重设图片大小"></a>3、尽量避免重设图片大小</h3><p>重设图片大小是指在⻚面、CSS、JavaScript 等中多次重置图片大小，多次重设图片大小会引发图片的多次重绘，影响性能。</p>
+<h3 id="4、图片尽量避免使用DataURL"><a href="#4、图片尽量避免使用DataURL" class="headerlink" title="4、图片尽量避免使用DataURL"></a>4、图片尽量避免使用DataURL</h3><p>DataURL图片没有使用图片的压缩算法文件会变大，并且要解码后再渲染，加载慢耗时⻓。</p>
+<h2 id="三、CSS优化"><a href="#三、CSS优化" class="headerlink" title="三、CSS优化"></a>三、CSS优化</h2><h3 id="1、尽量避免写在HTML标签中写Style属性"><a href="#1、尽量避免写在HTML标签中写Style属性" class="headerlink" title="1、尽量避免写在HTML标签中写Style属性"></a>1、尽量避免写在HTML标签中写Style属性</h3><h3 id="2、避免CSS表达式"><a href="#2、避免CSS表达式" class="headerlink" title="2、避免CSS表达式"></a>2、避免CSS表达式</h3><p>CSS表达式的执行需跳出CSS树的渲染，因此请避免CSS表达式。</p>
+<h3 id="3、移除空的CSS规则"><a href="#3、移除空的CSS规则" class="headerlink" title="3、移除空的CSS规则"></a>3、移除空的CSS规则</h3><p>空的CSS规则增加了CSS文件的大小，且影响CSS树的执行，所以需移除空的CSS规则。</p>
+<h3 id="4、正确使用-Display-的属性"><a href="#4、正确使用-Display-的属性" class="headerlink" title="4、正确使用 Display 的属性"></a>4、正确使用 Display 的属性</h3><p>Display属性会影响⻚面的渲染，因此请合理使用 </p>
+<ul>
+<li><code>display:inline</code> 后不应该再使用 <code>width</code>、<code>height</code>、<code>margin</code>、<code>padding</code> 以及 <code>float</code>。</li>
+<li><code>display:inline-block</code> 后不应该再使用 <code>float</code>。</li>
+<li><code>display:block</code> 后不应该再使用 <code>vertical-align</code>。</li>
+<li><code>display:table-*</code> 后不应该再使用 <code>margin</code> 或者 <code>float</code>。</li>
+</ul>
+<h3 id="5、不滥用-Float"><a href="#5、不滥用-Float" class="headerlink" title="5、不滥用 Float"></a>5、不滥用 Float</h3><p>Float在渲染时计算量比较大，尽量减少使用。</p>
+<h3 id="6、不滥用Web字体"><a href="#6、不滥用Web字体" class="headerlink" title="6、不滥用Web字体"></a>6、不滥用Web字体</h3><p>Web字体需要下载，解析，重绘当前⻚面，尽量减少使用。</p>
+<h3 id="7、不声明过多的-font-size"><a href="#7、不声明过多的-font-size" class="headerlink" title="7、不声明过多的 font-size"></a>7、不声明过多的 <code>font-size</code></h3><p>过多的 <code>font-size</code> 引发CSS树的效率。</p>
+<h3 id="8、值为-0-时不需要任何单位"><a href="#8、值为-0-时不需要任何单位" class="headerlink" title="8、值为 0 时不需要任何单位"></a>8、值为 0 时不需要任何单位</h3><p>为了浏览器的兼容性和性能，值为0时不要带单位。</p>
+<h3 id="9、标准化各种浏览器前缀"><a href="#9、标准化各种浏览器前缀" class="headerlink" title="9、标准化各种浏览器前缀"></a>9、标准化各种浏览器前缀</h3><ul>
+<li>无前缀应放在最后。</li>
+<li>CSS动画只用 (-webkit- 无前缀)两种即可。</li>
+<li>其它前缀为 -webkit- -moz- -ms- 无前缀 四种，(-o-Opera浏览器改用blink内核，所以淘汰）</li>
+</ul>
+<h2 id="JavaScript执行优化"><a href="#JavaScript执行优化" class="headerlink" title="JavaScript执行优化"></a>JavaScript执行优化</h2><h3 id="1、减少重绘和回流"><a href="#1、减少重绘和回流" class="headerlink" title="1、减少重绘和回流"></a>1、减少重绘和回流</h3><ul>
+<li>避免不必要的Dom操作</li>
+<li>尽量改变 class 而不是 style，使用 classList 代替 className</li>
+<li>避免使用 <code>document.write</code></li>
+<li>减少drawImage</li>
+</ul>
+<h3 id="2、缓存Dom选择与计算"><a href="#2、缓存Dom选择与计算" class="headerlink" title="2、缓存Dom选择与计算"></a>2、缓存Dom选择与计算</h3><h2 id="Webpack相关"><a href="#Webpack相关" class="headerlink" title="Webpack相关"></a>Webpack相关</h2><h3 id="1、分割配置文件-dev-prod"><a href="#1、分割配置文件-dev-prod" class="headerlink" title="1、分割配置文件 dev prod"></a>1、分割配置文件 <code>dev</code> <code>prod</code></h3><p>开发环境：</p>
+<ul>
+<li>构建更快</li>
+<li>模块热替换</li>
+<li>能从chrome控制台报错信息对应的源码的错误处(source map)等</li>
+</ul>
+<p>生产环境</p>
+<ul>
+<li>chunk分离</li>
+<li>缓存</li>
+<li>安全</li>
+<li>tree shaking</li>
+</ul>
+<p>对于开发和生产环境的配置文件肯定是不完全相同的，所以我们将不同环境的配置文件分离开，同时将共用部分抽出来，最后使用 webpack-merge 插件整合。</p>
+<h3 id="2、代码分离-prod"><a href="#2、代码分离-prod" class="headerlink" title="2、代码分离 prod"></a>2、代码分离 <code>prod</code></h3><p>代码分离能够将工程代码分离到各个文件中，然后按需加载或并行加载这些文件，也用于获取更小的 bundle，以及控制资源加载优先级<br>webpack有三种常用的代码分离方法：</p>
+<ul>
+<li>入口起点：配置多入口，输出多个chunk。</li>
+<li>防止重复：使用 CommonsChunkPlugin 去重和分离 chunk(webpack4 虽然废弃，但有代替方法)</li>
+<li>动态导入：常用于按需加载的模块分离<ul>
+<li>路由组件动态导入</li>
+<li>普通组件的异步加载</li>
+</ul>
+</li>
+</ul>
+<h3 id="Loader-dev-prod"><a href="#Loader-dev-prod" class="headerlink" title="Loader dev prod"></a>Loader <code>dev</code> <code>prod</code></h3><p>为Loader指定作用范围可以加快我们的构建速度，提升开发体验。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.jsx?$/</span>,</span><br><span class="line">    use: [</span><br><span class="line">        <span class="string">"babel-loader"</span></span><br><span class="line">    ],</span><br><span class="line">    exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.jsx?$/</span>,</span><br><span class="line">    use: [</span><br><span class="line">        <span class="string">"babel-loader"</span></span><br><span class="line">    ],</span><br><span class="line">    include: <span class="regexp">/src/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="webpack-解析-resolve-dev"><a href="#webpack-解析-resolve-dev" class="headerlink" title="webpack 解析(resolve) dev"></a>webpack 解析(resolve) dev</h3><p>resolve的部分配置过多项，会导致webpack搜索范围变大，效率下降，如没有特殊需求，可以保持默认配置保持开发体验。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//解析模块时应该搜索的目录</span></span><br><span class="line">modules: [<span class="string">"node_modules"</span>] <span class="comment">//default</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//自动解析确定的扩展，不宜过多</span></span><br><span class="line">extensions: [<span class="string">".js"</span>, <span class="string">".json"</span>] <span class="comment">//default</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//解析目录时要使用的文件名，不宜过多</span></span><br><span class="line">mainFiles: [<span class="string">"index"</span>] <span class="comment">//default</span></span><br></pre></td></tr></table></figure>
+<h3 id="webpack-外部扩展-Externals-dev-prod"><a href="#webpack-外部扩展-Externals-dev-prod" class="headerlink" title="webpack 外部扩展(Externals) dev prod"></a>webpack 外部扩展(Externals) <code>dev</code> <code>prod</code></h3><p>externals 配置选项提供了「从输出的 bundle 中排除依赖」的方法,什么意思呢？顾名思义，externals可以排除掉我们打包结果中某些依赖：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//排除react 我们打包后的bundle中没有react了</span></span><br><span class="line">externals: &#123;</span><br><span class="line">    <span class="comment">//将react指向一个全局变量 react</span></span><br><span class="line">    react: <span class="string">"react"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里的 "react" 会直接去全局变量中寻找</span></span><br><span class="line"><span class="keyword">import</span> react <span class="keyword">from</span> <span class="string">"react"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Dlls-优化构建速度-dev"><a href="#Dlls-优化构建速度-dev" class="headerlink" title="Dlls 优化构建速度 dev"></a>Dlls 优化构建速度 <code>dev</code></h3><p>webpack在每次build时都会将整个项目重新构建一遍，不管这个文件是否发生了改变(当然若文件未更改hash值不变),但是其实我们所依赖的三方库更改并不频繁，若是将三方库抽离出来单独构建，将构建好的目标和构建生成的json对照文件引如我们的项目，这样不用每次都去打包这些代码。</p>
+<blockquote>
+<p>使用 DllPlugin 将更改不频繁的代码进行单独编译。这将改善引用程序的编译速度，即使它增加了构建过程的复杂性。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//新建 webpack.dll.conf.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        vendor: [react, ...]</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'dll.[name].js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.DllPlugin(&#123;</span><br><span class="line">            path: <span class="string">'[name]-manifest.json'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//webpack.base.conf.js</span></span><br><span class="line"><span class="keyword">const</span> manifest = <span class="built_in">require</span>(<span class="string">'./vendor-manifest.json'</span>)</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">        manifest</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>最后需要手动将生成的dll.[name].js引入到html文件中去，当然这一步骤可以用assets-webpack-plugin插件优化。</p>
+<h3 id="图片等静态文件-dev-prod"><a href="#图片等静态文件-dev-prod" class="headerlink" title="图片等静态文件 dev prod"></a>图片等静态文件 <code>dev</code> <code>prod</code></h3><p>通常来说，我们会通过使用 <code>file-loader</code>，<code>url-loader</code> 等 loader 来处理项目中的静态文件，如图片字体等文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这样最终dist文件中就会生成font文件夹存放字体文件</span></span><br><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.(woff|svg|eot|ttf)\??.*$/</span>,</span><br><span class="line">    loader: <span class="string">"url-loader"</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">        limit: <span class="number">8192</span>,</span><br><span class="line">        name: <span class="string">"font/[name].[hash:6].[ext]"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>limit 属性是在文件大小超出 limit 的值才会单独打包，否则使用 base64 的方式引用，通常适用于小图片，这就是我们通常的文件处理方式。</p>
+<blockquote>
+<p>使用base64引入图片的好处是减少http请求数，但相应的问题是base64占用的空间比普通的图片文件大一点。</p>
+</blockquote>
+<h3 id="source-map-dev"><a href="#source-map-dev" class="headerlink" title="source map dev"></a>source map <code>dev</code></h3><p>在开发环境中，我们比较关注调试的方便程度，而原始 webpack 打包后的 bundle 文件中可能包含来自多个文件的内容，对于程序的报错信息往往简单的指向这个 bundle 文件</p>
+<p>而source map是为了帮助我们定位程序出现的错误对应的源代码的位置。使用sourceMap报错信息正确的指向了源码的错误位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 使用devtool选项配置，有多个选项可选</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    devtool: <span class="string">'inline-source-map'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2 使用plugins方式进行更细粒度的配置</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.SourceMapDevToolPlugin(&#123;</span><br><span class="line">            filename: <span class="string">'[name].js.map'</span>,</span><br><span class="line">            exclude: [<span class="string">'vendor.js'</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在使用uglifyjs-webpack-plugin时 需要开启sourceMap选项</span></span><br></pre></td></tr></table></figure>
+<h3 id="UglifyJsPlugin-配合-tree-shaking-prod"><a href="#UglifyJsPlugin-配合-tree-shaking-prod" class="headerlink" title="UglifyJsPlugin 配合 tree shaking prod"></a>UglifyJsPlugin 配合 tree shaking <code>prod</code></h3><h3 id="Split-CSS-prod"><a href="#Split-CSS-prod" class="headerlink" title="Split CSS prod"></a>Split CSS <code>prod</code></h3><p>将css放在js中引入势必会延缓css树的计算。 所以将css从js中分离，打包成单独的css文件，然后和js并行加载是我们项目的一个提升点，这样可以加快界面渲染速度，也可以单独做缓存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用插件 extract-text-webpack-plugin</span></span><br><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">    use: ExtractTextPlugin.extract(&#123;</span><br><span class="line">        <span class="comment">//用于css未被提取(allChunks: false）</span></span><br><span class="line">        fallback: <span class="string">"style-loader"</span>,</span><br><span class="line">        use: <span class="string">'css-loader'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> ExtractTextPlugin(&#123;</span><br><span class="line">    filename: <span class="string">'common.[chunkhash].css'</span>，</span><br><span class="line">    allchunk: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="清理-dist-文件夹-prod"><a href="#清理-dist-文件夹-prod" class="headerlink" title="清理 /dist 文件夹 prod"></a>清理 /dist 文件夹 <code>prod</code></h3><p>webpack将打包的文件放在dist文件夹中，若是使用了hash文件名，则每次文件变动后重新打包生成的文件名都会不同，这会造成dist目录越来越混乱，好的做法是每次打包前先清理dist文件夹：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> CleanWebpackPlugin(pathsToClean, cleanOptions)</span><br></pre></td></tr></table></figure>
+<h3 id="在内存中编译-dev"><a href="#在内存中编译-dev" class="headerlink" title="在内存中编译 dev"></a>在内存中编译 <code>dev</code></h3><p>webpack-dev-middleware 提供了在内存中编译功能，它在文件更改后自动编译文件并保存在内存中，具体表现为，刷新浏览器即可看到我们的更改。</p>
+<p>webpack-hot-middleware 提供了服务端推送功能，通常和 webpack-dev-middleware 配合使用，当文件更改并自动编译完成后，服务端通过 SSE(服务端发送事件)将更改信息推送到客户端，客户端会接收到一个 json 文件，其中包含了更改了的文件的一些信息,客户端会根据这些信息主动向服务端获取最新的文件。</p>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a href="https://auth0.com/blog/12-steps-to-a-faster-web-app/" target="_blank" rel="noopener">12 Steps to a Faster Web App</a></li>
+<li><a href="https://mp.weixin.qq.com/s/htfuGiaHA8_85C1KP9ZYVA" target="_blank" rel="noopener">【第1082期】关键CSS和Webpack: 减少阻塞渲染的CSS的自动化解决方案</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651227090&amp;idx=1&amp;sn=2bf5e13805c72c7b4f462a6b1949c904&amp;chksm=bd495a568a3ed340ef689805f774cf6f3a868b9288abf26bebac61bf0dae4baa15d5caf0caf0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">【第1075期】webpack 应用编译优化之路</a></li>
+<li><a href="https://github.com/wy-ei/notebook/issues/34" target="_blank" rel="noopener">前端性能优化相关</a></li>
+<li><a href="https://github.com/wy-ei/notebook/issues/15" target="_blank" rel="noopener">《高性能网站建设指南》笔记</a></li>
+<li><a href="http://blog.csdn.net/mahoking/article/details/51472697" target="_blank" rel="noopener">web前端性能优化总结</a></li>
+<li><a href="http://web.jobbole.com/91025/" target="_blank" rel="noopener">2017前端性能优化清单</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651227090&amp;idx=1&amp;sn=2bf5e13805c72c7b4f462a6b1949c904&amp;chksm=bd495a568a3ed340ef689805f774cf6f3a868b9288abf26bebac61bf0dae4baa15d5caf0caf0&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">【第1075期】webpack 应用编译优化之路</a></li>
+<li><a href="https://juejin.im/post/5bf8166c518825719f208f59#comment" target="_blank" rel="noopener">webpack性能优化(上) - 掘金</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/性能/" rel="tag">#性能</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/20/无用/" rel="next" title="无用">
+                <i class="fa fa-chevron-left"></i> 无用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/24/如何创建并发布一个Chrome扩展应用/" rel="prev" title="如何创建并发布一个Chrome扩展应用">
+                如何创建并发布一个Chrome扩展应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能衡量指标"><span class="nav-text">性能衡量指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能监控"><span class="nav-text">性能监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载优化"><span class="nav-text">加载优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、减少HTTP请求"><span class="nav-text">1、减少HTTP请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、缓存"><span class="nav-text">2、缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、压缩HTML、CSS、JavaScript"><span class="nav-text">3、压缩HTML、CSS、JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、无阻塞"><span class="nav-text">4、无阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、使用首屏加载"><span class="nav-text">5、使用首屏加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、按需加载"><span class="nav-text">6、按需加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、预加载"><span class="nav-text">7、预加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、压缩图片"><span class="nav-text">8、压缩图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、减少-cookie"><span class="nav-text">9、减少 cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、避免重定向"><span class="nav-text">10、避免重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、异步加载第三方资源"><span class="nav-text">11、异步加载第三方资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、CDN-预热"><span class="nav-text">12、CDN 预热</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本执行优化"><span class="nav-text">脚本执行优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、CSS写在头部，JavaScript写在尾部或异步"><span class="nav-text">1、CSS写在头部，JavaScript写在尾部或异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、避免图片和-iframe-等的空-src"><span class="nav-text">2、避免图片和 iframe 等的空 src</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、尽量避免重设图片大小"><span class="nav-text">3、尽量避免重设图片大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、图片尽量避免使用DataURL"><span class="nav-text">4、图片尽量避免使用DataURL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、CSS优化"><span class="nav-text">三、CSS优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、尽量避免写在HTML标签中写Style属性"><span class="nav-text">1、尽量避免写在HTML标签中写Style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、避免CSS表达式"><span class="nav-text">2、避免CSS表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、移除空的CSS规则"><span class="nav-text">3、移除空的CSS规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、正确使用-Display-的属性"><span class="nav-text">4、正确使用 Display 的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、不滥用-Float"><span class="nav-text">5、不滥用 Float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、不滥用Web字体"><span class="nav-text">6、不滥用Web字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、不声明过多的-font-size"><span class="nav-text">7、不声明过多的 font-size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、值为-0-时不需要任何单位"><span class="nav-text">8、值为 0 时不需要任何单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、标准化各种浏览器前缀"><span class="nav-text">9、标准化各种浏览器前缀</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript执行优化"><span class="nav-text">JavaScript执行优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、减少重绘和回流"><span class="nav-text">1、减少重绘和回流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、缓存Dom选择与计算"><span class="nav-text">2、缓存Dom选择与计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Webpack相关"><span class="nav-text">Webpack相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、分割配置文件-dev-prod"><span class="nav-text">1、分割配置文件 dev prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、代码分离-prod"><span class="nav-text">2、代码分离 prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loader-dev-prod"><span class="nav-text">Loader dev prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-解析-resolve-dev"><span class="nav-text">webpack 解析(resolve) dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-外部扩展-Externals-dev-prod"><span class="nav-text">webpack 外部扩展(Externals) dev prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dlls-优化构建速度-dev"><span class="nav-text">Dlls 优化构建速度 dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片等静态文件-dev-prod"><span class="nav-text">图片等静态文件 dev prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#source-map-dev"><span class="nav-text">source map dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UglifyJsPlugin-配合-tree-shaking-prod"><span class="nav-text">UglifyJsPlugin 配合 tree shaking prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Split-CSS-prod"><span class="nav-text">Split CSS prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清理-dist-文件夹-prod"><span class="nav-text">清理 /dist 文件夹 prod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在内存中编译-dev"><span class="nav-text">在内存中编译 dev</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关文章"><span class="nav-text">相关文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

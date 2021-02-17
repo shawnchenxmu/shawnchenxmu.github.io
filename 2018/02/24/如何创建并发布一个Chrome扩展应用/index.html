@@ -1,0 +1,689 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="译文,前端,Chrome,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="原文链接：How to Create and Publish a Chrome Extension in 20 minutes  有没有想过自己创建一个 Chrome 扩展应用？看完这篇文章你将会发现这是多么的简单。按照下面这些步骤，你将会很快地将你的想法实现为真实的应用，并在 Chrome Web Store 上发布。 什么是 Chrome 扩展应用？通过 Chrome 扩展应用，你无需深入研究">
+<meta name="keywords" content="译文,前端,Chrome">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何创建并发布一个Chrome扩展应用">
+<meta property="og:url" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="原文链接：How to Create and Publish a Chrome Extension in 20 minutes  有没有想过自己创建一个 Chrome 扩展应用？看完这篇文章你将会发现这是多么的简单。按照下面这些步骤，你将会很快地将你的想法实现为真实的应用，并在 Chrome Web Store 上发布。 什么是 Chrome 扩展应用？通过 Chrome 扩展应用，你无需深入研究">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/1.jpeg">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/4.gif">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/5.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何创建并发布一个Chrome扩展应用">
+<meta name="twitter:description" content="原文链接：How to Create and Publish a Chrome Extension in 20 minutes  有没有想过自己创建一个 Chrome 扩展应用？看完这篇文章你将会发现这是多么的简单。按照下面这些步骤，你将会很快地将你的想法实现为真实的应用，并在 Chrome Web Store 上发布。 什么是 Chrome 扩展应用？通过 Chrome 扩展应用，你无需深入研究">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/24/如何创建并发布一个Chrome扩展应用/">
+
+
+  <title> 如何创建并发布一个Chrome扩展应用 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何创建并发布一个Chrome扩展应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-02-24T13:06:47+08:00" content="2018-02-24">
+              2018-02-24
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接：<a href="https://medium.freecodecamp.org/how-to-create-and-publish-a-chrome-extension-in-20-minutes-6dc8395d7153" target="_blank" rel="noopener">How to Create and Publish a Chrome Extension in 20 minutes</a></p>
+<p><img src="/2018/02/24/如何创建并发布一个Chrome扩展应用/1.jpeg" alt="cover"></p>
+<p>有没有想过自己创建一个 Chrome 扩展应用？看完这篇文章你将会发现这是多么的简单。按照下面这些步骤，你将会很快地将你的想法实现为真实的应用，并在 <a href="https://chrome.google.com/webstore/category/extensions" target="_blank" rel="noopener">Chrome Web Store</a> 上发布。</p>
+<h3 id="什么是-Chrome-扩展应用？"><a href="#什么是-Chrome-扩展应用？" class="headerlink" title="什么是 Chrome 扩展应用？"></a>什么是 Chrome 扩展应用？</h3><p>通过 Chrome 扩展应用，你无需深入研究浏览器的原生代码就能够轻易地为你的 Chrome 浏览器添加你想要的功能。最棒的是你可以使用 Web 开发人员最为熟悉的那些技术——HTML、CSS 和 JavaScript。如果你曾经构建过网页，那么创建扩展程序对你来说简直就像砍瓜切菜一般。唯一需要学习的就是如何通过 Chrome 公开的一些 JavaScript API 向 Chrome 添加功能。</p>
+<p>而对于还没有网站开发经验的，我建议你先从网上一些免费的资源开始入手熟悉，例如 <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener">freeCodeCamp</a>。</p>
+<h3 id="你的想法"><a href="#你的想法" class="headerlink" title="你的想法"></a>你的想法</h3><p>在开始开发之前，首先你要对你想构建的内容有个粗略的想法，不必非得是什么天马行空的创意，我们做这个只是为了有趣。在这里，我会告诉你我自己的想法以及如何将它实现。</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><p>有个叫 <a href="https://chrome.google.com/webstore/detail/unsplash-instant/pejkokffkapolfffcgbmdmhdelanoaih" target="_blank" rel="noopener">Unsplash</a> 的 Chrome 扩展应用，它能够让你在每次打开默认页时显示 <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> 的漂亮图片作为背景图，我用过一段时间，后来用了<a href="https://muz.li/" target="_blank" rel="noopener">Muzli</a> ，这个扩展应用能在默认页中推送一些关于设计的新闻或镜头。</p>
+<p>得益于这两个应用的灵感，作为一名电影爱好者，我的想法是每次打开新页面时会随机显示一部电影的图片作为背景图，当你滚动时会变为热门电影和电视节目的推送。</p>
+<p>那我们开始吧！</p>
+<h3 id="步骤-1：设置"><a href="#步骤-1：设置" class="headerlink" title="步骤 1：设置"></a>步骤 1：设置</h3><p>第一步是创建一个名为 <code>manifest.json</code> 的清单文件，这是一个 JSON 格式的元数据文件，其中包含应用的名称、说明、版本号等属性。这个文件将向 Chrome 说明这个扩展将做什么，以及它所需要的权限。</p>
+<p>在这个扩展应用中，我们需要一个权限获得 activeTab 的控制权，所以我们的 <code>manifest.json</code> 文件大概就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> “manifest_version”: 2,</span><br><span class="line"> “name”: “RaterFox”,</span><br><span class="line"> “description”: “The most popular movies and TV shows in your   default tab. Includes ratings, summaries and the ability to watch trailers.”,</span><br><span class="line"> “version”: “1”,</span><br><span class="line"> “author”: “Jake Prins”,</span><br><span class="line">&quot;browser_action&quot;: &#123;</span><br><span class="line">   &quot;default_icon&quot;: &quot;tab-icon.png&quot;,</span><br><span class="line">   “default_title”: “Have a good day”</span><br><span class="line"> &#125;,</span><br><span class="line">“chrome_url_overrides” : &#123;</span><br><span class="line">  “newtab”: “newtab.html”</span><br><span class="line">&#125;,</span><br><span class="line"> “permissions”: [“activeTab”]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如你所见，上面那段配置的意思是每当打开新标签页时呈现 HTML 文件是 <code>newtab.html</code>，所以我们要有 activeTab 的控制权，当用户安装这个扩展时，会有警告提示该扩展需要哪些权限。</p>
+<p><img src="/2018/02/24/如何创建并发布一个Chrome扩展应用/./2.png" alt="warning"></p>
+<p><code>manifest.json</code> 里面还有个有趣的配置是 <code>browser_action</code>。在上面的例子中我们用它来设置页面的标题，但是还有更多可配置的选择。举个例子，如果你想在每次点击地址栏中的扩展应用图标时都跳出一个弹出窗，你就可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">“browser_action”: &#123;</span><br><span class="line">  “default_popup”: “popup.html”,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p>现在，<code>popup.html</code> 将作为响应用户点击操作而渲染的弹出窗页面，它是一个标准的 HTML 页面，因此你尽可以发挥你的想象放入任何你想展示的东西。</p>
+<h3 id="步骤-2：测试一下"><a href="#步骤-2：测试一下" class="headerlink" title="步骤 2：测试一下"></a>步骤 2：测试一下</h3><p>下一步要做的是创建 <code>newtab.html</code> 文件，并输出一段 <code>Hello world</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Test&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Hello World!&lt;/h1&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>现在访问 <code>chrome://extensions</code> 看看是否行得通，请确保勾选了右上角的『开发者模式』复选框。</p>
+<p><img src="/2018/02/24/如何创建并发布一个Chrome扩展应用/./3.png" alt="extension"></p>
+<p>点击『加载已解压的扩展程序』并选择你的应用所在的目录。如果程序有效，你将在一个新页面中看到你的 『Hello world』</p>
+<h3 id="步骤-3：做的更好一点"><a href="#步骤-3：做的更好一点" class="headerlink" title="步骤 3：做的更好一点"></a>步骤 3：做的更好一点</h3><p>我们已经能够让我们的应用成功生效了，现在是时候把它弄得更好看一点了。我们可以在应用的目录下创建一个 <code>main.css</code> 文件来优化我们的样式，并且将其加载到 <code>newtab.html</code> 文件中。同理，如果你想加入 JavaScript 文件也是一样的道理。</p>
+<h3 id="完成计划"><a href="#完成计划" class="headerlink" title="完成计划"></a>完成计划</h3><p>我需要进一步完成电影扩展应用的 HTML，CSS，JS 部分，我觉得深入研究代码并不是重点，但是我想简单的过一下。</p>
+<p>我是这样做的：</p>
+<p>我需要一些好看的图片来作为背景，所以我在 JavaScript 文件当中调用了 <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDb API</a> 获取一些当下流行电影的图片，并将它们放进数组。每当页面载入时就从数组中随机选取一张图片并将其设置为背景图。我还在页面的右上角添加了日期，并且它还允许用户单击访问电影的 <a href="http://www.imdb.com/" target="_blank" rel="noopener">IMDb</a> 页面获取更多的信息。</p>
+<p>当用户向下滚动页面时，页面将变为当下流行电影的推送，我用的是和之前一样的 API 来创建电影卡片小窗口，包括封面、标题、评分和票房。当你点击这些卡片时，它会显示一个按钮，你可以点击观看预告片。</p>
+<h3 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h3><p>有了前面的 <code>manifest.json</code> 文件，以及一些简单的 HTML、CSS 和 JavaScript 文件，现在你的每一个新标签页的打开都充满着惊喜：</p>
+<p><img src="/2018/02/24/如何创建并发布一个Chrome扩展应用/4.gif" alt="result"></p>
+<h3 id="步骤-4：发布你的应用"><a href="#步骤-4：发布你的应用" class="headerlink" title="步骤 4：发布你的应用"></a>步骤 4：发布你的应用</h3><p>当你觉得你的扩展应用已经能实现你想要的功能，并且外观开起来不错，这时候你就该将它发布到 Chrome 应用商店了。点击 <a href="https://chrome.google.com/webstore/developer/dashboard" target="_blank" rel="noopener">这个链接</a> 跳转到应用商店（如果没有跳转，则系统会要求你先登录 Google 账户）。然后点击『Add new item』按钮，并且点击接受条款，接下来就会跳转到上传扩展程序的页面了，接着将应用的文件夹压缩，并上传压缩后的 ZIP 文件。</p>
+<p><img src="/2018/02/24/如何创建并发布一个Chrome扩展应用/./5.png" alt="publish"></p>
+<p>成功上传文件后，你将看到一个表单，你可以在里面添加一些关于你应用的信息，也可以添加图标、详细说明、或是上传一些截图等等。</p>
+<p>最好能用一些好看点的图片来展示你的应用，应用商店会用这些图片来宣传，你提供越多的图片，用户从中获取应用的特性也就越容易。发布前你可以点击预览按钮来看一下你对这个结果是否满意，搞定之后点击发布就完成啦。</p>
+<p>现在访问 <a href="https://chrome.google.com/webstore/category/extensions" target="_blank" rel="noopener">Chrome Web Store</a> ，通过标题搜索你的应用，看能不能搜得到（发布后可能需要等待一段时间），感兴趣的话你可以看看<a href="https://chrome.google.com/webstore/detail/raterfox-popular-movies-t/pbmdibcifmempicdafabdakcoamfobik" target="_blank" rel="noopener">我的项目</a>。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>作为一个 web 开发人员，在短时间内创建一个 Chrome 扩展应用是很容易的，你需要的只是一些基本的 HTML、CSS、JS 以及使用 Chrome 公开 API 的知识，在短短 20 分钟内你就能完成基本的设置，但是如果你要完成更完善的功能以及更优美的画面，那就要花费更多的时间和精力了。</p>
+<p>请尽管发挥你的想象，去创造一些好玩有趣的应用，如果在过程中有遇到什么困难，可以参考 Chrome 扩展应用的<a href="https://developer.chrome.com/extensions" target="_blank" rel="noopener">开发文档</a>。</p>
+<p>那么你还在犹豫啥呢？撸起袖子搞起来吧！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/译文/" rel="tag">#译文</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/Chrome/" rel="tag">#Chrome</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/22/前端性能/" rel="next" title="前端性能">
+                <i class="fa fa-chevron-left"></i> 前端性能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/25/客观/" rel="prev" title="客观">
+                客观 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Chrome-扩展应用？"><span class="nav-text">什么是 Chrome 扩展应用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你的想法"><span class="nav-text">你的想法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计划"><span class="nav-text">计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-1：设置"><span class="nav-text">步骤 1：设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-2：测试一下"><span class="nav-text">步骤 2：测试一下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-3：做的更好一点"><span class="nav-text">步骤 3：做的更好一点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成计划"><span class="nav-text">完成计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成果"><span class="nav-text">成果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤-4：发布你的应用"><span class="nav-text">步骤 4：发布你的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

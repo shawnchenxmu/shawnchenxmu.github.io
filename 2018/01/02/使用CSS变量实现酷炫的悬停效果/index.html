@@ -1,0 +1,681 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CSS,译文,前端,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="原文链接：Stunning hover effects with CSS variables 最近在 Grover 上看到一个有趣的悬停动画，由此受到启发，让鼠标悬停在按钮上然后按钮随着光标的移动出现渐变色。这个想法很简单，但结果却很惊艳。  那么如何实现这么一个酷炫的效果呢？其实远没有你想象的那么难。 找准定位我们首先要获取的就是鼠标的位置。 1234567document.querySelec">
+<meta name="keywords" content="CSS,译文,前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 CSS 变量实现酷炫的悬停效果">
+<meta property="og:url" content="http://yoursite.com/2018/01/02/使用CSS变量实现酷炫的悬停效果/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="原文链接：Stunning hover effects with CSS variables 最近在 Grover 上看到一个有趣的悬停动画，由此受到启发，让鼠标悬停在按钮上然后按钮随着光标的移动出现渐变色。这个想法很简单，但结果却很惊艳。  那么如何实现这么一个酷炫的效果呢？其实远没有你想象的那么难。 找准定位我们首先要获取的就是鼠标的位置。 1234567document.querySelec">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/01/02/使用CSS变量实现酷炫的悬停效果/1.gif">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 CSS 变量实现酷炫的悬停效果">
+<meta name="twitter:description" content="原文链接：Stunning hover effects with CSS variables 最近在 Grover 上看到一个有趣的悬停动画，由此受到启发，让鼠标悬停在按钮上然后按钮随着光标的移动出现渐变色。这个想法很简单，但结果却很惊艳。  那么如何实现这么一个酷炫的效果呢？其实远没有你想象的那么难。 找准定位我们首先要获取的就是鼠标的位置。 1234567document.querySelec">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/02/使用CSS变量实现酷炫的悬停效果/1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/02/使用CSS变量实现酷炫的悬停效果/">
+
+
+  <title> 使用 CSS 变量实现酷炫的悬停效果 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用 CSS 变量实现酷炫的悬停效果
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-02T22:54:58+08:00" content="2018-01-02">
+              2018-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接：<a href="https://blog.prototypr.io/stunning-hover-effects-with-css-variables-f855e7b95330" target="_blank" rel="noopener">Stunning hover effects with CSS variables</a></p>
+<p>最近在 <a href="https://getgrover.com/de-en/products/iphone-x-64gb" target="_blank" rel="noopener">Grover</a> 上看到一个有趣的悬停动画，由此受到启发，让鼠标悬停在按钮上然后按钮随着光标的移动出现渐变色。这个想法很简单，但结果却很惊艳。</p>
+<p><img src="/2018/01/02/使用CSS变量实现酷炫的悬停效果/./1.gif" alt="hover-result"></p>
+<p>那么如何实现这么一个酷炫的效果呢？其实远没有你想象的那么难。</p>
+<h3 id="找准定位"><a href="#找准定位" class="headerlink" title="找准定位"></a>找准定位</h3><p>我们首先要获取的就是鼠标的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">document.querySelector(&apos;.button&apos;).onmousemove = (e) =&gt; &#123;</span><br><span class="line">  const x = e.pageX - e.target.offsetLeft</span><br><span class="line">  const y = e.pageY - e.target.offsetTop</span><br><span class="line">  e.target.style.setProperty(&apos;--x&apos;, `$&#123; x &#125;px`)</span><br><span class="line">  e.target.style.setProperty(&apos;--y&apos;, `$&#123; y &#125;px`)</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>获取 <code>.button</code> 元素，并监听 <code>onmousemove</code> 事件。</li>
+<li>获取光标在元素中的相对位置。</li>
+<li>将坐标存储在 CSS 变量当中。</li>
+</ol>
+<p>让你的 CSS 获取到用户鼠标的位置，9 行代码就够了。接下来我们来完成 CSS 的部分。</p>
+<h3 id="动态渐变"><a href="#动态渐变" class="headerlink" title="动态渐变"></a>动态渐变</h3><p>我们已经将光标的位置存储在了 CSS 变量当中，现在我们随时可以在 CSS 中访问到它了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">.button &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  appearance: none;</span><br><span class="line">  background: #f72359;</span><br><span class="line">  padding: 1em 2em;</span><br><span class="line">  border: none;</span><br><span class="line">  color: white;</span><br><span class="line">  font-size: 1.2em;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  outline: none;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  border-radius: 100px;</span><br><span class="line">  span &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;::before &#123;</span><br><span class="line">    --size: 0;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    position: absolute;</span><br><span class="line">    left: var(--x);</span><br><span class="line">    top: var(--y);</span><br><span class="line">    width: var(--size);</span><br><span class="line">    height: var(--size);</span><br><span class="line">    background: radial-gradient(circle closest-side, #4405f7, transparent);</span><br><span class="line">    transform: translate(-50%, -50%);</span><br><span class="line">    transition: width .2s ease, height .2s ease;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;:hover::before &#123;</span><br><span class="line">    --size: 400px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将文字包裹在 <code>span</code> 标签中，以免渐变效果将其覆盖。</li>
+<li>将 <code>width</code> 和 <code>height</code> 的初始值设置为 <code>0px</code>，终止为 <code>400px</code>，这样当用户将光标悬停在按钮上时，就会有一个动画效果。</li>
+<li>让坐标随着鼠标的移动而改变</li>
+<li>对 <code>background</code> 应用 <code>radial-gradient</code> 效果，并设置为 <code>closest-side circle</code>。</li>
+</ol>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>就这么简单，再添加上 HTML 的部分就大功告成啦！</p>
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fcodepen.io%2Felecterious%2Fembed%2Fpreview%2FMQrRxX%3Fheight%3D600%26slug-hash%3DMQrRxX%26default-tabs%3Dcss%2Cresult%26host%3Dhttps%3A%2F%2Fcodepen.io%26embed-version%3D2&amp;url=https%3A%2F%2Fcodepen.io%2Felecterious%2Fpen%2FMQrRxX&amp;image=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fi.cdpn.io%2F136245.MQrRxX.small.4187d5a4-c971-4cab-aa7c-4f5baecd2f10.png&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=codepen" allowfullscreen frameborder="0" width="100%" height="500px" scrolling="no"></iframe>
+
+<h3 id="其他花样"><a href="#其他花样" class="headerlink" title="其他花样"></a>其他花样</h3><p>基于对光标的响应能够做出许多有意思的创意。</p>
+<p>这是我在网站 <a href="https://basicscroll.electerious.com/" target="_blank" rel="noopener">basicScroll</a> 中应用的类似效果。</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="en" dir="ltr">May the hover be with you <a href="https://t.co/2jrmVorLRW" target="_blank" rel="noopener">pic.twitter.com/2jrmVorLRW</a></p>&mdash; Tobias Reich (@electerious) <a href="https://twitter.com/electerious/status/957688130269786112?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">2018年1月28日</a></blockquote></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>一个 3D 视角的按钮：</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="en" dir="ltr">3D parallax button with JS controlled CSS variables <a href="https://twitter.com/CodePen?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">@CodePen</a> 🎉 <a href="https://t.co/qE0woiNip8" target="_blank" rel="noopener">https://t.co/qE0woiNip8</a> <a href="https://t.co/Wyi0xjRzPq" target="_blank" rel="noopener">pic.twitter.com/Wyi0xjRzPq</a></p>&mdash; Tobias Reich (@electerious) <a href="https://twitter.com/electerious/status/789582380889669632?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">2016年10月21日</a></blockquote></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>相关文章:<br><a href="http://alloween.top/2018/02/27/5%E5%88%86%E9%92%9F%E4%BA%86%E8%A7%A3CSS%E5%8F%98%E9%87%8F/" target="_blank" rel="noopener">5 分钟了解 CSS 变量</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/译文/" rel="tag">#译文</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/21/获取站点图标的两种方法/" rel="next" title="获取站点图标的两种方法">
+                <i class="fa fa-chevron-left"></i> 获取站点图标的两种方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/20/Closures/" rel="prev" title="Closures">
+                Closures <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#找准定位"><span class="nav-text">找准定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态渐变"><span class="nav-text">动态渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-text">结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他花样"><span class="nav-text">其他花样</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

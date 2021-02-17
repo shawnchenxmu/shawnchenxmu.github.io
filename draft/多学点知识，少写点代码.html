@@ -1,0 +1,1140 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content=",,,,,,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Write less, do more.   最近花了几天时间看了一些jquery的相关教程，学习了一下，感觉这个jquery真的是前端开发利器啊，之前要用js原生的api和DOM写一大段代码才能解决的问题在jquery这里只要简单几句，真是凶猛！ jQuery对象和DOM对象的相互转换在讨论jQuery对象和DOM对象的相互转换之前，先约定好定义变量的风格，如果获取的对象是jQuery对象，那么">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="website">
+<meta property="og:title" content="多学点知识，少写点代码">
+<meta property="og:url" content="http://yoursite.com/draft/多学点知识，少写点代码.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="Write less, do more.   最近花了几天时间看了一些jquery的相关教程，学习了一下，感觉这个jquery真的是前端开发利器啊，之前要用js原生的api和DOM写一大段代码才能解决的问题在jquery这里只要简单几句，真是凶猛！ jQuery对象和DOM对象的相互转换在讨论jQuery对象和DOM对象的相互转换之前，先约定好定义变量的风格，如果获取的对象是jQuery对象，那么">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多学点知识，少写点代码">
+<meta name="twitter:description" content="Write less, do more.   最近花了几天时间看了一些jquery的相关教程，学习了一下，感觉这个jquery真的是前端开发利器啊，之前要用js原生的api和DOM写一大段代码才能解决的问题在jquery这里只要简单几句，真是凶猛！ jQuery对象和DOM对象的相互转换在讨论jQuery对象和DOM对象的相互转换之前，先约定好定义变量的风格，如果获取的对象是jQuery对象，那么">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/draft/多学点知识，少写点代码.html">
+
+
+  <title>
+  
+
+  
+    多学点知识，少写点代码 | Shawnchen / XMU 。
+  
+</title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <blockquote class="blockquote-center" style="font-size: 30px;">Write less, do more.<br></blockquote>
+
+
+<p>最近花了几天时间看了一些jquery的相关教程，学习了一下，感觉这个jquery真的是前端开发利器啊，之前要用js原生的api和DOM写一大段代码才能解决的问题在jquery这里只要简单几句，真是凶猛！</p>
+<h2 id="jQuery对象和DOM对象的相互转换"><a href="#jQuery对象和DOM对象的相互转换" class="headerlink" title="jQuery对象和DOM对象的相互转换"></a>jQuery对象和DOM对象的相互转换</h2><p>在讨论jQuery对象和DOM对象的相互转换之前，先约定好定义变量的风格，如果获取的对象是jQuery对象，那么在变量前面加上<code>$</code>，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var $variable = jQuery;</span><br></pre></td></tr></table></figure>
+<p>如果获取的是DOM对象，则定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var variable = DOM;</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery对象转换成DOM对象"><a href="#jQuery对象转换成DOM对象" class="headerlink" title="jQuery对象转换成DOM对象"></a>jQuery对象转换成DOM对象</h3><p>jQuery提供了两种方法将一个jQuery对象转换成DOM对象，即[index]和get(index)。</p>
+<p>（1）jQuery对象是一个类似数组的对象，可以通过[index]的方法得到相应的DOM对象。<br>jQuery代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $cr = $(&quot;#cr&quot;);     //jQuery对象</span><br><span class="line">var cr = $cr[0];        //DOM对象</span><br></pre></td></tr></table></figure>
+<p>（2）另一种方法是jQuery本身提供的，通过get(index)方法得到相应的DOM对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $cr = $(&quot;#cr&quot;);     //jQuery对象</span><br><span class="line">var cr = $cr.get(0);        //DOM对象</span><br></pre></td></tr></table></figure>
+<h3 id="DOM-对象转成jQuery对象"><a href="#DOM-对象转成jQuery对象" class="headerlink" title="DOM 对象转成jQuery对象"></a>DOM 对象转成jQuery对象</h3><p>对于一个DOM对象，只需要用$()把DOM对象包装起来，就可以获得一个jQuery对象了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cr = document.getElementById(&quot;cr&quot;);         //DOM对象</span><br><span class="line">var $cr = $(cr);    //jQuery对象</span><br></pre></td></tr></table></figure>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>语法</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标签选择器</td>
+<td>E { }</td>
+<td>以文档元素作为选择符</td>
+<td>td { font-size: 14px;}</td>
+</tr>
+<tr>
+<td>ID选择器</td>
+<td>#ID{ }</td>
+<td>以文档元素的唯一标识符ID作为选择符</td>
+<td>#note{ }</td>
+</tr>
+<tr>
+<td>类选择器</td>
+<td>E.className{ }</td>
+<td>以文档元素的class作为选择符</td>
+<td>div.note{ } .dream{ }</td>
+</tr>
+<tr>
+<td>群组选择器</td>
+<td>E1,E2,E3{ }</td>
+<td>多个选择符应用同样的样式规则</td>
+<td>td.p, div.a{ }</td>
+</tr>
+<tr>
+<td>后代选择器</td>
+<td>E F{ }</td>
+<td>元素E的任意后代元素F</td>
+<td>#link a{ }</td>
+</tr>
+<tr>
+<td>通配选择符</td>
+<td>*{ }</td>
+<td>以文档的所有元素作为选择符</td>
+<td>*{ }</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h2><p>jQuery中的选择器完全继承了CSS的风格，二者有极其相似的地方。</p>
+<p>CSS获取元素的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.demo&#123;      //给class为demo的元素添加样式</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jQuery获取到元素的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;.demo&quot;)&#123;     //给class为demo的元素添加行为</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#id</td>
+<td>根据给定的id匹配一个元素</td>
+<td>单个元素</td>
+<td>$(“#test”)选取id为test的元素</td>
+</tr>
+<tr>
+<td>.class</td>
+<td>根据给定的类名匹配元素</td>
+<td>集合元素</td>
+<td>$(“.test”)选取所有class为test的元素</td>
+</tr>
+<tr>
+<td>element</td>
+<td>根据给定的元素名匹配元素</td>
+<td>集合元素</td>
+<td>$(“p”)选取所有的<code>&lt;p&gt;</code>元素</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配所有元素</td>
+<td>集合元素</td>
+<td>$(“*”)选取所有元素</td>
+</tr>
+<tr>
+<td>selector1, selector2, …</td>
+<td>将每一个选择器匹配到的元素合并后一起返回</td>
+<td>集合元素</td>
+<td>$(“div, span, p.myClass”)选取所有<div>,<span>,和拥有class为myClass的<p>标签的一组元素</p></span></div></td>
+</tr>
+</tbody>
+</table>
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“ancestor descendant”)</td>
+<td>选取ancestor元素里的所有descendant（后代）元素</td>
+<td>集合元素</td>
+<td>$(”div span“)选取<div>里的所有的<span>元素</span></div></td>
+</tr>
+<tr>
+<td>$(“parent&gt;child”)</td>
+<td>选取parent元素下的child元素，与$(“ancestor descendant”)有区别，$(“ancestor descendant”)选择的是后代元素</td>
+<td>集合元素</td>
+<td>$(“div&gt;span”)选取<div>元素下元素名是<span>的子元素</span></div></td>
+</tr>
+<tr>
+<td>$(“prev+next”)</td>
+<td>选取紧接在prev元素后的next元素</td>
+<td>集合元素</td>
+<td>$(”.one+div“)选取class为one的下一个<div>同辈元素</div></td>
+</tr>
+<tr>
+<td>$(”prev~siblings“)</td>
+<td>选取prev元素之后所有的siblings元素</td>
+<td>集合元素</td>
+<td>$(”#two~div“)选取id为two的元素后面的所有<div>同辈元素</div></td>
+</tr>
+</tbody>
+</table>
+<h3 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h3><h4 id="基本过滤选择器"><a href="#基本过滤选择器" class="headerlink" title="基本过滤选择器"></a>基本过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:first</td>
+<td>选取第一个元素</td>
+<td>单个元素</td>
+<td>$(”div:first“)选取所有的<code>&lt;div&gt;</code>元素中第1个<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:last</td>
+<td>选取最后一个元素</td>
+<td>单个元素</td>
+<td>$(”div:last“)选取所有的<code>&lt;div&gt;</code>元素中最后一个<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:not(selector)</td>
+<td>去除所有与给定选择器匹配的元素</td>
+<td>集合元素</td>
+<td>$(“input:not(.myClass)”)选取class不是myClass的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:even</td>
+<td>选取索引是偶数的所有元素，索引从0开始</td>
+<td>集合元素</td>
+<td>$(“input:even”)选取索引是偶数的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:odd</td>
+<td>选取索引是奇数的所有元素，索引从0开始</td>
+<td>集合元素</td>
+<td>$(“input:odd”)选取索引是奇数的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:eq(index)</td>
+<td>选取索引等于index的元素（index从0开始）</td>
+<td>集合元素</td>
+<td>$(“input:eq(1)”)选取索引等于1的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:gt(index)</td>
+<td>选取索引大于index的元素（index从0开始）</td>
+<td>集合元素</td>
+<td>$(“input:gt(1)”)选取索引大于1的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:lt(index)</td>
+<td>选取索引小于index的元素（index从0开始）</td>
+<td>集合元素</td>
+<td>$(“input:lt(1)”)选取索引小于1的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:header</td>
+<td>选取所有的标题元素，例如h1, h2, h3</td>
+<td>集合元素</td>
+<td>$(“:header”)选取网页中所有的<code>&lt;h1&gt;</code>,<code>&lt;h2&gt;</code>,<code>&lt;h3&gt;</code>…</td>
+</tr>
+<tr>
+<td>:animated</td>
+<td>选取当前正在执行动画的所有元素</td>
+<td>集合元素</td>
+<td>$(“div:animated”)选取正在执行动画的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:focus</td>
+<td>选取当前获取焦点的元素</td>
+<td>集合元素</td>
+<td>$(:focus)选取当前获取焦点的元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="内容过滤选择器"><a href="#内容过滤选择器" class="headerlink" title="内容过滤选择器"></a>内容过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th style="text-align:center">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:contains(text)</td>
+<td>选取含有文本内容为“text”的元素</td>
+<td>集合元素</td>
+<td style="text-align:center">$(“div:contains(‘我’)”)选取含有文本“我”的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:empty</td>
+<td>选取不包含子元素或者文本的空元素</td>
+<td>集合元素</td>
+<td style="text-align:center">$(“div:empty”)选取不包含子元素（包括文本元素）的<code>&lt;div&gt;</code>空元素</td>
+</tr>
+<tr>
+<td>:has(selector)</td>
+<td>选取含有选择器所匹配的元素的元素</td>
+<td>集合元素</td>
+<td style="text-align:center">$(“div:has(p)”)选取含有<code>&lt;p&gt;</code>元素的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:parent</td>
+<td>选取含有子元素或者文本的元素</td>
+<td>集合元素</td>
+<td style="text-align:center">$(“div:parent”)选取拥有子元素（包括文本元素）的<code>&lt;div&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可见性过滤选择器"><a href="#可见性过滤选择器" class="headerlink" title="可见性过滤选择器"></a>可见性过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:hidden</td>
+<td>选取所有不可见元素</td>
+<td>集合元素</td>
+<td>\$(“:hidden”)选取所有不可见元素。包括 <code>&lt;input type=&quot;hidden&quot;&gt;</code>, <code>&lt;div style=&quot;display:none&quot;&gt;</code>和<code>&lt;div style=&quot;visibility:hidden;&quot;&gt;</code>等元素。如果只想选取<code>&lt;input&gt;</code>元素，可以使用$(“input:hidden”)</td>
+</tr>
+<tr>
+<td>:visible</td>
+<td>选取所有可见的元素</td>
+<td>集合元素</td>
+<td>$(“div:visible”)选取所有可见的<code>&lt;div&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="属性过滤选择器"><a href="#属性过滤选择器" class="headerlink" title="属性过滤选择器"></a>属性过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[attribute]</td>
+<td>选取拥有此属性的元素</td>
+<td>集合元素</td>
+<td>$(“div[id]”)选取拥有属性id的元素</td>
+</tr>
+<tr>
+<td>[attribute = value]</td>
+<td>选取属性值为value的元素</td>
+<td>集合元素</td>
+<td>$(“div[title = test]”)选取属性title为“test”的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>[attribute != value]</td>
+<td>选取属性值不等于value的元素</td>
+<td>集合元素</td>
+<td>$(“div[title != test]”)选取属性title不等于“test”的<code>&lt;div&gt;</code>元素（注意：没有属性title的<code>&lt;div&gt;</code>元素也会被选取）</td>
+</tr>
+<tr>
+<td>[attribute\^=value]</td>
+<td>选取属性值以value开始的元素</td>
+<td>集合元素</td>
+<td>$(“div[title\^=test]”)选取属性title以“test”开始的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>[attribute$=value]</td>
+<td>选取属性值以value结束的元素</td>
+<td>集合元素</td>
+<td>\$(“div[title$=test]”)选取属性title以“test”结束的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>[attribute*=value]</td>
+<td>选取属性的值含有value的元素</td>
+<td>集合元素</td>
+<td>$(“div[title*=test]”)选取属性title含有“test”的<code>&lt;div&gt;</code>元素</td>
+</tr>
+<tr>
+<td>[attribute｜=value]</td>
+<td>选取属性等于给定字符串或以该字符串为前缀（该字符串后跟一个连字符“-”）的元素</td>
+<td>集合元素</td>
+<td>$(“div[title｜=‘en’]”)选取属性title等于en或以en为前缀的元素</td>
+</tr>
+<tr>
+<td>[attribute~=value]</td>
+<td>选取属性用空格分隔的值中包含一个给定值的元素</td>
+<td>集合元素</td>
+<td>\$(“div[title~=‘uk’]”)选取属性title用空格分隔的值中包含字符uk的元素</td>
+</tr>
+<tr>
+<td>[attribute1][attribute2][attributeN]</td>
+<td>用属性选择器合并成一个复合属性选择器，满足多个条件。每选择一次，缩小一次范围</td>
+<td>集合元素</td>
+<td>\$(“div[id][title$=’test’]”)选取拥有属性id，并且属性title以“test”结束的<code>&lt;div&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素过滤选择器"><a href="#子元素过滤选择器" class="headerlink" title="子元素过滤选择器"></a>子元素过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:nth-child(index/even/odd)</td>
+<td>选取每个父元素下的第index个子元素或者奇偶元素（index从1算起）</td>
+<td>集合元素</td>
+<td>:eq(index)只匹配一个元素，而:nth-child将为每一个父元素匹配子元素，并且:nth-child(index)的index是从1算起的</td>
+</tr>
+<tr>
+<td>:first-child</td>
+<td>选取每个父元素的最后一个子元素</td>
+<td>集合元素</td>
+<td>:first只返回单个元素，而:first-child选择符将为每个父元素匹配第一个子元素。例如$(“ul li:first-child”);选取每个<code>&lt;ul&gt;</code>中第一个<code>&lt;li&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:last-child</td>
+<td>选取每个父元素的最后一个子元素</td>
+<td>集合元素</td>
+<td>同样，:last只返回单个元素，而:last-child选择符将为每个父元素匹配最后一个子元素。</td>
+</tr>
+<tr>
+<td>:only-child</td>
+<td>如果某个元素是它父元素中唯一的子元素，那么将会被匹配。如果父元素中含有其他元素，则不会被匹配</td>
+<td>集合元素</td>
+<td>$(“ul li:only-child”)在<code>&lt;ul&gt;</code>中选取是唯一子元素的<code>&lt;li&gt;</code>元素</td>
+</tr>
+</tbody>
+</table>
+<h4 id="表单对象属性过滤选择器"><a href="#表单对象属性过滤选择器" class="headerlink" title="表单对象属性过滤选择器"></a>表单对象属性过滤选择器</h4><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:enable</td>
+<td>选取所有可用的元素</td>
+<td>集合元素</td>
+<td>$(“#form :enable”); 选取id为“form”的表单内的所有可用元素</td>
+</tr>
+<tr>
+<td>:disable</td>
+<td>选取所有不可用元素</td>
+<td>集合元素</td>
+<td>$(“#form :disable”)选取id为“form”的表单内的所有不可用元素</td>
+</tr>
+<tr>
+<td>:checked</td>
+<td>选取所有被选中的元素（单选框，复选框）</td>
+<td>集合元素</td>
+<td>$(“input :checked”); 选取所有被选中的<code>&lt;input&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:selected</td>
+<td>选取所有被选中的选项元素（下拉列表）</td>
+<td>集合元素</td>
+<td>$(“select option:selected”); 选取所有被选中的选项元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+<th>返回</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:input</td>
+<td>选取所有的<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>和<code>&lt;select&gt;</code>和<code>&lt;button&gt;</code>元素</td>
+<td>集合元素</td>
+<td>$(“:input”)选取所有<code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code>和<code>&lt;button&gt;</code>元素</td>
+</tr>
+<tr>
+<td>:text</td>
+<td>选取所有的单行文本框</td>
+<td>集合元素</td>
+<td>$(“:text”)选取所有的单行文本框</td>
+</tr>
+<tr>
+<td>:password</td>
+<td>选取所有的密码框</td>
+<td>集合元素</td>
+<td>$(“:password”)选取所有的密码框</td>
+</tr>
+<tr>
+<td>:radio</td>
+<td>选取所有的单选框</td>
+<td>集合元素</td>
+<td>$(“:radio”)选取所有的单选框</td>
+</tr>
+<tr>
+<td>:checkbox</td>
+<td>选取所有的多选框</td>
+<td>集合元素</td>
+<td>$(“:checkbox”)选取所有的多选框</td>
+</tr>
+<tr>
+<td>:submit</td>
+<td>选取所有的提交按钮</td>
+<td>集合元素</td>
+<td>$(“:submit”)选取所有的提交按钮</td>
+</tr>
+<tr>
+<td>:image</td>
+<td>选取所有的图像按钮</td>
+<td>集合元素</td>
+<td>$(“:image”)选取所有的图像按钮</td>
+</tr>
+<tr>
+<td>:reset</td>
+<td>选取所有的重置按钮</td>
+<td>集合元素</td>
+<td>$(“:reset”)选取所有的重置按钮</td>
+</tr>
+<tr>
+<td>:button</td>
+<td>选取所有的按钮</td>
+<td>集合元素</td>
+<td>$(“:button”)选取所有的按钮</td>
+</tr>
+<tr>
+<td>:file</td>
+<td>选取所有的上传域</td>
+<td>集合元素</td>
+<td>$(“:file”)选取所有的上传域</td>
+</tr>
+<tr>
+<td>:hidden</td>
+<td>选取所有不可见元素</td>
+<td>集合元素</td>
+<td>$(“:hidden”)选取所有不可见元素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jQuery中的DOM操作"><a href="#jQuery中的DOM操作" class="headerlink" title="jQuery中的DOM操作"></a>jQuery中的DOM操作</h2><h3 id="查找节点"><a href="#查找节点" class="headerlink" title="查找节点"></a>查找节点</h3><h4 id="查找元素节点"><a href="#查找元素节点" class="headerlink" title="查找元素节点"></a>查找元素节点</h4><p>使用jQuery在文档树上查找节点非常容易，可以通过前面的jQuery选择器来完成。</p>
+<h4 id="查找属性节点"><a href="#查找属性节点" class="headerlink" title="查找属性节点"></a>查找属性节点</h4><p>使用<code>attr()</code>方法可以获取节点的属性值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $para = $(&quot;p&quot;);  //获取&lt;p&gt;节点</span><br><span class="line">var p_txt = $para.attr(&quot;title&quot;);    //获取元素节点属性title</span><br></pre></td></tr></table></figure>
+<h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><h4 id="创建元素节点"><a href="#创建元素节点" class="headerlink" title="创建元素节点"></a>创建元素节点</h4><p>可以使用jQuery的工厂函数<code>$()</code>来完成，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(html);</span><br></pre></td></tr></table></figure>
+<p><code>$(html)</code>方法会根据传入的HTML标记字符串，创建一个DOM对象，并将这个DOM对象包装成一个jQuery对象后返回。</p>
+<h4 id="创建文本节点"><a href="#创建文本节点" class="headerlink" title="创建文本节点"></a>创建文本节点</h4><p>与上面的类似，创建文本节点就是在创建元素节点时直接把文本内容写出来，然后使用<code>append()</code>等方法将它们添加到文档中就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $li_1 = $(&quot;&lt;li&gt;香蕉&lt;/li&gt;&quot;);       //创建一个&lt;li&gt;元素，包括元素节点和文本节点</span><br><span class="line">$(&quot;ul&quot;).append($li_1);      //添加到&lt;ul&gt;节点中，使之能够在网页中显示</span><br></pre></td></tr></table></figure>
+<h4 id="创建属性节点"><a href="#创建属性节点" class="headerlink" title="创建属性节点"></a>创建属性节点</h4><p>创建属性节点与创建文本节点类似，也是直接在创建元素节点时一起创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var $li_1 = $(&apos;&lt;li title=&quot;香蕉&quot;&gt;香蕉&lt;/li&gt;&apos;);        //创建一个&lt;li&gt;元素，包括元素节点、文本节点和属性节点</span><br></pre></td></tr></table></figure>
+<h3 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h3><p>动态创建HTML元素并没有实际用处，还需要将新创建的元素节点插入文档中。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>append()</td>
+<td>向每个匹配的元素<strong>内部</strong>追加内容</td>
+</tr>
+<tr>
+<td>appendTo()</td>
+<td>将所有匹配的元素追加到指定的元素中。实际上，使用该方法是颠倒了常规的$(A).append(B)的操作</td>
+</tr>
+<tr>
+<td>prepend()</td>
+<td>向每个匹配的元素<strong>内部</strong>前置内容</td>
+</tr>
+<tr>
+<td>prependTo()</td>
+<td>道理同appendTo()</td>
+</tr>
+<tr>
+<td>after</td>
+<td>在每个匹配的元素<strong>之后</strong>插入内容</td>
+</tr>
+<tr>
+<td>insertAfter</td>
+<td>道理同appendTo()</td>
+</tr>
+<tr>
+<td>before()</td>
+<td>在每个匹配的元素<strong>之前</strong>插入内容</td>
+</tr>
+<tr>
+<td>insertBefore()</td>
+<td>道理同appendTo()</td>
+</tr>
+</tbody>
+</table>
+<p>这些插入节点的方法不仅能将新创建的DOM元素插入到文档中，也能对原有的DOM元素进行移动。</p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><p>jQuery提供了三种删除节点的方法，即<code>remove()</code>、<code>detach()</code>和<code>empty()</code></p>
+<h4 id="remove-方法"><a href="#remove-方法" class="headerlink" title="remove()方法"></a><code>remove()</code>方法</h4><p>作用是从DOM中删除所有匹配的元素，传入的参数用于根据jQuery表达式来筛选元素。<br>例如删除<code>&lt;ul&gt;</code>节点中的第2个<code>&lt;li&gt;</code>元素节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;ul li:eq(1)&quot;).remove();      //获取第2个&lt;li&gt;元素节点后，将它从网页中删除</span><br></pre></td></tr></table></figure>
+<p>当某个节点用<code>remove()</code>方法删除之后，该节点所包含的所有后代节点将同时被删除。这个方法的返回值是一个指向已被删除的节点的引用，因此可以在以后再使用这些元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $li = $(&quot;ul li:eq(1)&quot;).remove();        //获取第2个&lt;li&gt;节点后，将它从网页中删除</span><br><span class="line">$li.appendTo(&quot;ul&quot;);         //把刚才删除的节点又重新添加到&lt;ul&gt;元素里</span><br></pre></td></tr></table></figure>
+<p>另外<code>remove()</code>方法也可以通过传递参数来选择性地删除元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;ul li&quot;).remove(&quot;li[title!=菠萝]&quot;);     //将&lt;li&gt;元素中属性title不等于“菠萝”的&lt;li&gt;元素删除</span><br></pre></td></tr></table></figure>
+<h4 id="detach-方法"><a href="#detach-方法" class="headerlink" title="detach()方法"></a><code>detach()</code>方法</h4><p><code>detach()</code>和<code>remove()</code>一样，也是从DOM中去掉所有匹配的元素。而且这个被删除的元素也可以在将来使用，与<code>remove()</code>不同的是，所有绑定的事件、附加的数据等都会保留下来。</p>
+<h4 id="empty-方法"><a href="#empty-方法" class="headerlink" title="empty()方法"></a><code>empty()</code>方法</h4><p><code>empty()</code>方法可以清空节点，它能清空元素中的所有后代节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;ul li:eq(1)&quot;).empty();   //获取第2个&lt;li&gt;元素节点后，清空此元素里的内容，注意是**元素里**</span><br></pre></td></tr></table></figure>
+<h3 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h3><p>可以使用<code>clone()</code>方法来复制节点，例如单击<code>&lt;li&gt;</code>元素后需要再复制一个<code>&lt;li&gt;</code>元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;ul li&quot;).click(function()&#123;</span><br><span class="line">    $(this).clone().appendTo(&quot;ul&quot;);     //复制当前单击的节点，并将它追加到&lt;ul&gt;元素中</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>复制节点后，被复制的新元素不具有任何行为。如果需要新元素也具有复制功能，可以使用如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(this).clone(true).appendTo(&quot;body&quot;);       //注意参数true</span><br></pre></td></tr></table></figure>
+<p>在<code>clone()</code>方法中传递了一个参数<code>true</code>，它的含义是复制元素的同时复制元素中所绑定的事件。</p>
+<h3 id="替换节点"><a href="#替换节点" class="headerlink" title="替换节点"></a>替换节点</h3><p>如果要替换某个节点，jQuery提供了相应的方法，即<code>replaceWith()</code>和<code>replaceAll()</code>。</p>
+<p><code>replaceWith()</code>方法的作用是将所有匹配的元素替换成指定的HTML或者DOM元素。例如将网页中“<code>&lt;p title=&quot;你最喜欢的水果&quot;&gt;你最喜欢的水果是？&lt;/p&gt;</code>”替换成<code>“&lt;strong&gt;你最不喜欢的水果是？&lt;/strong&gt;”</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).replaceWith(&quot;&lt;strong&gt;你最不喜欢的水果是？&lt;/strong&gt;&quot;);</span><br></pre></td></tr></table></figure>
+<p>也可以使用jQuery中另一个方法<code>replaceAll()</code>来实现，该方法与<code>replaceWith()</code>方法的作用相同，只是颠倒了<code>replaceWith()</code>的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;&lt;strong&gt;你最不喜欢的水果是？&lt;/strong&gt;&quot;)。replaceAll(&quot;p&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="包裹节点"><a href="#包裹节点" class="headerlink" title="包裹节点"></a>包裹节点</h3><p>如果要将某个节点用其他标记包裹起来，jQuery提供了<code>wrap()</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;strong&quot;).wrap(&quot;&lt;b&gt;&lt;/b&gt;&quot;);        //用&lt;b&gt;标签把&lt;strong&gt;元素包裹起来</span><br></pre></td></tr></table></figure>
+<p>得到的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;b&gt;&lt;strong title=&quot;选择你最喜欢的水果.&quot;&gt;你最喜欢的水果是？&lt;/strong&gt;&lt;/b&gt;</span><br></pre></td></tr></table></figure>
+<p>包裹节点的操作还有其他两个方法，即<code>wrapAll()</code>和<code>wrapInner()</code>。</p>
+<h4 id="wrapAll-方法"><a href="#wrapAll-方法" class="headerlink" title="wrapAll()方法"></a><code>wrapAll()</code>方法</h4><p>该方法会将所有匹配的元素用一个元素来包裹。它不同于<code>wrap()</code>方法，<code>wrap()</code>方法是将所有的元素进行单独的包裹。</p>
+<p><strong>注意</strong><br>如果被包裹的多个元素间有其他元素，其他元素会被放到包裹元素之后。</p>
+<h4 id="wrapInner-方法"><a href="#wrapInner-方法" class="headerlink" title="wrapInner()方法"></a><code>wrapInner()</code>方法</h4><p>该方法是将每一个匹配的元素的子内容（包括文本节点）用其他结构化的标记包裹起来。例如可以使用它来包裹<code>&lt;strong&gt;</code>标签的子内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;strong&quot;).wrapInner(&quot;&lt;b&gt;&lt;/b&gt;&quot;);</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;strong title=&quot;选择你最喜欢的水果&quot;&gt;&lt;b&gt;你最喜欢的水果是？&lt;/b&gt;&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h3><p>在jQuery中，用<code>attr()</code>方法来获取和设置元素属性，<code>removeAttr()</code>方法来删除元素属性。</p>
+<h4 id="获取属性和设置属性"><a href="#获取属性和设置属性" class="headerlink" title="获取属性和设置属性"></a>获取属性和设置属性</h4><p>如果要获取<code>&lt;p&gt;</code>元素的属性<code>title</code>，那么只要给<code>attr()</code>方法传递一个参数，即属性名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var $para = $(&quot;p&quot;);     //获取&lt;p&gt;节点</span><br><span class="line">var p_txt = $para.attr(&quot;title&quot;);        //获取&lt;p&gt;元素节点属性title</span><br></pre></td></tr></table></figure>
+<p>如果要设置<code>&lt;p&gt;</code><br>元素的属性<code>title</code>的值，也可以使用同一个方法，不同的是，需要传递两个参数：属性名称和对应的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).attr(&quot;title&quot;, &quot;your title&quot;);     //设置单个的属性值</span><br></pre></td></tr></table></figure>
+<p>如果需要一次性为同一个元素设置多个属性，可以使用下面的代码来实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).attr(&#123;&quot;title&quot;: &quot;your title&quot;, &quot;name&quot;: &quot;test&quot;&#125;);     //将一个“名/值”形式的对象设置为匹配元素的属性</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong></p>
+<p>jQuery中的很多方法都是同一个函数实现获取和设置的，例如上面的<code>attr()</code>方法，既能设置元素的属性值，也能获取元素的属性值。类似的还有<code>html()</code>、<code>text()</code>、<code>height()</code>、<code>width()</code>、<code>val()</code>、<code>css()</code>等方法。</p>
+<h4 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h4><p>在某些情况下，需要删除文档中某个元素的特定属性，可以使用<code>removeAttr()</code>方法来完成该任务。</p>
+<p>如果要删除<code>&lt;p&gt;</code>元素的<code>title</code>属性，可以使用下面的代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).removeAttr(&quot;title&quot;);     //删除&lt;p&gt;元素的title属性</span><br></pre></td></tr></table></figure>
+<h3 id="样式操作"><a href="#样式操作" class="headerlink" title="样式操作"></a>样式操作</h3><h4 id="获取样式和设置样式（attr-、addClass-）"><a href="#获取样式和设置样式（attr-、addClass-）" class="headerlink" title="获取样式和设置样式（attr()、addClass()）"></a>获取样式和设置样式（<code>attr()</code>、<code>addClass()</code>）</h4><p><code>class</code>也是<code>&lt;p&gt;</code>元素的属性，因此获取<code>class</code>和设置<code>class</code>都可以使用<code>attr()</code>方法来完成。</p>
+<p>如果需要<strong>添加</strong><code>class</code>，就需要用到<code>addClass()</code>方法。</p>
+<h4 id="移除样式（removeClass-）"><a href="#移除样式（removeClass-）" class="headerlink" title="移除样式（removeClass()）"></a>移除样式（<code>removeClass()</code>）</h4><p>如果要删除<code>class</code>的某个值可以使用<code>removeClass()</code>方法来完成，它的作用是从匹配的元素中删除全部或指定的<code>class</code>，当它不带参数的时候就会将<code>class</code>的值全部删除。</p>
+<h4 id="切换样式（toggle-、toggleClass-）"><a href="#切换样式（toggle-、toggleClass-）" class="headerlink" title="切换样式（toggle()、toggleClass()）"></a>切换样式（<code>toggle()</code>、<code>toggleClass()</code>）</h4><p><code>toggle()</code>方法的jQuery代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$toggleBtn.toggle(function()&#123;       //toggle()，交替一组动作</span><br><span class="line">    //显示元素      代码1</span><br><span class="line">&#125;, function ()&#123;</span><br><span class="line">    //隐藏元素      代码2</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>另外jQuery还提供了一个<code>toggleClass()</code>方法控制样式上的重复切换。如果类名存在则删除它，如果类名不存在则添加它。</p>
+<h4 id="判断是否含有某个样式"><a href="#判断是否含有某个样式" class="headerlink" title="判断是否含有某个样式"></a>判断是否含有某个样式</h4><p><code>hasClass()</code>方法可以用来判断元素中是否含有某个<code>class</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).hasClass(&quot;another&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="设置和获取HTML、文本和值"><a href="#设置和获取HTML、文本和值" class="headerlink" title="设置和获取HTML、文本和值"></a>设置和获取HTML、文本和值</h3><h4 id="html-方法"><a href="#html-方法" class="headerlink" title="html()方法"></a><code>html()</code>方法</h4><p>此方法类似于JavaScript中的<code>innerHTML</code>属性，可以用来读取或设置某个元素中的HTML内容</p>
+<h4 id="text-方法"><a href="#text-方法" class="headerlink" title="text()方法"></a><code>text()</code>方法</h4><p>此方法类似于JavaScript中的<code>innerText</code>属性，可以用来读取或者设置某个元素的文本内容。</p>
+<h4 id="val-方法"><a href="#val-方法" class="headerlink" title="val()方法"></a><code>val()</code>方法</h4><p>此方法类似于JavaScript中的<code>value</code>属性，可以用来设置和获取元素的值。无论是文本框、下拉列表还是单选框，它都可以返回元素的值。如果元素为多选，则返回一个包含所有选择的值的数组。</p>
+<h3 id="遍历节点"><a href="#遍历节点" class="headerlink" title="遍历节点"></a>遍历节点</h3><h4 id="children-方法"><a href="#children-方法" class="headerlink" title="children()方法"></a><code>children()</code>方法</h4><p>该方法用于取得匹配元素的子元素集合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;body&quot;).children()</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong><br><code>children()</code>方法只考虑子元素而不考虑其他后代元素</p>
+<h4 id="next-方法"><a href="#next-方法" class="headerlink" title="next()方法"></a><code>next()</code>方法</h4><p>该方法用于取得匹配元素后面紧邻的<strong>同辈元素</strong>。</p>
+<h4 id="prev-方法"><a href="#prev-方法" class="headerlink" title="prev()方法"></a><code>prev()</code>方法</h4><p>该方法用于取得匹配元素前面紧邻的<strong>同辈元素</strong>。</p>
+<h4 id="siblings-方法"><a href="#siblings-方法" class="headerlink" title="siblings()方法"></a><code>siblings()</code>方法</h4><p>该方法用于取得匹配元素前后所有的<strong>同辈元素</strong>。</p>
+<h4 id="closest-方法"><a href="#closest-方法" class="headerlink" title="closest()方法"></a><code>closest()</code>方法</h4><p>该方法用于取得最近的匹配元素。首先检查当前元素是否匹配，如果匹配则直接返回元素本身。如果不匹配则向上查找父元素，逐级向上直到找到匹配选择器的元素。如果什么都没找到则返回一个空的jQuery对象。</p>
+<p>例如，给点击的目标元素最近的li元素添加颜色，可以使用如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(document).bind(&quot;click&quot;, function(e)&#123;</span><br><span class="line">    $(e.target).closest(&quot;li&quot;).css(&quot;color&quot;, &quot;red&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="parent-parents-与closest-的区别"><a href="#parent-parents-与closest-的区别" class="headerlink" title="parent(),parents()与closest()的区别"></a><code>parent()</code>,<code>parents()</code>与<code>closest()</code>的区别</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>parent()</code></td>
+<td>获得集合中每个匹配元素的父级元素</td>
+<td><code>$(&#39;.item-1&#39;).parent().css(&#39;background-color&#39;, &#39;red&#39;);</code> <code>parent()</code>方法从指定类型的直接父节点开始查找。<code>parent()</code>返回一个元素节点</td>
+</tr>
+<tr>
+<td><code>parents()</code></td>
+<td>获得集合中每个匹配元素的祖先元素</td>
+<td><code>$(&#39;.item-1&#39;).parents().css(&#39;background-color&#39;, &#39;red&#39;);</code> <code>parents()</code>方法查找方式同<code>parent()</code>方法类似，不同的一点在于，当它找到第一个父节点时并没有停止查找，而是继续查找，最后返回多个<strong>父节点</strong></td>
+</tr>
+<tr>
+<td><code>closest()</code></td>
+<td>从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素</td>
+<td><code>$(&#39;.item-1&#39;).closest(&quot;ul&quot;).css(&#39;background-color&#39;, &#39;red&#39;);</code> <code>closest()</code>方法查找的是从包含自身的节点找起，它同<code>parents()</code>方法类似，不同点就在于它只返回匹配元素的第一个元素节点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="CSS-DOM操作"><a href="#CSS-DOM操作" class="headerlink" title="CSS-DOM操作"></a>CSS-DOM操作</h3><p>可以直接利用<code>css()</code>方法获取元素的样式信息，也可以直接设置某个元素的单个样式或同时设置多个样式，就像<code>attr()</code>方法一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;p&quot;).css(&#123;&quot;fontSize&quot;:&quot;30px&quot;,&quot;backgroundColor&quot;:&quot;#888&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="offset-方法"><a href="#offset-方法" class="headerlink" title="offset()方法"></a><code>offset()</code>方法</h4><p>它的作用是获取元素在当前视窗的相对偏移，其中返回的对象包含两个属性，即top和left，它只对可见元素有效。</p>
+<h4 id="position-方法"><a href="#position-方法" class="headerlink" title="position()方法"></a><code>position()</code>方法</h4><p>它的作用是获取元素相对于最近的一个<code>position</code>样式为<code>relative</code>或<code>absolute</code>的祖父节点的相对偏移，与<code>offset()</code>一样，它返回的对象也包括两个属性：top和left。</p>
+<h4 id="scrollTop-方法和scrollLeft-方法"><a href="#scrollTop-方法和scrollLeft-方法" class="headerlink" title="scrollTop()方法和scrollLeft()方法"></a><code>scrollTop()</code>方法和<code>scrollLeft()</code>方法</h4><p>这两个方法的作用分别是获取元素的滚动条距顶端和距左侧的距离。</p>
+
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

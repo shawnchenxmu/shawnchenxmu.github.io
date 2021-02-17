@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="阿里云,OSS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="什么是云对象存储对象存储服务（Object Storage Service，OSS）是一种海量、安全、低成本、高可靠的云存储服务，适合存放任意类型的文件。容量和处理能力弹性扩展，多种存储类型供选择，全面优化存储成本。 什么是云对象存储 云对象存储的优势 持久性、可用性和可扩展性 合规性和安全性 灵活的管理 就地查询  相关概念存储类型（Storage Class）OSS 提供标准、低频访问、归档三">
+<meta name="keywords" content="阿里云,OSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对象存储OSS">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/对象存储OSS/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="什么是云对象存储对象存储服务（Object Storage Service，OSS）是一种海量、安全、低成本、高可靠的云存储服务，适合存放任意类型的文件。容量和处理能力弹性扩展，多种存储类型供选择，全面优化存储成本。 什么是云对象存储 云对象存储的优势 持久性、可用性和可扩展性 合规性和安全性 灵活的管理 就地查询  相关概念存储类型（Storage Class）OSS 提供标准、低频访问、归档三">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/对象存储OSS/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/对象存储OSS/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/06/对象存储OSS/3.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对象存储OSS">
+<meta name="twitter:description" content="什么是云对象存储对象存储服务（Object Storage Service，OSS）是一种海量、安全、低成本、高可靠的云存储服务，适合存放任意类型的文件。容量和处理能力弹性扩展，多种存储类型供选择，全面优化存储成本。 什么是云对象存储 云对象存储的优势 持久性、可用性和可扩展性 合规性和安全性 灵活的管理 就地查询  相关概念存储类型（Storage Class）OSS 提供标准、低频访问、归档三">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/06/对象存储OSS/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/06/对象存储OSS/">
+
+
+  <title> 对象存储OSS | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                对象存储OSS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-06T14:53:09+08:00" content="2019-07-06">
+              2019-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是云对象存储"><a href="#什么是云对象存储" class="headerlink" title="什么是云对象存储"></a>什么是云对象存储</h2><p>对象存储服务（Object Storage Service，OSS）是一种海量、安全、低成本、高可靠的云存储服务，适合存放任意类型的文件。容量和处理能力弹性扩展，多种存储类型供选择，全面优化存储成本。</p>
+<p><a href="https://aws.amazon.com/cn/what-is-cloud-object-storage/" target="_blank" rel="noopener">什么是云对象存储</a></p>
+<h2 id="云对象存储的优势"><a href="#云对象存储的优势" class="headerlink" title="云对象存储的优势"></a>云对象存储的优势</h2><ol>
+<li>持久性、可用性和可扩展性</li>
+<li>合规性和安全性</li>
+<li>灵活的管理</li>
+<li>就地查询</li>
+</ol>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="存储类型（Storage-Class）"><a href="#存储类型（Storage-Class）" class="headerlink" title="存储类型（Storage Class）"></a>存储类型（Storage Class）</h3><p>OSS 提供<span style="color: red"><strong>标准</strong>、<strong>低频访问</strong>、<strong>归档</strong></span>三种存储类型，覆盖从热到冷的数据存储场景。</p>
+<p>其中标准存储类型提供高可靠、高可用、高性能的对象存储服务，能够支持频繁的数据访问；低频访问存储类型适合长期保存不经常访问的数据（平均每月访问频率 1 到 2 次），存储单价低于标准类型；归档存储类型适合需要长期保存（建议半年以上）的归档数据，在三种存储类型中单价最低。</p>
+<h3 id="存储空间（Bucket）"><a href="#存储空间（Bucket）" class="headerlink" title="存储空间（Bucket）"></a>存储空间（Bucket）</h3><p>存储空间是用于存储对象（Object）的容器，所有的对象都必须隶属于某个存储空间。可以<span style="color: red"><strong>设置和修改存储空间属性用来控制地域、访问权限、生命周期等</strong></span>，这些属性设置直接作用于该存储空间内所有对象，因此可以通过灵活创建不同的存储空间来完成不同的管理功能。</p>
+<h3 id="对象-文件（Object）"><a href="#对象-文件（Object）" class="headerlink" title="对象/文件（Object）"></a>对象/文件（Object）</h3><p>对象是 OSS 存储数据的基本单元，也被称为 OSS 的文件。对象由元信息（Object Meta）、用户数据（Data）和文件名（Key）组成。对象由存储空间内部唯一的 Key 来标识。对象元信息是一组键值对，表示了对象的一些属性，比如最后修改时间、大小等信息，同时也可以在元信息中存储一些自定义的信息。</p>
+<h3 id="地域（Region）"><a href="#地域（Region）" class="headerlink" title="地域（Region）"></a>地域（Region）</h3><p>地域表示 OSS 的数据中心所在物理位置。</p>
+<h3 id="访问域名（Endpoint）"><a href="#访问域名（Endpoint）" class="headerlink" title="访问域名（Endpoint）"></a>访问域名（Endpoint）</h3><p>Endpoint 表示 OSS 对外服务的访问域名。<span style="color: red"><strong>OSS 以 HTTP RESTful API 的形式对外提供服务</strong></span>，当访问不同地域的时候，需要不同的域名。通过内网和外网访问同一个地域所需要的域名也是不同的。</p>
+<h3 id="访问密钥（AccessKey）"><a href="#访问密钥（AccessKey）" class="headerlink" title="访问密钥（AccessKey）"></a>访问密钥（AccessKey）</h3><p>AccessKey，简称 AK，指的是访问身份验证中用到的 AccessKeyId 和 AccessKeySecret。OSS 通过使用 AccessKeyId 和 AccessKeySecret 对称加密的方法来验证某个请求的发送者身份。AccessKeyId 用于标识用户，AccessKeySecret 是用户用于加密签名字符串和 OSS 用来验证签名字符串的密钥，其中 AccessKeySecret 必须保密。</p>
+<h3 id="数据冗余机制"><a href="#数据冗余机制" class="headerlink" title="数据冗余机制"></a>数据冗余机制</h3><p>OSS 采用数据冗余存储机制，将每个对象的不同冗余存储在同一个区域内多个设施的多个设备上，确保硬件失效时的数据可靠性和可用性。</p>
+<h2 id="相关服务"><a href="#相关服务" class="headerlink" title="相关服务"></a>相关服务</h2><ul>
+<li>云服务器（ECS）：提供简单高效、处理能力可弹性伸缩的云端计算服务。</li>
+<li>内容分发网络（CDN）：将源站资源缓存到各区域的边缘节点，供就近快速获取内容。</li>
+<li>E-MapReduce：构建于 ECS 上的大数据处理的系统解决方案，基于开源的 Apache Hadoop 和 Apache Spark，方便分析和处理自己的数据。</li>
+<li>媒体处理：将存储于 OSS 的音视频转码成适合在 PC、TV 以及移动终端上播放的格式。并基于海量数据深度学习，对音视频的内容、文字、语音、场景多模态分析，实现智能审核、内容理解、智能编辑。</li>
+</ul>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="图片和音视频等应用的海量存储"><a href="#图片和音视频等应用的海量存储" class="headerlink" title="图片和音视频等应用的海量存储"></a>图片和音视频等应用的海量存储</h3><p><img src="/2019/07/06/对象存储OSS/1.png" alt></p>
+<h3 id="网页或者移动应用的静态和动态资源分离"><a href="#网页或者移动应用的静态和动态资源分离" class="headerlink" title="网页或者移动应用的静态和动态资源分离"></a>网页或者移动应用的静态和动态资源分离</h3><p><img src="/2019/07/06/对象存储OSS/2.png" alt></p>
+<h3 id="云端数据处理"><a href="#云端数据处理" class="headerlink" title="云端数据处理"></a>云端数据处理</h3><p><img src="/2019/07/06/对象存储OSS/3.png" alt></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://help.aliyun.com/document_detail/31817.html?spm=a2c4g.11174283.2.2.54c27da2x4OIG4" target="_blank" rel="noopener">什么是对象存储 OSS</a><br><a href="https://aws.amazon.com/cn/what-is-cloud-object-storage/" target="_blank" rel="noopener">什么是云对象存储</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/阿里云/" rel="tag">#阿里云</a>
+          
+            <a href="/tags/OSS/" rel="tag">#OSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/06/Linux-FHS/" rel="next" title="Linux FHS">
+                <i class="fa fa-chevron-left"></i> Linux FHS
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/06/内容分发网络CDN/" rel="prev" title="内容分发网络CDN">
+                内容分发网络CDN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是云对象存储"><span class="nav-text">什么是云对象存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云对象存储的优势"><span class="nav-text">云对象存储的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储类型（Storage-Class）"><span class="nav-text">存储类型（Storage Class）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储空间（Bucket）"><span class="nav-text">存储空间（Bucket）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象-文件（Object）"><span class="nav-text">对象/文件（Object）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地域（Region）"><span class="nav-text">地域（Region）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问域名（Endpoint）"><span class="nav-text">访问域名（Endpoint）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问密钥（AccessKey）"><span class="nav-text">访问密钥（AccessKey）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据冗余机制"><span class="nav-text">数据冗余机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关服务"><span class="nav-text">相关服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片和音视频等应用的海量存储"><span class="nav-text">图片和音视频等应用的海量存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页或者移动应用的静态和动态资源分离"><span class="nav-text">网页或者移动应用的静态和动态资源分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云端数据处理"><span class="nav-text">云端数据处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

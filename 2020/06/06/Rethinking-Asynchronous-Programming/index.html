@@ -1,0 +1,853 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,Asynchronous,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="01 - Course IntroductionAsync Patterns Parallel vs Async Callbacks Thunks Promises Generators/Coroutines Event Reactive (observables) CSP (channel-oriented concurrency)  02 - Single Threaded JavaScrip">
+<meta name="keywords" content="JavaScript,Asynchronous">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rethinking Asynchronous Programming Note">
+<meta property="og:url" content="http://yoursite.com/2020/06/06/Rethinking-Asynchronous-Programming/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="01 - Course IntroductionAsync Patterns Parallel vs Async Callbacks Thunks Promises Generators/Coroutines Event Reactive (observables) CSP (channel-oriented concurrency)  02 - Single Threaded JavaScrip">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rethinking Asynchronous Programming Note">
+<meta name="twitter:description" content="01 - Course IntroductionAsync Patterns Parallel vs Async Callbacks Thunks Promises Generators/Coroutines Event Reactive (observables) CSP (channel-oriented concurrency)  02 - Single Threaded JavaScrip">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/06/Rethinking-Asynchronous-Programming/">
+
+
+  <title> Rethinking Asynchronous Programming Note | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Rethinking Asynchronous Programming Note
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-06-06T16:03:49+08:00" content="2020-06-06">
+              2020-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="01-Course-Introduction"><a href="#01-Course-Introduction" class="headerlink" title="01 - Course Introduction"></a>01 - Course Introduction</h2><h3 id="Async-Patterns"><a href="#Async-Patterns" class="headerlink" title="Async Patterns"></a>Async Patterns</h3><ul>
+<li>Parallel vs Async</li>
+<li>Callbacks</li>
+<li>Thunks</li>
+<li>Promises</li>
+<li>Generators/Coroutines</li>
+<li>Event Reactive (observables)</li>
+<li>CSP (channel-oriented concurrency)</li>
+</ul>
+<h2 id="02-Single-Threaded-JavaScript"><a href="#02-Single-Threaded-JavaScript" class="headerlink" title="02 - Single Threaded JavaScript"></a>02 - Single Threaded JavaScript</h2><h3 id="Parallel-vs-Async"><a href="#Parallel-vs-Async" class="headerlink" title="Parallel vs Async"></a>Parallel vs Async</h3><p>Threads<br>Single Thread</p>
+<ul>
+<li>Everything in JavaScript is happening on a <strong>single thread</strong>: your JS, your styles, your garbage collection, etc. This is why you get jitters in the UI. When your UI is trying to repaint at 60fps and something else requires computation, you get a momentary jitter.</li>
+<li>Things happen concurrently in JavaScript to avoid unnecessary stalls in computer/user interaction. It’d be weird if you made a synchronous Ajax call which made the page freeze up until the request was completely done. Instead, Ajax calls happen concurrently with other tasks (like your UI repainting), even though at any given instant only one of those tasks can be executing on the tread (i.e. event loop).</li>
+<li>『Asynchronous programming』 in JavaScript is better patterns for concurrency management, i.e. patterns on top of the existing pattern we have for concurrency (callbacks) like generators and promises.</li>
+</ul>
+<h2 id="03-Concurrency"><a href="#03-Concurrency" class="headerlink" title="03 - Concurrency"></a>03 - Concurrency</h2><h2 id="04-Callback-Hell"><a href="#04-Callback-Hell" class="headerlink" title="04 - Callback Hell"></a>04 - Callback Hell</h2><h3 id="callbacks"><a href="#callbacks" class="headerlink" title="callbacks"></a>callbacks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'callback'</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<p>callbacks == continuations</p>
+<blockquote>
+<p>Callbacks are also called “continuations” because <strong>they are code continuations in the sense that you are executing code now and then later</strong>. That “later” could be any time, for example when a network call is finished. But the idea is that you want some code to run now and you want some code to run later. And when that 『later』 code runs, you essentially want to pick up where you left off from before. This is why callbacks are often called “continuations”.</p>
+</blockquote>
+<h3 id="callback-hell"><a href="#callback-hell" class="headerlink" title="callback hell"></a>callback hell</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'one'</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'two'</span>)</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'three'</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<p>Is callback hell indentation and nesting?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">one</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'one'</span>)</span><br><span class="line">    setTimeout(cb, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">two</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'two'</span>)</span><br><span class="line">    setTimeout(cb, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">three</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'three'</span>)</span><br><span class="line">    setTimeout(cb, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">one(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    two(three)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Callback hell has <strong>nothing to do with the indentation</strong> of your code, it’s deeper than syntax.</p>
+<p>Callback hell has to do with an <strong>inversion of control</strong>, which means there’s a part of my code I’m responsible for executing (the “do it now” stuff) and there’s part of my code that I’m not in charge of executing (the “do it later” stuff, i.e. got a response from server? Now do something). So in other words, when I give somebody a callback I’m saying “here you go, now you are in control of when this thing executes”. You are trusting that the callback will be called:</p>
+<ul>
+<li>Not too early</li>
+<li>Not too late</li>
+<li>Not too many times</li>
+<li>Not too few times</li>
+<li>No lost context</li>
+<li>No swallowed errors</li>
+<li>…and more!</li>
+</ul>
+<p>In other words, every callback you’ve ever written has an existing bug of trust (even if you haven’t been bitten by it yet)</p>
+<h2 id="05-Exercise-1"><a href="#05-Exercise-1" class="headerlink" title="05 - Exercise 1"></a>05 - Exercise 1</h2><h3 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h3><ol>
+<li><p>This exercise calls for you to write some async flow-control code. To start off with, you’ll use callbacks only.</p>
+</li>
+<li><p>Expected behavior:</p>
+<ul>
+<li>Request all 3 files at the same time (in “parallel”).</li>
+<li>Render them ASAP (don’t just blindly wait for all to finish loading)</li>
+<li>BUT, render them in proper (obvious) order: “file1”, “file2”, “file3”.</li>
+<li>After all 3 are done, output “Complete!”.</li>
+</ul>
+</li>
+</ol>
+<h3 id="code-setup"><a href="#code-setup" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url,cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;,randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"><span class="comment">// The old-n-busted callback way</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	fakeAjax(file,<span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">		<span class="comment">// what do we do here?</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// request all files at once in "parallel"</span></span><br><span class="line">getFile(<span class="string">"file1"</span>);</span><br><span class="line">getFile(<span class="string">"file2"</span>);</span><br><span class="line">getFile(<span class="string">"file3"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="06-Exercise-1-Solution"><a href="#06-Exercise-1-Solution" class="headerlink" title="06 - Exercise 1 Solution"></a>06 - Exercise 1 Solution</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url, cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;, randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"><span class="comment">// The old-n-busted callback way</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	fakeAjax(file, <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">		fileReceived(file, text);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fileReceived</span>(<span class="params">file, text</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// haven't received this text yet?</span></span><br><span class="line">	<span class="keyword">if</span> (!responses[file]) &#123;</span><br><span class="line">		responses[file] = text;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> files = [<span class="string">"file1"</span>, <span class="string">"file2"</span>, <span class="string">"file3"</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// loop through responses in order for rendering</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.length; i++) &#123;</span><br><span class="line">		<span class="comment">// response received?</span></span><br><span class="line">		<span class="keyword">if</span> (files[i] <span class="keyword">in</span> responses) &#123;</span><br><span class="line">			<span class="comment">// response needs to be rendered?</span></span><br><span class="line">			<span class="keyword">if</span> (responses[files[i]] !== <span class="literal">true</span>) &#123;</span><br><span class="line">				output(responses[files[i]]);</span><br><span class="line">				responses[files[i]] = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// can't render yet</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// not complete!</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	output(<span class="string">"Complete!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// hold responses in whatever order they come back</span></span><br><span class="line"><span class="keyword">var</span> responses = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// request all files at once in "parallel"</span></span><br><span class="line">getFile(<span class="string">"file1"</span>);</span><br><span class="line">getFile(<span class="string">"file2"</span>);</span><br><span class="line">getFile(<span class="string">"file3"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="07-Callback-Problems-Inversion-of-Control"><a href="#07-Callback-Problems-Inversion-of-Control" class="headerlink" title="07 - Callback Problems - Inversion of Control"></a>07 - Callback Problems - Inversion of Control</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// line 1</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// line 3</span></span><br><span class="line">    <span class="comment">// line 4</span></span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"><span class="comment">// line 2</span></span><br></pre></td></tr></table></figure>
+<p>We are in control of <code>line1</code> and <code>line2</code>, <code>line3</code> and <code>line4</code> are not in control.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">trackCheckout(</span><br><span class="line">    purchaseInfo,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">finish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        chargeCreditCard(purchaseInfo)</span><br><span class="line">        showThankYouPage()</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Trust"><a href="#Trust" class="headerlink" title="Trust"></a>Trust</h3><ol>
+<li>not too early</li>
+<li>not too late</li>
+<li>not too many times</li>
+<li>not too few times</li>
+<li>no lost context</li>
+<li>no swallowed errors</li>
+</ol>
+<h2 id="08-Callback-Problems-Not-Reason-able"><a href="#08-Callback-Problems-Not-Reason-able" class="headerlink" title="08 - Callback Problems - Not Reason-able"></a>08 - Callback Problems - Not Reason-able</h2><h3 id="WRITING-ASYNCHRONOUS-PROGRAMS-IN-A-SEQUENTIAL-MANNER"><a href="#WRITING-ASYNCHRONOUS-PROGRAMS-IN-A-SEQUENTIAL-MANNER" class="headerlink" title="WRITING ASYNCHRONOUS PROGRAMS IN A SEQUENTIAL MANNER"></a>WRITING ASYNCHRONOUS PROGRAMS IN A SEQUENTIAL MANNER</h3><p>Example of how we think about code vs how it really works:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"First thing happens"</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Second thing happens"</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>That code is essentially expressing in our brains something that works like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"First thing happens"</span>);</span><br><span class="line">block(<span class="number">1000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Second thing happens"</span>);</span><br></pre></td></tr></table></figure>
+<p>But to the javascript engine, this is what it’s doing:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"First thing happens"</span>);</span><br><span class="line"><span class="comment">// Do a bunch of other stuff that needs to be done while we wait</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"Second thing happens"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="09-Non-Fixes"><a href="#09-Non-Fixes" class="headerlink" title="09 - Non Fixes"></a>09 - Non Fixes</h2><h2 id="10-Synchronous-and-Asynchronous-Thunks"><a href="#10-Synchronous-and-Asynchronous-Thunks" class="headerlink" title="10 - Synchronous and Asynchronous Thunks"></a>10 - Synchronous and Asynchronous Thunks</h2><h3 id="Thunks"><a href="#Thunks" class="headerlink" title="Thunks"></a>Thunks</h3><ul>
+<li>Thunks are an interesting pattern to <strong>take time out the equation</strong> when trying to access a value.</li>
+<li>First time you set them up, they do they work, but they don’t give you the value until you pass in the callback.</li>
+<li><strong>These are the conceptual underpinnings of a Promise.</strong></li>
+<li>“Thunks are a very lightweight way of solving asynchronous sequencing issues without having to invoke some huge library.”</li>
+<li>“I don’t need a library. I just need to better understand how to use my currently available tools.”</li>
+<li><strong>Thunks are about using closure to maintain state.</strong></li>
+<li>If we can use this tool, a thunk, as a wrapper around a time-based value of state, we can then compose values together without having to worry about the ordering. Time becomes a non-issue.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> thunk = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add(<span class="number">10</span>, <span class="number">15</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">thunk() <span class="comment">// 25</span></span><br></pre></td></tr></table></figure>
+<h3 id="AsyncThunk"><a href="#AsyncThunk" class="headerlink" title="AsyncThunk"></a>AsyncThunk</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAsync</span>(<span class="params">x, y, cb</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        cb(x + y)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> thunk = <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    addAsync(<span class="number">10</span>, <span class="number">15</span>, cb)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">thunk(<span class="function"><span class="keyword">function</span> (<span class="params">sum</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(sum) <span class="comment">// 25</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Make-Thunk-lazy-thunk"><a href="#Make-Thunk-lazy-thunk" class="headerlink" title="Make Thunk (lazy thunk)"></a>Make Thunk (lazy thunk)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeThunk</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</span><br><span class="line">        args.push(cb)</span><br><span class="line">        fn.apply(<span class="literal">null</span>, args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addAsync</span>(<span class="params">x, y, cb</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        cb(x + y)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> thunk = makeThunk(addAsync, <span class="number">10</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">thunk(<span class="function"><span class="keyword">function</span>(<span class="params">sum</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(sum) <span class="comment">// 25</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="What-is-temporary-dependent"><a href="#What-is-temporary-dependent" class="headerlink" title="What is temporary dependent"></a>What is temporary dependent</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">d, cb</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; cb(d); &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> get10 = makeThunk(getData, <span class="number">10</span>);</span><br><span class="line"><span class="keyword">var</span> get30 = makeThunk(getData, <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">get10(<span class="function"><span class="keyword">function</span> (<span class="params">num1</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span> + num1;</span><br><span class="line">    get30(<span class="function"><span class="keyword">function</span> (<span class="params">num2</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> y = <span class="number">1</span> + num2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// temporary dependent</span></span><br><span class="line">        <span class="keyword">var</span> getAnswer = makeThunk(getData,</span><br><span class="line">            <span class="string">"Meaning of life: "</span> + (x + y)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        getAnswer(<span class="function"><span class="keyword">function</span> (<span class="params">answer</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(answer);</span><br><span class="line">            <span class="comment">// Meaning of life: 42</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="11-Exercise-2"><a href="#11-Exercise-2" class="headerlink" title="11 - Exercise 2"></a>11 - Exercise 2</h2><h3 id="Instructions-1"><a href="#Instructions-1" class="headerlink" title="Instructions"></a>Instructions</h3><ol>
+<li><p>You’ll do the same thing as the previous exercise(s), but now you should use thunks.</p>
+</li>
+<li><p>Expected behavior:</p>
+<ul>
+<li>Request all 3 files at the same time (in “parallel”).</li>
+<li>Render them ASAP (don’t just blindly wait for all to finish loading)</li>
+<li>BUT, render them in proper (obvious) order: “file1”, “file2”, “file3”.</li>
+<li>After all 3 are done, output “Complete!”.</li>
+</ul>
+</li>
+</ol>
+<h3 id="code-setup-1"><a href="#code-setup-1" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url, cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;, randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// what do we do here?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// request all files at once in "parallel"</span></span><br><span class="line"><span class="comment">// lazy</span></span><br><span class="line"><span class="comment">// Not lazy</span></span><br></pre></td></tr></table></figure>
+<h2 id="12-Exercise-2-Solution"><a href="#12-Exercise-2-Solution" class="headerlink" title="12 - Exercise 2 Solution"></a>12 - Exercise 2 Solution</h2><p>Notice the active thunk</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url, cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;, randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> resp;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// active thunk, fakeAjax get called immediatly</span></span><br><span class="line">	fakeAjax(file, <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!resp) resp = text;</span><br><span class="line">		<span class="keyword">else</span> resp(text);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">th</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (resp) cb(resp);</span><br><span class="line">		<span class="keyword">else</span> resp = cb;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// request all files at once in "parallel"</span></span><br><span class="line"><span class="keyword">var</span> th1 = getFile(<span class="string">"file1"</span>);</span><br><span class="line"><span class="keyword">var</span> th2 = getFile(<span class="string">"file2"</span>);</span><br><span class="line"><span class="keyword">var</span> th3 = getFile(<span class="string">"file3"</span>);</span><br><span class="line"></span><br><span class="line">th1(<span class="function"><span class="keyword">function</span> <span class="title">ready</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	output(text);</span><br><span class="line">	th2(<span class="function"><span class="keyword">function</span> <span class="title">ready</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">		output(text);</span><br><span class="line">		th3(<span class="function"><span class="keyword">function</span> <span class="title">ready</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">			output(text);</span><br><span class="line">			output(<span class="string">"Complete!"</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="13-Thunks-and-Closure"><a href="#13-Thunks-and-Closure" class="headerlink" title="13 - Thunks and Closure"></a>13 - Thunks and Closure</h2><h2 id="14-Native-Promises"><a href="#14-Native-Promises" class="headerlink" title="14 - Native Promises"></a>14 - Native Promises</h2><blockquote>
+<p>There is a promises hell, I promise you.</p>
+</blockquote>
+<p>It’s important to understand the concepts behind promises and what they are before you learn the API. This is the reverse of the way things are typically taught. Remember that promises aren’t perfect. When you run into a gotcha, you need to understand the why. There is very much “promises hell”.</p>
+<p><strong>Promises allow you to reason about something on the promise of the thing before you have the actual thing itself.</strong> They are a codification of the idea that we need a placeholder to eliminate time as a concern wrapped around a value (a future value). They allow you to reason about and write code around a future value, all within the same space, whereas with callbacks you have to make jumps around “this happened here, now in this other file is what happens when you get the value” etc.</p>
+<p>Promises are like <strong>event listeners</strong>. You call the thing and then listen for the outcome. Except in a promise, the listener action is the <code>then()</code> action.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// listener</span></span><br><span class="line"><span class="keyword">var</span> listener = orderCheeseburger(purchaseInfo);</span><br><span class="line">listener.on(<span class="string">'complete'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line">listener.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br><span class="line"><span class="comment">// promise</span></span><br><span class="line"><span class="keyword">var</span> myPromise = orderCheeseburger(purchaseInfo); <span class="comment">// returns a promise</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span> <span class="title">complete</span>(<span class="params"></span>)</span>&#123;&#125;, <span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params"></span>)</span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+<p>The fundamental design principles of promise are:</p>
+<ul>
+<li>they only resolved once</li>
+<li>they result in either a success OR an error</li>
+<li>messages are passed / kept</li>
+<li>exceptions become errors</li>
+<li>they are immutable once resolved (you can send it anywhere, even outside your system, and you know it won’t be changed from under you)</li>
+</ul>
+<h3 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h3><p>Future Values</p>
+<p>“Completion Events”</p>
+<h2 id="15-Promise-API"><a href="#15-Promise-API" class="headerlink" title="15 - Promise API"></a>15 - Promise API</h2><h3 id="Async-Patterns-“completion-event”"><a href="#Async-Patterns-“completion-event”" class="headerlink" title="Async Patterns: “completion event”"></a>Async Patterns: “completion event”</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> listener = trackCheckout(purchaseInfo)</span><br><span class="line"></span><br><span class="line">listener.on(<span class="string">"completion"</span>, finish)</span><br><span class="line">listener.on(<span class="string">"error"</span>, error)</span><br></pre></td></tr></table></figure>
+<h3 id="Async-Patterns-native-promise"><a href="#Async-Patterns-native-promise" class="headerlink" title="Async Patterns: (native) promise"></a>Async Patterns: (native) promise</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trackCheckout</span>(<span class="params">info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// attempt to track the checkout</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// if successful, call resolve()</span></span><br><span class="line">            <span class="comment">// otherwise, call reject(error)</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finish</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> promise = trackCheckout(purchaseInfo)</span><br><span class="line"></span><br><span class="line">promise.then(</span><br><span class="line">    finish,</span><br><span class="line">    error</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Still-callbacks"><a href="#Still-callbacks" class="headerlink" title="Still callbacks?"></a>Still callbacks?</h3><h3 id="Promise-Trust"><a href="#Promise-Trust" class="headerlink" title="Promise Trust"></a>Promise Trust</h3><ol>
+<li>only resolved once</li>
+<li>either success OR error</li>
+<li>messages passed/kept</li>
+<li>exceptions become errors</li>
+<li>immutable once resolved</li>
+</ol>
+<h2 id="16-Promise-Flow-Control"><a href="#16-Promise-Flow-Control" class="headerlink" title="16 - Promise Flow Control"></a>16 - Promise Flow Control</h2><h3 id="Async-Patterns-promise-flow-control"><a href="#Async-Patterns-promise-flow-control" class="headerlink" title="Async Patterns: promise flow control"></a>Async Patterns: promise flow control</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doFirstThing</span><br><span class="line">    then doSecondThing</span><br><span class="line">    then doThirdThing</span><br><span class="line">    then complete</span><br><span class="line">or error</span><br></pre></td></tr></table></figure>
+<h3 id="Chaining-Promises"><a href="#Chaining-Promises" class="headerlink" title="Chaining Promises"></a>Chaining Promises</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">doFirstThing()</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> doSecondThing()</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> doThirdThing()</span><br><span class="line">&#125;)</span><br><span class="line">.then(</span><br><span class="line">    complete,</span><br><span class="line">    error</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">		setTimeout(resolve, num)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">delay(<span class="number">100</span>)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> delay(<span class="number">50</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> delay(<span class="number">200</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"all done!"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; resolve(d) &#125;,<span class="number">1000</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x</span><br><span class="line"></span><br><span class="line">getData(<span class="number">10</span>)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">num1</span>) </span>&#123;</span><br><span class="line">	x = <span class="number">1</span> + num1</span><br><span class="line">	<span class="keyword">return</span> getData(<span class="number">30</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">num2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> y = <span class="number">1</span> + num2</span><br><span class="line">	<span class="keyword">return</span> getData(<span class="string">"Meaning of life: "</span> + (x + y))</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(answer)</span><br><span class="line">	<span class="comment">// Meaning of life: 42</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="17-Exercise-3"><a href="#17-Exercise-3" class="headerlink" title="17 - Exercise 3"></a>17 - Exercise 3</h2><h3 id="Instructions-2"><a href="#Instructions-2" class="headerlink" title="Instructions"></a>Instructions</h3><ol>
+<li><p>You’ll do the same thing as the previous exercise(s), but now you should use promises.</p>
+</li>
+<li><p>Expected behavior:</p>
+<ul>
+<li>Request all 3 files at the same time (in “parallel”).</li>
+<li>Render them ASAP (don’t just blindly wait for all to finish loading)</li>
+<li>BUT, render them in proper (obvious) order: “file1”, “file2”, “file3”.</li>
+<li>After all 3 are done, output “Complete!”.</li>
+</ul>
+</li>
+</ol>
+<h3 id="code-setup-2"><a href="#code-setup-2" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url, cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;, randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="comment">// what do we do here?</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// request all files at once in "parallel"</span></span><br><span class="line"><span class="comment">// ???</span></span><br></pre></td></tr></table></figure>
+<h2 id="18-Exercise-3-Solution"><a href="#18-Exercise-3-Solution" class="headerlink" title="18 - Exercise 3 Solution"></a>18 - Exercise 3 Solution</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url, cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;, randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">		fakeAjax(file, resolve);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="keyword">var</span> p1 = getFile(<span class="string">"file1"</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = getFile(<span class="string">"file2"</span>);</span><br><span class="line"><span class="keyword">var</span> p3 = getFile(<span class="string">"file3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line">p1</span><br><span class="line">	.then(output)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> p2;</span><br><span class="line">	&#125;)</span><br><span class="line">	.then(output)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> p3;</span><br><span class="line">	&#125;)</span><br><span class="line">	.then(output)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		output(<span class="string">"Complete!"</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="21-Exercise-4"><a href="#21-Exercise-4" class="headerlink" title="21 - Exercise 4"></a>21 - Exercise 4</h2><h3 id="code-setup-3"><a href="#code-setup-3" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"><span class="comment">// The old-n-busted callback way</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">		fakeAjax(file, resolve);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ???</span></span><br></pre></td></tr></table></figure>
+<h2 id="22-Exercise-4-Solution"><a href="#22-Exercise-4-Solution" class="headerlink" title="22 - Exercise 4 Solution"></a>22 - Exercise 4 Solution</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line">[<span class="string">"file1"</span>, <span class="string">"file2"</span>, <span class="string">"file3"</span>]</span><br><span class="line">	.map(getFile)</span><br><span class="line">	.reduce(</span><br><span class="line">		<span class="function"><span class="keyword">function</span> (<span class="params">chain, filePromise</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> chain</span><br><span class="line">				.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">					<span class="keyword">return</span> filePromise;</span><br><span class="line">				&#125;)</span><br><span class="line">				.then(output);</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="built_in">Promise</span>.resolve() <span class="comment">// fulfilled promise to start chain</span></span><br><span class="line">	)</span><br><span class="line">	.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		output(<span class="string">"Complete!"</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="23-Abstractions"><a href="#23-Abstractions" class="headerlink" title="23 - Abstractions"></a>23 - Abstractions</h2><h3 id="Async-Patterns-promise-“gate”"><a href="#Async-Patterns-promise-“gate”" class="headerlink" title="Async Patterns: promise “gate”"></a>Async Patterns: promise “gate”</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">    doTask1a(),</span><br><span class="line">    doTask1b(),</span><br><span class="line">    doTask1c(),</span><br><span class="line">]).then(<span class="function"><span class="keyword">function</span> (<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dotask2(</span><br><span class="line">        <span class="built_in">Math</span>.max(</span><br><span class="line">            results[<span class="number">0</span>],</span><br><span class="line">            results[<span class="number">1</span>],</span><br><span class="line">            results[<span class="number">2</span>]</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Async-Patterns-promise-timeout"><a href="#Async-Patterns-promise-timeout" class="headerlink" title="Async Patterns: promise timeout"></a>Async Patterns: promise timeout</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = trySomeAsyncThing()</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.race([</span><br><span class="line">    p,</span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">_, reject</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            reject(<span class="string">"Timeout!"</span>)</span><br><span class="line">        &#125;, <span class="number">3000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">])</span><br><span class="line">.then(</span><br><span class="line">    success,</span><br><span class="line">    error</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="24-Sequences-and-Gates"><a href="#24-Sequences-and-Gates" class="headerlink" title="24 - Sequences and Gates"></a>24 - Sequences and Gates</h2><p>sequence = automatically chained promises</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ASQ()</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">    setTimeout(done, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.gate(</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">        setTimeout(done, <span class="number">1000</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">        setTimeout(done, <span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"2 seconds passed!"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="25-Exercise-5-and-6"><a href="#25-Exercise-5-and-6" class="headerlink" title="25 - Exercise 5 and 6"></a>25 - Exercise 5 and 6</h2><h3 id="Solve-Exercise-3-and-4-using-ASQ"><a href="#Solve-Exercise-3-and-4-using-ASQ" class="headerlink" title="Solve Exercise 3 and 4 using ASQ"></a>Solve Exercise 3 and 4 using ASQ</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ASQ(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">		fakeAjax(file, done);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line">ASQ()</span><br><span class="line">	.seq(getFile(<span class="string">"file1"</span>))</span><br><span class="line">	.val(output)</span><br><span class="line">	.seq(getFile(<span class="string">"file2"</span>))</span><br><span class="line">	.val(output)</span><br><span class="line">	.seq(getFile(<span class="string">"file3"</span>))</span><br><span class="line">	.val(output)</span><br><span class="line">	.val(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		output(<span class="string">"Complete!"</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ASQ(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">		fakeAjax(file, done);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line">ASQ()</span><br><span class="line">	.seq.apply(<span class="literal">null</span>,</span><br><span class="line">		[<span class="string">"file1"</span>, <span class="string">"file2"</span>, <span class="string">"file3"</span>]</span><br><span class="line">			<span class="comment">// Request all files at once in "parallel"</span></span><br><span class="line">			.map(getFile)</span><br><span class="line">			<span class="comment">// Render output as each file finishes, but</span></span><br><span class="line">			<span class="comment">// only once previous rendering is done</span></span><br><span class="line">			.map(<span class="function"><span class="keyword">function</span> (<span class="params">sq</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">					<span class="keyword">return</span> sq.val(output);</span><br><span class="line">				&#125;;</span><br><span class="line">			&#125;)</span><br><span class="line">	)</span><br><span class="line">	.val(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		output(<span class="string">"Complete!"</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="28-Generator-Example"><a href="#28-Generator-Example" class="headerlink" title="28 - Generator Example"></a>28 - Generator Example</h2><h3 id="Generators-yield"><a href="#Generators-yield" class="headerlink" title="Generators(yield)"></a>Generators(yield)</h3><h3 id="Async-Patterns-generators"><a href="#Async-Patterns-generators" class="headerlink" title="Async Patterns: generators"></a>Async Patterns: generators</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hello"</span>)</span><br><span class="line">    <span class="keyword">yield</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"World"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> it = gen()</span><br><span class="line">it.next() <span class="comment">// Hello</span></span><br><span class="line">it.next() <span class="comment">// World</span></span><br></pre></td></tr></table></figure>
+<h2 id="29-Messaging"><a href="#29-Messaging" class="headerlink" title="29 - Messaging"></a>29 - Messaging</h2><h3 id="Async-Patterns-generators-1"><a href="#Async-Patterns-generators-1" class="headerlink" title="Async Patterns: generators"></a>Async Patterns: generators</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> it = main()</span><br><span class="line"></span><br><span class="line">it.next() <span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line">it.next() <span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line">it.next() <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line"></span><br><span class="line">it.next() <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Async-Patterns-generator-coroutines"><a href="#Async-Patterns-generator-coroutines" class="headerlink" title="Async Patterns: generator coroutines"></a>Async Patterns: generator coroutines</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">coroutine</span>(<span class="params">g</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> it = g()</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> it.next.apply(it, <span class="built_in">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Async-Patterns-generator-messages"><a href="#Async-Patterns-generator-messages" class="headerlink" title="Async Patterns: generator messages"></a>Async Patterns: generator messages</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> run = coroutine(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span> + (<span class="keyword">yield</span>)</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">1</span> + (<span class="keyword">yield</span>)</span><br><span class="line">    <span class="keyword">yield</span>(x + y)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">run()</span><br><span class="line"></span><br><span class="line">run(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="string">"Meaning of life: "</span> + run(<span class="number">30</span>).value</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="31-Async-Generators"><a href="#31-Async-Generators" class="headerlink" title="31 - Async Generators"></a>31 - Async Generators</h2><h3 id="Async-Patterns-yield-tasks"><a href="#Async-Patterns-yield-tasks" class="headerlink" title="Async Patterns: yield tasks"></a>Async Patterns: yield tasks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        run(d)</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> run = coroutine(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span> + (<span class="keyword">yield</span> getData(<span class="number">10</span>))</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">1</span> + (<span class="keyword">yield</span> getData(<span class="number">30</span>))</span><br><span class="line">    <span class="keyword">var</span> answer = (<span class="keyword">yield</span> getData(</span><br><span class="line">        <span class="string">"Meaning of life: "</span> + (x + y)</span><br><span class="line">    ))</span><br><span class="line">    <span class="built_in">console</span>.log(answer)</span><br><span class="line">    <span class="comment">// Meaning of life: 42</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">run()</span><br></pre></td></tr></table></figure>
+<h2 id="32-Promises-and-Generators"><a href="#32-Promises-and-Generators" class="headerlink" title="32 - Promises and Generators"></a>32 - Promises and Generators</h2><h3 id="Async-Patterns-generator-sequence-tasks"><a href="#Async-Patterns-generator-sequence-tasks" class="headerlink" title="Async Patterns: generator + sequence tasks"></a>Async Patterns: generator + sequence tasks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ASQ(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            done(d)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ASQ()</span><br><span class="line">.runner(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span> + (<span class="keyword">yield</span> getData(<span class="number">10</span>))</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">1</span> + (<span class="keyword">yield</span> getData(<span class="number">30</span>))</span><br><span class="line">    <span class="keyword">var</span> answer = <span class="keyword">yield</span> (getData(</span><br><span class="line">        <span class="string">"Meaning of life: "</span> + (x + y)</span><br><span class="line">    ))</span><br><span class="line">    <span class="keyword">yield</span> answer</span><br><span class="line">&#125;)</span><br><span class="line">.val(<span class="function"><span class="keyword">function</span> (<span class="params">answer</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(answer)</span><br><span class="line">    <span class="comment">// Meaning of life: 42</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="33-Exercise-7-❓"><a href="#33-Exercise-7-❓" class="headerlink" title="33 - Exercise 7 ❓"></a>33 - Exercise 7 ❓</h2><h3 id="Instructions-3"><a href="#Instructions-3" class="headerlink" title="Instructions"></a>Instructions</h3><ol>
+<li><p>You’ll do the same thing as the previous exercise(s), but now you should use asynquence and a generator.</p>
+</li>
+<li><p>Expected behavior:</p>
+<ul>
+<li>Request all 3 files at the same time (in “parallel”).</li>
+<li>Render them ASAP (don’t just blindly wait for all to finish loading)</li>
+<li>BUT, render them in proper (obvious) order: “file1”, “file2”, “file3”.</li>
+<li>After all 3 are done, output “Complete!”.</li>
+</ul>
+</li>
+</ol>
+<h3 id="code-setup-4"><a href="#code-setup-4" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fakeAjax</span>(<span class="params">url,cb</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fake_responses = &#123;</span><br><span class="line">		<span class="string">"file1"</span>: <span class="string">"The first text"</span>,</span><br><span class="line">		<span class="string">"file2"</span>: <span class="string">"The middle text"</span>,</span><br><span class="line">		<span class="string">"file3"</span>: <span class="string">"The last text"</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">var</span> randomDelay = (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">1E4</span>) % <span class="number">8000</span>) + <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Requesting: "</span> + url);</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		cb(fake_responses[url]);</span><br><span class="line">	&#125;,randomDelay);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ASQ(<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">		fakeAjax(file,done);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Request all files at once in</span></span><br><span class="line"><span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Render as each one finishes,</span></span><br><span class="line"><span class="comment">// but only once previous rendering</span></span><br><span class="line"><span class="comment">// is done.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ???</span></span><br></pre></td></tr></table></figure>
+<h2 id="34-Exercise-7-Solution"><a href="#34-Exercise-7-Solution" class="headerlink" title="34 - Exercise 7 Solution"></a>34 - Exercise 7 Solution</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// **************************************</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ASQ(<span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">		fakeAjax(file, done);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// function getFile(file) &#123;</span></span><br><span class="line"><span class="comment">// 	return new Promise(function(resolve)&#123;</span></span><br><span class="line"><span class="comment">// 		fakeAjax(file,resolve);</span></span><br><span class="line"><span class="comment">// 	&#125;);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">ASQ()</span><br><span class="line">	.runner(<span class="function"><span class="keyword">function</span>* <span class="title">loadFiles</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">// Request all files at once in</span></span><br><span class="line">		<span class="comment">// "parallel" via `getFile(..)`.</span></span><br><span class="line">		<span class="keyword">var</span> p1 = getFile(<span class="string">"file1"</span>);</span><br><span class="line">		<span class="keyword">var</span> p2 = getFile(<span class="string">"file2"</span>);</span><br><span class="line">		<span class="keyword">var</span> p3 = getFile(<span class="string">"file3"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Render as each one finishes,</span></span><br><span class="line">		<span class="comment">// but only once previous rendering</span></span><br><span class="line">		<span class="comment">// is done.</span></span><br><span class="line">		output(<span class="keyword">yield</span> p1);</span><br><span class="line">		output(<span class="keyword">yield</span> p2);</span><br><span class="line">		output(<span class="keyword">yield</span> p3);</span><br><span class="line">	&#125;)</span><br><span class="line">	.val(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		output(<span class="string">"Complete!"</span>);</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="35-Quiz"><a href="#35-Quiz" class="headerlink" title="35 - Quiz"></a>35 - Quiz</h2><h3 id="1-What-is-“callback-hell”-Why-do-callbacks-suffer-from-“inversion-of-control”-and-“unreasonability”"><a href="#1-What-is-“callback-hell”-Why-do-callbacks-suffer-from-“inversion-of-control”-and-“unreasonability”" class="headerlink" title="1. What is “callback hell”? Why do callbacks suffer from “inversion of control” and “unreasonability”?"></a>1. What is “callback hell”? Why do callbacks suffer from “inversion of control” and “un<span style="color:#fc9b00;">reason</span>ability”?</h3><ul>
+<li>inversion of control</li>
+<li>none-local none-sequencial</li>
+</ul>
+<h3 id="2-What-is-a-Promise-How-does-it-solve-inversion-of-control-issues"><a href="#2-What-is-a-Promise-How-does-it-solve-inversion-of-control-issues" class="headerlink" title="2. What is a Promise? How does it solve inversion of control issues?"></a>2. What is a Promise? How does it solve inversion of control issues?</h3><ul>
+<li>future value</li>
+<li>callback manager</li>
+</ul>
+<h3 id="3-How-do-you-pause-a-generator-How-do-you-resume-it"><a href="#3-How-do-you-pause-a-generator-How-do-you-resume-it" class="headerlink" title="3. How do you pause a generator? How do you resume it?"></a>3. How do you pause a generator? How do you resume it?</h3><ul>
+<li>yield</li>
+<li>next</li>
+</ul>
+<h3 id="4-How-do-we-combine-generators-and-promise-for-flow-control"><a href="#4-How-do-we-combine-generators-and-promise-for-flow-control" class="headerlink" title="4. How do we combine generators and promise for flow control?"></a>4. How do we combine generators and promise for flow control?</h3><ul>
+<li>yielding a promise</li>
+</ul>
+<h3 id="related"><a href="#related" class="headerlink" title="related"></a>related</h3><p><a href="https://davidwalsh.name/es6-generators" target="_blank" rel="noopener">The Basics Of ES6 Generators</a></p>
+<h2 id="36-Events-and-Promises"><a href="#36-Events-and-Promises" class="headerlink" title="36 - Events and Promises"></a>36 - Events and Promises</h2><p>Concurrency: Event (+ Promise)?</p>
+<h3 id="Async-Patterns-events-promises"><a href="#Async-Patterns-events-promises" class="headerlink" title="Async Patterns: events + promises"></a>Async Patterns: events + promises</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'#btn'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> className = evt.target.className;</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/foobar/</span>.test(className)) &#123;</span><br><span class="line">            resolve(className)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            reject()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">className</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(className)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>problem: promise will only be resolved once.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#btn'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> className = evt.target.className;</span><br><span class="line">    <span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/foobar/</span>.test(className)) &#123;</span><br><span class="line">            resolve(className)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            reject()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    p1.then(<span class="function"><span class="keyword">function</span>(<span class="params">className</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(className)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>problem: there is nonsense to use promise.</p>
+<h3 id="Async-Patterns-events-lists"><a href="#Async-Patterns-events-lists" class="headerlink" title="Async Patterns: events + lists"></a>Async Patterns: events + lists</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#btn'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    [evt]</span><br><span class="line">    .map(<span class="function"><span class="keyword">function</span> <span class="title">mapper</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> evt.target.className;</span><br><span class="line">    &#125;)</span><br><span class="line">    .filter(<span class="function"><span class="keyword">function</span> <span class="title">filterer</span>(<span class="params">className</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="regexp">/foobar/</span>.test(className)</span><br><span class="line">    &#125;)</span><br><span class="line">    .forEach(<span class="function"><span class="keyword">function</span> (<span class="params">className</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(className)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="37-Observables"><a href="#37-Observables" class="headerlink" title="37 - Observables"></a>37 - Observables</h2><h3 id="Async-Patterns-RxJS-observables"><a href="#Async-Patterns-RxJS-observables" class="headerlink" title="Async Patterns: RxJS observables"></a>Async Patterns: RxJS observables</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obsv = Rx.observable.fromEvent(btn, <span class="string">"click"</span>);</span><br><span class="line"></span><br><span class="line">obsv</span><br><span class="line">    .map(<span class="function"><span class="keyword">function</span> <span class="title">mapper</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> evt.target.className</span><br><span class="line">    &#125;)</span><br><span class="line">    .filter(<span class="function"><span class="keyword">function</span> <span class="title">filterer</span>(<span class="params">className</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="regexp">/foobar/</span>.test(className)</span><br><span class="line">    &#125;)</span><br><span class="line">    .distinctUntilChanged()</span><br><span class="line">    .subscribe(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> className = data[<span class="number">1</span>]</span><br><span class="line">        <span class="built_in">console</span>.log(className)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="38-Reactive-Sequences"><a href="#38-Reactive-Sequences" class="headerlink" title="38 - Reactive Sequences"></a>38 - Reactive Sequences</h2><h3 id="Async-Patterns-reactive-sequences"><a href="#Async-Patterns-reactive-sequences" class="headerlink" title="Async Patterns: reactive sequences"></a>Async Patterns: reactive sequences</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fromEvent</span>(<span class="params">el, eventType</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ASQ.react(<span class="function"><span class="keyword">function</span> (<span class="params">proceed</span>) </span>&#123;</span><br><span class="line">        $(el).bind(eventType, proceed)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rsq = fromEvent(btn, <span class="string">'click'</span>)</span><br><span class="line"></span><br><span class="line">rsq</span><br><span class="line">    .val(<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> evt.target.className</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">done, className</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/foobar/</span>.test(className)) &#123;</span><br><span class="line">            done(className)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .val(<span class="function"><span class="keyword">function</span> (<span class="params">className</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(className)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rsq1 = fromEvent(btn, <span class="string">'click'</span>),</span><br><span class="line">    rsq2 = fromEvent(inp, <span class="string">'keypress'</span>),</span><br><span class="line">    </span><br><span class="line">    rsq3 = ASQ.react.all(rsq1, rsq2),</span><br><span class="line">    rsq4 = ASQ.reacr.any(rsq1, rsq2)</span><br><span class="line">    </span><br><span class="line">rsq3.val(<span class="function"><span class="keyword">function</span> (<span class="params">ev1, ev2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">rsq4.val(<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="39-Exercise-8"><a href="#39-Exercise-8" class="headerlink" title="39 - Exercise 8"></a>39 - Exercise 8</h2><h3 id="Instructions-4"><a href="#Instructions-4" class="headerlink" title="Instructions"></a>Instructions</h3><ol>
+<li><p>In this exercise, we’re going to practice with “reactive sequences” programming (aka “observables”) using asynquence.</p>
+</li>
+<li><p>Set up a reactive sequence for the stream of click events from the button. Hint: <code>ASQ.react.of()</code> and <code>rsq.push(..)</code></p>
+</li>
+<li><p>Set up another reactive sequence that samples the sequence stream from (2) once per second. In other words, if you click the button multiple times in a second, you only get one event message. Hint: <code>setInterval(..)</code></p>
+</li>
+<li><p>The sampled sequence should add a “clicked!” message to the list.</p>
+</li>
+</ol>
+<h3 id="code-setup-5"><a href="#code-setup-5" class="headerlink" title="code setup"></a>code setup</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> $btn = $(<span class="string">"#btn"</span>),</span><br><span class="line">		$list = $(<span class="string">"#list"</span>);</span><br><span class="line"></span><br><span class="line">	$btn.click(<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> setup sampled sequence, populate $list</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="40-Exercise-8-Solution-Part-1"><a href="#40-Exercise-8-Solution-Part-1" class="headerlink" title="40 - Exercise 8 Solution Part 1"></a>40 - Exercise 8 Solution Part 1</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> $btn = $(<span class="string">"#btn"</span>),</span><br><span class="line">		$list = $(<span class="string">"#list"</span>),</span><br><span class="line">		clicks = ASQ.react.of(),</span><br><span class="line">		msgs = ASQ.react.of(),</span><br><span class="line">		latest;</span><br><span class="line"></span><br><span class="line">	$btn.click(<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">		<span class="comment">// push click event messages into stream</span></span><br><span class="line">		clicks.push(evt);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// sample clicks stream</span></span><br><span class="line">	setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (latest) &#123;</span><br><span class="line">			msgs.push(<span class="string">"clicked!"</span>);</span><br><span class="line">			latest = <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// subscribe to click stream</span></span><br><span class="line">	clicks.val(<span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">		latest = evt;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// subscribe to sampled message stream</span></span><br><span class="line">	msgs.val(<span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</span><br><span class="line">		$list.append($(<span class="string">"&lt;div&gt;"</span> + msg + <span class="string">"&lt;/div&gt;"</span>));</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="42-Concurrency-and-Channels"><a href="#42-Concurrency-and-Channels" class="headerlink" title="42 - Concurrency and Channels"></a>42 - Concurrency and Channels</h2><h3 id="CSP-Communicating-Sequential-Processes"><a href="#CSP-Communicating-Sequential-Processes" class="headerlink" title="CSP: Communicating Sequential Processes"></a>CSP: Communicating Sequential Processes</h3><p>Async Patterns: channel CSP</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ch = chan()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">process1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> put(ch, <span class="string">"Hello"</span>)</span><br><span class="line">    <span class="keyword">var</span> msg = <span class="keyword">yield</span> take(ch)</span><br><span class="line">    <span class="built_in">console</span>.log(msg)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">process2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> greeting = <span class="keyword">yield</span> take(ch)</span><br><span class="line">    <span class="keyword">yield</span> put(ch, greeting + <span class="string">" World"</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"done!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Hello World</span></span><br><span class="line"><span class="comment">// done!</span></span><br></pre></td></tr></table></figure>
+<h2 id="43-Blocking-Channels"><a href="#43-Blocking-Channels" class="headerlink" title="43 - Blocking Channels"></a>43 - Blocking Channels</h2><h3 id="Async-Patterns-channel-CSP"><a href="#Async-Patterns-channel-CSP" class="headerlink" title="Async Patterns: channel CSP"></a>Async Patterns: channel CSP</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">csp.go(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span> csp.put(ch, <span class="built_in">Math</span>.random())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">csp.go(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span> csp.take(csp.timeout(<span class="number">500</span>))</span><br><span class="line">        <span class="keyword">var</span> num = <span class="keyword">yield</span> csp.take(ch)</span><br><span class="line">        <span class="built_in">console</span>.log(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">csp.go(<span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> table = csp.chan()</span><br><span class="line">    </span><br><span class="line">    csp.go(player, [<span class="string">"ping"</span>, table])</span><br><span class="line">    csp.go(player, [<span class="string">"pong"</span>, table])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">yield</span> csp.put(table, &#123; <span class="attr">hits</span>: <span class="number">0</span> &#125;)</span><br><span class="line">    <span class="keyword">yield</span> csp.timeout(<span class="number">1000</span>)</span><br><span class="line">    table.close()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">player</span>(<span class="params">name, table</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        val ball = <span class="keyword">yield</span> csp.take(table)</span><br><span class="line">        <span class="keyword">if</span> (ball === csp.CLOSED) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(name + <span class="string">": table's gone"</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        ball.hits += <span class="number">1</span></span><br><span class="line">        <span class="built_in">console</span>.log(name + <span class="string">" "</span> + ball.hits)</span><br><span class="line">        <span class="keyword">yield</span> csp.timeout(<span class="number">100</span>)</span><br><span class="line">        <span class="keyword">yield</span> csp.put(table, ball)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="44-Event-Channels"><a href="#44-Event-Channels" class="headerlink" title="44 - Event Channels"></a>44 - Event Channels</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/Asynchronous/" rel="tag">#Asynchronous</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/14/最小生成树/" rel="next" title="最小生成树">
+                <i class="fa fa-chevron-left"></i> 最小生成树
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/11/前端模块化/" rel="prev" title="前端模块化">
+                前端模块化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Course-Introduction"><span class="nav-text">01 - Course Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns"><span class="nav-text">Async Patterns</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-Single-Threaded-JavaScript"><span class="nav-text">02 - Single Threaded JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parallel-vs-Async"><span class="nav-text">Parallel vs Async</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Concurrency"><span class="nav-text">03 - Concurrency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-Callback-Hell"><span class="nav-text">04 - Callback Hell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#callbacks"><span class="nav-text">callbacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callback-hell"><span class="nav-text">callback hell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-Exercise-1"><span class="nav-text">05 - Exercise 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions"><span class="nav-text">Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Exercise-1-Solution"><span class="nav-text">06 - Exercise 1 Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-Callback-Problems-Inversion-of-Control"><span class="nav-text">07 - Callback Problems - Inversion of Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trust"><span class="nav-text">Trust</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#08-Callback-Problems-Not-Reason-able"><span class="nav-text">08 - Callback Problems - Not Reason-able</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WRITING-ASYNCHRONOUS-PROGRAMS-IN-A-SEQUENTIAL-MANNER"><span class="nav-text">WRITING ASYNCHRONOUS PROGRAMS IN A SEQUENTIAL MANNER</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#09-Non-Fixes"><span class="nav-text">09 - Non Fixes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Synchronous-and-Asynchronous-Thunks"><span class="nav-text">10 - Synchronous and Asynchronous Thunks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thunks"><span class="nav-text">Thunks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AsyncThunk"><span class="nav-text">AsyncThunk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-Thunk-lazy-thunk"><span class="nav-text">Make Thunk (lazy thunk)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-temporary-dependent"><span class="nav-text">What is temporary dependent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Exercise-2"><span class="nav-text">11 - Exercise 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions-1"><span class="nav-text">Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup-1"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Exercise-2-Solution"><span class="nav-text">12 - Exercise 2 Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Thunks-and-Closure"><span class="nav-text">13 - Thunks and Closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Native-Promises"><span class="nav-text">14 - Native Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promises"><span class="nav-text">Promises</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Promise-API"><span class="nav-text">15 - Promise API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-“completion-event”"><span class="nav-text">Async Patterns: “completion event”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-native-promise"><span class="nav-text">Async Patterns: (native) promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Still-callbacks"><span class="nav-text">Still callbacks?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-Trust"><span class="nav-text">Promise Trust</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-Promise-Flow-Control"><span class="nav-text">16 - Promise Flow Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-promise-flow-control"><span class="nav-text">Async Patterns: promise flow control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chaining-Promises"><span class="nav-text">Chaining Promises</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Exercise-3"><span class="nav-text">17 - Exercise 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions-2"><span class="nav-text">Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup-2"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-Exercise-3-Solution"><span class="nav-text">18 - Exercise 3 Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-Exercise-4"><span class="nav-text">21 - Exercise 4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup-3"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-Exercise-4-Solution"><span class="nav-text">22 - Exercise 4 Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-Abstractions"><span class="nav-text">23 - Abstractions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-promise-“gate”"><span class="nav-text">Async Patterns: promise “gate”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-promise-timeout"><span class="nav-text">Async Patterns: promise timeout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-Sequences-and-Gates"><span class="nav-text">24 - Sequences and Gates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-Exercise-5-and-6"><span class="nav-text">25 - Exercise 5 and 6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solve-Exercise-3-and-4-using-ASQ"><span class="nav-text">Solve Exercise 3 and 4 using ASQ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Generator-Example"><span class="nav-text">28 - Generator Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generators-yield"><span class="nav-text">Generators(yield)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-generators"><span class="nav-text">Async Patterns: generators</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-Messaging"><span class="nav-text">29 - Messaging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-generators-1"><span class="nav-text">Async Patterns: generators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-generator-coroutines"><span class="nav-text">Async Patterns: generator coroutines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-generator-messages"><span class="nav-text">Async Patterns: generator messages</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-Async-Generators"><span class="nav-text">31 - Async Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-yield-tasks"><span class="nav-text">Async Patterns: yield tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-Promises-and-Generators"><span class="nav-text">32 - Promises and Generators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-generator-sequence-tasks"><span class="nav-text">Async Patterns: generator + sequence tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-Exercise-7-❓"><span class="nav-text">33 - Exercise 7 ❓</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions-3"><span class="nav-text">Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup-4"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-Exercise-7-Solution"><span class="nav-text">34 - Exercise 7 Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-Quiz"><span class="nav-text">35 - Quiz</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-What-is-“callback-hell”-Why-do-callbacks-suffer-from-“inversion-of-control”-and-“unreasonability”"><span class="nav-text">1. What is “callback hell”? Why do callbacks suffer from “inversion of control” and “unreasonability”?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-a-Promise-How-does-it-solve-inversion-of-control-issues"><span class="nav-text">2. What is a Promise? How does it solve inversion of control issues?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-How-do-you-pause-a-generator-How-do-you-resume-it"><span class="nav-text">3. How do you pause a generator? How do you resume it?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-How-do-we-combine-generators-and-promise-for-flow-control"><span class="nav-text">4. How do we combine generators and promise for flow control?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related"><span class="nav-text">related</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-Events-and-Promises"><span class="nav-text">36 - Events and Promises</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-events-promises"><span class="nav-text">Async Patterns: events + promises</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-events-lists"><span class="nav-text">Async Patterns: events + lists</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-Observables"><span class="nav-text">37 - Observables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-RxJS-observables"><span class="nav-text">Async Patterns: RxJS observables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-Reactive-Sequences"><span class="nav-text">38 - Reactive Sequences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-reactive-sequences"><span class="nav-text">Async Patterns: reactive sequences</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-Exercise-8"><span class="nav-text">39 - Exercise 8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructions-4"><span class="nav-text">Instructions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-setup-5"><span class="nav-text">code setup</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-Exercise-8-Solution-Part-1"><span class="nav-text">40 - Exercise 8 Solution Part 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-Concurrency-and-Channels"><span class="nav-text">42 - Concurrency and Channels</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSP-Communicating-Sequential-Processes"><span class="nav-text">CSP: Communicating Sequential Processes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#43-Blocking-Channels"><span class="nav-text">43 - Blocking Channels</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Async-Patterns-channel-CSP"><span class="nav-text">Async Patterns: channel CSP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-Event-Channels"><span class="nav-text">44 - Event Channels</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

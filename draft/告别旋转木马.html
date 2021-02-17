@@ -1,0 +1,574 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content=",">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="原文地址：Don’t Use Automatic Image Sliders or Carousels    旋转木马（也叫做「rotating offers」），或者图片轮播，我相信你见过没有几百次至少也有几十次了吧。或许你甚至还对他们有些好感，但事实上，它们可并不是什么好东西。 既然他们并不高效，为什么人们还要用呢？两个原因：  有人觉得这很酷炫。但是酷炫并不能带来收益呀 —— 至少不是通过这">
+<meta name="keywords" content="设计与产品">
+<meta property="og:type" content="website">
+<meta property="og:title" content="告别旋转木马">
+<meta property="og:url" content="http://yoursite.com/draft/告别旋转木马.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="原文地址：Don’t Use Automatic Image Sliders or Carousels    旋转木马（也叫做「rotating offers」），或者图片轮播，我相信你见过没有几百次至少也有几十次了吧。或许你甚至还对他们有些好感，但事实上，它们可并不是什么好东西。 既然他们并不高效，为什么人们还要用呢？两个原因：  有人觉得这很酷炫。但是酷炫并不能带来收益呀 —— 至少不是通过这">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/slider.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1fidkhz15ekj30t60hyq5f.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/eye.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/21-1.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/jj.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/adobes.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/gap.jpg">
+<meta property="og:image" content="https://conversionxl.com/wp-content/uploads/2012/09/hilton.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1fidkitq5yjj30te0j0n05.jpg">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="告别旋转木马">
+<meta name="twitter:description" content="原文地址：Don’t Use Automatic Image Sliders or Carousels    旋转木马（也叫做「rotating offers」），或者图片轮播，我相信你见过没有几百次至少也有几十次了吧。或许你甚至还对他们有些好感，但事实上，它们可并不是什么好东西。 既然他们并不高效，为什么人们还要用呢？两个原因：  有人觉得这很酷炫。但是酷炫并不能带来收益呀 —— 至少不是通过这">
+<meta name="twitter:image" content="https://conversionxl.com/wp-content/uploads/2012/09/slider.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/draft/告别旋转木马.html">
+
+
+  <title>
+  
+
+  
+    告别旋转木马 | Shawnchen / XMU 。
+  
+</title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <p>原文地址：<a href="https://conversionxl.com/dont-use-automatic-image-sliders-or-carousels/" target="_blank" rel="noopener">Don’t Use Automatic Image Sliders or Carousels</a></p>
+<p>  <a href="https://conversionxl.com/dont-use-automatic-image-sliders-or-carousels/" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/slider.jpg" alt="Don&#39;t Use Automatic Image Sliders or Carousels"></a></p>
+<p>旋转木马（也叫做「rotating offers」），或者图片轮播，我相信你见过没有几百次至少也有几十次了吧。或许你甚至还对他们有些好感，但事实上，它们可并不是什么好东西。</p>
+<p>既然他们并不高效，为什么人们还要用呢？两个原因：</p>
+<ul>
+<li>有人觉得这很酷炫。但是酷炫并不能带来收益呀 —— 至少不是通过这种方式。</li>
+<li>不同的部门和管理者都想在主页上显示他们的内容。委员会所做的设计从来不会被拒绝。</li>
+</ul>
+<p><strong>注意：如果你想成为顶尖的数据型营销者，请加入 <a href="https://conversionxl.com/institute/" target="_blank" rel="noopener">CXL Institute</a>。</strong></p>
+<h2 id="来用事实说话"><a href="#来用事实说话" class="headerlink" title="来用事实说话"></a>来用事实说话</h2><p>并不只是我一个人持这样的观点，那些做过许多 <a href="https://conversionxl.com/conversion-optimization-guide/" target="_blank" rel="noopener">旋转优化</a> 测试的专家们也都这么说：</p>
+<blockquote>
+<p>我们做过许多图片轮播方面的测试，最终发现，用这种方式来展示主页内容真的很糟糕。</p>
+</blockquote>
+<p><a href="http://www.widerfunnel.com/conversion-rate-optimization/rotating-offers-the-scourge-of-home-page-design" target="_blank" rel="noopener">Chris Goward, Wider Funnel</a></p>
+<blockquote>
+<p>旋转木马简直就是个恶魔，它应该立即消失。</p>
+</blockquote>
+<p><a href="http://www.clickz.com/clickz/column/2164452/rotating-banners" target="_blank" rel="noopener">Tim Ash, Site Tuners</a></p>
+<p>Jakob Nielsen（没错，可用性领域的大师） <a href="http://www.nngroup.com/articles/auto-forwarding/" target="_blank" rel="noopener">在测试中证实了这一点</a> 。他们对可用性进行了一项研究，并给予了用户以下任务：<strong>『西门子的洗衣机有什么特别优惠吗？』</strong> 这条信息被放置在最显眼的图片轮播的位置。用户视而不见 —— 完全受到旗帜盲点的影响。Nielsen 的结论是：滑块完全被忽略了。</p>
+<p>圣母大学也做过 <a href="https://vwo.com/blog/image-slider-alternatives/" target="_blank" rel="noopener">测试</a> 。只有图片轮播中的第一张图片能得到一些点击量（1%！），其他的根本就没有。而能得到 1% 的点击量的元素在一个页面中占了一半（或者更多）。</p>
+<p>产品设计大师 Luke Wroblweski 总结道：</p>
+<p><a href="https://twitter.com/lukew/status/293857685546360834" target="_blank" rel="noopener"><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fidkhz15ekj30t60hyq5f.jpg" alt></a></p>
+<p>在 StackExchange UX 上有个关于自动图片轮播的 <a href="https://ux.stackexchange.com/questions/10312/are-carousels-effective" target="_blank" rel="noopener">讨论</a></p>
+<p>一些参与测试的人们是这么说的：</p>
+<blockquote>
+<p>我所管理的那些测试几乎都证明了一点：通过图片轮播展示的内容终将被用户无视。我和他们几乎没有互动，并且很多评论看起来像是广告，旗帜盲点的概念在这里发挥的淋漓尽致，我算是见识到了。</p>
+<p>就空间节省和内容推广方面而言，将许多相互之间有冲突的消息放在一起就必然导致用户注意力的分散</p>
+</blockquote>
+<p><a href="https://ux.stackexchange.com/users/5208/adam-fellowes" target="_blank" rel="noopener">Adam Fellows</a></p>
+<p>这儿还有一位：</p>
+<blockquote>
+<p>图片轮播在这一点上倒是挺高效的：它能告知市场营销的高管们，他们的最新想法已经出现在了主页上了。</p>
+<p>而对于用户来说，这几乎就是无用的，还常常被无视，因为它们看起来像广告。因此，这是一项在主页上获取无用信息的好技术（见第一句）。</p>
+<p>总而言之，你要么使用它来放一些让用户无视的内容，要么，你就永远别再使用它。</p>
+<p>顺带说一句，这可不是我的一己之见，而是基于观察了几千个用户测试之后得出的结论。</p>
+</blockquote>
+<p><a href="https://ux.stackexchange.com/users/7552/lee-duddell" target="_blank" rel="noopener">Lee Duddell</a></p>
+<p>最后：</p>
+<blockquote>
+<p>在我做的所有测试中，主页的图片轮播完全是无效的。其一，除了初始视图之外，其他视图与用户的交互都大大减少。其二，图片轮播中的信息与用户正在寻找的信息相匹配的概率极其渺小。以至于在这种情况下，图片轮播框作为一个大横幅却往往被忽略。在一次又一次的测试之后发现，当用户在浏览一个带有大型图片轮播框的网站时，总是直接地滑动跳过它，进而寻找自己想要的内容。</p>
+</blockquote>
+<p><a href="https://ux.stackexchange.com/users/7548/craig-kistler" target="_blank" rel="noopener">Craig Kistler</a></p>
+<p>它<strong>为什么</strong>不管用呢？有两个主要原因：</p>
+<h2 id="原因-1：人眼对动态事物的反应（使得重要信息被错过）"><a href="#原因-1：人眼对动态事物的反应（使得重要信息被错过）" class="headerlink" title="原因 #1：人眼对动态事物的反应（使得重要信息被错过）"></a>原因 #1：人眼对动态事物的反应（使得重要信息被错过）</h2><p>我们的大脑可以分为三个层次，其中最原始的那部分甚至与爬行动物的没什么区别。这部分关心的是生存问题。而视野上的突变极有可能关系到生死，所以人们对运动的东西常常很敏感 —— 包括图片轮播框中不断播放的图片。</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/eye.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/eye.jpg" alt="eye"></a></p>
+<p><strong>可这是一件好事呀！不是吗？</strong></p>
+<p>除非你的网站上只有一个图片轮播框（可别这么做！），不然这样并不好。这意味着它将把注意力从其他真正重要的内容上拿走。比如你的 <a href="https://conversionxl.com/value-proposition-examples-how-to-create/" target="_blank" rel="noopener">价值主张</a> 、网站内容以及你的产品。</p>
+<h2 id="原因-2：消息太多意味着无消息"><a href="#原因-2：消息太多意味着无消息" class="headerlink" title="原因 #2：消息太多意味着无消息"></a>原因 #2：消息太多意味着无消息</h2><p>由于旗帜盲点，大多数人甚至都不会去关注那些图片轮播框，就连那些不能真正得到消息的人也是如此。</p>
+<p>访客登录你的网站，在轮播框中看到一条消息，正要开始阅读：『这个秋天你要……』<strong>咻！</strong>不见啦。这些滑块轮转得太快了，用户根本来不及读完一条消息（即使他们真的想）。</p>
+<p>专注即高效。</p>
+<h2 id="原因-3：旗帜盲点"><a href="#原因-3：旗帜盲点" class="headerlink" title="原因 #3：旗帜盲点"></a>原因 #3：旗帜盲点</h2><p>它们看起来像一幅鲜明的旗帜，可用户就是视而不见。</p>
+<h2 id="用户需掌握控制权"><a href="#用户需掌握控制权" class="headerlink" title="用户需掌握控制权"></a>用户需掌握控制权</h2><p>图片轮播常常有着 <a href="http://uxmovement.com/navigation/big-usability-mistakes-designers-make-on-carousels/" target="_blank" rel="noopener">糟糕的可用性</a> —— 它们移动得太快了，而它们的导航图标又太小了（如果有的话！），并且常常不听话地自己动起来了，即使用户想要自己手动浏览其内容。UI设计的一条重要准则就是 <a href="http://bokardo.com/principles-of-user-interface-design/" target="_blank" rel="noopener">用户需掌握控制权</a></p>
+<p>如今许多电商网站上都使用了图片轮播技术 —— 而且我认为他们并不是因为做过测试而选择了这一技术，不过是群体心理作祟，人云亦云罢了。</p>
+<p>这是 <a href="http://www.forever21.com" target="_blank" rel="noopener">Forever21</a> 的主页，被诟病的是 —— 每 4 秒钟就要在 3 张图片之间切换一次：</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/21-1.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/21-1.jpg" alt="21"></a></p>
+<p>如果用户在第一眼看到的不是他们所喜欢的（相关的），那怎么办？又或者，如果这三样东西用户一个都不喜欢呢？这明显不利于提高你的 <a href="https://conversionxl.com/customer-lifetime-value/" target="_blank" rel="noopener">顾客终身价值</a> 。</p>
+<p>出于用户至上的考虑，一旦鼠标移动到图片轮播框的箭头上时，你应该让它立即停止自动播放。不仅如此，当你离开一段时间后再次回到网站时，页面中显示的要正好是你想看到的内容。</p>
+<p>我建议你还是用一个静态的单一页面把它替换掉吧。</p>
+<p>这是来自 <a href="http://www.jjbuckley.com/" target="_blank" rel="noopener">J.J. Buckley</a> 的一个静态页面 —— 专注于单一元素使得信息得到了传达：</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/jj.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/jj.jpg" alt="jj"></a></p>
+<p>一些之前使用过图片轮播的用户，如 Adobe，Gap 以及 Hilton 也都纷纷转而使用静态的消息页面了。</p>
+<p><a href="https://www.adobe.com/" target="_blank" rel="noopener">Adobe</a> :</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/adobes.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/adobes.jpg" alt="adobes"></a></p>
+<p><a href="http://www.gap.com" target="_blank" rel="noopener">Gap</a> :</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/gap.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/gap.jpg" alt="gap"></a></p>
+<p>请注意，尽管 <a href="http://www.hilton.com" target="_blank" rel="noopener">Hilton</a>  的页面中有一个图像滑块，但它并不会自动轮播。如果你想跳转，那就点击它。</p>
+<p><a href="https://conversionxl.com/wp-content/uploads/2012/09/hilton.jpg" target="_blank" rel="noopener"><img src="https://conversionxl.com/wp-content/uploads/2012/09/hilton.jpg" alt="hilton"></a></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h2><p>如果可以，请尽量避免使用它。追随效益，而不是去随大流（它早晚会过时）。</p>
+<p>那么你将用什么来代替它呢？或许你可以像这样使用静态图片：</p>
+<p><a href="https://twitter.com/erunyon/status/293868617886486529" target="_blank" rel="noopener"><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fidkitq5yjj30te0j0n05.jpg" alt></a></p>
+<p>Brad Frost 承认『<strong>尽管图片轮播并非那么高效，但我总觉得它不会马上消失</strong>』并写下了这篇如何 <a href="http://bradfrostweb.com/blog/post/carousels/" target="_blank" rel="noopener">改善图片轮播</a> 的文章。</p>
+<p>作为网站站长，或者是用户，你对图片轮播这一技术又有什么看法呢？</p>
+
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

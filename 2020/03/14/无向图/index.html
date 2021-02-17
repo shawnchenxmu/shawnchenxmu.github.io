@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Introduction定义： 图是由一组顶点和一组能够将两个顶点相连的边组成 Undirected graphsGraph. Set of vertices connected pairwise by edges. Graph applications 图的相关术语Path. Sequence of vertices connected by edges.Cycle. Path whose fi">
+<meta name="keywords" content="算法,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无向图">
+<meta property="og:url" content="http://yoursite.com/2020/03/14/无向图/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="Introduction定义： 图是由一组顶点和一组能够将两个顶点相连的边组成 Undirected graphsGraph. Set of vertices connected pairwise by edges. Graph applications 图的相关术语Path. Sequence of vertices connected by edges.Cycle. Path whose fi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/17.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/14/无向图/18.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无向图">
+<meta name="twitter:description" content="Introduction定义： 图是由一组顶点和一组能够将两个顶点相连的边组成 Undirected graphsGraph. Set of vertices connected pairwise by edges. Graph applications 图的相关术语Path. Sequence of vertices connected by edges.Cycle. Path whose fi">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/14/无向图/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/14/无向图/">
+
+
+  <title> 无向图 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                无向图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-14T14:55:39+08:00" content="2020-03-14">
+              2020-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>定义：</strong> 图是由一组顶点和一组能够将两个顶点相连的边组成</p>
+<h3 id="Undirected-graphs"><a href="#Undirected-graphs" class="headerlink" title="Undirected graphs"></a>Undirected graphs</h3><p><span style="color: #00bcd4">Graph.</span> Set of <strong>vertices</strong> connected pairwise by <strong>edges</strong>.</p>
+<h3 id="Graph-applications"><a href="#Graph-applications" class="headerlink" title="Graph applications"></a>Graph applications</h3><p><img src="/2020/03/14/无向图/1.png" alt></p>
+<h3 id="图的相关术语"><a href="#图的相关术语" class="headerlink" title="图的相关术语"></a>图的相关术语</h3><p><span style="color: #00bcd4">Path.</span> Sequence of vertices connected by edges.<br><span style="color: #00bcd4">Cycle.</span> Path whose first and last vertices are the same.</p>
+<p>Two vertices are <strong>connected</strong> if there is a path between them.</p>
+<p><img src="/2020/03/14/无向图/2.png" alt></p>
+<h3 id="图相关的一些问题"><a href="#图相关的一些问题" class="headerlink" title="图相关的一些问题"></a>图相关的一些问题</h3><p><span style="color: #00bcd4">Path.</span> Is there a path between <strong>s</strong> and <strong>t</strong>?<br><span style="color: #00bcd4">Shortest path.</span> What is the shortest path between <strong>s</strong> and <strong>t</strong>?</p>
+<p><span style="color: #00bcd4">Cycle.</span> Is there a cycle in the graph?<br><span style="color: #00bcd4">Euler tour.</span> Is there a cycle that uses each edge exactly once?<br><span style="color: #00bcd4">Hamilton tour.</span> Is there a cycle that uses each vertex exactly once.</p>
+<p><span style="color: #00bcd4">Connectivity.</span> Is there a way to connect all of the vertices?<br><span style="color: #00bcd4">MST.</span> What is the best way to connect all of the vertices?<br><span style="color: #00bcd4">Biconnectivity.</span> Is there a vertex whose removal disconnects the graph?</p>
+<p><span style="color: #00bcd4">Planarity.</span> Can you draw the graph in the plane with no crossing edges?<br><span style="color: #00bcd4">Graph isomorphism.</span> Do two adjacency lists represent the same graph?</p>
+<h2 id="graph-API"><a href="#graph-API" class="headerlink" title="graph API"></a>graph API</h2><p><img src="/2020/03/14/无向图/3.png" alt><br><img src="/2020/03/14/无向图/4.png" alt></p>
+<h3 id="Graph-API-sample-client"><a href="#Graph-API-sample-client" class="headerlink" title="Graph API: sample client"></a>Graph API: sample client</h3><p><img src="/2020/03/14/无向图/5.png" alt></p>
+<h3 id="Typical-graph-processing-code"><a href="#Typical-graph-processing-code" class="headerlink" title="Typical graph-processing code"></a>Typical graph-processing code</h3><p><img src="/2020/03/14/无向图/6.png" alt></p>
+<h3 id="Set-of-edges-graph-representation"><a href="#Set-of-edges-graph-representation" class="headerlink" title="Set-of-edges graph representation"></a>Set-of-edges graph representation</h3><p>Maintain vertex-indexed array of lists.</p>
+<p><img src="/2020/03/14/无向图/7.png" alt></p>
+<h3 id="Adjacency-list-graph-representation-Java-implementation"><a href="#Adjacency-list-graph-representation-Java-implementation" class="headerlink" title="Adjacency-list graph representation: Java implementation"></a>Adjacency-list graph representation: Java implementation</h3><p><img src="/2020/03/14/无向图/8.png" alt></p>
+<h2 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h2><h3 id="Design-pattern-for-graph-processing"><a href="#Design-pattern-for-graph-processing" class="headerlink" title="Design pattern for graph processing"></a>Design pattern for graph processing</h3><p><span style="color: #00bcd4">Design pattern.</span> Decouple graph data type from graph processing.</p>
+<ul>
+<li>Create a Graph object.</li>
+<li>Pass the Graph to a graph-processing routine.</li>
+<li>Query the graph-processing routine for information.</li>
+</ul>
+<p><img src="/2020/03/14/无向图/9.png" alt></p>
+<p><img src="/2020/03/14/无向图/10.png" alt></p>
+<h3 id="Depth-first-search-demo"><a href="#Depth-first-search-demo" class="headerlink" title="Depth-first search demo"></a>Depth-first search demo</h3><p>To visit a vertex <strong>v</strong>:</p>
+<ul>
+<li>Mark vertex <code>v</code> as visited.</li>
+<li>Recursively visit all unmarked vertices adjacent to <code>v</code>.</li>
+</ul>
+<p><img src="/2020/03/14/无向图/11.png" alt></p>
+<h3 id="Depth-first-search"><a href="#Depth-first-search" class="headerlink" title="Depth-first search"></a>Depth-first search</h3><p><span style="color: #00bcd4">Goal.</span> Find all vertices connected to <strong>s</strong> (and a corresponding path).<br><span style="color: #00bcd4">Idea.</span> Mimic maze exploration.</p>
+<p><span style="color: #00bcd4">Algorithm.</span></p>
+<ul>
+<li>Use recursion (ball of string).</li>
+<li>Mark each visited vertex (and keep track of edge taken to visit it).</li>
+<li>Return (retrace steps) when no unvisited options.</li>
+</ul>
+<p><span style="color: #00bcd4">Data structures.</span></p>
+<ul>
+<li><code>boolean[]</code> <strong>marked</strong> to mark visited vertices.</li>
+<li><code>int[]</code> <strong>edgeTo</strong> to keep tree of paths.<br>(<code>edgeTo[w] == v</code>) means that edge <strong>v-w</strong> taken to visit <strong>w</strong> for first time</li>
+</ul>
+<p><img src="/2020/03/14/无向图/12.png" alt></p>
+<h3 id="Depth-first-search-properties"><a href="#Depth-first-search-properties" class="headerlink" title="Depth-first search properties"></a>Depth-first search properties</h3><p><span style="color: #00bcd4">Proposition.</span> DFS marks all vertices connected to <strong>s</strong> in time proportional to the sum of their degrees.</p>
+<p><img src="/2020/03/14/无向图/13.png" alt></p>
+<p><span style="color: #00bcd4">Proposition.</span> After DFS, can find vertices connected to s in constant time and can find a path to s (if one exists) in time proportional to its length.</p>
+<p><img src="/2020/03/14/无向图/14.png" alt></p>
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><h3 id="Breadth-first-search-demo"><a href="#Breadth-first-search-demo" class="headerlink" title="Breadth-first search demo"></a>Breadth-first search demo</h3><p>Repeat until queue is empty:</p>
+<ul>
+<li>Remove vertex <strong>v</strong> from queue.</li>
+<li>Add to queue all unmarked vertices adjacent to <strong>v</strong> and mark them.</li>
+</ul>
+<p><img src="/2020/03/14/无向图/15.png" alt></p>
+<h3 id="Breadth-first-search"><a href="#Breadth-first-search" class="headerlink" title="Breadth-first search"></a>Breadth-first search</h3><p><span style="color: #00bcd4"><strong>Depth-first search.</strong></span> Put unvisited vertices on a <span style="color: red">stack</span>.<br><span style="color: #00bcd4"><strong>Breadth-first search.</strong></span> Put unvisited vertices on a <span style="color: red">queue</span>.</p>
+<p><span style="color: #00bcd4"><strong>Shortest path.</strong></span> Find path from <strong>s</strong> to <strong>t</strong> that uses <span style="color: red">fewest number of edges</span>.</p>
+<p><img src="/2020/03/14/无向图/16.png" alt></p>
+<h3 id="Breadth-first-search-properties"><a href="#Breadth-first-search-properties" class="headerlink" title="Breadth-first search properties"></a>Breadth-first search properties</h3><p><span style="color: #00bcd4">Proposition.</span> BFS computes shortest paths (fewest number of edges) from <strong>s</strong> to all other vertices in a graph in time proportional to <strong>E + V</strong>.</p>
+<p><img src="/2020/03/14/无向图/17.png" alt></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><img src="/2020/03/14/无向图/18.png" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/14/散列表/" rel="next" title="散列表">
+                <i class="fa fa-chevron-left"></i> 散列表
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/有向图/" rel="prev" title="有向图">
+                有向图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Undirected-graphs"><span class="nav-text">Undirected graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-applications"><span class="nav-text">Graph applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的相关术语"><span class="nav-text">图的相关术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图相关的一些问题"><span class="nav-text">图相关的一些问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#graph-API"><span class="nav-text">graph API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-API-sample-client"><span class="nav-text">Graph API: sample client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Typical-graph-processing-code"><span class="nav-text">Typical graph-processing code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-of-edges-graph-representation"><span class="nav-text">Set-of-edges graph representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adjacency-list-graph-representation-Java-implementation"><span class="nav-text">Adjacency-list graph representation: Java implementation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度优先搜索"><span class="nav-text">深度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-pattern-for-graph-processing"><span class="nav-text">Design pattern for graph processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-demo"><span class="nav-text">Depth-first search demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search"><span class="nav-text">Depth-first search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Depth-first-search-properties"><span class="nav-text">Depth-first search properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先搜索"><span class="nav-text">广度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Breadth-first-search-demo"><span class="nav-text">Breadth-first search demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Breadth-first-search"><span class="nav-text">Breadth-first search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Breadth-first-search-properties"><span class="nav-text">Breadth-first search properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

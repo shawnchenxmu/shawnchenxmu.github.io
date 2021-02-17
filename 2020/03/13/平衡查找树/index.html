@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,树,搜索,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="2-3 树Allow 1 or 2 keys per node.  2-node: one key, two children. 3-node: two keys, three children.  Symmetric order. Inorder traversal yields keys in ascending order. Perfect balance. Every path from">
+<meta name="keywords" content="算法,树,搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平衡查找树">
+<meta property="og:url" content="http://yoursite.com/2020/03/13/平衡查找树/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="2-3 树Allow 1 or 2 keys per node.  2-node: one key, two children. 3-node: two keys, three children.  Symmetric order. Inorder traversal yields keys in ascending order. Perfect balance. Every path from">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/17.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/18.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/13/平衡查找树/19.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.866Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="平衡查找树">
+<meta name="twitter:description" content="2-3 树Allow 1 or 2 keys per node.  2-node: one key, two children. 3-node: two keys, three children.  Symmetric order. Inorder traversal yields keys in ascending order. Perfect balance. Every path from">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/13/平衡查找树/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/13/平衡查找树/">
+
+
+  <title> 平衡查找树 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                平衡查找树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-13T22:19:18+08:00" content="2020-03-13">
+              2020-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-3-树"><a href="#2-3-树" class="headerlink" title="2-3 树"></a>2-3 树</h2><p><span style="color: #00bcd4">Allow 1 or 2 keys per node.</span></p>
+<ul>
+<li>2-node: one key, two children.</li>
+<li>3-node: two keys, three children.</li>
+</ul>
+<p><span style="color: #00bcd4">Symmetric order.</span> Inorder traversal yields keys in ascending order.</p>
+<p><span style="color: #00bcd4">Perfect balance.</span> Every path from root to null link has same length.</p>
+<p><img src="/2020/03/13/平衡查找树/1.png" alt></p>
+<h3 id="Global-properties-in-a-2-3-tree"><a href="#Global-properties-in-a-2-3-tree" class="headerlink" title="Global properties in a 2-3 tree"></a>Global properties in a 2-3 tree</h3><p><span style="color: #00bcd4">Invariants.</span> Maintains symmetric order and perfect balance.</p>
+<p><img src="/2020/03/13/平衡查找树/2.png" alt></p>
+<h3 id="2-3-树性能"><a href="#2-3-树性能" class="headerlink" title="2-3 树性能"></a>2-3 树性能</h3><p><img src="/2020/03/13/平衡查找树/3.png" alt></p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><h3 id="使用红黑树代表2-3树"><a href="#使用红黑树代表2-3树" class="headerlink" title="使用红黑树代表2-3树"></a>使用红黑树代表2-3树</h3><p><img src="/2020/03/13/平衡查找树/4.png" alt></p>
+<h3 id="An-equivalent-definition"><a href="#An-equivalent-definition" class="headerlink" title="An equivalent definition"></a>An equivalent definition</h3><p>A BST such that:</p>
+<ul>
+<li>No node has two red links connected to it.</li>
+<li>Every path from root to null link has the same number of black links(perfect black balance).</li>
+<li>Red links lean left.</li>
+</ul>
+<h3 id="红黑树和2-3树的一一对应关系"><a href="#红黑树和2-3树的一一对应关系" class="headerlink" title="红黑树和2-3树的一一对应关系"></a>红黑树和2-3树的一一对应关系</h3><p><img src="/2020/03/13/平衡查找树/5.png" alt></p>
+<h3 id="Search-implementation-for-red-black-BSTs"><a href="#Search-implementation-for-red-black-BSTs" class="headerlink" title="Search implementation for red-black BSTs"></a>Search implementation for red-black BSTs</h3><p><span style="color: #00bcd4">Observation.</span> Search is the same as for elementary BST (ignore color).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Val <span class="title">get</span><span class="params">(Key key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Node x = root;</span><br><span class="line">    <span class="keyword">while</span> (x != <span class="keyword">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> cmp = key.compareTo(x.key);</span><br><span class="line">        <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) x = x.left;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) x = x.right;</span><br><span class="line">        <span class="keyword">else</span>              <span class="keyword">return</span> x.val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Red-black-BST-representation"><a href="#Red-black-BST-representation" class="headerlink" title="Red-black BST representation"></a>Red-black BST representation</h3><p>Each node is pointed to by precisely one link(from its parent) =&gt; can encode color of links in nodes.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> RED = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> BLACK = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    Key key;</span><br><span class="line">    Value val;</span><br><span class="line">    Node left, right;</span><br><span class="line">    <span class="keyword">boolean</span> color; <span class="comment">// color of parent link</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/13/平衡查找树/6.png" alt></p>
+<h3 id="Elementary-red-black-BST-operations"><a href="#Elementary-red-black-BST-operations" class="headerlink" title="Elementary red-black BST operations"></a>Elementary red-black BST operations</h3><h4 id="Left-rotation"><a href="#Left-rotation" class="headerlink" title="Left rotation."></a>Left rotation.</h4><p>Orient a (temporarily) right-leaning red link to lean left.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateLeft</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line">    Node x = h.right;</span><br><span class="line">    h.right = x.left;</span><br><span class="line">    x.left = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/13/平衡查找树/7.png" alt></p>
+<p><img src="/2020/03/13/平衡查找树/8.png" alt></p>
+<h4 id="Right-rotation"><a href="#Right-rotation" class="headerlink" title="Right rotation."></a>Right rotation.</h4><p>Orient a left-leaning red link to (temporarily) lean right.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">rotateRight</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    Node x = h.left;</span><br><span class="line">    h.left = x.right;</span><br><span class="line">    x.right = h;</span><br><span class="line">    x.color = h.color;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/13/平衡查找树/9.png" alt></p>
+<p><img src="/2020/03/13/平衡查找树/10.png" alt></p>
+<h4 id="Color-flip"><a href="#Color-flip" class="headerlink" title="Color flip."></a>Color flip.</h4><p>Recolor to split a (temporary) 4-node.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">flipColors</span><span class="params">(Node h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">assert</span> !isRed(h);</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.left)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isRed</span><span class="params">(h.right)</span></span>;</span><br><span class="line">    h.color = RED;</span><br><span class="line">    h.left.color = BLACK;</span><br><span class="line">    h.right.color = BLACK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/13/平衡查找树/11.png" alt><br><img src="/2020/03/13/平衡查找树/12.png" alt></p>
+<h3 id="向红黑树插入一个新节点"><a href="#向红黑树插入一个新节点" class="headerlink" title="向红黑树插入一个新节点"></a>向红黑树插入一个新节点</h3><h4 id="Warmup-1-Insert-into-a-tree-with-exactly-1-node"><a href="#Warmup-1-Insert-into-a-tree-with-exactly-1-node" class="headerlink" title="Warmup 1: Insert into a tree with exactly 1 node."></a><span style="color: #00bcd4">Warmup 1:</span> Insert into a tree with exactly 1 node.</h4><p><img src="/2020/03/13/平衡查找树/13.png" alt></p>
+<h4 id="Case-1-Insert-into-a-2-node-at-the-bottom"><a href="#Case-1-Insert-into-a-2-node-at-the-bottom" class="headerlink" title="Case 1: Insert into a 2-node at the bottom."></a><span style="color: #00bcd4">Case 1:</span> Insert into a 2-node at the bottom.</h4><ul>
+<li>Do standard BST insert; color new link red.</li>
+<li>If new red link is right link, rotate left.</li>
+</ul>
+<p><img src="/2020/03/13/平衡查找树/14.png" alt></p>
+<h4 id="Warmup-2-Insert-into-a-tree-with-exactly-2-node"><a href="#Warmup-2-Insert-into-a-tree-with-exactly-2-node" class="headerlink" title="Warmup 2: Insert into a tree with exactly 2 node."></a><span style="color: #00bcd4">Warmup 2:</span> Insert into a tree with exactly 2 node.</h4><p><img src="/2020/03/13/平衡查找树/15.png" alt></p>
+<h4 id="Case-2-Insert-into-a-3-node-at-the-bottom"><a href="#Case-2-Insert-into-a-3-node-at-the-bottom" class="headerlink" title="Case 2: Insert into a 3-node at the bottom."></a><span style="color: #00bcd4">Case 2:</span> Insert into a 3-node at the bottom.</h4><ul>
+<li>Do standard BST insert; color new link red.</li>
+<li>Rotate to balance the 4-node (if needed).</li>
+<li>Flip colors to pass red link up one level.</li>
+<li>Rotate to make lean left (if needed).</li>
+<li>Repeat case 1 or case 2 up the tree (if needed).</li>
+</ul>
+<p><img src="/2020/03/13/平衡查找树/16.png" alt><br><img src="/2020/03/13/平衡查找树/17.png" alt></p>
+<h4 id="Same-code-for-all-cases"><a href="#Same-code-for-all-cases" class="headerlink" title="Same code for all cases."></a>Same code for all cases.</h4><ul>
+<li>Right child red, left child black: <span style="color: red">rotate left</span>.</li>
+<li>Left child, left-left grandchild red: <span style="color: red">rotate right</span>.</li>
+<li>Both child red: <span style="color: red">flip colors</span>.</li>
+</ul>
+<p><img src="/2020/03/13/平衡查找树/18.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node h, Key key, Value val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// insert at bottom (and color it red)</span></span><br><span class="line">    <span class="keyword">if</span> (h == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) h.left = put(h.left, key, val);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) h.right = put(h.right, key, val);</span><br><span class="line">    <span class="keyword">else</span>              h.val = val</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// lean left</span></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.right) &amp;&amp; !isRed(h.left))    h = rotateLeft(h);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// balance 4-node</span></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; isRed(h.left.left)) h = rotateRight(h);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// split 4-node</span></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; isRed(h.right))     flipColors(h)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><p><img src="/2020/03/13/平衡查找树/19.png" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/树/" rel="tag">#树</a>
+          
+            <a href="/tags/搜索/" rel="tag">#搜索</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/13/快速排序/" rel="next" title="快速排序">
+                <i class="fa fa-chevron-left"></i> 快速排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/散列表/" rel="prev" title="散列表">
+                散列表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-树"><span class="nav-text">2-3 树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-properties-in-a-2-3-tree"><span class="nav-text">Global properties in a 2-3 tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-树性能"><span class="nav-text">2-3 树性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用红黑树代表2-3树"><span class="nav-text">使用红黑树代表2-3树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#An-equivalent-definition"><span class="nav-text">An equivalent definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树和2-3树的一一对应关系"><span class="nav-text">红黑树和2-3树的一一对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search-implementation-for-red-black-BSTs"><span class="nav-text">Search implementation for red-black BSTs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Red-black-BST-representation"><span class="nav-text">Red-black BST representation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elementary-red-black-BST-operations"><span class="nav-text">Elementary red-black BST operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Left-rotation"><span class="nav-text">Left rotation.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Right-rotation"><span class="nav-text">Right rotation.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Color-flip"><span class="nav-text">Color flip.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向红黑树插入一个新节点"><span class="nav-text">向红黑树插入一个新节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Warmup-1-Insert-into-a-tree-with-exactly-1-node"><span class="nav-text">Warmup 1: Insert into a tree with exactly 1 node.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-1-Insert-into-a-2-node-at-the-bottom"><span class="nav-text">Case 1: Insert into a 2-node at the bottom.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Warmup-2-Insert-into-a-tree-with-exactly-2-node"><span class="nav-text">Warmup 2: Insert into a tree with exactly 2 node.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Case-2-Insert-into-a-3-node-at-the-bottom"><span class="nav-text">Case 2: Insert into a 3-node at the bottom.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Same-code-for-all-cases"><span class="nav-text">Same code for all cases.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能分析"><span class="nav-text">性能分析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

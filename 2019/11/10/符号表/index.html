@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="关于符号表基本功能Insert a value with specified key.Given a key, search for the corresponding value. 应用DNS lookup  Insert domain name with specified IP address. Given domain name, find corresponding IP address">
+<meta name="keywords" content="算法,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="符号表">
+<meta property="og:url" content="http://yoursite.com/2019/11/10/符号表/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="关于符号表基本功能Insert a value with specified key.Given a key, search for the corresponding value. 应用DNS lookup  Insert domain name with specified IP address. Given domain name, find corresponding IP address">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/10/符号表/17.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="符号表">
+<meta name="twitter:description" content="关于符号表基本功能Insert a value with specified key.Given a key, search for the corresponding value. 应用DNS lookup  Insert domain name with specified IP address. Given domain name, find corresponding IP address">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/10/符号表/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/10/符号表/">
+
+
+  <title> 符号表 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                符号表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-11-10T14:46:07+08:00" content="2019-11-10">
+              2019-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于符号表"><a href="#关于符号表" class="headerlink" title="关于符号表"></a>关于符号表</h2><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><p><span style="color: red">Insert</span> a value with specified key.<br>Given a key, <span style="color: red">search</span> for the corresponding value.</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p><strong>DNS lookup</strong></p>
+<ul>
+<li>Insert domain name with specified IP address.</li>
+<li>Given domain name, find corresponding IP address</li>
+</ul>
+<p><img src="/2019/11/10/符号表/1.png" alt></p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>Associative array abstraction. Associate one value with each key.</p>
+<p><img src="/2019/11/10/符号表/2.png" alt></p>
+<p><strong>约定</strong></p>
+<ul>
+<li>Values are not <code>null</code>.</li>
+<li>Method <code>get()</code> returns <code>null</code> if key not present.</li>
+<li>Method <code>put()</code> overwrites old value with new value.</li>
+</ul>
+<p>Easy to implement <code>contains()</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(key) != <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Can implement lazy version of <code>delete()</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">    put(key, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Keys-and-values"><a href="#Keys-and-values" class="headerlink" title="Keys and values"></a>Keys and values</h3><h4 id="Value-type"><a href="#Value-type" class="headerlink" title="Value type"></a>Value type</h4><p>Any generic type.</p>
+<h4 id="Key-type"><a href="#Key-type" class="headerlink" title="Key type"></a>Key type</h4><p>符合以下条件：</p>
+<p><img src="/2019/11/10/符号表/3.png" alt></p>
+<p>最佳实践：Use immutable types for symbol table keys.</p>
+<ul>
+<li>Immutable in Java: Integer, Double, String, java.io.File, …</li>
+<li>Mutable in Java: StringBuilder, java.net.URL, arrays, …</li>
+</ul>
+<h4 id="Java-中自定义-equals-方法"><a href="#Java-中自定义-equals-方法" class="headerlink" title="Java 中自定义 equals 方法"></a>Java 中自定义 <code>equals</code> 方法</h4><p><img src="/2019/11/10/符号表/4.png" alt></p>
+<p>完整实现：</p>
+<p><img src="/2019/11/10/符号表/5.png" alt></p>
+<h4 id="ST-test-client-for-traces"><a href="#ST-test-client-for-traces" class="headerlink" title="ST test client for traces"></a>ST test client for traces</h4><p><img src="/2019/11/10/符号表/6.png" alt></p>
+<h4 id="ST-test-client-for-analysis"><a href="#ST-test-client-for-analysis" class="headerlink" title="ST test client for analysis"></a>ST test client for analysis</h4><p><img src="/2019/11/10/符号表/7.png" alt></p>
+<p>Frequency counter 实现：</p>
+<p><img src="/2019/11/10/符号表/8.png" alt></p>
+<h2 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h2><h3 id="无序链表方式"><a href="#无序链表方式" class="headerlink" title="无序链表方式"></a>无序链表方式</h3><p><strong>数据结构：</strong>Maintain an (unordered) linked list of key-value pairs.<br><strong>搜索：</strong>Scan through all keys until find a match.<br><strong>插入：</strong>Scan through all keys until find a match; if no match add to front.</p>
+<p><img src="/2019/11/10/符号表/9.png" alt></p>
+<p><strong>分析</strong></p>
+<p><img src="/2019/11/10/符号表/10.png" alt></p>
+<h3 id="二分搜索"><a href="#二分搜索" class="headerlink" title="二分搜索"></a>二分搜索</h3><p><strong>数据结构：</strong>Maintain an ordered array of key-value pairs.<br><strong>Rank helper function：</strong>How many keys &lt; k ?</p>
+<p><img src="/2019/11/10/符号表/11.png" alt></p>
+<h4 id="二分搜索-Java-实现"><a href="#二分搜索-Java-实现" class="headerlink" title="二分搜索 Java 实现"></a>二分搜索 Java 实现</h4><p><img src="/2019/11/10/符号表/12.png" alt></p>
+<p><strong>问题：</strong>To insert, need to shift all greater keys over.</p>
+<p><img src="/2019/11/10/符号表/13.png" alt></p>
+<p><strong>分析</strong><br><img src="/2019/11/10/符号表/14.png" alt></p>
+<h2 id="有序符号表"><a href="#有序符号表" class="headerlink" title="有序符号表"></a>有序符号表</h2><h3 id="有序符号表的应用"><a href="#有序符号表的应用" class="headerlink" title="有序符号表的应用"></a>有序符号表的应用</h3><p><img src="/2019/11/10/符号表/15.png" alt></p>
+<h3 id="有序符号表API"><a href="#有序符号表API" class="headerlink" title="有序符号表API"></a>有序符号表API</h3><p><img src="/2019/11/10/符号表/16.png" alt></p>
+<p><strong>分析：</strong></p>
+<p><img src="/2019/11/10/符号表/17.png" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/07/优先队列与堆排序/" rel="next" title="优先队列与堆排序">
+                <i class="fa fa-chevron-left"></i> 优先队列与堆排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/08/关于cookie/" rel="prev" title="关于cookie">
+                关于cookie <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于符号表"><span class="nav-text">关于符号表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本功能"><span class="nav-text">基本功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Keys-and-values"><span class="nav-text">Keys and values</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Value-type"><span class="nav-text">Value type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-type"><span class="nav-text">Key type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-中自定义-equals-方法"><span class="nav-text">Java 中自定义 equals 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ST-test-client-for-traces"><span class="nav-text">ST test client for traces</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ST-test-client-for-analysis"><span class="nav-text">ST test client for analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本实现"><span class="nav-text">基本实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无序链表方式"><span class="nav-text">无序链表方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分搜索"><span class="nav-text">二分搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二分搜索-Java-实现"><span class="nav-text">二分搜索 Java 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序符号表"><span class="nav-text">有序符号表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有序符号表的应用"><span class="nav-text">有序符号表的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序符号表API"><span class="nav-text">有序符号表API</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

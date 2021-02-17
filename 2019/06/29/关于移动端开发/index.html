@@ -1,0 +1,728 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,移动端,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="移动前端开发和 Web 前端开发的区别兼容性 PC：IE、Firefox、Chrome、Safari Mobile：webkit 内核浏览器和 Chrome、UC、QQ、小米手机浏览器  移动端系统下面甚至同一系统不同机型下面，因为内核版本的不同，以及厂商对系统的定制，渲染出来会存在比较大的差异，典型的有安卓2.3，ios6，nexus5及小米等。 交互方式 操作：滚动，click(pc) &amp;am">
+<meta name="keywords" content="前端,移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于移动端开发">
+<meta property="og:url" content="http://yoursite.com/2019/06/29/关于移动端开发/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="移动前端开发和 Web 前端开发的区别兼容性 PC：IE、Firefox、Chrome、Safari Mobile：webkit 内核浏览器和 Chrome、UC、QQ、小米手机浏览器  移动端系统下面甚至同一系统不同机型下面，因为内核版本的不同，以及厂商对系统的定制，渲染出来会存在比较大的差异，典型的有安卓2.3，ios6，nexus5及小米等。 交互方式 操作：滚动，click(pc) &amp;am">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/06/29/关于移动端开发/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/06/29/关于移动端开发/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/29/关于移动端开发/3.png">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于移动端开发">
+<meta name="twitter:description" content="移动前端开发和 Web 前端开发的区别兼容性 PC：IE、Firefox、Chrome、Safari Mobile：webkit 内核浏览器和 Chrome、UC、QQ、小米手机浏览器  移动端系统下面甚至同一系统不同机型下面，因为内核版本的不同，以及厂商对系统的定制，渲染出来会存在比较大的差异，典型的有安卓2.3，ios6，nexus5及小米等。 交互方式 操作：滚动，click(pc) &amp;am">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/29/关于移动端开发/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/29/关于移动端开发/">
+
+
+  <title> 关于移动端开发 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于移动端开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-06-29T08:54:23+08:00" content="2019-06-29">
+              2019-06-29
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="移动前端开发和-Web-前端开发的区别"><a href="#移动前端开发和-Web-前端开发的区别" class="headerlink" title="移动前端开发和 Web 前端开发的区别"></a>移动前端开发和 Web 前端开发的区别</h2><h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><ul>
+<li>PC：IE、Firefox、Chrome、Safari</li>
+<li>Mobile：webkit 内核浏览器和 Chrome、UC、QQ、小米手机浏览器</li>
+</ul>
+<p>移动端系统下面甚至同一系统不同机型下面，因为内核版本的不同，以及厂商对系统的定制，渲染出来会存在比较大的差异，典型的有安卓2.3，ios6，nexus5及小米等。</p>
+<h3 id="交互方式"><a href="#交互方式" class="headerlink" title="交互方式"></a>交互方式</h3><ul>
+<li>操作：滚动，click(pc) &amp; touch(mobile)</li>
+<li>业务相关：单选、多选、下拉选择等</li>
+</ul>
+<h2 id="移动端前端开发分类"><a href="#移动端前端开发分类" class="headerlink" title="移动端前端开发分类"></a>移动端前端开发分类</h2><ul>
+<li>移动端网页<ul>
+<li>类似手机新浪网、手机腾讯新闻等</li>
+</ul>
+</li>
+<li>移动端 web app<ul>
+<li>类似手机淘宝、美团等</li>
+<li><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;</code> 拥有一些native 的功能</li>
+</ul>
+</li>
+<li>Hybrid 开发</li>
+</ul>
+<h2 id="移动端网页布局方法"><a href="#移动端网页布局方法" class="headerlink" title="移动端网页布局方法"></a>移动端网页布局方法</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<p>曾几何时为了兼容IE低版本浏览器而头痛，以为到 Mobile 时代可以跟这些麻烦说拜拜。可没想到到了移动时代，为了处理各终端的适配而乱了手脚。</p>
+</blockquote>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p><strong>手机淘宝团队适配协作模式</strong> </p>
+<p><img src="/2019/06/29/关于移动端开发/1.jpg" alt></p>
+<p><a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">amfe-flexible</a><br><a href="https://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html" target="_blank" rel="noopener">使用Flexible实现手淘H5页面的终端适配</a></p>
+<h2 id="移动端调试方法"><a href="#移动端调试方法" class="headerlink" title="移动端调试方法"></a>移动端调试方法</h2><h3 id="android"><a href="#android" class="headerlink" title="android"></a>android</h3><ul>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/?spm=a219a.7629140.0.0.9COnMH" target="_blank" rel="noopener">Android 设备的远程调试入门</a></li>
+</ul>
+<h3 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h3><ul>
+<li><a href="https://developers.redhat.com/blog/2017/07/12/how-to-debug-your-mobile-hybrid-app-on-ios/" target="_blank" rel="noopener">How to debug your mobile hybrid app on iOS</a></li>
+<li><a href="https://mediatemple.net/blog/tips/quick-tip-debug-ios-safari-true-local-emulator-actual-iphoneipad/" target="_blank" rel="noopener">Quick Tip: Debug iOS Safari on a True Local Emulator (or your actual iPhone/iPad)</a></li>
+<li><a href="https://medium.com/@mattcroak718/debugging-your-iphone-mobile-web-app-using-safari-development-tools-71240657c487" target="_blank" rel="noopener">Debugging Your iPhone Mobile Web App With Safari Dev Tools</a></li>
+</ul>
+<h3 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS/Platform/Gaia/Weinre%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7" target="_blank" rel="noopener">Weinre 远程调试工具</a></li>
+<li>Charles<ul>
+<li><a href="https://www.nodesagency.com/how-we-debug-with-charles/" target="_blank" rel="noopener">How we debug with Charles</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/Tencent/vConsole" target="_blank" rel="noopener">vConsole</a></li>
+</ul>
+<h2 id="移动端开发关注点"><a href="#移动端开发关注点" class="headerlink" title="移动端开发关注点"></a>移动端开发关注点</h2><ul>
+<li>网络加载速度（性能瓶颈）<ul>
+<li>wifi、2g、3g、4g</li>
+</ul>
+</li>
+</ul>
+<h2 id="移动端开发注意点"><a href="#移动端开发注意点" class="headerlink" title="移动端开发注意点"></a>移动端开发注意点</h2><ul>
+<li>布局</li>
+<li>适配</li>
+<li>字体</li>
+<li>back forward cache (往返缓存)</li>
+</ul>
+<h2 id="jsBridge"><a href="#jsBridge" class="headerlink" title="jsBridge"></a>jsBridge</h2><p><img src="/2019/06/29/关于移动端开发/2.png" alt></p>
+<p><img src="/2019/06/29/关于移动端开发/3.png" alt></p>
+<ul>
+<li><a href="https://juejin.im/post/5abca877f265da238155b6bc" target="_blank" rel="noopener">JSBridge的原理</a></li>
+<li><a href="https://quickhybrid.github.io/quickhybrid-doc/howto/quickhybrid_jsbridge/quickhybrid_jsbridge.html" target="_blank" rel="noopener">【quickhybrid】JSBridge的实现</a></li>
+</ul>
+<h2 id="一些常见的坑"><a href="#一些常见的坑" class="headerlink" title="一些常见的坑"></a>一些常见的坑</h2><ul>
+<li><a href="https://yq.aliyun.com/articles/587092" target="_blank" rel="noopener">常见的移动端H5页面开发遇到的坑和解决办法</a></li>
+<li><a href="https://juejin.im/post/5af918636fb9a07ac5603ecb" target="_blank" rel="noopener">移动端常见bug汇总001</a></li>
+<li><a href="http://jungahuang.com/2017/07/30/something-about-web-app/" target="_blank" rel="noopener">关于移动端开发中遇到的坑</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26141351" target="_blank" rel="noopener">移动端 Web 开发踩坑之旅</a></li>
+<li><a href="https://www.jianshu.com/p/6b9af489fdc9" target="_blank" rel="noopener">移动web开发踩坑和优化小结</a></li>
+<li>Android 机器下 <code>location.replace</code> 无效：<a href="https://stackoverflow.com/questions/20858199/android-redirect-does-not-work" target="_blank" rel="noopener">javascript - Android redirect does not work - Stack Overflow</a></li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Mobile" target="_blank" rel="noopener">Mobile Web Development</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/design-and-ux/principles/" target="_blank" rel="noopener">怎样才算出色的移动网站？</a></li>
+<li><a href="https://neilpatel.com/blog/mobile-design-best-practices/" target="_blank" rel="noopener">8 Overlooked Mobile Design Best Practices You Need to Implement</a></li>
+<li><a href="https://www.w3.org/TR/mobile-bp/" target="_blank" rel="noopener">Mobile Web Best Practices 1.0</a></li>
+<li><a href="https://www.impactbnd.com/blog/responsive-design-best-practices" target="_blank" rel="noopener">7 Responsive Design Best Practices You Need To Know in 2017</a></li>
+<li><a href="https://developers.google.com/web/updates/2014/12/Fundamental-of-Mobile-Web-Development" target="_blank" rel="noopener">Fundamental-of-Mobile-Web-Development</a></li>
+<li><a href="https://www.zhihu.com/question/20269059" target="_blank" rel="noopener">移动前端开发和 Web 前端开发的区别是什么？</a></li>
+<li><a href="https://juejin.im/entry/5b3c1f5c6fb9a04fcc447806" target="_blank" rel="noopener">移动端开发的几条总结</a></li>
+<li><a href="https://github.com/HaoChuan9421/blog/issues/3" target="_blank" rel="noopener">移动端调试痛点？——送你五款前端开发利器</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/移动端/" rel="tag">#移动端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/《Effective JavaScript》/" rel="next" title="《Effective JavaScript》">
+                <i class="fa fa-chevron-left"></i> 《Effective JavaScript》
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/29/nginx/" rel="prev" title="Nginx">
+                Nginx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#移动前端开发和-Web-前端开发的区别"><span class="nav-text">移动前端开发和 Web 前端开发的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容性"><span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交互方式"><span class="nav-text">交互方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端前端开发分类"><span class="nav-text">移动端前端开发分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端网页布局方法"><span class="nav-text">移动端网页布局方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案"><span class="nav-text">方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端调试方法"><span class="nav-text">移动端调试方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android"><span class="nav-text">android</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios"><span class="nav-text">ios</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用"><span class="nav-text">通用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端开发关注点"><span class="nav-text">移动端开发关注点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端开发注意点"><span class="nav-text">移动端开发注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsBridge"><span class="nav-text">jsBridge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些常见的坑"><span class="nav-text">一些常见的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

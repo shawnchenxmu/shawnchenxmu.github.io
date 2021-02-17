@@ -1,0 +1,742 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="网络,DNS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="基本介绍相关术语Domain Name SystemNetworking system in place that allows us to resolve human-friendly names to unique addresses. Domain NameA domain name is the human-friendly name that we are used to associ">
+<meta name="keywords" content="网络,DNS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Domain Name System(DNS)">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/Domain-Name-System-DNS/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="基本介绍相关术语Domain Name SystemNetworking system in place that allows us to resolve human-friendly names to unique addresses. Domain NameA domain name is the human-friendly name that we are used to associ">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/07/25/Domain-Name-System-DNS/1.jpg">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Domain Name System(DNS)">
+<meta name="twitter:description" content="基本介绍相关术语Domain Name SystemNetworking system in place that allows us to resolve human-friendly names to unique addresses. Domain NameA domain name is the human-friendly name that we are used to associ">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/25/Domain-Name-System-DNS/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/25/Domain-Name-System-DNS/">
+
+
+  <title> Domain Name System(DNS) | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Domain Name System(DNS)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-07-25T14:58:04+08:00" content="2019-07-25">
+              2019-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术止熵/" itemprop="url" rel="index">
+                    <span itemprop="name">技术止熵</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2019/07/25/Domain-Name-System-DNS/1.jpg" alt></p>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h2 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h2><h3 id="Domain-Name-System"><a href="#Domain-Name-System" class="headerlink" title="Domain Name System"></a>Domain Name System</h3><p>Networking system in place that allows us to resolve human-friendly names to unique addresses.</p>
+<h3 id="Domain-Name"><a href="#Domain-Name" class="headerlink" title="Domain Name"></a>Domain Name</h3><p>A domain name is the human-friendly name that we are used to associating with an internet resource.</p>
+<h3 id="IP-Address"><a href="#IP-Address" class="headerlink" title="IP Address"></a>IP Address</h3><p>An IP address is what we call a network addressable location.</p>
+<p>With DNS, we map a name to that address so that you do not have to remember a complicated set of numbers for each place you wish to visit on a network.</p>
+<h3 id="Top-Level-Domain"><a href="#Top-Level-Domain" class="headerlink" title="Top-Level Domain"></a>Top-Level Domain</h3><p>A top-level domain, or TLD, is the most general part of the domain. The top-level domain is the furthest portion to the right (as separated by a dot). Common top-level domains are “com”, “net”, “org”, “gov”, “edu”, and “io”.</p>
+<h3 id="Hosts"><a href="#Hosts" class="headerlink" title="Hosts"></a>Hosts</h3><p>Within a domain, the domain owner can define individual hosts, which refer to separate computers or services accessible through a domain. For instance, most domain owners make their web servers accessible through the bare domain (example.com) and also through the “host” definition “www” (<a href="http://www.example.com)" target="_blank" rel="noopener">www.example.com)</a>.</p>
+<p>You can have other host definitions under the general domain. You could have API access through an “api” host (api.example.com) or you could have ftp access by defining a host called “ftp” or “files” (ftp.example.com or files.example.com). The host names can be arbitrary as long as they are unique for the domain.</p>
+<h3 id="SubDomain"><a href="#SubDomain" class="headerlink" title="SubDomain"></a>SubDomain</h3><p>A subject related to hosts are subdomains.</p>
+<h4 id="Hosts-amp-SubDomain-的区别"><a href="#Hosts-amp-SubDomain-的区别" class="headerlink" title="Hosts &amp; SubDomain 的区别"></a>Hosts &amp; SubDomain 的区别</h4><p>The difference between a host name and a subdomain is that a host defines a computer or resource, while a subdomain extends the parent domain. It is a method of subdividing the domain itself.</p>
+<h3 id="Fully-Qualified-Domain-Name"><a href="#Fully-Qualified-Domain-Name" class="headerlink" title="Fully Qualified Domain Name"></a>Fully Qualified Domain Name</h3><p>A fully qualified domain name, often called FQDN, is what we call an absolute domain name.</p>
+<p>Domains in the DNS system can be given relative to one another, and as such, can be somewhat ambiguous. A FQDN is an absolute name that specifies its location in relation to the absolute root of the domain name system.</p>
+<p>This means that it specifies each parent domain including the TLD. A proper FQDN ends with a dot, indicating the root of the DNS hierarchy. An example of a FQDN is “mail.google.com.”. Sometimes software that calls for FQDN does not require the ending dot, but the trailing dot is required to conform to ICANN standards.</p>
+<h3 id="Name-Server"><a href="#Name-Server" class="headerlink" title="Name Server"></a>Name Server</h3><p>A name server is a computer designated to translate domain names into IP addresses.</p>
+<h3 id="Zone-File"><a href="#Zone-File" class="headerlink" title="Zone File"></a>Zone File</h3><p>A zone file is a simple text file that contains the mappings between domain names and IP addresses.</p>
+<p>Zone files reside in name servers and generally define the resources available under a specific domain, or the place that one can go to get that information.</p>
+<h3 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h3><p>Within a zone file, records are kept. In its simplest form, a record is basically a single mapping between a resource and a name. These can map a domain name to an IP address, define the name servers for the domain, define the mail servers for the domain, etc.</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>If a request for “<a href="http://www.wikipedia.org&quot;" target="_blank" rel="noopener">www.wikipedia.org&quot;</a> is made.</p>
+<h3 id="Root-Servers"><a href="#Root-Servers" class="headerlink" title="Root Servers"></a>Root Servers</h3><p>DNS is, at its core, a hierarchical system. At the top of this system is what are known as “root servers”.</p>
+<p>Root servers handle requests for information about Top-level domains. So if a request comes in for something a lower-level name server cannot resolve, a query is made to the root server for the domain.</p>
+<p>The root servers won’t actually know where the domain is hosted. They will, however, be able to direct the requester to the name servers that handle the specifically requested top-level domain.</p>
+<p>So it will find a record for the “org” TLD and give the requesting entity the address of the name server responsible for “org” addresses.</p>
+<h3 id="TLD-Servers"><a href="#TLD-Servers" class="headerlink" title="TLD Servers"></a>TLD Servers</h3><p>The requester then sends a new request to the IP address (given to it by the root server) that is responsible for the top-level domain of the request.</p>
+<p>It will not find the final record in its files. However, it will find a record listing the IP address of the name server responsible for much more detail. This is getting much closer to the answer we want.</p>
+<p>Find a record listing the IP address of the name server responsible for “wikipedia.org”</p>
+<h3 id="Domain-Level-Name-Servers"><a href="#Domain-Level-Name-Servers" class="headerlink" title="Domain-Level Name Servers"></a>Domain-Level Name Servers</h3><p>The name server checks its zone files and it finds that it has a zone file associated with “wikipedia.org”. Inside of this file, there is a record for the “www” host. This record tells the IP address where this host is located. The name server returns the final answer to the requester.</p>
+<h3 id="What-is-a-Resolving-Name-Server"><a href="#What-is-a-Resolving-Name-Server" class="headerlink" title="What is a Resolving Name Server?"></a>What is a Resolving Name Server?</h3><p>In almost all cases, the requester will be what we call a “resolving name server” A resolving name server is one configured to ask other servers questions. It is basically an intermediary for a user which caches previous query results to improve speed and knows the addresses of the root servers to be able to “resolve” requests made for things it doesn’t already know about.</p>
+<p>Basically, a user will usually have a few resolving name servers configured on their computer system. The resolving name servers are usually provided by an ISP or other organizations. For instance Google provides resolving DNS servers that you can query. These can be either configured in your computer automatically or manually.</p>
+<p>When you type a URL in the address bar of your browser, your computer first looks to see if it can find out locally where the resource is located. It checks the “hosts” file on the computer and a few other locations. It then sends the request to the resolving name server and waits back to receive the IP address of the resource.</p>
+<p>The resolving name server then checks its cache for the answer. If it doesn’t find it, it goes through the steps outlined above.</p>
+<p>Resolving name servers basically compress the requesting process for the end user. The clients simply have to know to ask the resolving name servers where a resource is located and be confident that they will investigate and return the final answer.</p>
+<h2 id="Zone-Files"><a href="#Zone-Files" class="headerlink" title="Zone Files"></a>Zone Files</h2><p>Zone files are the way that name servers store information about the domains they know about. Every domain that a name server knows about is stored in a zone file. <strong>Most requests coming to the average name server are not something that the server will have zone files for</strong>.</p>
+<p>If it is configured to handle recursive queries, like a resolving name server, it will find out the answer and return it. Otherwise, it will tell the requesting party where to look next.</p>
+<p>The more zone files that a name server has, the more requests it will be able to answer authoritatively.</p>
+<p>The zone’s <code>$ORIGIN</code> is a parameter equal to the zone’s highest level of authority by default.</p>
+<p>So if a zone file is used to configure the “example.com.” domain, the <code>$ORIGIN</code> would be set to <code>example.com.</code>.</p>
+<p>Similarly, the <code>$TTL</code> configures the “time to live” of the information it provides. It is basically a timer. A caching name server can use previously queried results to answer questions until the TTL value runs out.</p>
+<h2 id="Record-Types"><a href="#Record-Types" class="headerlink" title="Record Types"></a>Record Types</h2><p>Within the zone file, we can have many different record types.</p>
+<h3 id="SOA-Records"><a href="#SOA-Records" class="headerlink" title="SOA Records"></a>SOA Records</h3><p>The Start of Authority, or SOA, record is a mandatory record in all zone files. It must be the first real record in a file (although <code>$ORIGIN</code> or <code>$TTL</code> specifications may appear above).</p>
+<p>The start of authority record looks something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">domain.com.  IN SOA ns1.domain.com. admin.domain.com. (</span><br><span class="line">    12083   ; serial number</span><br><span class="line">    3h      ; refresh interval</span><br><span class="line">    30m     ; retry interval</span><br><span class="line">    3w      ; expiry period</span><br><span class="line">    1h      ; negative TTL</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>Let’s explain what each part is for:</p>
+<ul>
+<li><code>domain.com.</code>: This is the root of the zone. This specifies that the zone file is for the <code>domain.com.</code> domain. Often, you’ll see this replaced with <code>@</code>, which is just a placeholder that substitutes the contents of the <code>$ORIGIN</code> variable we learned about above.</li>
+<li><code>IN SOA</code>: The “IN” portion means internet (and will be present in many records). The SOA is the indicator that this is a Start of Authority record.</li>
+<li><code>ns1.domain.com.</code>: This defines the <strong>primary name server</strong> for this domain. Name servers can either be primary or secondary, and if dynamic DNS is configured one server needs to be a “primary”, which goes here. If you haven’t configured dynamic DNS, then this is just one of your primary name servers.</li>
+<li><code>admin.domain.com.</code>: This is the <strong>email address of the administrator for this zone</strong>. The “@” is replaced with a dot in the email address. If the name portion of the email address normally has a dot in it, this is replace with a “\” in this part (<a href="mailto:your.name@domain.com" target="_blank" rel="noopener">your.name@domain.com</a> becomes your\name.domain.com).</li>
+<li><code>12083</code>: This is the serial number for the zone file. Every time you edit a zone file, you must increment this number for the zone file to propagate correctly. Secondary servers will check if the primary server’s serial number for a zone is larger than the one they have on their system. If it is, it requests the new zone file, if not, it continues serving the original file.</li>
+<li><code>3h</code>: This is the refresh interval for the zone. This is the amount of time that the secondary will wait before polling the primary for zone file changes.</li>
+<li><code>30m</code>: This is the retry interval for this zone. If the secondary cannot connect to the primary when the refresh period is up, it will wait this amount of time and retry to poll the primary.</li>
+<li><code>3w</code>: This is the <code>expiry period</code>. If a secondary name server has not been able to contact the primary for this amount of time, it no longer returns responses as an authoritative source for this zone.</li>
+<li><code>1h</code>: This is the amount of time that the name server will cache a name error if it cannot find the requested name in this file.</li>
+</ul>
+<h3 id="A-and-AAAA-Records"><a href="#A-and-AAAA-Records" class="headerlink" title="A and AAAA Records"></a>A and AAAA Records</h3><p>The “A” record is used to map a host to an IPv4 IP address, while “AAAA” records are used to map a host to an IPv6 address.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">host     IN      A       IPv4_address</span><br><span class="line">host     IN      AAAA    IPv6_address</span><br></pre></td></tr></table></figure>
+<h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><p>So since our SOA record called out a primary server at “ns1.domain.com”, we would have to map this to an address to an IP address since “ns1.domain.com” is within the “domain.com” zone that this file is defining.</p>
+<p>The record could look something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ns1     IN  A       111.222.111.222</span><br></pre></td></tr></table></figure>
+<p>Notice that we don’t have to give the full name. We can just give the host, without the FQDN and the DNS server will fill in the rest with the $ORIGIN value. However, we could just as easily use the entire FQDN if we feel like being semantic:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ns1.domain.com.     IN  A       111.222.111.222</span><br></pre></td></tr></table></figure>
+<p>In most cases, this is where you’ll define your web server as “www”:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www     IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<p>We should also tell where the base domain resolves to. We can do this like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">domain.com.     IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<p>We could have used the “@” to refer to the base domain instead:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@       IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<p>We also have the option of resolving anything that under this domain that is not defined explicitly to this server too. We can do this with the “*” wild card:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*       IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<p>All of these work just as well with AAAA records for IPv6 addresses.</p>
+<h3 id="CNAME-Records"><a href="#CNAME-Records" class="headerlink" title="CNAME Records"></a>CNAME Records</h3><p>CNAME records define an alias for canonical name for your server (one defined by an A or AAAA record).</p>
+<h4 id="example-1"><a href="#example-1" class="headerlink" title="example"></a>example</h4><p>For instance, we could have an A name record defining the “server1” host and then use the “www” as an alias for this host:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server1     IN  A       111.111.111.111</span><br><span class="line">www         IN  CNAME   server1</span><br></pre></td></tr></table></figure>
+<p>Be aware that these aliases come with some performance losses because they require an additional query to the server. Most of the time, the same result could be achieved by using additional A or AAAA records.</p>
+<p><strong>One case when a CNAME is recommended is to provide an alias for a resource outside of the current zone.</strong></p>
+<h3 id="MX-Records"><a href="#MX-Records" class="headerlink" title="MX Records"></a>MX Records</h3><p>MX records are used to define the mail exchanges that are used for the domain. This helps email messages arrive at your mail server correctly.</p>
+<p>Unlike many other record types, mail records generally don’t map a host to something, because they apply to the entire zone. As such, they usually look like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IN  MX  10   mail.domain.com.</span><br></pre></td></tr></table></figure>
+<p>Note that there is no host name at the beginning.</p>
+<p>Also note that there is an extra number in there. This is the preference number that helps computers decide which server to send mail to if there are multiple mail servers defined. Lower numbers have a higher priority.</p>
+<p>The MX record should generally point to a host defined by an A or AAAA record, and not one defined by a CNAME.</p>
+<p>So, let’s say that we have two mail servers. There would have to be records that look something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        IN  MX  10  mail1.domain.com.</span><br><span class="line">        IN  MX  50  mail2.domain.com.</span><br><span class="line">mail1   IN  A       111.111.111.111</span><br><span class="line">mail2   IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<p>In this example, the “mail1” host is the preferred email exchange server.</p>
+<p>We could also write that like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        IN  MX  10  mail1</span><br><span class="line">        IN  MX  50  mail2</span><br><span class="line">mail1   IN  A       111.111.111.111</span><br><span class="line">mail2   IN  A       222.222.222.222</span><br></pre></td></tr></table></figure>
+<h3 id="NS-Records"><a href="#NS-Records" class="headerlink" title="NS Records"></a>NS Records</h3><p>This record type defines the name servers that are used for this zone.</p>
+<p>You may be wondering, “if the zone file resides on the name server, why does it need to reference itself?”. Part of what makes DNS so successful is its multiple levels of caching. One reason for defining name servers within the zone file is that <strong>the zone file may be actually being served from a cached copy on another name server</strong>. There are other reasons for needing the name servers defined on the name server itself, but we won’t go into that here.</p>
+<p>Like the MX records, these are zone-wide parameters, so they do not take hosts either. In general, they look like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IN  NS     ns1.domain.com.</span><br><span class="line">IN  NS     ns2.domain.com.</span><br></pre></td></tr></table></figure>
+<p>You should have at least two name servers defined in each zone file in order to operate correctly if there is a problem with one server. Most DNS server software considers a zone file to be invalid if there is only a single name server.</p>
+<p>As always, include the mapping for the hosts with A or AAAA records:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        IN  NS     ns1.domain.com.</span><br><span class="line">        IN  NS     ns2.domain.com.</span><br><span class="line">ns1     IN  A      111.222.111.111</span><br><span class="line">ns2     IN  A      123.211.111.233</span><br></pre></td></tr></table></figure>
+<h3 id="PTR-Records"><a href="#PTR-Records" class="headerlink" title="PTR Records"></a>PTR Records</h3><p>The PTR records are used define a name associated with an IP address. PTR records are the inverse of an A or AAAA record.</p>
+<h3 id="CAA-Records"><a href="#CAA-Records" class="headerlink" title="CAA Records"></a>CAA Records</h3><p>CAA records are used to specify which Certificate Authorities (CAs) are allowed to issue SSL/TLS certificates for your domain.</p>
+<h2 id="DNS-Tips-and-Tricks"><a href="#DNS-Tips-and-Tricks" class="headerlink" title="DNS Tips and Tricks"></a>DNS Tips and Tricks</h2><p><a href="https://www.digitalocean.com/community/tutorials/dns-tips-and-tricks" target="_blank" rel="noopener">DNS Tips and Tricks</a></p>
+<h3 id="How-to-Confirm-your-DNS-records-are-working-using-WHOIS-and-Dig"><a href="#How-to-Confirm-your-DNS-records-are-working-using-WHOIS-and-Dig" class="headerlink" title="How to Confirm your DNS records are working using WHOIS and Dig"></a>How to Confirm your DNS records are working using WHOIS and Dig</h3><h3 id="How-to-Set-Up-DNS-Load-Balancing"><a href="#How-to-Set-Up-DNS-Load-Balancing" class="headerlink" title="How to Set Up DNS Load Balancing"></a>How to Set Up DNS Load Balancing</h3><h3 id="How-To-Change-Name-Servers-Without-Site-Downtime"><a href="#How-To-Change-Name-Servers-Without-Site-Downtime" class="headerlink" title="How To Change Name Servers Without Site Downtime"></a>How To Change Name Servers Without Site Downtime</h3><h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts" target="_blank" rel="noopener">An Introduction to DNS Terminology, Components, and Concepts</a><br><a href="https://www.digitalocean.com/community/tutorial_series/an-introduction-to-managing-dns" target="_blank" rel="noopener">An Introduction to Managing DNS</a><br><a href="https://www.youtube.com/watch?v=72snZctFFtA" target="_blank" rel="noopener">DNS Explained</a><br><a href="https://howdns.works/" target="_blank" rel="noopener">How DNS Works?</a><br><a href="https://www.youtube.com/watch?v=5o8CwafCxnU&amp;index=3&amp;list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7" target="_blank" rel="noopener">The Internet: IP Addresses and DNS</a><br><a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name" target="_blank" rel="noopener">What is a domain name?</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag">#网络</a>
+          
+            <a href="/tags/DNS/" rel="tag">#DNS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/23/Internet/" rel="next" title="About The Internet">
+                <i class="fa fa-chevron-left"></i> About The Internet
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/09/HTTP/" rel="prev" title="HTTP">
+                HTTP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍"><span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Domain-Name-System"><span class="nav-text">Domain Name System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Domain-Name"><span class="nav-text">Domain Name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-Address"><span class="nav-text">IP Address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-Level-Domain"><span class="nav-text">Top-Level Domain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hosts"><span class="nav-text">Hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SubDomain"><span class="nav-text">SubDomain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hosts-amp-SubDomain-的区别"><span class="nav-text">Hosts &amp; SubDomain 的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fully-Qualified-Domain-Name"><span class="nav-text">Fully Qualified Domain Name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Name-Server"><span class="nav-text">Name Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zone-File"><span class="nav-text">Zone File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Records"><span class="nav-text">Records</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作原理"><span class="nav-text">工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Root-Servers"><span class="nav-text">Root Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLD-Servers"><span class="nav-text">TLD Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Domain-Level-Name-Servers"><span class="nav-text">Domain-Level Name Servers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-Resolving-Name-Server"><span class="nav-text">What is a Resolving Name Server?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zone-Files"><span class="nav-text">Zone Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Record-Types"><span class="nav-text">Record Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOA-Records"><span class="nav-text">SOA Records</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-and-AAAA-Records"><span class="nav-text">A and AAAA Records</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#example"><span class="nav-text">example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNAME-Records"><span class="nav-text">CNAME Records</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#example-1"><span class="nav-text">example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MX-Records"><span class="nav-text">MX Records</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NS-Records"><span class="nav-text">NS Records</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PTR-Records"><span class="nav-text">PTR Records</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAA-Records"><span class="nav-text">CAA Records</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Tips-and-Tricks"><span class="nav-text">DNS Tips and Tricks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Confirm-your-DNS-records-are-working-using-WHOIS-and-Dig"><span class="nav-text">How to Confirm your DNS records are working using WHOIS and Dig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Set-Up-DNS-Load-Balancing"><span class="nav-text">How to Set Up DNS Load Balancing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-To-Change-Name-Servers-Without-Site-Downtime"><span class="nav-text">How To Change Name Servers Without Site Downtime</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-text">相关链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

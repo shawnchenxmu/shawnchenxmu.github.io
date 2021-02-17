@@ -1,0 +1,666 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,阅读,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="当我们在谈大前端的时候，我们谈的是什么 三个层面上的大前端大前端与NodeJS与前后端分离过去几年，前端技术经历了爆发式的发展，这种发展最重要的推动者之一就是NodeJS。 前后端分离指的是后端只提供接口，前端对页面有完整控制，同时通过中间层将前后端隔开，在这里对数据进行抽取、聚合、分发等操作。 从这个意义上，大前端的原始定义可以称为前端技术的扩大化，包括NodeJS，同时对Web页面有更强的控制">
+<meta name="keywords" content="前端,阅读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当我们在谈大前端时，我们谈的是什么">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/当我们在谈大前端时，我们谈的是什么/index.html">
+<meta property="og:site_name" content="Shawnchen &#x2F; XMU 。">
+<meta property="og:description" content="当我们在谈大前端的时候，我们谈的是什么 三个层面上的大前端大前端与NodeJS与前后端分离过去几年，前端技术经历了爆发式的发展，这种发展最重要的推动者之一就是NodeJS。 前后端分离指的是后端只提供接口，前端对页面有完整控制，同时通过中间层将前后端隔开，在这里对数据进行抽取、聚合、分发等操作。 从这个意义上，大前端的原始定义可以称为前端技术的扩大化，包括NodeJS，同时对Web页面有更强的控制">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-14T12:05:31.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当我们在谈大前端时，我们谈的是什么">
+<meta name="twitter:description" content="当我们在谈大前端的时候，我们谈的是什么 三个层面上的大前端大前端与NodeJS与前后端分离过去几年，前端技术经历了爆发式的发展，这种发展最重要的推动者之一就是NodeJS。 前后端分离指的是后端只提供接口，前端对页面有完整控制，同时通过中间层将前后端隔开，在这里对数据进行抽取、聚合、分发等操作。 从这个意义上，大前端的原始定义可以称为前端技术的扩大化，包括NodeJS，同时对Web页面有更强的控制">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Shawnchen'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/01/当我们在谈大前端时，我们谈的是什么/">
+
+
+  <title> 当我们在谈大前端时，我们谈的是什么 | Shawnchen / XMU 。 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-122678625-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shawnchen / XMU 。</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://shawnchenxmu.github.io/shawnchenxmu.com/" rel="section">
+            
+            about
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Timelines
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                当我们在谈大前端时，我们谈的是什么
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-01T12:37:02+08:00" content="2017-08-01">
+              2017-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NOTE/" itemprop="url" rel="index">
+                    <span itemprop="name">NOTE</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://www.infoq.com/cn/articles/talking-about-daqianduan?utm_source=articles_about_Front-end&amp;utm_medium=link&amp;utm_campaign=Front-end" target="_blank" rel="noopener">当我们在谈大前端的时候，我们谈的是什么</a></p>
+<h2 id="三个层面上的大前端"><a href="#三个层面上的大前端" class="headerlink" title="三个层面上的大前端"></a>三个层面上的大前端</h2><h3 id="大前端与NodeJS与前后端分离"><a href="#大前端与NodeJS与前后端分离" class="headerlink" title="大前端与NodeJS与前后端分离"></a>大前端与NodeJS与前后端分离</h3><p>过去几年，前端技术经历了爆发式的发展，这种发展最重要的推动者之一就是NodeJS。</p>
+<p>前后端分离指的是后端只提供接口，前端对页面有完整控制，同时通过中间层将前后端隔开，在这里对数据进行抽取、聚合、分发等操作。</p>
+<p>从这个意义上，大前端的原始定义可以称为前端技术的扩大化，包括NodeJS，同时对Web页面有更强的控制权，开发承载更多功能的页面。</p>
+<h3 id="大前端与泛GUI交互"><a href="#大前端与泛GUI交互" class="headerlink" title="大前端与泛GUI交互"></a>大前端与泛GUI交互</h3><p>移动互联网时代到来之后，移动App成为新的主流，而浏览器的地位则逐渐降低。</p>
+<p>当时人们提起移动开发，主要指的还是iOS与Android原生开发技术，这一情况随着React Native的发布得到了改变。</p>
+<p>在国内外大规模使用React Native仍然不多，但是它的确能解决原生的跨平台代码复用、动态化等痛点，又避免了之前Hybrid的性能问题，因此受到广泛关注。</p>
+<p>随着React Native的加入，前端的技术栈再次扩展。并且React Native让我们发现，其实通过加入一个虚拟视图层（Virtual DOM），逻辑操作和模型部分的代码能够得到很大程度的复用，在已有的实践总结中，大部分React Native代码都得到了80%以上的复用。</p>
+<p>虚拟视图层也不仅仅只能用在移动端，在所有通过图形界面进行人机交互的地方都可行，在PC、Web、移动设备甚至还未发明出的未来的种种设备上，只要系统能运行JavaScript引擎，理论上都可以采用类似React Native的开发方案。这种前端技术，当然可以称为大前端。</p>
+<h3 id="大前端团队现状"><a href="#大前端团队现状" class="headerlink" title="大前端团队现状"></a>大前端团队现状</h3><p>目前美团点评、饿了么、网易杭研都有叫大前端的团队或者在对外时使用该称谓。</p>
+<h2 id="为什么说大前端是发展趋势"><a href="#为什么说大前端是发展趋势" class="headerlink" title="为什么说大前端是发展趋势"></a>为什么说大前端是发展趋势</h2><p>大前端不仅会成为移动开发与Web前端的发展趋势，也将会是未来的显示设备终端的开发技术趋势。</p>
+<h3 id="终端碎片化"><a href="#终端碎片化" class="headerlink" title="终端碎片化"></a>终端碎片化</h3><p>我们已经进入一个终端碎片化的时代，我们有智能手表、TV、眼镜、头戴VR等设备，并且，这些平台基本都支持浏览器或内嵌浏览器引擎。</p>
+<p>虽然有些平台限制使用Web技术开发应用，但这只是平台政策原因，只要放开限制，前端技术就能以某种姿态进入，甚至成为主流。</p>
+<h3 id="Serverless"><a href="#Serverless" class="headerlink" title="Serverless"></a>Serverless</h3><p>Serverless中文译为无服务器架构，是软件架构领域的一个热门概念。这里的无服务并不是说不需要服务器，而是说新的架构取代了传统服务器的概念。</p>
+<p>Serverless的代表是2014年亚马逊发布的AWS lamda，后续各大云计算厂商也纷纷跟进。</p>
+<h2 id="大前端的代表技术"><a href="#大前端的代表技术" class="headerlink" title="大前端的代表技术"></a>大前端的代表技术</h2><p>终端开发、网关设计、接口设计、桌面端的工程化都可以算是大前端的业务范畴。</p>
+<p>具体的技术，则是基于HTML5、NodeJS的通用技术，以及各平台的专有技术。从现阶段来说，还需要掌握一些代表性的框架、平台等。</p>
+<h3 id="React系与Vue系：两大前端生态"><a href="#React系与Vue系：两大前端生态" class="headerlink" title="React系与Vue系：两大前端生态"></a>React系与Vue系：两大前端生态</h3><p>生态的意义就是覆盖全面，几乎没有短板，React和Vue已经覆盖了目前主流的系统平台，并且可以用React Native、Weex等框架进行原生开发，相较于其它技术有很强的优势。</p>
+<h3 id="PWA：开放的理想"><a href="#PWA：开放的理想" class="headerlink" title="PWA：开放的理想"></a>PWA：开放的理想</h3><h3 id="小程序：Super-App指向的另一种未来"><a href="#小程序：Super-App指向的另一种未来" class="headerlink" title="小程序：Super App指向的另一种未来"></a>小程序：Super App指向的另一种未来</h3><p>微信小程序的用户体验很不错，表明了这项技术的应用潜力。</p>
+<h2 id="大前端带来的影响"><a href="#大前端带来的影响" class="headerlink" title="大前端带来的影响"></a>大前端带来的影响</h2><h3 id="新的移动开发技术栈"><a href="#新的移动开发技术栈" class="headerlink" title="新的移动开发技术栈"></a>新的移动开发技术栈</h3><p>移动设备作为主流的终端设备，其应用开发技术也应该是大前端最关注的技术。</p>
+<p>纯原生的移动开发的道路会越来越窄，整个移动开发的技术栈必须要做一个大的改变。</p>
+<h3 id="新职业：大前端工程师"><a href="#新职业：大前端工程师" class="headerlink" title="新职业：大前端工程师"></a>新职业：大前端工程师</h3><p>它与以前的Web前端的区别是，大前端将做更多的终端开发、工程化等工作，而不仅仅只是开发Web页面。大前端工程师将能搞定所有端上的开发。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/阅读/" rel="tag">#阅读</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/29/HTTP 状态码/" rel="next" title="HTTP 状态码">
+                <i class="fa fa-chevron-left"></i> HTTP 状态码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/05/如何用好JavaScript console/" rel="prev" title="如何用好 console">
+                如何用好 console <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <!-- 多说评论框 start -->  
+        <div class="ds-thread" data-thread-key="<%- page.path %>" data-title="<%- page.title %>" data-url="<%- page.permalink %>"></div>  
+<!-- 多说评论框 end --> 
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"shawnchenxmu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="shawnchen">
+          <p class="site-author-name" itemprop="name">shawnchen</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离了高级趣味的人</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">116</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnchenxmu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://500px.com/1004740775" target="_blank" title="500px">
+                  
+                    <i class="fa fa-fw fa-500px"></i>
+                  
+                  500px
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href target="_blank" title="Weixin">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  Weixin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#三个层面上的大前端"><span class="nav-text">三个层面上的大前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大前端与NodeJS与前后端分离"><span class="nav-text">大前端与NodeJS与前后端分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大前端与泛GUI交互"><span class="nav-text">大前端与泛GUI交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大前端团队现状"><span class="nav-text">大前端团队现状</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么说大前端是发展趋势"><span class="nav-text">为什么说大前端是发展趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#终端碎片化"><span class="nav-text">终端碎片化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serverless"><span class="nav-text">Serverless</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大前端的代表技术"><span class="nav-text">大前端的代表技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React系与Vue系：两大前端生态"><span class="nav-text">React系与Vue系：两大前端生态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PWA：开放的理想"><span class="nav-text">PWA：开放的理想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序：Super-App指向的另一种未来"><span class="nav-text">小程序：Super App指向的另一种未来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大前端带来的影响"><span class="nav-text">大前端带来的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新的移动开发技术栈"><span class="nav-text">新的移动开发技术栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新职业：大前端工程师"><span class="nav-text">新职业：大前端工程师</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnchen</span>
+</div>
+
+<div class="powered-by">
+  一切都将逝去
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
